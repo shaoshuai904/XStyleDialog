@@ -1,7 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:drawable="@drawable/alert_btn_right_pressed" android:state_pressed="true"/>
-    <item android:drawable="@drawable/trans_bg"/>
+    <item android:state_pressed="true">
+        <shape>
+            <solid android:color="@color/act_sel_bg"/>
+            <corners
+                android:bottomRightRadius="@dimen/jiaodu"
+                android:radius="0dp"/>
+        </shape>
+    </item>
 
+    <item android:state_pressed="false">
+        <shape>
+            <solid android:color="@color/act_def_bg"/>
+            <corners
+                android:bottomRightRadius="@dimen/jiaodu"
+                android:radius="0dp"/>
+        </shape>
+    </item>
 </selector>

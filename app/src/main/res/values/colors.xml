@@ -9,4 +9,10 @@
     <color name="actionsheet_red">#FD4A2E</color>
     <color name="actionsheet_gray">#8F8F8F</color>
     <color name="black">#FD4A2E</color>
+
+
+    <color name="act_def_bg">#FFFFFF</color>
+    <color name="act_sel_bg">#BBBBBB</color>
+    <color name="act_line">#121cac</color>
+
 </resources>
