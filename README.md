@@ -5,13 +5,7 @@
 	仿iOS样式Dialog。 
 	开发环境：Android Studio 2.3.
 
------------
-
-![iOSDialog_show](https://github.com/shaoshuai904/IOSDialog/blob/master/screens/iOSDialog_show.mp4)
-
-![iOSDialog_ActionSheetDialog_1](https://github.com/shaoshuai904/IOSDialog/blob/master/screens/iOSDialog_ActionSheetDialog_1.png)
-
-![iOSDialog_AlertDialog_1](https://github.com/shaoshuai904/IOSDialog/blob/master/screens/iOSDialog_AlertDialog_1.png)
+![demo_show](https://github.com/shaoshuai904/IOSDialog/blob/master/screens/demo_show.png)
 
 ####  AlertDialog
 
