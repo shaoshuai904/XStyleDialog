@@ -4,44 +4,50 @@
               android:orientation="vertical"
               android:padding="10dp">
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:gravity="center"
+        android:text="Action Sheet Dialog"
+        android:textSize="18sp"/>
+
     <Button
         android:id="@+id/btn1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:background="@drawable/buttom_bg"
         android:text="消息"/>
 
     <Button
         android:id="@+id/btn2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:background="@drawable/buttom_bg"
         android:text="图片"/>
 
     <Button
         android:id="@+id/btn3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:background="@drawable/buttom_bg"
         android:text="列表"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:gravity="center"
+        android:text="Alert Dialog"
+        android:textSize="18sp"/>
 
     <Button
         android:id="@+id/btn4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:background="@drawable/buttom_bg"
-        android:text="按钮一"/>
+        android:text="常规"/>
 
     <Button
         android:id="@+id/btn5"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:background="@drawable/buttom_bg"
-        android:text="按钮二"/>
+        android:text="极简"/>
 
 </LinearLayout>

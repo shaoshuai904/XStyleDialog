@@ -60,7 +60,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
                         .builder()
                         .setCancelable(false)
                         .setCanceledOnTouchOutside(false)
-                        .addSheetItem("发送给好友", ActionSheetDialog.SheetItemColor.Blue,
+                        .addSheetItem("发送给好友", ActionSheetDialog.SheetItemColor.Red,
                                 new ActionSheetDialog.OnSheetItemClickListener() {
                                     @Override
                                     public void onClick(int which) {
@@ -81,7 +81,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
                                     }
                                 })
-                        .addSheetItem("保存到手机", ActionSheetDialog.SheetItemColor.Blue,
+                        .addSheetItem("保存到手机", ActionSheetDialog.SheetItemColor.Red,
                                 new ActionSheetDialog.OnSheetItemClickListener() {
                                     @Override
                                     public void onClick(int which) {
@@ -201,4 +201,6 @@ public class MainActivity extends Activity implements View.OnClickListener {
     private void showToast(String msg) {
         Toast.makeText(MainActivity.this, msg, Toast.LENGTH_SHORT).show();
     }
+
+
 }

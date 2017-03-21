@@ -20,6 +20,12 @@ import com.maple.iosdialog.R;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 页签式Dialog [ 标题 + 页签条目 + 取消按钮 ]
+ *
+ * @author maple
+ * @time 17/3/21
+ */
 public class ActionSheetDialog {
     private Context context;
     private Dialog dialog;
@@ -38,11 +44,10 @@ public class ActionSheetDialog {
     }
 
     public ActionSheetDialog builder() {
-        // 获取Dialog布局
         View view = LayoutInflater.from(context).inflate(R.layout.view_dialog_actionsheet, null);
-        // 设置Dialog最小宽度为屏幕宽度
+        // set Dialog min width
         view.setMinimumWidth(display.getWidth());
-        // 获取自定义Dialog布局中的控件
+        // get custom Dialog layout
         sLayout_content = (ScrollView) view.findViewById(R.id.sLayout_content);
         lLayout_content = (LinearLayout) view.findViewById(R.id.lLayout_content);
         txt_title = (TextView) view.findViewById(R.id.txt_title);
@@ -54,7 +59,7 @@ public class ActionSheetDialog {
             }
         });
 
-        // 定义Dialog布局和参数
+        // create Dialog
         dialog = new Dialog(context, R.style.ActionSheetDialogStyle);
         dialog.setContentView(view);
         Window dialogWindow = dialog.getWindow();
@@ -93,9 +98,9 @@ public class ActionSheetDialog {
 //    }
 
     /**
-     * @param strItem  条目名称
-     * @param color    条目字体颜色，设置null则默认蓝色
-     * @param listener
+     * @param strItem  item text
+     * @param color    item text color，default:Blue
+     * @param listener item click listener
      * @return
      */
     public ActionSheetDialog addSheetItem(String strItem, SheetItemColor color, OnSheetItemClickListener listener) {
@@ -107,7 +112,7 @@ public class ActionSheetDialog {
         return this;
     }
 
-    /** 设置条目布局 */
+    /** set items layout */
     private void setSheetItems() {
         if (sheetItemList == null || sheetItemList.size() <= 0) {
             return;
@@ -120,7 +125,7 @@ public class ActionSheetDialog {
             params.height = display.getHeight() / 2;
             sLayout_content.setLayoutParams(params);
         }
-        // 循环添加条目
+        // loop add item
         for (int i = 1; i <= size; i++) {
             final int index = i;
             final SheetItem sheetItem = sheetItemList.get(i - 1);
@@ -130,7 +135,7 @@ public class ActionSheetDialog {
             textView.setTextSize(18);
             textView.setGravity(Gravity.CENTER);
 
-            // 背景图片
+            // set item background
             if (size == 1) {
                 if (showTitle) {
                     textView.setBackgroundResource(R.drawable.actionsheet_bottom_selector);
@@ -155,19 +160,19 @@ public class ActionSheetDialog {
                 }
             }
 
-            // 字体颜色
+            // set item text color
             if (sheetItem.color == null) {
                 textView.setTextColor(Color.parseColor(SheetItemColor.Blue.colorString));
             } else {
                 textView.setTextColor(Color.parseColor(sheetItem.color.colorString));
             }
 
-            // 高度
+            // set item height
             float scale = context.getResources().getDisplayMetrics().density;
             int height = (int) (45 * scale + 0.5f);
             textView.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, height));
 
-            // 点击事件
+            // add click listener
             textView.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View v) {

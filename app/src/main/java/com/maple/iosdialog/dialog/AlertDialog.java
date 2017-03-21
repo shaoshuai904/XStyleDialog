@@ -2,6 +2,7 @@ package com.maple.iosdialog.dialog;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.text.TextUtils;
 import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +17,12 @@ import android.widget.TextView;
 
 import com.maple.iosdialog.R;
 
+/**
+ * 警告框式Dialog [ 标题 + 消息文本 + 左按钮 + 右按钮 ]
+ *
+ * @author maple
+ * @time 17/3/21
+ */
 public class AlertDialog {
     private Context context;
     private Dialog dialog;
@@ -38,11 +45,9 @@ public class AlertDialog {
     }
 
     public AlertDialog builder() {
-        // 获取Dialog布局
-        View view = LayoutInflater.from(context).inflate(
-                R.layout.view_dialog_alertdialog, null);
+        View view = LayoutInflater.from(context).inflate(R.layout.view_dialog_alertdialog, null);
 
-        // 获取自定义Dialog布局中的控件
+        // get custom Dialog layout
         lLayout_bg = (LinearLayout) view.findViewById(R.id.lLayout_bg);
         txt_title = (TextView) view.findViewById(R.id.txt_title);
         txt_title.setVisibility(View.GONE);
@@ -55,11 +60,10 @@ public class AlertDialog {
         img_line = (ImageView) view.findViewById(R.id.img_line);
         img_line.setVisibility(View.GONE);
 
-        // 定义Dialog布局和参数
+        // set Dialog style
         dialog = new Dialog(context, R.style.AlertDialogStyle);
         dialog.setContentView(view);
 
-        // 调整dialog背景大小
         lLayout_bg.setLayoutParams(new FrameLayout.LayoutParams((int) (display
                 .getWidth() * 0.85), LayoutParams.WRAP_CONTENT));
 
@@ -68,8 +72,8 @@ public class AlertDialog {
 
     public AlertDialog setTitle(String title) {
         showTitle = true;
-        if ("".equals(title)) {
-            txt_title.setText("标题");
+        if (TextUtils.isEmpty(title)) {
+            txt_title.setText("Alert");
         } else {
             txt_title.setText(title);
         }
@@ -78,8 +82,8 @@ public class AlertDialog {
 
     public AlertDialog setMsg(String msg) {
         showMsg = true;
-        if ("".equals(msg)) {
-            txt_msg.setText("内容");
+        if (TextUtils.isEmpty(msg)) {
+            txt_msg.setText("body text");
         } else {
             txt_msg.setText(msg);
         }
@@ -93,8 +97,8 @@ public class AlertDialog {
 
     public AlertDialog setPositiveButton(String text, final OnClickListener listener) {
         showPosBtn = true;
-        if ("".equals(text)) {
-            btn_pos.setText("确定");
+        if (TextUtils.isEmpty(text)) {
+            btn_pos.setText("OK");
         } else {
             btn_pos.setText(text);
         }
@@ -111,8 +115,8 @@ public class AlertDialog {
 
     public AlertDialog setNegativeButton(String text, final OnClickListener listener) {
         showNegBtn = true;
-        if ("".equals(text)) {
-            btn_neg.setText("取消");
+        if (TextUtils.isEmpty(text)) {
+            btn_neg.setText("Cancel");
         } else {
             btn_neg.setText(text);
         }
@@ -129,7 +133,7 @@ public class AlertDialog {
 
     private void setLayout() {
         if (!showTitle && !showMsg) {
-            txt_title.setText("提示");
+            txt_title.setText("Alert");
             txt_title.setVisibility(View.VISIBLE);
         }
 
@@ -142,7 +146,7 @@ public class AlertDialog {
         }
 
         if (!showPosBtn && !showNegBtn) {
-            btn_pos.setText("确定");
+            btn_pos.setText("OK");
             btn_pos.setVisibility(View.VISIBLE);
             btn_pos.setBackgroundResource(R.drawable.alertdialog_single_selector);
             btn_pos.setOnClickListener(new OnClickListener() {
