@@ -50,7 +50,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
                                 new ActionSheetDialog.OnSheetItemClickListener() {
                                     @Override
                                     public void onClick(int which) {
-
+                                        showToast("clear msg list");
                                     }
                                 })
                         .show();
@@ -110,96 +110,66 @@ public class MainActivity extends Activity implements View.OnClickListener {
                         .setTitle("请选择操作")
                         .setCancelable(false)
                         .setCanceledOnTouchOutside(false)
-                        .addSheetItem("条目一", ActionSheetDialog.SheetItemColor.Blue,
-                                new ActionSheetDialog.OnSheetItemClickListener() {
-                                    @Override
-                                    public void onClick(int which) {
-                                        Toast.makeText(MainActivity.this,
-                                                "item" + which, Toast.LENGTH_SHORT)
-                                                .show();
-                                    }
-                                })
-                        .addSheetItem("条目二", ActionSheetDialog.SheetItemColor.Blue,
-                                new ActionSheetDialog.OnSheetItemClickListener() {
-                                    @Override
-                                    public void onClick(int which) {
-                                        Toast.makeText(MainActivity.this,
-                                                "item" + which, Toast.LENGTH_SHORT)
-                                                .show();
-                                    }
-                                })
-                        .addSheetItem("条目三", ActionSheetDialog.SheetItemColor.Blue,
-                                new ActionSheetDialog.OnSheetItemClickListener() {
-                                    @Override
-                                    public void onClick(int which) {
-                                        Toast.makeText(MainActivity.this,
-                                                "item" + which, Toast.LENGTH_SHORT)
-                                                .show();
-                                    }
-                                })
-                        .addSheetItem("条目四", ActionSheetDialog.SheetItemColor.Blue,
-                                new ActionSheetDialog.OnSheetItemClickListener() {
-                                    @Override
-                                    public void onClick(int which) {
-                                        Toast.makeText(MainActivity.this,
-                                                "item" + which, Toast.LENGTH_SHORT)
-                                                .show();
-                                    }
-                                })
-                        .addSheetItem("条目五", ActionSheetDialog.SheetItemColor.Blue,
-                                new ActionSheetDialog.OnSheetItemClickListener() {
-                                    @Override
-                                    public void onClick(int which) {
-                                        Toast.makeText(MainActivity.this,
-                                                "item" + which, Toast.LENGTH_SHORT)
-                                                .show();
-                                    }
-                                })
-                        .addSheetItem("条目六", ActionSheetDialog.SheetItemColor.Blue,
-                                new ActionSheetDialog.OnSheetItemClickListener() {
-                                    @Override
-                                    public void onClick(int which) {
-                                        Toast.makeText(MainActivity.this,
-                                                "item" + which, Toast.LENGTH_SHORT)
-                                                .show();
-                                    }
-                                })
-                        .addSheetItem("条目七", ActionSheetDialog.SheetItemColor.Blue,
-                                new ActionSheetDialog.OnSheetItemClickListener() {
-                                    @Override
-                                    public void onClick(int which) {
-                                        Toast.makeText(MainActivity.this,
-                                                "item" + which, Toast.LENGTH_SHORT)
-                                                .show();
-                                    }
-                                })
-                        .addSheetItem("条目八", ActionSheetDialog.SheetItemColor.Blue,
-                                new ActionSheetDialog.OnSheetItemClickListener() {
-                                    @Override
-                                    public void onClick(int which) {
-                                        Toast.makeText(MainActivity.this,
-                                                "item" + which, Toast.LENGTH_SHORT)
-                                                .show();
-                                    }
-                                })
-                        .addSheetItem("条目九", ActionSheetDialog.SheetItemColor.Blue,
-                                new ActionSheetDialog.OnSheetItemClickListener() {
-                                    @Override
-                                    public void onClick(int which) {
-                                        Toast.makeText(MainActivity.this,
-                                                "item" + which, Toast.LENGTH_SHORT)
-                                                .show();
-                                    }
-                                })
-                        .addSheetItem("条目十", ActionSheetDialog.SheetItemColor.Blue,
-                                new ActionSheetDialog.OnSheetItemClickListener() {
-                                    @Override
-                                    public void onClick(int which) {
-                                        Toast.makeText(MainActivity.this,
-                                                "item" + which, Toast.LENGTH_SHORT)
-                                                .show();
-                                    }
-                                }).show();
+                        .addSheetItem("条目一", ActionSheetDialog.SheetItemColor.Red, new ActionSheetDialog.OnSheetItemClickListener() {
+                            @Override
+                            public void onClick(int which) {
+                                showToast("item " + which);
+                            }
+                        })
+                        .addSheetItem("条目二", null, new ActionSheetDialog.OnSheetItemClickListener() {
+                            @Override
+                            public void onClick(int which) {
+                                showToast("item " + which);
+                            }
+                        })
+                        .addSheetItem("条目三", ActionSheetDialog.SheetItemColor.Red, new ActionSheetDialog.OnSheetItemClickListener() {
+                            @Override
+                            public void onClick(int which) {
+                                showToast("item " + which);
+                            }
+                        })
+                        .addSheetItem("条目四", null, new ActionSheetDialog.OnSheetItemClickListener() {
+                            @Override
+                            public void onClick(int which) {
+                                showToast("item " + which);
+                            }
+                        })
+                        .addSheetItem("条目五", null, new ActionSheetDialog.OnSheetItemClickListener() {
+                            @Override
+                            public void onClick(int which) {
+                                showToast("item " + which);
+                            }
+                        })
+                        .addSheetItem("条目六", null, new ActionSheetDialog.OnSheetItemClickListener() {
+                            @Override
+                            public void onClick(int which) {
+                                showToast("item " + which);
+                            }
+                        })
+                        .addSheetItem("条目七", null, new ActionSheetDialog.OnSheetItemClickListener() {
+                            @Override
+                            public void onClick(int which) {
+                                showToast("item " + which);
+                            }
+                        })
+                        .addSheetItem("条目八", null, new ActionSheetDialog.OnSheetItemClickListener() {
+                            @Override
+                            public void onClick(int which) {
+                                showToast("item " + which);
+                            }
+                        })
+                        .addSheetItem("条目九", null, new ActionSheetDialog.OnSheetItemClickListener() {
+                            @Override
+                            public void onClick(int which) {
+                                showToast("item " + which);
+                            }
+                        })
+                        .addSheetItem("条目十", null, new ActionSheetDialog.OnSheetItemClickListener() {
+                            @Override
+                            public void onClick(int which) {
+                                showToast("item " + which);
+                            }
+                        }).show();
                 break;
             case R.id.btn4:
                 new AlertDialog(MainActivity.this).builder().setTitle("退出当前账号")
@@ -207,15 +177,10 @@ public class MainActivity extends Activity implements View.OnClickListener {
                         .setPositiveButton("确认退出", new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-
+                                showToast("exit");
                             }
                         })
-                        .setNegativeButton("取消", new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-
-                            }
-                        })
+                        .setNegativeButton("取消", null)
                         .show();
                 break;
             case R.id.btn5:
@@ -224,12 +189,16 @@ public class MainActivity extends Activity implements View.OnClickListener {
                         .setNegativeButton("确定", new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-
+                                showToast("OK");
                             }
                         }).show();
                 break;
             default:
                 break;
         }
+    }
+
+    private void showToast(String msg) {
+        Toast.makeText(MainActivity.this, msg, Toast.LENGTH_SHORT).show();
     }
 }
