@@ -2,20 +2,17 @@ package com.maple.iosdialog;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
-import android.widget.Button;
 import android.widget.Toast;
 
 import com.maple.iosdialog.dialog.ActionSheetDialog;
 import com.maple.iosdialog.dialog.AlertDialog;
+import com.maple.iosdialog.dialog.AlertEditDialog;
 
 
 public class MainActivity extends Activity implements View.OnClickListener {
-    private Button btn1;
-    private Button btn2;
-    private Button btn3;
-    private Button btn4;
-    private Button btn5;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,16 +22,13 @@ public class MainActivity extends Activity implements View.OnClickListener {
     }
 
     private void initView() {
-        btn1 = (Button) findViewById(R.id.btn1);
-        btn1.setOnClickListener(this);
-        btn2 = (Button) findViewById(R.id.btn2);
-        btn2.setOnClickListener(this);
-        btn3 = (Button) findViewById(R.id.btn3);
-        btn3.setOnClickListener(this);
-        btn4 = (Button) findViewById(R.id.btn4);
-        btn4.setOnClickListener(this);
-        btn5 = (Button) findViewById(R.id.btn5);
-        btn5.setOnClickListener(this);
+        findViewById(R.id.btn1).setOnClickListener(this);
+        findViewById(R.id.btn2).setOnClickListener(this);
+        findViewById(R.id.btn3).setOnClickListener(this);
+        findViewById(R.id.btn4).setOnClickListener(this);
+        findViewById(R.id.btn5).setOnClickListener(this);
+        findViewById(R.id.btn6).setOnClickListener(this);
+        findViewById(R.id.btn7).setOnClickListener(this);
     }
 
     @Override
@@ -186,7 +180,46 @@ public class MainActivity extends Activity implements View.OnClickListener {
             case R.id.btn5:
                 new AlertDialog(MainActivity.this).builder()
                         .setMsg("你现在无法接收到新消息提醒。请到系统-设置-通知中开启消息提醒")
-                        .setNegativeButton("确定", new View.OnClickListener() {
+                        .setPositiveButton("确定", new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                showToast("OK");
+                            }
+                        }).show();
+                break;
+            case R.id.btn6:
+                final String[] name = {""};
+                new AlertEditDialog(MainActivity.this).builder()
+                        .setTitle("姓名")
+                        .setMsg("请输入您的真实姓名。")
+                        .setEditCallListener(new AlertEditDialog.EditTextCallListener() {
+                            @Override
+                            public void callBack(String str) {
+                                if (!TextUtils.isEmpty(str)) {
+                                    name[0] = str;
+                                }
+                            }
+                        })
+                        .setNegativeButton("取消", null)
+                        .setPositiveButton("确定", new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                showToast(name[0]);
+                            }
+                        }).show();
+                break;
+            case R.id.btn7:
+                new AlertEditDialog(MainActivity.this).builder()
+                        .setMsg("给自己起一个好听的名字吧")
+                        .setEditCallListener(new AlertEditDialog.EditTextCallListener() {
+                            @Override
+                            public void callBack(String str) {
+                                if (!TextUtils.isEmpty(str)) {
+                                    showToast(str);
+                                }
+                            }
+                        })
+                        .setPositiveButton("确定", new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
                                 showToast("OK");

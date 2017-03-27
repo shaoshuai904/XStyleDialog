@@ -50,4 +50,23 @@
         android:layout_height="wrap_content"
         android:text="极简"/>
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:gravity="center"
+        android:text="Alert Edit Dialog"
+        android:textSize="18sp"/>
+
+    <Button
+        android:id="@+id/btn6"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="文本输入"/>
+
+    <Button
+        android:id="@+id/btn7"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="极简"/>
 </LinearLayout>

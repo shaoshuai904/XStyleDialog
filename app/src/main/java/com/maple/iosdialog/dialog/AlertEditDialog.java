@@ -2,7 +2,9 @@ package com.maple.iosdialog.dialog;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -57,7 +59,7 @@ public class AlertEditDialog {
         txt_msg = (TextView) view.findViewById(R.id.txt_msg);
         txt_msg.setVisibility(View.GONE);
         et_text = (EditText) view.findViewById(R.id.et_text);
-        et_text.setVisibility(View.GONE);
+//        et_text.setVisibility(View.GONE);
         btn_neg = (Button) view.findViewById(R.id.btn_neg);
         btn_neg.setVisibility(View.GONE);
         btn_pos = (Button) view.findViewById(R.id.btn_pos);
@@ -136,6 +138,31 @@ public class AlertEditDialog {
         return this;
     }
 
+    public interface EditTextCallListener {
+        void callBack(String str);
+    }
+
+    public AlertEditDialog setEditCallListener(final EditTextCallListener callListener) {
+        et_text.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                callListener.callBack(s.toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        return this;
+    }
+
+
     private void setLayout() {
         if (!showTitle && !showMsg) {
             txt_title.setText("Alert");
@@ -186,7 +213,4 @@ public class AlertEditDialog {
         dialog.show();
     }
 
-    public String getInputText() {
-        return et_text.getText().toString().trim();
-    }
 }

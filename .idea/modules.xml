@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/IOSDialog.iml" filepath="$PROJECT_DIR$/IOSDialog.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/iOS_Style_Dialog.iml" filepath="$PROJECT_DIR$/iOS_Style_Dialog.iml" />
     </modules>
   </component>
 </project>
