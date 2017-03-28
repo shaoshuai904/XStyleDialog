@@ -31,25 +31,17 @@ public class AlertEditDialog {
     private TextView txt_title;
     private TextView txt_msg;
     private EditText et_text;
-    private Button btn_neg;
-    private Button btn_pos;
+    private Button leftBtn;
+    private Button rightBtn;
     private ImageView img_line;
 
-    private Context context;
     private Dialog dialog;
-    private Display display;
     private boolean showTitle = false;
     private boolean showMsg = false;
-    private boolean showPosBtn = false;
-    private boolean showNegBtn = false;
+    private boolean showLeftBtn = false;
+    private boolean showRightBtn = false;
 
     public AlertEditDialog(Context context) {
-        this.context = context;
-        WindowManager windowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
-        display = windowManager.getDefaultDisplay();
-    }
-
-    public AlertEditDialog builder() {
         View view = LayoutInflater.from(context).inflate(R.layout.view_alert_edit_dialog, null);
 
         // get custom Dialog layout
@@ -59,11 +51,10 @@ public class AlertEditDialog {
         txt_msg = (TextView) view.findViewById(R.id.txt_msg);
         txt_msg.setVisibility(View.GONE);
         et_text = (EditText) view.findViewById(R.id.et_text);
-//        et_text.setVisibility(View.GONE);
-        btn_neg = (Button) view.findViewById(R.id.btn_neg);
-        btn_neg.setVisibility(View.GONE);
-        btn_pos = (Button) view.findViewById(R.id.btn_pos);
-        btn_pos.setVisibility(View.GONE);
+        leftBtn = (Button) view.findViewById(R.id.btn_left);
+        leftBtn.setVisibility(View.GONE);
+        rightBtn = (Button) view.findViewById(R.id.btn_right);
+        rightBtn.setVisibility(View.GONE);
         img_line = (ImageView) view.findViewById(R.id.img_line);
         img_line.setVisibility(View.GONE);
 
@@ -71,10 +62,10 @@ public class AlertEditDialog {
         dialog = new Dialog(context, R.style.AlertDialogStyle);
         dialog.setContentView(view);
 
+        WindowManager windowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+        Display display = windowManager.getDefaultDisplay();
         lLayout_bg.setLayoutParams(new FrameLayout.LayoutParams((int) (display
                 .getWidth() * 0.85), LayoutParams.WRAP_CONTENT));
-
-        return this;
     }
 
     public AlertEditDialog setTitle(String title) {
@@ -102,14 +93,14 @@ public class AlertEditDialog {
         return this;
     }
 
-    public AlertEditDialog setPositiveButton(String text, final OnClickListener listener) {
-        showPosBtn = true;
+    public AlertEditDialog setRightButton(String text, final OnClickListener listener) {
+        showRightBtn = true;
         if (TextUtils.isEmpty(text)) {
-            btn_pos.setText("OK");
+            rightBtn.setText("OK");
         } else {
-            btn_pos.setText(text);
+            rightBtn.setText(text);
         }
-        btn_pos.setOnClickListener(new OnClickListener() {
+        rightBtn.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (listener != null)
@@ -120,14 +111,14 @@ public class AlertEditDialog {
         return this;
     }
 
-    public AlertEditDialog setNegativeButton(String text, final OnClickListener listener) {
-        showNegBtn = true;
+    public AlertEditDialog setLeftButton(String text, final OnClickListener listener) {
+        showLeftBtn = true;
         if (TextUtils.isEmpty(text)) {
-            btn_neg.setText("Cancel");
+            leftBtn.setText("Cancel");
         } else {
-            btn_neg.setText(text);
+            leftBtn.setText(text);
         }
-        btn_neg.setOnClickListener(new OnClickListener() {
+        leftBtn.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (listener != null)
@@ -177,11 +168,11 @@ public class AlertEditDialog {
             txt_msg.setVisibility(View.VISIBLE);
         }
 
-        if (!showPosBtn && !showNegBtn) {
-            btn_pos.setText("OK");
-            btn_pos.setVisibility(View.VISIBLE);
-            btn_pos.setBackgroundResource(R.drawable.alertdialog_single_selector);
-            btn_pos.setOnClickListener(new OnClickListener() {
+        if (!showRightBtn && !showLeftBtn) {
+            rightBtn.setText("OK");
+            rightBtn.setVisibility(View.VISIBLE);
+            rightBtn.setBackgroundResource(R.drawable.alertdialog_single_selector);
+            rightBtn.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     dialog.dismiss();
@@ -189,22 +180,22 @@ public class AlertEditDialog {
             });
         }
 
-        if (showPosBtn && showNegBtn) {
-            btn_pos.setVisibility(View.VISIBLE);
-            btn_pos.setBackgroundResource(R.drawable.alertdialog_right_selector);
-            btn_neg.setVisibility(View.VISIBLE);
-            btn_neg.setBackgroundResource(R.drawable.alertdialog_left_selector);
+        if (showRightBtn && showLeftBtn) {
+            rightBtn.setVisibility(View.VISIBLE);
+            rightBtn.setBackgroundResource(R.drawable.alertdialog_right_selector);
+            leftBtn.setVisibility(View.VISIBLE);
+            leftBtn.setBackgroundResource(R.drawable.alertdialog_left_selector);
             img_line.setVisibility(View.VISIBLE);
         }
 
-        if (showPosBtn && !showNegBtn) {
-            btn_pos.setVisibility(View.VISIBLE);
-            btn_pos.setBackgroundResource(R.drawable.alertdialog_single_selector);
+        if (showRightBtn && !showLeftBtn) {
+            rightBtn.setVisibility(View.VISIBLE);
+            rightBtn.setBackgroundResource(R.drawable.alertdialog_single_selector);
         }
 
-        if (!showPosBtn && showNegBtn) {
-            btn_neg.setVisibility(View.VISIBLE);
-            btn_neg.setBackgroundResource(R.drawable.alertdialog_single_selector);
+        if (!showRightBtn && showLeftBtn) {
+            leftBtn.setVisibility(View.VISIBLE);
+            leftBtn.setBackgroundResource(R.drawable.alertdialog_single_selector);
         }
     }
 

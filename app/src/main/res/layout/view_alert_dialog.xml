@@ -44,7 +44,7 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/btn_neg"
+            android:id="@+id/bt_left"
             android:layout_width="wrap_content"
             android:layout_height="43dp"
             android:layout_weight="1"
@@ -61,7 +61,7 @@
             android:background="@color/act_line"/>
 
         <Button
-            android:id="@+id/btn_pos"
+            android:id="@+id/bt_right"
             android:layout_width="wrap_content"
             android:layout_height="43dp"
             android:layout_weight="1"
