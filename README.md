@@ -5,21 +5,48 @@
 	仿iOS样式Dialog。 
 	开发环境：Android Studio 2.3.
 
-![demo_show](https://github.com/shaoshuai904/IOSDialog/blob/master/screens/demo_show.png)
+![demo_show1](https://github.com/shaoshuai904/IOSDialog/blob/master/screens/demo_show1.png)
+
+![demo_show2](https://github.com/shaoshuai904/IOSDialog/blob/master/screens/demo_show2.png)
 
 ####  AlertDialog
 
 	样式布局:[ 标题 + 消息 + 左按钮 + 右按钮]
 ```
-        new AlertDialog(MainActivity.this).builder().setTitle("退出当前账号")
+        new AlertDialog(MainActivity.this)
+                .setTitle("退出当前账号")
                 .setMsg("再连续登陆15天，就可变身为QQ达人。退出QQ可能会使你现有记录归零，确定退出？")
-                .setPositiveButton("确认退出", new View.OnClickListener() {
+                .setLeftButton("取消", null)
+                .setRightButton("确认退出", new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         showToast("exit");
                     }
                 })
-                .setNegativeButton("取消", null)
+                .show();
+```
+
+#### AlertEditDialog
+
+	样式布局:[ 标题 + 消息 + 输入框 + 左按钮 + 右按钮 ]
+
+```
+        new AlertEditDialog(MainActivity.this)
+                .setTitle("姓名")
+                .setMsg("请输入您的真实姓名。")
+                .setEditCallListener(new AlertEditDialog.EditTextCallListener() {
+                    @Override
+                    public void callBack(String str) {
+                        name = str;
+                    }
+                })
+                .setLeftButton("取消", null)
+                .setRightButton("确定", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        showToast(name);
+                    }
+                })
                 .show();
 ```
 
@@ -29,7 +56,6 @@
 
 ```
         new ActionSheetDialog(MainActivity.this)
-                .builder()
                 .setCancelable(false)
                 .setCanceledOnTouchOutside(false)
                 .addSheetItem("发送给好友", ActionSheetDialog.SheetItemColor.Red,
