@@ -1,4 +1,4 @@
-package com.maple.iosdialog.dialog;
+package com.maple.msdialog;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -14,8 +14,6 @@ import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
 import android.widget.ScrollView;
 import android.widget.TextView;
-
-import com.maple.iosdialog.R;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -117,7 +115,7 @@ public class ActionSheetDialog {
         // TODO 高度控制，非最佳解决办法
         // 添加条目过多的时候控制高度
         if (size >= 7) {
-            LinearLayout.LayoutParams params = (LayoutParams) sLayout_content.getLayoutParams();
+            LayoutParams params = (LayoutParams) sLayout_content.getLayoutParams();
             params.height = display.getHeight() / 2;
             sLayout_content.setLayoutParams(params);
         }
@@ -166,7 +164,7 @@ public class ActionSheetDialog {
             // set item height
             float scale = context.getResources().getDisplayMetrics().density;
             int height = (int) (45 * scale + 0.5f);
-            textView.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, height));
+            textView.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, height));
 
             // add click listener
             textView.setOnClickListener(new OnClickListener() {

@@ -1,4 +1,4 @@
-package com.maple.iosdialog.dialog;
+package com.maple.msdialog;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -17,8 +17,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
 import android.widget.TextView;
-
-import com.maple.iosdialog.R;
 
 /**
  * 警告框式Edit Dialog [ 标题 + 输入框 + 消息文本 + 左按钮 + 右按钮 ]

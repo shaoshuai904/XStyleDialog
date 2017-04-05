@@ -6,9 +6,9 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Toast;
 
-import com.maple.iosdialog.dialog.ActionSheetDialog;
-import com.maple.iosdialog.dialog.AlertDialog;
-import com.maple.iosdialog.dialog.AlertEditDialog;
+import com.maple.msdialog.ActionSheetDialog;
+import com.maple.msdialog.AlertDialog;
+import com.maple.msdialog.AlertEditDialog;
 
 /**
  * Custom Dialog Demo
