@@ -6,7 +6,6 @@
 	开发环境：Android Studio 2.3.
 
 ### 快速使用
---------
 
 **Step 1.** Add it in your root build.gradle at the end of repositories:
 ```groovy
@@ -21,10 +20,9 @@ allprojects {
 **Step 2.** Add the dependency
 ```groovy
 dependencies {
-  compile 'com.github.User:Repo:Tag'
+  compile 'com.github.shaoshuai904:iOS_Style_Dialog:1.0'
 }
 ```
-### 截图
 
 ![demo_show1](https://github.com/shaoshuai904/IOSDialog/blob/master/screens/demo_show1.png)
 
