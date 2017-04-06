@@ -1,15 +1,36 @@
 # iOS style Dialog
 
 
-#### 项目说明
+### 项目说明
 	仿iOS样式Dialog。 
 	开发环境：Android Studio 2.3.
+
+### 快速使用
+--------
+
+**Step 1.** Add it in your root build.gradle at the end of repositories:
+```groovy
+allprojects {
+  repositories {
+    ...
+    maven { url 'https://jitpack.io' }
+  }
+}
+```
+
+**Step 2.** Add the dependency
+```groovy
+dependencies {
+  compile 'com.github.User:Repo:Tag'
+}
+```
+### 截图
 
 ![demo_show1](https://github.com/shaoshuai904/IOSDialog/blob/master/screens/demo_show1.png)
 
 ![demo_show2](https://github.com/shaoshuai904/IOSDialog/blob/master/screens/demo_show2.png)
 
-####  AlertDialog
+###  AlertDialog
 
 	样式布局:[ 标题 + 消息 + 左按钮 + 右按钮]
 ```
@@ -26,7 +47,7 @@
                 .show();
 ```
 
-#### AlertEditDialog
+### AlertEditDialog
 
 	样式布局:[ 标题 + 消息 + 输入框 + 左按钮 + 右按钮 ]
 
@@ -50,7 +71,7 @@
                 .show();
 ```
 
-#### ActionSheetDialog
+### ActionSheetDialog
 
 	样式布局:[ 标题 + 页签条目 + 取消按钮 ]
 
