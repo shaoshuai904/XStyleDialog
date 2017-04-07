@@ -1,6 +1,7 @@
 package com.maple.iosdialog;
 
 import android.app.Activity;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -175,7 +176,8 @@ public class MainActivity extends Activity {
 
     public void adTwo(View view) {
         new AlertDialog(MainActivity.this)
-                .setMsg("你现在无法接收到新消息提醒。请到系统-设置-通知中开启消息提醒")
+                .setScaleWidth(0.7)
+                .setMsg("你现在无法接收到新消息提醒。请到系统-设置-通知中开启消息提醒", Color.BLUE)
                 .setRightButton("确定", new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {

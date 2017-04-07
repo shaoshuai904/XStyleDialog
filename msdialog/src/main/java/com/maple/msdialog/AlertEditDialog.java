@@ -5,17 +5,12 @@ import android.content.Context;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
-import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.LinearLayout.LayoutParams;
 import android.widget.TextView;
 
 /**
@@ -24,8 +19,7 @@ import android.widget.TextView;
  * @author maple
  * @time 17/3/23
  */
-public class AlertEditDialog {
-    private LinearLayout lLayout_bg;
+public class AlertEditDialog extends BaseDialog {
     private TextView txt_title;
     private TextView txt_msg;
     private EditText et_text;
@@ -33,37 +27,37 @@ public class AlertEditDialog {
     private Button rightBtn;
     private ImageView img_line;
 
-    private Dialog dialog;
     private boolean showTitle = false;
     private boolean showMsg = false;
     private boolean showLeftBtn = false;
     private boolean showRightBtn = false;
 
     public AlertEditDialog(Context context) {
-        View view = LayoutInflater.from(context).inflate(R.layout.view_alert_edit_dialog, null);
+        super(context);
+        rootView = LayoutInflater.from(context).inflate(R.layout.view_alert_edit_dialog, null);
 
         // get custom Dialog layout
-        lLayout_bg = (LinearLayout) view.findViewById(R.id.lLayout_bg);
-        txt_title = (TextView) view.findViewById(R.id.txt_title);
+        txt_title = (TextView) rootView.findViewById(R.id.txt_title);
         txt_title.setVisibility(View.GONE);
-        txt_msg = (TextView) view.findViewById(R.id.txt_msg);
+        txt_msg = (TextView) rootView.findViewById(R.id.txt_msg);
         txt_msg.setVisibility(View.GONE);
-        et_text = (EditText) view.findViewById(R.id.et_text);
-        leftBtn = (Button) view.findViewById(R.id.btn_left);
+        et_text = (EditText) rootView.findViewById(R.id.et_text);
+        leftBtn = (Button) rootView.findViewById(R.id.btn_left);
         leftBtn.setVisibility(View.GONE);
-        rightBtn = (Button) view.findViewById(R.id.btn_right);
+        rightBtn = (Button) rootView.findViewById(R.id.btn_right);
         rightBtn.setVisibility(View.GONE);
-        img_line = (ImageView) view.findViewById(R.id.img_line);
+        img_line = (ImageView) rootView.findViewById(R.id.img_line);
         img_line.setVisibility(View.GONE);
 
         // set Dialog style
         dialog = new Dialog(context, R.style.AlertDialogStyle);
-        dialog.setContentView(view);
+        dialog.setContentView(rootView);
 
-        WindowManager windowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
-        Display display = windowManager.getDefaultDisplay();
-        lLayout_bg.setLayoutParams(new FrameLayout.LayoutParams((int) (display
-                .getWidth() * 0.85), LayoutParams.WRAP_CONTENT));
+        setScaleWidth(0.85);
+    }
+
+    public AlertEditDialog setScaleWidth(double scWidth) {
+        return (AlertEditDialog) super.setScaleWidth(scWidth);
     }
 
     public AlertEditDialog setTitle(String title) {

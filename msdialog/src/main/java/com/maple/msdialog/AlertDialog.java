@@ -2,17 +2,14 @@ package com.maple.msdialog;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.graphics.Color;
+import android.support.annotation.ColorInt;
 import android.text.TextUtils;
-import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.LinearLayout.LayoutParams;
 import android.widget.TextView;
 
 /**
@@ -21,64 +18,73 @@ import android.widget.TextView;
  * @author maple
  * @time 17/3/21
  */
-public class AlertDialog {
-    private LinearLayout lLayout_bg;
+public class AlertDialog extends BaseDialog {
     private TextView txt_title;
     private TextView txt_msg;
     private Button leftButton;
     private Button rightButton;
     private ImageView img_line;
 
-    private Dialog dialog;
     private boolean showTitle = false;
     private boolean showMsg = false;
     private boolean showRightBtn = false;
     private boolean showLeftBtn = false;
 
+
     public AlertDialog(Context context) {
-        View view = LayoutInflater.from(context).inflate(R.layout.view_alert_dialog, null);
+        super(context);
+        rootView = LayoutInflater.from(context).inflate(R.layout.view_alert_dialog, null);
 
         // get custom Dialog layout
-        lLayout_bg = (LinearLayout) view.findViewById(R.id.lLayout_bg);
-        txt_title = (TextView) view.findViewById(R.id.txt_title);
+        txt_title = (TextView) rootView.findViewById(R.id.txt_title);
         txt_title.setVisibility(View.GONE);
-        txt_msg = (TextView) view.findViewById(R.id.txt_msg);
+        txt_msg = (TextView) rootView.findViewById(R.id.txt_msg);
         txt_msg.setVisibility(View.GONE);
-        leftButton = (Button) view.findViewById(R.id.bt_left);
+        leftButton = (Button) rootView.findViewById(R.id.bt_left);
         leftButton.setVisibility(View.GONE);
-        rightButton = (Button) view.findViewById(R.id.bt_right);
+        rightButton = (Button) rootView.findViewById(R.id.bt_right);
         rightButton.setVisibility(View.GONE);
-        img_line = (ImageView) view.findViewById(R.id.img_line);
+        img_line = (ImageView) rootView.findViewById(R.id.img_line);
         img_line.setVisibility(View.GONE);
 
         // set Dialog style
         dialog = new Dialog(context, R.style.AlertDialogStyle);
-        dialog.setContentView(view);
+        dialog.setContentView(rootView);
 
-        WindowManager windowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
-        Display display = windowManager.getDefaultDisplay();
+        setScaleWidth(0.85);
+    }
 
-        lLayout_bg.setLayoutParams(new FrameLayout.LayoutParams((int) (display
-                .getWidth() * 0.85), LayoutParams.WRAP_CONTENT));
+    public AlertDialog setScaleWidth(double scWidth) {
+        return (AlertDialog) super.setScaleWidth(scWidth);
     }
 
     public AlertDialog setTitle(String title) {
+        return setTitle(title, Color.parseColor("#FD4A2E"));
+    }
+
+    public AlertDialog setTitle(String title, @ColorInt int color) {
         showTitle = true;
         if (TextUtils.isEmpty(title)) {
             txt_title.setText("Alert");
         } else {
             txt_title.setText(title);
         }
+        txt_title.setTextColor(color);
         return this;
     }
 
     public AlertDialog setMsg(String msg) {
+        return setMsg(msg, Color.parseColor("#FD4A2E"));
+    }
+
+    public AlertDialog setMsg(String msg, @ColorInt int color) {
         showMsg = true;
         if (TextUtils.isEmpty(msg)) {
             txt_msg.setText("body text");
         } else {
             txt_msg.setText(msg);
         }
+        txt_msg.setTextColor(color);
         return this;
     }
 

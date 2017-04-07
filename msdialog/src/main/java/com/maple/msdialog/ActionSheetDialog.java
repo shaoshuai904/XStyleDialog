@@ -3,7 +3,6 @@ package com.maple.msdialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Color;
-import android.view.Display;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,30 +23,26 @@ import java.util.List;
  * @author maple
  * @time 17/3/21
  */
-public class ActionSheetDialog {
-    private Context context;
-    private Dialog dialog;
+public class ActionSheetDialog extends BaseDialog {
+    public static final int ACTION_SHEET_ITEM_HEIGHT = 45;
+
     private TextView txt_title;
     private TextView txt_cancel;
     private LinearLayout lLayout_content;
     private ScrollView sLayout_content;
     private boolean showTitle = false;
     private List<SheetItem> sheetItemList;
-    private Display display;
 
     public ActionSheetDialog(Context context) {
-        this.context = context;
-        WindowManager windowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
-        display = windowManager.getDefaultDisplay();
-
-        View view = LayoutInflater.from(context).inflate(R.layout.view_action_sheet_dialog, null);
+        super(context);
+        rootView = LayoutInflater.from(context).inflate(R.layout.view_action_sheet_dialog, null);
         // set Dialog min width
-        view.setMinimumWidth(display.getWidth());
+        rootView.setMinimumWidth(getScreenWidth());
         // get custom Dialog layout
-        sLayout_content = (ScrollView) view.findViewById(R.id.sLayout_content);
-        lLayout_content = (LinearLayout) view.findViewById(R.id.lLayout_content);
-        txt_title = (TextView) view.findViewById(R.id.txt_title);
-        txt_cancel = (TextView) view.findViewById(R.id.txt_cancel);
+        sLayout_content = (ScrollView) rootView.findViewById(R.id.sLayout_content);
+        lLayout_content = (LinearLayout) rootView.findViewById(R.id.lLayout_content);
+        txt_title = (TextView) rootView.findViewById(R.id.txt_title);
+        txt_cancel = (TextView) rootView.findViewById(R.id.txt_cancel);
         txt_cancel.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -57,7 +52,7 @@ public class ActionSheetDialog {
 
         // create Dialog
         dialog = new Dialog(context, R.style.ActionSheetDialogStyle);
-        dialog.setContentView(view);
+        dialog.setContentView(rootView);
         Window dialogWindow = dialog.getWindow();
         dialogWindow.setGravity(Gravity.LEFT | Gravity.BOTTOM);
         WindowManager.LayoutParams lp = dialogWindow.getAttributes();
@@ -112,11 +107,10 @@ public class ActionSheetDialog {
             return;
         }
         int size = sheetItemList.size();
-        // TODO 高度控制，非最佳解决办法
         // 添加条目过多的时候控制高度
-        if (size >= 7) {
+        if (size > getScreenHeight() / dp2px(ACTION_SHEET_ITEM_HEIGHT * 2)) {
             LayoutParams params = (LayoutParams) sLayout_content.getLayoutParams();
-            params.height = display.getHeight() / 2;
+            params.height = getScreenHeight() / 2;
             sLayout_content.setLayoutParams(params);
         }
         // loop add item
@@ -124,7 +118,7 @@ public class ActionSheetDialog {
             final int index = i;
             final SheetItem sheetItem = sheetItemList.get(i - 1);
 
-            TextView textView = new TextView(context);
+            TextView textView = new TextView(mContext);
             textView.setText(sheetItem.name);
             textView.setTextSize(18);
             textView.setGravity(Gravity.CENTER);
@@ -162,9 +156,7 @@ public class ActionSheetDialog {
             }
 
             // set item height
-            float scale = context.getResources().getDisplayMetrics().density;
-            int height = (int) (45 * scale + 0.5f);
-            textView.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, height));
+            textView.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, dp2px(ACTION_SHEET_ITEM_HEIGHT)));
 
             // add click listener
             textView.setOnClickListener(new OnClickListener() {
