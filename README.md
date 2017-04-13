@@ -20,7 +20,7 @@ allprojects {
 **Step 2.** Add the dependency
 ```groovy
 dependencies {
-  compile 'com.github.shaoshuai904:iOS_Style_Dialog:1.0'
+  compile 'com.github.shaoshuai904:iOS_Style_Dialog:1.1'
 }
 ```
 
