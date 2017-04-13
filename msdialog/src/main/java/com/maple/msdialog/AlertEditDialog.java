@@ -56,6 +56,11 @@ public class AlertEditDialog extends BaseDialog {
         setScaleWidth(0.85);
     }
 
+    public AlertEditDialog setCancelable(boolean cancel) {
+        dialog.setCancelable(cancel);
+        return this;
+    }
+
     public AlertEditDialog setScaleWidth(double scWidth) {
         return (AlertEditDialog) super.setScaleWidth(scWidth);
     }
@@ -77,11 +82,6 @@ public class AlertEditDialog extends BaseDialog {
         } else {
             txt_msg.setText(msg);
         }
-        return this;
-    }
-
-    public AlertEditDialog setCancelable(boolean cancel) {
-        dialog.setCancelable(cancel);
         return this;
     }
 

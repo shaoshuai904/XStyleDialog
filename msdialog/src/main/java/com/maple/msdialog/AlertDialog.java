@@ -54,6 +54,11 @@ public class AlertDialog extends BaseDialog {
         setScaleWidth(0.85);
     }
 
+    public AlertDialog setCancelable(boolean cancel) {
+        dialog.setCancelable(cancel);
+        return this;
+    }
+
     public AlertDialog setScaleWidth(double scWidth) {
         return (AlertDialog) super.setScaleWidth(scWidth);
     }
@@ -85,11 +90,6 @@ public class AlertDialog extends BaseDialog {
             txt_msg.setText(msg);
         }
         txt_msg.setTextColor(color);
-        return this;
-    }
-
-    public AlertDialog setCancelable(boolean cancel) {
-        dialog.setCancelable(cancel);
         return this;
     }
 
