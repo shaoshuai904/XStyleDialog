@@ -3,7 +3,6 @@ package com.maple.msdialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Color;
-import android.support.annotation.ColorInt;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -67,7 +66,7 @@ public class AlertDialog extends BaseDialog {
         return setTitle(title, Color.parseColor("#FD4A2E"));
     }
 
-    public AlertDialog setTitle(String title, @ColorInt int color) {
+    public AlertDialog setTitle(String title, int color) {
         showTitle = true;
         if (TextUtils.isEmpty(title)) {
             txt_title.setText("Alert");
@@ -82,7 +81,7 @@ public class AlertDialog extends BaseDialog {
         return setMsg(msg, Color.parseColor("#FD4A2E"));
     }
 
-    public AlertDialog setMsg(String msg, @ColorInt int color) {
+    public AlertDialog setMsg(String msg, int color) {
         showMsg = true;
         if (TextUtils.isEmpty(msg)) {
             txt_msg.setText("body text");
