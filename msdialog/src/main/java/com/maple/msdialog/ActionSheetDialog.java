@@ -60,6 +60,16 @@ public class ActionSheetDialog extends BaseDialog {
         dialogWindow.setAttributes(lp);
     }
 
+    public ActionSheetDialog setCancelable(boolean cancel) {
+        dialog.setCancelable(cancel);
+        return this;
+    }
+
+    public ActionSheetDialog setCanceledOnTouchOutside(boolean cancel) {
+        dialog.setCanceledOnTouchOutside(cancel);
+        return this;
+    }
+
     public ActionSheetDialog setTitle(String title) {
         return setTitle(title, mContext.getResources().getColor(R.color.actionsheet_gray));
     }
@@ -72,29 +82,19 @@ public class ActionSheetDialog extends BaseDialog {
         return this;
     }
 
-    public ActionSheetDialog setCancelable(boolean cancel) {
-        dialog.setCancelable(cancel);
-        return this;
+    public ActionSheetDialog setCancelText(String cancelText) {
+        return setCancelText(cancelText, mContext.getResources().getColor(R.color.actionsheet_blue));
     }
 
-    public ActionSheetDialog setCanceledOnTouchOutside(boolean cancel) {
-        dialog.setCanceledOnTouchOutside(cancel);
+    public ActionSheetDialog setCancelText(String cancelText, int color) {
+        txt_cancel.setText(cancelText);
+        txt_cancel.setTextColor(color);
         return this;
     }
-
-//    public ActionSheetDialog addSheetItem(String strItem) {
-//        return addSheetItem(strItem, SheetItemColor.Blue, null);
-//    }
-//
-//    public ActionSheetDialog addSheetItem(String strItem, OnSheetItemClickListener listener) {
-//        return addSheetItem(strItem, SheetItemColor.Blue, listener);
-//    }
-
 
     public ActionSheetDialog addSheetItem(String strItem, OnSheetItemClickListener listener) {
         return addSheetItem(strItem, 0, listener);
     }
-
 
     public ActionSheetDialog addSheetItem(String strItem, int color, OnSheetItemClickListener listener) {
         if (sheetItemList == null)
