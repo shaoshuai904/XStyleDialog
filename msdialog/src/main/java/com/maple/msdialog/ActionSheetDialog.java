@@ -2,7 +2,6 @@ package com.maple.msdialog;
 
 import android.app.Dialog;
 import android.content.Context;
-import android.graphics.Color;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -39,10 +38,10 @@ public class ActionSheetDialog extends BaseDialog {
         // set Dialog min width
         rootView.setMinimumWidth(getScreenWidth());
         // get custom Dialog layout
-        sLayout_content = (ScrollView) rootView.findViewById(R.id.sLayout_content);
-        lLayout_content = (LinearLayout) rootView.findViewById(R.id.lLayout_content);
-        txt_title = (TextView) rootView.findViewById(R.id.txt_title);
-        txt_cancel = (TextView) rootView.findViewById(R.id.txt_cancel);
+        sLayout_content = rootView.findViewById(R.id.sLayout_content);
+        lLayout_content = rootView.findViewById(R.id.lLayout_content);
+        txt_title = rootView.findViewById(R.id.txt_title);
+        txt_cancel = rootView.findViewById(R.id.txt_cancel);
         txt_cancel.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -62,9 +61,14 @@ public class ActionSheetDialog extends BaseDialog {
     }
 
     public ActionSheetDialog setTitle(String title) {
+        return setTitle(title, mContext.getResources().getColor(R.color.actionsheet_gray));
+    }
+
+    public ActionSheetDialog setTitle(String title, int color) {
         showTitle = true;
         txt_title.setVisibility(View.VISIBLE);
         txt_title.setText(title);
+        txt_title.setTextColor(color);
         return this;
     }
 
@@ -86,17 +90,15 @@ public class ActionSheetDialog extends BaseDialog {
 //        return addSheetItem(strItem, SheetItemColor.Blue, listener);
 //    }
 
-    /**
-     * @param strItem  item text
-     * @param color    item text color，default:Blue
-     * @param listener item click listener
-     * @return
-     */
-    public ActionSheetDialog addSheetItem(String strItem, SheetItemColor color, OnSheetItemClickListener listener) {
+
+    public ActionSheetDialog addSheetItem(String strItem, OnSheetItemClickListener listener) {
+        return addSheetItem(strItem, 0, listener);
+    }
+
+
+    public ActionSheetDialog addSheetItem(String strItem, int color, OnSheetItemClickListener listener) {
         if (sheetItemList == null)
             sheetItemList = new ArrayList<>();
-        if (color == null)
-            color = SheetItemColor.Blue;
         sheetItemList.add(new SheetItem(strItem, color, listener));
         return this;
     }
@@ -149,10 +151,8 @@ public class ActionSheetDialog extends BaseDialog {
             }
 
             // set item text color
-            if (sheetItem.color == null) {
-                textView.setTextColor(Color.parseColor(SheetItemColor.Blue.colorString));
-            } else {
-                textView.setTextColor(Color.parseColor(sheetItem.color.colorString));
+            if (sheetItem.color != 0) {
+                textView.setTextColor(sheetItem.color);
             }
 
             // set item height
@@ -177,30 +177,22 @@ public class ActionSheetDialog extends BaseDialog {
         dialog.show();
     }
 
+    // ----------------------------------------------------------------------------------------------------
+
     public interface OnSheetItemClickListener {
         void onClick(int which);
     }
 
     public class SheetItem {
         String name;
+        int color;
         OnSheetItemClickListener itemClickListener;
-        SheetItemColor color;
 
-        public SheetItem(String name, SheetItemColor color, OnSheetItemClickListener itemClickListener) {
+        public SheetItem(String name, int color, OnSheetItemClickListener itemClickListener) {
             this.name = name;
             this.color = color;
             this.itemClickListener = itemClickListener;
         }
     }
 
-    public enum SheetItemColor {
-        Blue("#037BFF"), Red("#FD4A2E");
-
-        String colorString;
-
-        SheetItemColor(String colorString) {
-            this.colorString = colorString;
-        }
-
-    }
 }

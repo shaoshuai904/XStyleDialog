@@ -18,6 +18,8 @@ import com.maple.msdialog.AlertEditDialog;
  * @time 17/3/28
  */
 public class MainActivity extends Activity {
+    public static final String DEF_BLUE = "#037BFF";
+    public static final String DEF_RED = "#FD4A2E";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +34,7 @@ public class MainActivity extends Activity {
                 .setCancelable(false)
                 .setCanceledOnTouchOutside(false)
                 .setTitle("清空消息列表后，聊天记录依然保留，确定要清空消息列表？")
-                .addSheetItem("清空消息列表", ActionSheetDialog.SheetItemColor.Red,
+                .addSheetItem("清空消息列表", Color.parseColor(DEF_RED),
                         new ActionSheetDialog.OnSheetItemClickListener() {
                             @Override
                             public void onClick(int which) {
@@ -46,42 +48,42 @@ public class MainActivity extends Activity {
         new ActionSheetDialog(MainActivity.this)
                 .setCancelable(false)
                 .setCanceledOnTouchOutside(false)
-                .addSheetItem("发送给好友", ActionSheetDialog.SheetItemColor.Red,
+                .addSheetItem("发送给好友", Color.parseColor(DEF_BLUE),
                         new ActionSheetDialog.OnSheetItemClickListener() {
                             @Override
                             public void onClick(int which) {
 
                             }
                         })
-                .addSheetItem("转载到空间相册", ActionSheetDialog.SheetItemColor.Blue,
+                .addSheetItem("转载到空间相册", Color.parseColor(DEF_BLUE),
                         new ActionSheetDialog.OnSheetItemClickListener() {
                             @Override
                             public void onClick(int which) {
 
                             }
                         })
-                .addSheetItem("上传到群相册", ActionSheetDialog.SheetItemColor.Blue,
+                .addSheetItem("上传到群相册",
                         new ActionSheetDialog.OnSheetItemClickListener() {
                             @Override
                             public void onClick(int which) {
 
                             }
                         })
-                .addSheetItem("保存到手机", ActionSheetDialog.SheetItemColor.Red,
+                .addSheetItem("保存到手机", Color.parseColor(DEF_BLUE),
                         new ActionSheetDialog.OnSheetItemClickListener() {
                             @Override
                             public void onClick(int which) {
 
                             }
                         })
-                .addSheetItem("收藏", ActionSheetDialog.SheetItemColor.Blue,
+                .addSheetItem("收藏",
                         new ActionSheetDialog.OnSheetItemClickListener() {
                             @Override
                             public void onClick(int which) {
 
                             }
                         })
-                .addSheetItem("查看聊天图片", ActionSheetDialog.SheetItemColor.Blue,
+                .addSheetItem("查看聊天图片", Color.parseColor(DEF_BLUE),
                         new ActionSheetDialog.OnSheetItemClickListener() {
                             @Override
                             public void onClick(int which) {
@@ -96,61 +98,61 @@ public class MainActivity extends Activity {
                 .setTitle("请选择操作")
                 .setCancelable(false)
                 .setCanceledOnTouchOutside(false)
-                .addSheetItem("条目一", ActionSheetDialog.SheetItemColor.Red, new ActionSheetDialog.OnSheetItemClickListener() {
+                .addSheetItem("条目一", Color.parseColor(DEF_RED), new ActionSheetDialog.OnSheetItemClickListener() {
                     @Override
                     public void onClick(int which) {
                         showToast("item " + which);
                     }
                 })
-                .addSheetItem("条目二", null, new ActionSheetDialog.OnSheetItemClickListener() {
+                .addSheetItem("条目二", new ActionSheetDialog.OnSheetItemClickListener() {
                     @Override
                     public void onClick(int which) {
                         showToast("item " + which);
                     }
                 })
-                .addSheetItem("条目三", ActionSheetDialog.SheetItemColor.Red, new ActionSheetDialog.OnSheetItemClickListener() {
+                .addSheetItem("条目三", Color.BLUE, new ActionSheetDialog.OnSheetItemClickListener() {
                     @Override
                     public void onClick(int which) {
                         showToast("item " + which);
                     }
                 })
-                .addSheetItem("条目四", null, new ActionSheetDialog.OnSheetItemClickListener() {
+                .addSheetItem("条目四", Color.CYAN, new ActionSheetDialog.OnSheetItemClickListener() {
                     @Override
                     public void onClick(int which) {
                         showToast("item " + which);
                     }
                 })
-                .addSheetItem("条目五", null, new ActionSheetDialog.OnSheetItemClickListener() {
+                .addSheetItem("条目五", Color.GRAY, new ActionSheetDialog.OnSheetItemClickListener() {
                     @Override
                     public void onClick(int which) {
                         showToast("item " + which);
                     }
                 })
-                .addSheetItem("条目六", null, new ActionSheetDialog.OnSheetItemClickListener() {
+                .addSheetItem("条目六", Color.LTGRAY, new ActionSheetDialog.OnSheetItemClickListener() {
                     @Override
                     public void onClick(int which) {
                         showToast("item " + which);
                     }
                 })
-                .addSheetItem("条目七", null, new ActionSheetDialog.OnSheetItemClickListener() {
+                .addSheetItem("条目七", Color.RED, new ActionSheetDialog.OnSheetItemClickListener() {
                     @Override
                     public void onClick(int which) {
                         showToast("item " + which);
                     }
                 })
-                .addSheetItem("条目八", null, new ActionSheetDialog.OnSheetItemClickListener() {
+                .addSheetItem("条目八", new ActionSheetDialog.OnSheetItemClickListener() {
                     @Override
                     public void onClick(int which) {
                         showToast("item " + which);
                     }
                 })
-                .addSheetItem("条目九", null, new ActionSheetDialog.OnSheetItemClickListener() {
+                .addSheetItem("条目九", new ActionSheetDialog.OnSheetItemClickListener() {
                     @Override
                     public void onClick(int which) {
                         showToast("item " + which);
                     }
                 })
-                .addSheetItem("条目十", null, new ActionSheetDialog.OnSheetItemClickListener() {
+                .addSheetItem("条目十", new ActionSheetDialog.OnSheetItemClickListener() {
                     @Override
                     public void onClick(int which) {
                         showToast("item " + which);
