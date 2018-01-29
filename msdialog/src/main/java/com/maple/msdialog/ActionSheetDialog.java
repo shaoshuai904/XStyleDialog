@@ -71,14 +71,16 @@ public class ActionSheetDialog extends BaseDialog {
     }
 
     public ActionSheetDialog setTitle(String title) {
-        return setTitle(title, mContext.getResources().getColor(R.color.actionsheet_gray));
+        return setTitle(title, 0);
     }
 
     public ActionSheetDialog setTitle(String title, int color) {
         showTitle = true;
         txt_title.setVisibility(View.VISIBLE);
         txt_title.setText(title);
-        txt_title.setTextColor(color);
+        if (color != 0) {
+            txt_title.setTextColor(color);
+        }
         return this;
     }
 

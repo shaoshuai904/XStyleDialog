@@ -16,7 +16,6 @@
         android:paddingLeft="15dp"
         android:paddingRight="15dp"
         android:paddingTop="10dp"
-        android:textColor="@color/actionsheet_gray"
         android:textSize="16sp"
         android:visibility="gone"/>
 

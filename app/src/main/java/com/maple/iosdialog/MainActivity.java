@@ -41,7 +41,7 @@ public class MainActivity extends Activity {
                                 showToast("clear msg list");
                             }
                         })
-                .setCancelText("取消按钮")
+                .setCancelText("取消")
                 .show();
     }
 
