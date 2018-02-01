@@ -2,6 +2,7 @@ package com.maple.msdialog;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.graphics.Typeface;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -71,26 +72,37 @@ public class ActionSheetDialog extends BaseDialog {
     }
 
     public ActionSheetDialog setTitle(String title) {
-        return setTitle(title, 0);
+        return setTitle(title, -1, 16, false);
     }
 
-    public ActionSheetDialog setTitle(String title, int color) {
+    public ActionSheetDialog setTitle(String title, int color, int size, boolean isBold) {
         showTitle = true;
         txt_title.setVisibility(View.VISIBLE);
         txt_title.setText(title);
-        if (color != 0) {
+        if (color != -1)
             txt_title.setTextColor(color);
-        }
+        if (size > 0)
+            txt_title.setTextSize(size);
+        if (isBold)
+            txt_title.setTypeface(txt_title.getTypeface(), Typeface.BOLD);
         return this;
     }
 
     public ActionSheetDialog setCancelText(String cancelText) {
-        return setCancelText(cancelText, mContext.getResources().getColor(R.color.actionsheet_blue));
+        return setCancelText(cancelText,
+                mContext.getResources().getColor(R.color.actionsheet_blue),
+                18,
+                true);
     }
 
-    public ActionSheetDialog setCancelText(String cancelText, int color) {
+    public ActionSheetDialog setCancelText(String cancelText, int color, int size, boolean isBold) {
         txt_cancel.setText(cancelText);
-        txt_cancel.setTextColor(color);
+        if (color != -1)
+            txt_cancel.setTextColor(color);
+        if (size > 0)
+            txt_cancel.setTextSize(size);
+        if (isBold)
+            txt_cancel.setTypeface(txt_cancel.getTypeface(), Typeface.BOLD);
         return this;
     }
 
@@ -153,7 +165,7 @@ public class ActionSheetDialog extends BaseDialog {
             }
 
             // set item text color
-            if (sheetItem.color != 0) {
+            if (sheetItem.color != -1) {
                 textView.setTextColor(sheetItem.color);
             }
 

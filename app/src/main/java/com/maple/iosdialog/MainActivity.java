@@ -41,7 +41,7 @@ public class MainActivity extends Activity {
                                 showToast("clear msg list");
                             }
                         })
-                .setCancelText("取消")
+                .setCancelText("取 消", Color.BLUE, 18, false)
                 .show();
     }
 

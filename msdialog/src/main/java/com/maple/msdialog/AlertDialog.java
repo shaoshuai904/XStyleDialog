@@ -35,15 +35,15 @@ public class AlertDialog extends BaseDialog {
         rootView = LayoutInflater.from(context).inflate(R.layout.view_alert_dialog, null);
 
         // get custom Dialog layout
-        txt_title = (TextView) rootView.findViewById(R.id.txt_title);
+        txt_title = rootView.findViewById(R.id.txt_title);
         txt_title.setVisibility(View.GONE);
-        txt_msg = (TextView) rootView.findViewById(R.id.txt_msg);
+        txt_msg = rootView.findViewById(R.id.txt_msg);
         txt_msg.setVisibility(View.GONE);
-        leftButton = (Button) rootView.findViewById(R.id.bt_left);
+        leftButton = rootView.findViewById(R.id.bt_left);
         leftButton.setVisibility(View.GONE);
-        rightButton = (Button) rootView.findViewById(R.id.bt_right);
+        rightButton = rootView.findViewById(R.id.bt_right);
         rightButton.setVisibility(View.GONE);
-        img_line = (ImageView) rootView.findViewById(R.id.img_line);
+        img_line = rootView.findViewById(R.id.img_line);
         img_line.setVisibility(View.GONE);
 
         // set Dialog style
