@@ -180,7 +180,7 @@ public class MainActivity extends Activity {
     public void adTwo(View view) {
         new AlertDialog(MainActivity.this)
                 .setScaleWidth(0.7)
-                .setMsg("你现在无法接收到新消息提醒。请到系统-设置-通知中开启消息提醒", Color.BLUE)
+                .setMsg("你现在无法接收到新消息提醒。请到系统-设置-通知中开启消息提醒", Color.BLUE, 16, false)
                 .setRightButton("确定", new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {

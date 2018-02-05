@@ -2,7 +2,7 @@ package com.maple.msdialog;
 
 import android.app.Dialog;
 import android.content.Context;
-import android.graphics.Color;
+import android.graphics.Typeface;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -63,42 +63,59 @@ public class AlertDialog extends BaseDialog {
     }
 
     public AlertDialog setTitle(String title) {
-        return setTitle(title, Color.parseColor("#FD4A2E"));
+        int color = mContext.getResources().getColor(R.color.actionsheet_red);
+        return setTitle(title, color, 18, true);
     }
 
-    public AlertDialog setTitle(String title, int color) {
+    public AlertDialog setTitle(String title, int color, int size, boolean isBold) {
         showTitle = true;
-        if (TextUtils.isEmpty(title)) {
-            txt_title.setText("Alert");
-        } else {
-            txt_title.setText(title);
-        }
-        txt_title.setTextColor(color);
+        txt_title.setVisibility(View.VISIBLE);
+        txt_title.setText(title);
+        if (color != -1)
+            txt_title.setTextColor(color);
+        if (size > 0)
+            txt_title.setTextSize(size);
+        if (isBold)
+            txt_title.setTypeface(txt_title.getTypeface(), Typeface.BOLD);
         return this;
     }
 
     public AlertDialog setMsg(String msg) {
-        return setMsg(msg, Color.parseColor("#FD4A2E"));
+        int color = mContext.getResources().getColor(R.color.actionsheet_red);
+        return setMsg(msg, color, 16, false);
     }
 
-    public AlertDialog setMsg(String msg, int color) {
+    public AlertDialog setMsg(String msg, int color, int size, boolean isBold) {
         showMsg = true;
-        if (TextUtils.isEmpty(msg)) {
-            txt_msg.setText("body text");
-        } else {
-            txt_msg.setText(msg);
-        }
-        txt_msg.setTextColor(color);
+        txt_msg.setVisibility(View.VISIBLE);
+        txt_msg.setText(msg);
+        if (color != -1)
+            txt_msg.setTextColor(color);
+        if (size > 0)
+            txt_msg.setTextSize(size);
+        if (isBold)
+            txt_msg.setTypeface(txt_msg.getTypeface(), Typeface.BOLD);
         return this;
     }
 
     public AlertDialog setRightButton(String text, final OnClickListener listener) {
+        int color = mContext.getResources().getColor(R.color.actionsheet_blue);
+        return setRightButton(text, color, 16, false, listener);
+    }
+
+    public AlertDialog setRightButton(String text, int color, int size, boolean isBold, final OnClickListener listener) {
         showRightBtn = true;
         if (TextUtils.isEmpty(text)) {
             rightButton.setText("OK");
         } else {
             rightButton.setText(text);
         }
+        if (color != -1)
+            rightButton.setTextColor(color);
+        if (size > 0)
+            rightButton.setTextSize(size);
+        if (isBold)
+            rightButton.setTypeface(rightButton.getTypeface(), Typeface.BOLD);
         rightButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -111,12 +128,23 @@ public class AlertDialog extends BaseDialog {
     }
 
     public AlertDialog setLeftButton(String text, final OnClickListener listener) {
+        int color = mContext.getResources().getColor(R.color.actionsheet_blue);
+        return setLeftButton(text, color, 16, false, listener);
+    }
+
+    public AlertDialog setLeftButton(String text, int color, int size, boolean isBold, final OnClickListener listener) {
         showLeftBtn = true;
         if (TextUtils.isEmpty(text)) {
             leftButton.setText("Cancel");
         } else {
             leftButton.setText(text);
         }
+        if (color != -1)
+            leftButton.setTextColor(color);
+        if (size > 0)
+            leftButton.setTextSize(size);
+        if (isBold)
+            leftButton.setTypeface(leftButton.getTypeface(), Typeface.BOLD);
         leftButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -133,15 +161,7 @@ public class AlertDialog extends BaseDialog {
             txt_title.setText("Alert");
             txt_title.setVisibility(View.VISIBLE);
         }
-
-        if (showTitle) {
-            txt_title.setVisibility(View.VISIBLE);
-        }
-
-        if (showMsg) {
-            txt_msg.setVisibility(View.VISIBLE);
-        }
-
+        // one button
         if (!showRightBtn && !showLeftBtn) {
             rightButton.setText("OK");
             rightButton.setVisibility(View.VISIBLE);
@@ -154,14 +174,6 @@ public class AlertDialog extends BaseDialog {
             });
         }
 
-        if (showRightBtn && showLeftBtn) {
-            rightButton.setVisibility(View.VISIBLE);
-            rightButton.setBackgroundResource(R.drawable.alertdialog_right_selector);
-            leftButton.setVisibility(View.VISIBLE);
-            leftButton.setBackgroundResource(R.drawable.alertdialog_left_selector);
-            img_line.setVisibility(View.VISIBLE);
-        }
-
         if (showRightBtn && !showLeftBtn) {
             rightButton.setVisibility(View.VISIBLE);
             rightButton.setBackgroundResource(R.drawable.alertdialog_single_selector);
@@ -171,10 +183,19 @@ public class AlertDialog extends BaseDialog {
             leftButton.setVisibility(View.VISIBLE);
             leftButton.setBackgroundResource(R.drawable.alertdialog_single_selector);
         }
+        // two button
+        if (showRightBtn && showLeftBtn) {
+            rightButton.setVisibility(View.VISIBLE);
+            rightButton.setBackgroundResource(R.drawable.alertdialog_right_selector);
+            leftButton.setVisibility(View.VISIBLE);
+            leftButton.setBackgroundResource(R.drawable.alertdialog_left_selector);
+            img_line.setVisibility(View.VISIBLE);
+        }
     }
 
     public void show() {
         setLayout();
         dialog.show();
     }
+
 }
