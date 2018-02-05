@@ -16,8 +16,9 @@
         android:paddingLeft="15dp"
         android:paddingRight="15dp"
         android:paddingTop="10dp"
-        android:textSize="16sp"
-        android:visibility="gone"/>
+        android:text="Title"
+        android:textColor="@color/def_title_color"
+        android:textSize="16sp"/>
 
     <ScrollView
         android:id="@+id/sLayout_content"
@@ -41,7 +42,7 @@
         android:background="@drawable/actionsheet_single_selector"
         android:gravity="center"
         android:text="取消"
-        android:textColor="@color/actionsheet_blue"
+        android:textColor="@color/def_title_color"
         android:textSize="18sp"/>
 
 </LinearLayout>

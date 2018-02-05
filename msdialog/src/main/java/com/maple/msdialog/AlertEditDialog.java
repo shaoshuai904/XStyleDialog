@@ -2,8 +2,8 @@ package com.maple.msdialog;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.graphics.Typeface;
 import android.text.Editable;
-import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -37,16 +37,16 @@ public class AlertEditDialog extends BaseDialog {
         rootView = LayoutInflater.from(context).inflate(R.layout.view_alert_edit_dialog, null);
 
         // get custom Dialog layout
-        txt_title = (TextView) rootView.findViewById(R.id.txt_title);
+        txt_title = rootView.findViewById(R.id.txt_title);
         txt_title.setVisibility(View.GONE);
-        txt_msg = (TextView) rootView.findViewById(R.id.txt_msg);
+        txt_msg = rootView.findViewById(R.id.txt_msg);
         txt_msg.setVisibility(View.GONE);
-        et_text = (EditText) rootView.findViewById(R.id.et_text);
-        leftBtn = (Button) rootView.findViewById(R.id.btn_left);
+        et_text = rootView.findViewById(R.id.et_text);
+        leftBtn = rootView.findViewById(R.id.btn_left);
         leftBtn.setVisibility(View.GONE);
-        rightBtn = (Button) rootView.findViewById(R.id.btn_right);
+        rightBtn = rootView.findViewById(R.id.btn_right);
         rightBtn.setVisibility(View.GONE);
-        img_line = (ImageView) rootView.findViewById(R.id.img_line);
+        img_line = rootView.findViewById(R.id.img_line);
         img_line.setVisibility(View.GONE);
 
         // set Dialog style
@@ -66,32 +66,53 @@ public class AlertEditDialog extends BaseDialog {
     }
 
     public AlertEditDialog setTitle(String title) {
+        int color = mContext.getResources().getColor(R.color.def_title_color);
+        return setTitle(title, color, 18, true);
+    }
+
+    public AlertEditDialog setTitle(String title, int color, int size, boolean isBold) {
         showTitle = true;
-        if (TextUtils.isEmpty(title)) {
-            txt_title.setText("Alert");
-        } else {
-            txt_title.setText(title);
-        }
+        txt_title.setText(title);
+        if (color != -1)
+            txt_title.setTextColor(color);
+        if (size > 0)
+            txt_title.setTextSize(size);
+        if (isBold)
+            txt_title.setTypeface(txt_title.getTypeface(), Typeface.BOLD);
         return this;
     }
 
-    public AlertEditDialog setMsg(String msg) {
+    public AlertEditDialog setMessage(String msg) {
+        int color = mContext.getResources().getColor(R.color.def_title_color);
+        return setMessage(msg, color, 16, false);
+    }
+
+    public AlertEditDialog setMessage(String msg, int color, int size, boolean isBold) {
         showMsg = true;
-        if (TextUtils.isEmpty(msg)) {
-            txt_msg.setText("body text");
-        } else {
-            txt_msg.setText(msg);
-        }
+        txt_msg.setText(msg);
+        if (color != -1)
+            txt_msg.setTextColor(color);
+        if (size > 0)
+            txt_msg.setTextSize(size);
+        if (isBold)
+            txt_msg.setTypeface(txt_msg.getTypeface(), Typeface.BOLD);
         return this;
     }
 
     public AlertEditDialog setRightButton(String text, final OnClickListener listener) {
+        int color = mContext.getResources().getColor(R.color.def_title_color);
+        return setRightButton(text, color, 16, false, listener);
+    }
+
+    public AlertEditDialog setRightButton(String text, int color, int size, boolean isBold, final OnClickListener listener) {
         showRightBtn = true;
-        if (TextUtils.isEmpty(text)) {
-            rightBtn.setText("OK");
-        } else {
-            rightBtn.setText(text);
-        }
+        rightBtn.setText(text);
+        if (color != -1)
+            rightBtn.setTextColor(color);
+        if (size > 0)
+            rightBtn.setTextSize(size);
+        if (isBold)
+            rightBtn.setTypeface(rightBtn.getTypeface(), Typeface.BOLD);
         rightBtn.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -104,12 +125,19 @@ public class AlertEditDialog extends BaseDialog {
     }
 
     public AlertEditDialog setLeftButton(String text, final OnClickListener listener) {
+        int color = mContext.getResources().getColor(R.color.def_title_color);
+        return setLeftButton(text, color, 16, false, listener);
+    }
+
+    public AlertEditDialog setLeftButton(String text, int color, int size, boolean isBold, final OnClickListener listener) {
         showLeftBtn = true;
-        if (TextUtils.isEmpty(text)) {
-            leftBtn.setText("Cancel");
-        } else {
-            leftBtn.setText(text);
-        }
+        leftBtn.setText(text);
+        if (color != -1)
+            leftBtn.setTextColor(color);
+        if (size > 0)
+            leftBtn.setTextSize(size);
+        if (isBold)
+            leftBtn.setTypeface(leftBtn.getTypeface(), Typeface.BOLD);
         leftBtn.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {

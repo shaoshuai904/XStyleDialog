@@ -7,6 +7,6 @@
 
     <stroke
         android:width="0.5dp"
-        android:color="@android:color/black"/>
+        android:color="@color/act_line"/>
 
 </shape>

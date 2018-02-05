@@ -15,7 +15,7 @@
         android:layout_marginTop="15dp"
         android:gravity="center"
         android:text="Title"
-        android:textColor="#FD4A2E"
+        android:textColor="@color/def_title_color"
         android:textSize="18sp"
         android:textStyle="bold"/>
 
@@ -28,7 +28,7 @@
         android:layout_marginTop="15dp"
         android:gravity="center"
         android:text="body text"
-        android:textColor="@color/black"
+        android:textColor="@color/def_title_color"
         android:textSize="16sp"/>
 
     <ImageView
@@ -51,7 +51,7 @@
             android:background="@drawable/alertdialog_left_selector"
             android:gravity="center"
             android:text="Cancel"
-            android:textColor="@color/actionsheet_blue"
+            android:textColor="@color/def_title_color"
             android:textSize="16sp"/>
 
         <ImageView
@@ -68,7 +68,7 @@
             android:background="@drawable/alertdialog_right_selector"
             android:gravity="center"
             android:text="OK"
-            android:textColor="@color/actionsheet_blue"
+            android:textColor="@color/def_title_color"
             android:textSize="16sp"/>
     </LinearLayout>
 

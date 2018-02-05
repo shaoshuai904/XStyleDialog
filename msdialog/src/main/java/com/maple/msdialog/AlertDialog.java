@@ -63,13 +63,12 @@ public class AlertDialog extends BaseDialog {
     }
 
     public AlertDialog setTitle(String title) {
-        int color = mContext.getResources().getColor(R.color.actionsheet_red);
+        int color = mContext.getResources().getColor(R.color.def_title_color);
         return setTitle(title, color, 18, true);
     }
 
     public AlertDialog setTitle(String title, int color, int size, boolean isBold) {
         showTitle = true;
-        txt_title.setVisibility(View.VISIBLE);
         txt_title.setText(title);
         if (color != -1)
             txt_title.setTextColor(color);
@@ -80,15 +79,14 @@ public class AlertDialog extends BaseDialog {
         return this;
     }
 
-    public AlertDialog setMsg(String msg) {
-        int color = mContext.getResources().getColor(R.color.actionsheet_red);
-        return setMsg(msg, color, 16, false);
+    public AlertDialog setMessage(String message) {
+        int color = mContext.getResources().getColor(R.color.def_message_color);
+        return setMessage(message, color, 16, false);
     }
 
-    public AlertDialog setMsg(String msg, int color, int size, boolean isBold) {
+    public AlertDialog setMessage(String message, int color, int size, boolean isBold) {
         showMsg = true;
-        txt_msg.setVisibility(View.VISIBLE);
-        txt_msg.setText(msg);
+        txt_msg.setText(message);
         if (color != -1)
             txt_msg.setTextColor(color);
         if (size > 0)
@@ -99,7 +97,7 @@ public class AlertDialog extends BaseDialog {
     }
 
     public AlertDialog setRightButton(String text, final OnClickListener listener) {
-        int color = mContext.getResources().getColor(R.color.actionsheet_blue);
+        int color = mContext.getResources().getColor(R.color.def_title_color);
         return setRightButton(text, color, 16, false, listener);
     }
 
@@ -128,7 +126,7 @@ public class AlertDialog extends BaseDialog {
     }
 
     public AlertDialog setLeftButton(String text, final OnClickListener listener) {
-        int color = mContext.getResources().getColor(R.color.actionsheet_blue);
+        int color = mContext.getResources().getColor(R.color.def_title_color);
         return setLeftButton(text, color, 16, false, listener);
     }
 
@@ -160,6 +158,12 @@ public class AlertDialog extends BaseDialog {
         if (!showTitle && !showMsg) {
             txt_title.setText("Alert");
             txt_title.setVisibility(View.VISIBLE);
+        }
+        if (showTitle) {
+            txt_title.setVisibility(View.VISIBLE);
+        }
+        if (showMsg) {
+            txt_msg.setVisibility(View.VISIBLE);
         }
         // one button
         if (!showRightBtn && !showLeftBtn) {

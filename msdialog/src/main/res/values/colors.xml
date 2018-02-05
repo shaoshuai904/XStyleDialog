@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <color name="alertdialog_line">#c6c6c6</color>
-    <color name="actionsheet_blue">#037BFF</color>
-    <color name="actionsheet_red">#FD4A2E</color>
-    <color name="black">#FD4A2E</color>
+    <color name="def_title_color">#000000</color>
+    <color name="def_message_color">#242425</color>
 
+    <!--<color name="blue">#347EFD</color>-->
 
     <color name="act_def_bg">#FFFFFF</color>
-    <color name="act_sel_bg">#BBBBBB</color>
-    <color name="act_line">#121cac</color>
+    <color name="act_sel_bg">#D9D9D9</color>
+    <color name="act_line">#C9C9C9</color>
 
 </resources>

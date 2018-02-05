@@ -15,7 +15,6 @@
         android:layout_marginTop="15dp"
         android:gravity="center"
         android:text="Title"
-        android:textColor="@color/black"
         android:textSize="18sp"
         android:textStyle="bold"/>
 
@@ -29,7 +28,6 @@
         android:layout_marginTop="15dp"
         android:gravity="center"
         android:text="body text"
-        android:textColor="@color/black"
         android:textSize="16sp"/>
 
     <EditText
@@ -42,7 +40,7 @@
         android:layout_marginTop="10dp"
         android:background="@drawable/actionsheet_middle_selector"
         android:padding="5dp"
-        android:textCursorDrawable="@color/black"/>
+        android:textCursorDrawable="@color/def_title_color"/>
 
     <ImageView
         android:layout_width="match_parent"
@@ -63,7 +61,7 @@
             android:background="@drawable/alertdialog_left_selector"
             android:gravity="center"
             android:text="Cancel"
-            android:textColor="@color/actionsheet_blue"
+            android:textColor="@color/def_title_color"
             android:textSize="16sp"/>
 
         <ImageView
@@ -80,7 +78,7 @@
             android:background="@drawable/alertdialog_right_selector"
             android:gravity="center"
             android:text="OK"
-            android:textColor="@color/actionsheet_blue"
+            android:textColor="@color/def_title_color"
             android:textSize="16sp"
             android:textStyle="bold"/>
     </LinearLayout>

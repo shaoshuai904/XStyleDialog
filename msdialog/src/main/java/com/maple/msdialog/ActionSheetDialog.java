@@ -42,6 +42,7 @@ public class ActionSheetDialog extends BaseDialog {
         sLayout_content = rootView.findViewById(R.id.sLayout_content);
         lLayout_content = rootView.findViewById(R.id.lLayout_content);
         txt_title = rootView.findViewById(R.id.txt_title);
+        txt_title.setVisibility(View.GONE);
         txt_cancel = rootView.findViewById(R.id.txt_cancel);
         txt_cancel.setOnClickListener(new OnClickListener() {
             @Override
@@ -72,7 +73,8 @@ public class ActionSheetDialog extends BaseDialog {
     }
 
     public ActionSheetDialog setTitle(String title) {
-        return setTitle(title, -1, 16, false);
+        int color = mContext.getResources().getColor(R.color.def_title_color);
+        return setTitle(title, color, 16, false);
     }
 
     public ActionSheetDialog setTitle(String title, int color, int size, boolean isBold) {
@@ -89,10 +91,8 @@ public class ActionSheetDialog extends BaseDialog {
     }
 
     public ActionSheetDialog setCancelText(String cancelText) {
-        return setCancelText(cancelText,
-                mContext.getResources().getColor(R.color.actionsheet_blue),
-                18,
-                true);
+        int color = mContext.getResources().getColor(R.color.def_title_color);
+        return setCancelText(cancelText, color, 18, false);
     }
 
     public ActionSheetDialog setCancelText(String cancelText, int color, int size, boolean isBold) {
@@ -107,7 +107,8 @@ public class ActionSheetDialog extends BaseDialog {
     }
 
     public ActionSheetDialog addSheetItem(String strItem, OnSheetItemClickListener listener) {
-        return addSheetItem(strItem, 0, listener);
+        int color = mContext.getResources().getColor(R.color.def_message_color);
+        return addSheetItem(strItem, color, listener);
     }
 
     public ActionSheetDialog addSheetItem(String strItem, int color, OnSheetItemClickListener listener) {
