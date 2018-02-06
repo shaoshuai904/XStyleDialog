@@ -26,9 +26,9 @@ dependencies {
 }
 ```
 
-![demo_show1](https://github.com/shaoshuai904/IOSDialog/blob/master/screens/demo_show1.png)
+![show_01](https://github.com/shaoshuai904/IOSDialog/blob/master/screens/show_01.png)
 
-![demo_show2](https://github.com/shaoshuai904/IOSDialog/blob/master/screens/demo_show2.png)
+![show_02](https://github.com/shaoshuai904/IOSDialog/blob/master/screens/show_02.png)
 
 ###  AlertDialog
 
@@ -100,42 +100,7 @@ dependencies {
                         showToast("item " + which);
                     }
                 })
-                .addSheetItem("条目四", Color.CYAN, new ActionSheetDialog.OnSheetItemClickListener() {
-                    @Override
-                    public void onClick(int which) {
-                        showToast("item " + which);
-                    }
-                })
-                .addSheetItem("条目五", new ActionSheetDialog.OnSheetItemClickListener() {
-                    @Override
-                    public void onClick(int which) {
-                        showToast("item " + which);
-                    }
-                })
-                .addSheetItem("条目六", new ActionSheetDialog.OnSheetItemClickListener() {
-                    @Override
-                    public void onClick(int which) {
-                        showToast("item " + which);
-                    }
-                })
-                .addSheetItem("条目七", new ActionSheetDialog.OnSheetItemClickListener() {
-                    @Override
-                    public void onClick(int which) {
-                        showToast("item " + which);
-                    }
-                })
-                .addSheetItem("条目八", new ActionSheetDialog.OnSheetItemClickListener() {
-                    @Override
-                    public void onClick(int which) {
-                        showToast("item " + which);
-                    }
-                })
-                .addSheetItem("条目九", new ActionSheetDialog.OnSheetItemClickListener() {
-                    @Override
-                    public void onClick(int which) {
-                        showToast("item " + which);
-                    }
-                })
+                // ……
                 .addSheetItem("条目十", new ActionSheetDialog.OnSheetItemClickListener() {
                     @Override
                     public void onClick(int which) {
