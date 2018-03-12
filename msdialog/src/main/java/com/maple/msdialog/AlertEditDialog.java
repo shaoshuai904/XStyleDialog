@@ -99,12 +99,12 @@ public class AlertEditDialog extends BaseDialog {
         return this;
     }
 
-    public AlertEditDialog setRightButton(String text, final OnClickListener listener) {
+    public AlertEditDialog setRightButton(String text, final EditTextCallListener listener) {
         int color = mContext.getResources().getColor(R.color.def_title_color);
         return setRightButton(text, color, 16, false, listener);
     }
 
-    public AlertEditDialog setRightButton(String text, int color, int size, boolean isBold, final OnClickListener listener) {
+    public AlertEditDialog setRightButton(String text, int color, int size, boolean isBold, final EditTextCallListener listener) {
         showRightBtn = true;
         rightBtn.setText(text);
         if (color != -1)
@@ -116,8 +116,10 @@ public class AlertEditDialog extends BaseDialog {
         rightBtn.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (listener != null)
-                    listener.onClick(v);
+                if (listener != null){
+                    String inputText =  et_text.getText().toString().trim();
+                    listener.callBack(inputText);
+                }
                 dialog.dismiss();
             }
         });
@@ -152,27 +154,6 @@ public class AlertEditDialog extends BaseDialog {
     public interface EditTextCallListener {
         void callBack(String str);
     }
-
-    public AlertEditDialog setEditCallListener(final EditTextCallListener callListener) {
-        et_text.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                callListener.callBack(s.toString());
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-            }
-        });
-        return this;
-    }
-
 
     private void setLayout() {
         if (!showTitle && !showMsg) {
