@@ -70,7 +70,7 @@ public class MainActivity extends Activity {
 
                             }
                         })
-                .addSheetItem("保存到手机", Color.parseColor(DEF_BLUE),
+                .addSheetItem("保存到手机",
                         new ActionSheetDialog.OnSheetItemClickListener() {
                             @Override
                             public void onClick(int which) {
@@ -84,7 +84,7 @@ public class MainActivity extends Activity {
 
                             }
                         })
-                .addSheetItem("查看聊天图片", Color.parseColor(DEF_BLUE),
+                .addSheetItem("查看聊天图片",
                         new ActionSheetDialog.OnSheetItemClickListener() {
                             @Override
                             public void onClick(int which) {
@@ -165,6 +165,7 @@ public class MainActivity extends Activity {
 
     public void adOne(View view) {
         new AlertDialog(MainActivity.this)
+                .setCancelable(false)
                 .setTitle("退出当前账号")
                 .setMessage("再连续登陆15天，就可变身为QQ达人。退出QQ可能会使你现有记录归零，确定退出？")
                 .setLeftButton("取消", null)
@@ -179,7 +180,8 @@ public class MainActivity extends Activity {
 
     public void adTwo(View view) {
         new AlertDialog(MainActivity.this)
-                .setScaleWidth(0.7)
+                .setCancelable(true)
+                .setScaleWidth(0.7)// 设置宽度，占屏幕宽度百分比
                 .setMessage("你现在无法接收到新消息提醒。请到系统-设置-通知中开启消息提醒")
                 .setRightButton("确定", new View.OnClickListener() {
                     @Override
@@ -192,23 +194,15 @@ public class MainActivity extends Activity {
 
     // --------------------------------- Alert Edit Dialog -----------------------------------------
 
-    String name;
-
     public void aeOne(View view) {
         new AlertEditDialog(MainActivity.this)
                 .setTitle("姓名")
                 .setMessage("请输入您的真实姓名。")
-                .setEditCallListener(new AlertEditDialog.EditTextCallListener() {
+                .setLeftButton("取消", null)
+                .setRightButton("确定", new AlertEditDialog.EditTextCallListener() {
                     @Override
                     public void callBack(String str) {
-                        name = str;
-                    }
-                })
-                .setLeftButton("取消", null)
-                .setRightButton("确定", new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        showToast(name);
+                        showToast(str);
                     }
                 })
                 .show();
@@ -217,19 +211,15 @@ public class MainActivity extends Activity {
     public void aeTwo(View view) {
         new AlertEditDialog(MainActivity.this)
                 .setMessage("给自己起一个好听的名字吧")
-                .setEditCallListener(new AlertEditDialog.EditTextCallListener() {
-                    @Override
-                    public void callBack(String str) {
-                        name = str;
-                    }
-                })
-                .setRightButton("确定", new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        if (!TextUtils.isEmpty(name))
-                            showToast(name);
-                    }
-                })
+                .setRightButton("确定", new AlertEditDialog.EditTextCallListener() {
+                            @Override
+                            public void callBack(String str) {
+                                if (!TextUtils.isEmpty(str)) {
+                                    showToast(str);
+                                }
+                            }
+                        }
+                )
                 .show();
     }
 

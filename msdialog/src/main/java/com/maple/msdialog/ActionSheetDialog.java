@@ -3,6 +3,7 @@ package com.maple.msdialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Typeface;
+import android.support.v4.content.ContextCompat;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -73,7 +74,7 @@ public class ActionSheetDialog extends BaseDialog {
     }
 
     public ActionSheetDialog setTitle(String title) {
-        int color = mContext.getResources().getColor(R.color.def_title_color);
+        int color = ContextCompat.getColor(mContext, R.color.def_title_color);
         return setTitle(title, color, 16, false);
     }
 
@@ -81,39 +82,46 @@ public class ActionSheetDialog extends BaseDialog {
         showTitle = true;
         txt_title.setVisibility(View.VISIBLE);
         txt_title.setText(title);
-        if (color != -1)
+        if (color != -1) {
             txt_title.setTextColor(color);
-        if (size > 0)
+        }
+        if (size > 0) {
             txt_title.setTextSize(size);
-        if (isBold)
+        }
+        if (isBold) {
             txt_title.setTypeface(txt_title.getTypeface(), Typeface.BOLD);
+        }
         return this;
     }
 
     public ActionSheetDialog setCancelText(String cancelText) {
-        int color = mContext.getResources().getColor(R.color.def_title_color);
+        int color = ContextCompat.getColor(mContext, R.color.def_title_color);
         return setCancelText(cancelText, color, 18, false);
     }
 
     public ActionSheetDialog setCancelText(String cancelText, int color, int size, boolean isBold) {
         txt_cancel.setText(cancelText);
-        if (color != -1)
+        if (color != -1) {
             txt_cancel.setTextColor(color);
-        if (size > 0)
+        }
+        if (size > 0) {
             txt_cancel.setTextSize(size);
-        if (isBold)
+        }
+        if (isBold) {
             txt_cancel.setTypeface(txt_cancel.getTypeface(), Typeface.BOLD);
+        }
         return this;
     }
 
     public ActionSheetDialog addSheetItem(String strItem, OnSheetItemClickListener listener) {
-        int color = mContext.getResources().getColor(R.color.def_message_color);
+        int color = ContextCompat.getColor(mContext, R.color.def_message_color);
         return addSheetItem(strItem, color, listener);
     }
 
     public ActionSheetDialog addSheetItem(String strItem, int color, OnSheetItemClickListener listener) {
-        if (sheetItemList == null)
+        if (sheetItemList == null) {
             sheetItemList = new ArrayList<>();
+        }
         sheetItemList.add(new SheetItem(strItem, color, listener));
         return this;
     }
@@ -177,8 +185,9 @@ public class ActionSheetDialog extends BaseDialog {
             textView.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (sheetItem.itemClickListener != null)
+                    if (sheetItem.itemClickListener != null) {
                         sheetItem.itemClickListener.onClick(index);
+                    }
                     dialog.dismiss();
                 }
             });
