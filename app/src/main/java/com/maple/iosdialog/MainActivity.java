@@ -1,6 +1,7 @@
 package com.maple.iosdialog;
 
 import android.app.Activity;
+import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -20,17 +21,19 @@ import com.maple.msdialog.AlertEditDialog;
 public class MainActivity extends Activity {
     public static final String DEF_BLUE = "#037BFF";
     public static final String DEF_RED = "#FD4A2E";
+    Context mContext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        mContext = this;
     }
 
     // -------------------------------- Action Sheet Dialog ----------------------------------------
 
     public void asMessage(View view) {
-        new ActionSheetDialog(MainActivity.this)
+        new ActionSheetDialog(mContext)
                 .setCancelable(false)
                 .setCanceledOnTouchOutside(false)
                 .setTitle("清空消息列表后，聊天记录依然保留，确定要清空消息列表？")
@@ -46,7 +49,7 @@ public class MainActivity extends Activity {
     }
 
     public void asImage(View view) {
-        new ActionSheetDialog(MainActivity.this)
+        new ActionSheetDialog(mContext)
                 .setCancelable(false)
                 .setCanceledOnTouchOutside(false)
                 .addSheetItem("发送给好友", Color.parseColor(DEF_BLUE),
@@ -95,7 +98,7 @@ public class MainActivity extends Activity {
     }
 
     public void asList(View view) {
-        new ActionSheetDialog(MainActivity.this)
+        new ActionSheetDialog(mContext)
                 .setTitle("请选择操作")
                 .setCancelable(false)
                 .setCanceledOnTouchOutside(false)
@@ -164,7 +167,7 @@ public class MainActivity extends Activity {
     // ------------------------------------ Alert Dialog -------------------------------------------
 
     public void adOne(View view) {
-        new AlertDialog(MainActivity.this)
+        new AlertDialog(mContext)
                 .setCancelable(false)
                 .setTitle("退出当前账号")
                 .setMessage("再连续登陆15天，就可变身为QQ达人。退出QQ可能会使你现有记录归零，确定退出？")
@@ -179,7 +182,7 @@ public class MainActivity extends Activity {
     }
 
     public void adTwo(View view) {
-        new AlertDialog(MainActivity.this)
+        new AlertDialog(mContext)
                 .setCancelable(true)
                 .setScaleWidth(0.7)// 设置宽度，占屏幕宽度百分比
                 .setMessage("你现在无法接收到新消息提醒。请到系统-设置-通知中开启消息提醒")
@@ -195,7 +198,7 @@ public class MainActivity extends Activity {
     // --------------------------------- Alert Edit Dialog -----------------------------------------
 
     public void aeOne(View view) {
-        new AlertEditDialog(MainActivity.this)
+        new AlertEditDialog(mContext)
                 .setTitle("姓名")
                 .setMessage("请输入您的真实姓名。")
                 .setLeftButton("取消", null)
@@ -209,7 +212,7 @@ public class MainActivity extends Activity {
     }
 
     public void aeTwo(View view) {
-        new AlertEditDialog(MainActivity.this)
+        new AlertEditDialog(mContext)
                 .setMessage("给自己起一个好听的名字吧")
                 .setRightButton("确定", new AlertEditDialog.EditTextCallListener() {
                             @Override
@@ -226,7 +229,7 @@ public class MainActivity extends Activity {
     // ----------------------------------- other methods -------------------------------------------
 
     private void showToast(String msg) {
-        Toast.makeText(MainActivity.this, msg, Toast.LENGTH_SHORT).show();
+        Toast.makeText(mContext, msg, Toast.LENGTH_SHORT).show();
     }
 
 }

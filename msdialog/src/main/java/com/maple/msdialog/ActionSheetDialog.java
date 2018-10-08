@@ -126,7 +126,9 @@ public class ActionSheetDialog extends BaseDialog {
         return this;
     }
 
-    /** set items layout */
+    /**
+     * set items layout
+     */
     private void setSheetItems() {
         if (sheetItemList == null || sheetItemList.size() <= 0) {
             return;

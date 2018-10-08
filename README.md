@@ -1,6 +1,5 @@
 # iOS style Dialog
 
-
 ### 项目说明
 	仿iOS样式Dialog。 
 	开发环境：Android Studio 2.3.
@@ -22,7 +21,7 @@ allprojects {
 
 ```groovy
 dependencies {
-	compile 'com.github.shaoshuai904:iOS_Style_Dialog:1.2'
+	compile 'com.github.shaoshuai904:iOS_Style_Dialog:1.2.1'
 }
 ```
 
@@ -34,8 +33,9 @@ dependencies {
 
 	样式布局:[ 标题 + 消息 + 左按钮 + 右按钮]
 
-```
-        new AlertDialog(MainActivity.this)
+```java                
+        new AlertDialog(mContext)
+                .setCancelable(false)
                 .setTitle("退出当前账号")
                 .setMessage("再连续登陆15天，就可变身为QQ达人。退出QQ可能会使你现有记录归零，确定退出？")
                 .setLeftButton("取消", null)
@@ -46,28 +46,21 @@ dependencies {
                     }
                 })
                 .show();
-
 ```
 
 ### AlertEditDialog
 
 	样式布局:[ 标题 + 消息 + 输入框 + 左按钮 + 右按钮 ]
 
-```
-        new AlertEditDialog(MainActivity.this)
+```java       
+        new AlertEditDialog(mContext)
                 .setTitle("姓名")
                 .setMessage("请输入您的真实姓名。")
-                .setEditCallListener(new AlertEditDialog.EditTextCallListener() {
+                .setLeftButton("取消", null)
+                .setRightButton("确定", new AlertEditDialog.EditTextCallListener() {
                     @Override
                     public void callBack(String str) {
-                        name = str;
-                    }
-                })
-                .setLeftButton("取消", null)
-                .setRightButton("确定", new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        showToast(name);
+                        showToast(str);
                     }
                 })
                 .show();
@@ -77,8 +70,8 @@ dependencies {
 
 	样式布局:[ 标题 + 页签条目 + 取消按钮 ]
 
-```
-        new ActionSheetDialog(MainActivity.this)
+```java
+        new ActionSheetDialog(mContext)
                 .setTitle("请选择操作")
                 .setCancelable(false)
                 .setCanceledOnTouchOutside(false)
