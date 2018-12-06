@@ -15,26 +15,33 @@
         android:gravity="center"
         android:text="@string/alert"
         android:textAllCaps="false"
-        android:textColor="@color/def_title_color"
-        android:textSize="18sp"
-        android:textStyle="bold" />
+        android:textSize="18sp" />
 
-    <TextView
-        android:id="@+id/txt_msg"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginRight="15dp"
         android:gravity="center"
-        android:text="body text"
-        android:textColor="@color/def_title_color"
-        android:textSize="16sp" />
+        android:orientation="horizontal">
+
+        <NumberPicker
+            android:id="@+id/np_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center_horizontal" />
+
+        <TextView
+            android:id="@+id/tv_suffix"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="市"
+            android:textSize="16sp" />
+
+    </LinearLayout>
 
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="1px"
-        android:layout_marginTop="10dp"
         android:background="@color/act_line" />
 
     <LinearLayout
@@ -43,9 +50,9 @@
         android:layout_margin="1px"
         android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/bt_left"
-            android:layout_width="wrap_content"
+        <TextView
+            android:id="@+id/tv_left"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@drawable/alertdialog_left_selector"
@@ -61,9 +68,9 @@
             android:layout_height="match_parent"
             android:background="@color/act_line" />
 
-        <Button
-            android:id="@+id/bt_right"
-            android:layout_width="wrap_content"
+        <TextView
+            android:id="@+id/tv_right"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@drawable/alertdialog_right_selector"

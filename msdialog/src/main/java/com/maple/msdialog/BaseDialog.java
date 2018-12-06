@@ -33,17 +33,18 @@ public class BaseDialog {
     //------------------------------------- utils --------------------------------------------------
 
     public int getScreenWidth() {
-        Point size = new Point();
-        WindowManager windowManager = (WindowManager) mContext.getSystemService(Context.WINDOW_SERVICE);
-        windowManager.getDefaultDisplay().getSize(size);
-        return size.x;
+        return getScreenInfo().x;
     }
 
     public int getScreenHeight() {
+        return getScreenInfo().y;
+    }
+
+    public Point getScreenInfo() {
         Point size = new Point();
         WindowManager windowManager = (WindowManager) mContext.getSystemService(Context.WINDOW_SERVICE);
         windowManager.getDefaultDisplay().getSize(size);
-        return size.y;
+        return size;
     }
 
     /**

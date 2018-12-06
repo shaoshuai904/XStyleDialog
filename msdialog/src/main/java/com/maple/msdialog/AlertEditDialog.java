@@ -170,7 +170,7 @@ public class AlertEditDialog extends BaseDialog {
 
     private void setLayout() {
         if (!showTitle && !showMsg) {
-            txt_title.setText("Alert");
+            txt_title.setText(R.string.alert);
             txt_title.setVisibility(View.VISIBLE);
         }
 
@@ -183,7 +183,7 @@ public class AlertEditDialog extends BaseDialog {
         }
 
         if (!showRightBtn && !showLeftBtn) {
-            rightBtn.setText("OK");
+            rightBtn.setText(R.string.ok);
             rightBtn.setVisibility(View.VISIBLE);
             rightBtn.setBackgroundResource(R.drawable.alertdialog_single_selector);
             rightBtn.setOnClickListener(new OnClickListener() {

@@ -8,21 +8,24 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.ImageView;
+import android.widget.NumberPicker;
 import android.widget.TextView;
 
+
 /**
- * 警告框式Dialog [ 标题 + 消息文本 + 左按钮 + 右按钮 ]
+ * 警告框式数字选择器Dialog [ 标题 + 数字选择 + 左按钮 + 右按钮 ]
  *
  * @author maple
- * @time 17/3/21
+ * @time 2018/12/6
  */
-public class AlertDialog extends BaseDialog {
+public class AlertNumberPickerDialog extends BaseDialog {
     private TextView txt_title;
-    private TextView txt_msg;
-    private Button leftButton;
-    private Button rightButton;
+    private NumberPicker np_number;
+    private TextView tv_suffix;
+    private TextView leftButton;
+    private TextView rightButton;
     private ImageView img_line;
 
     private boolean showTitle = false;
@@ -31,18 +34,19 @@ public class AlertDialog extends BaseDialog {
     private boolean showLeftBtn = false;
 
 
-    public AlertDialog(Context context) {
+    public AlertNumberPickerDialog(Context context) {
         super(context);
-        rootView = LayoutInflater.from(context).inflate(R.layout.view_alert_dialog, null);
+        rootView = LayoutInflater.from(context).inflate(R.layout.view_number_picker_dialog, null);
 
         // get custom Dialog layout
         txt_title = rootView.findViewById(R.id.txt_title);
         txt_title.setVisibility(View.GONE);
-        txt_msg = rootView.findViewById(R.id.txt_msg);
-        txt_msg.setVisibility(View.GONE);
-        leftButton = rootView.findViewById(R.id.bt_left);
+        np_number = rootView.findViewById(R.id.np_number);
+        tv_suffix = rootView.findViewById(R.id.tv_suffix);
+        tv_suffix.setVisibility(View.GONE);
+        leftButton = rootView.findViewById(R.id.tv_left);
         leftButton.setVisibility(View.GONE);
-        rightButton = rootView.findViewById(R.id.bt_right);
+        rightButton = rootView.findViewById(R.id.tv_right);
         rightButton.setVisibility(View.GONE);
         img_line = rootView.findViewById(R.id.img_line);
         img_line.setVisibility(View.GONE);
@@ -51,25 +55,25 @@ public class AlertDialog extends BaseDialog {
         dialog = new Dialog(context, R.style.AlertDialogStyle);
         dialog.setContentView(rootView);
 
-        setScaleWidth(0.85);
+        setScaleWidth(0.8);
     }
 
-    public AlertDialog setCancelable(boolean cancel) {
+    public AlertNumberPickerDialog setCancelable(boolean cancel) {
         dialog.setCancelable(cancel);
         return this;
     }
 
     @Override
-    public AlertDialog setScaleWidth(double scWidth) {
-        return (AlertDialog) super.setScaleWidth(scWidth);
+    public AlertNumberPickerDialog setScaleWidth(double scWidth) {
+        return (AlertNumberPickerDialog) super.setScaleWidth(scWidth);
     }
 
-    public AlertDialog setTitle(String title) {
+    public AlertNumberPickerDialog setTitle(String title) {
         int color = ContextCompat.getColor(mContext, R.color.def_title_color);
-        return setTitle(title, color, 18, true);
+        return setTitle(title, color, 18, false);
     }
 
-    public AlertDialog setTitle(String title, int color, int size, boolean isBold) {
+    public AlertNumberPickerDialog setTitle(String title, int color, int size, boolean isBold) {
         showTitle = true;
         txt_title.setText(title);
         if (color != -1) {
@@ -84,32 +88,43 @@ public class AlertDialog extends BaseDialog {
         return this;
     }
 
-    public AlertDialog setMessage(String message) {
-        int color = ContextCompat.getColor(mContext, R.color.def_message_color);
-        return setMessage(message, color, 16, false);
-    }
-
-    public AlertDialog setMessage(String message, int color, int size, boolean isBold) {
+    public AlertNumberPickerDialog setNumberValues(String[] displayedValues, int defaultValue, NumberPicker.OnValueChangeListener onValueChangedListener) {
         showMsg = true;
-        txt_msg.setText(message);
-        if (color != -1) {
-            txt_msg.setTextColor(color);
-        }
-        if (size > 0) {
-            txt_msg.setTextSize(size);
-        }
-        if (isBold) {
-            txt_msg.setTypeface(txt_msg.getTypeface(), Typeface.BOLD);
-        }
+        np_number.setDisplayedValues(displayedValues);
+        np_number.setMinValue(0);
+        np_number.setMaxValue(displayedValues.length - 1);
+        // 设置为对当前值不可编辑
+        np_number.setDescendantFocusability(DatePicker.FOCUS_BLOCK_DESCENDANTS);
+        // default value
+        np_number.setValue(defaultValue);
+        np_number.setOnValueChangedListener(onValueChangedListener);
         return this;
     }
 
-    public AlertDialog setRightButton(String text, final OnClickListener listener) {
+    public AlertNumberPickerDialog setNumberValueSuffix(String suffix) {
+        int color = ContextCompat.getColor(mContext, R.color.def_title_color);
+        return setNumberValueSuffix(suffix, color, 16);
+    }
+
+    public AlertNumberPickerDialog setNumberValueSuffix(String suffix, int color, int size) {
+        showMsg = true;
+        tv_suffix.setText(suffix);
+        if (color != -1) {
+            tv_suffix.setTextColor(color);
+        }
+        if (size > 0) {
+            tv_suffix.setTextSize(size);
+        }
+        tv_suffix.setVisibility(View.VISIBLE);
+        return this;
+    }
+
+    public AlertNumberPickerDialog setRightButton(String text, final OnClickListener listener) {
         int color = ContextCompat.getColor(mContext, R.color.def_title_color);
         return setRightButton(text, color, 16, false, listener);
     }
 
-    public AlertDialog setRightButton(String text, int color, int size, boolean isBold, final OnClickListener listener) {
+    public AlertNumberPickerDialog setRightButton(String text, int color, int size, boolean isBold, final OnClickListener listener) {
         showRightBtn = true;
         if (TextUtils.isEmpty(text)) {
             rightButton.setText(R.string.ok);
@@ -137,12 +152,12 @@ public class AlertDialog extends BaseDialog {
         return this;
     }
 
-    public AlertDialog setLeftButton(String text, final OnClickListener listener) {
+    public AlertNumberPickerDialog setLeftButton(String text, final OnClickListener listener) {
         int color = ContextCompat.getColor(mContext, R.color.def_title_color);
         return setLeftButton(text, color, 16, false, listener);
     }
 
-    public AlertDialog setLeftButton(String text, int color, int size, boolean isBold, final OnClickListener listener) {
+    public AlertNumberPickerDialog setLeftButton(String text, int color, int size, boolean isBold, final OnClickListener listener) {
         showLeftBtn = true;
         if (TextUtils.isEmpty(text)) {
             leftButton.setText(R.string.cancel);
@@ -177,9 +192,6 @@ public class AlertDialog extends BaseDialog {
         }
         if (showTitle) {
             txt_title.setVisibility(View.VISIBLE);
-        }
-        if (showMsg) {
-            txt_msg.setVisibility(View.VISIBLE);
         }
         // one button
         if (!showRightBtn && !showLeftBtn) {

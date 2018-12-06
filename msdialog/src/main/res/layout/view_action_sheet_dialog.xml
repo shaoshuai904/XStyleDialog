@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:orientation="vertical"
-              android:padding="8dp">
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="8dp">
 
     <TextView
         android:id="@+id/txt_title"
@@ -12,13 +12,14 @@
         android:background="@drawable/actionsheet_top_selector"
         android:gravity="center"
         android:minHeight="45dp"
-        android:paddingBottom="10dp"
         android:paddingLeft="15dp"
-        android:paddingRight="15dp"
         android:paddingTop="10dp"
-        android:text="Title"
+        android:paddingRight="15dp"
+        android:paddingBottom="10dp"
+        android:text="@string/alert"
+        android:textAllCaps="false"
         android:textColor="@color/def_title_color"
-        android:textSize="16sp"/>
+        android:textSize="16sp" />
 
     <ScrollView
         android:id="@+id/sLayout_content"
@@ -31,6 +32,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+
         </LinearLayout>
     </ScrollView>
 
@@ -41,8 +43,9 @@
         android:layout_marginTop="8dp"
         android:background="@drawable/actionsheet_single_selector"
         android:gravity="center"
-        android:text="取消"
+        android:text="@string/cancel"
+        android:textAllCaps="false"
         android:textColor="@color/def_title_color"
-        android:textSize="18sp"/>
+        android:textSize="18sp" />
 
 </LinearLayout>

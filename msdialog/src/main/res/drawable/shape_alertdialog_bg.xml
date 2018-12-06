@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <shape xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <corners android:radius="@dimen/jiaodu"/>
+    <corners android:radius="@dimen/jiaodu" />
 
-    <solid android:color="@color/act_def_bg"/>
+    <solid android:color="@color/act_def_bg" />
 
     <stroke
         android:width="0.5dp"
-        android:color="@color/act_line"/>
+        android:color="@color/act_line" />
 
 </shape>

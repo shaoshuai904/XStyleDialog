@@ -6,11 +6,13 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.NumberPicker;
 import android.widget.Toast;
 
 import com.maple.msdialog.ActionSheetDialog;
 import com.maple.msdialog.AlertDialog;
 import com.maple.msdialog.AlertEditDialog;
+import com.maple.msdialog.AlertNumberPickerDialog;
 
 /**
  * Custom Dialog Demo
@@ -226,6 +228,32 @@ public class MainActivity extends Activity {
                 .show();
     }
 
+    // --------------------------------- Number Picker Dialog -----------------------------------------
+    String[] city = {"北京", "上海", "天津", "杭州", "苏州", "深圳"};
+    String curSelect = city[0];
+
+    public void npOne(View view) {
+        new AlertNumberPickerDialog(mContext)
+                .setScaleWidth(0.8)
+                .setCancelable(false)
+                .setTitle("选择城市")
+                .setNumberValues(city, 2, new NumberPicker.OnValueChangeListener() {
+                    @Override
+                    public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
+                        curSelect = city[newVal];
+                    }
+                })
+                .setNumberValueSuffix("市")
+                .setLeftButton("Cancel", null)
+                .setRightButton("OK", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        showToast(curSelect);
+                    }
+                })
+                .show();
+
+    }
     // ----------------------------------- other methods -------------------------------------------
 
     private void showToast(String msg) {

@@ -1,8 +1,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:orientation="vertical"
-              android:padding="10dp">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="10dp">
 
     <TextView
         android:layout_width="match_parent"
@@ -10,25 +10,25 @@
         android:layout_margin="10dp"
         android:gravity="center"
         android:text="Action Sheet Dialog"
-        android:textSize="18sp"/>
+        android:textSize="18sp" />
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="asMessage"
-        android:text="消息"/>
+        android:text="消息" />
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="asImage"
-        android:text="图片"/>
+        android:text="图片" />
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="asList"
-        android:text="列表"/>
+        android:text="列表" />
 
     <TextView
         android:layout_width="match_parent"
@@ -36,19 +36,19 @@
         android:layout_margin="10dp"
         android:gravity="center"
         android:text="Alert Dialog"
-        android:textSize="18sp"/>
+        android:textSize="18sp" />
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="adOne"
-        android:text="常规"/>
+        android:text="常规" />
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="adTwo"
-        android:text="极简"/>
+        android:text="极简" />
 
     <TextView
         android:layout_width="match_parent"
@@ -56,17 +56,31 @@
         android:layout_margin="10dp"
         android:gravity="center"
         android:text="Alert Edit Dialog"
-        android:textSize="18sp"/>
+        android:textSize="18sp" />
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="aeOne"
-        android:text="文本输入"/>
+        android:text="文本输入" />
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="aeTwo"
-        android:text="极简"/>
+        android:text="极简" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:gravity="center"
+        android:text="Number Picker Dialog"
+        android:textSize="18sp" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="npOne"
+        android:text="数字选择" />
 </LinearLayout>

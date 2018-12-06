@@ -3,21 +3,17 @@
 
     <item android:state_pressed="true">
         <shape>
-            <solid android:color="@color/act_sel_bg"/>
-            <corners android:radius="@dimen/jiaodu"/>
-            <stroke
-                android:width="0.1dp"
-                android:color="@color/act_line"/>
+            <solid android:color="@color/act_sel_bg" />
+            <corners android:radius="@dimen/jiaodu" />
+            <stroke android:width="0.1dp" android:color="@color/act_line" />
         </shape>
     </item>
 
     <item android:state_pressed="false">
         <shape>
-            <solid android:color="@color/act_def_bg"/>
-            <corners android:radius="@dimen/jiaodu"/>
-            <stroke
-                android:width="0.1dp"
-                android:color="@color/act_line"/>
+            <solid android:color="@color/act_def_bg" />
+            <corners android:radius="@dimen/jiaodu" />
+            <stroke android:width="0.1dp" android:color="@color/act_line" />
         </shape>
     </item>
 
