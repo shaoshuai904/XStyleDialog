@@ -229,26 +229,53 @@ public class MainActivity extends Activity {
     }
 
     // --------------------------------- Number Picker Dialog -----------------------------------------
-    String[] city = {"北京", "上海", "天津", "杭州", "苏州", "深圳"};
-    String curSelect = city[0];
+
+
+    String[] numbers;
+    int index = 0;
+    String defValue;
 
     public void npOne(View view) {
+        numbers = new String[]{"1", "2", "3", "4", "5", "6", "7", "8", "9", "10"};
+        defValue = numbers[index];
         new AlertNumberPickerDialog(mContext)
-                .setScaleWidth(0.8)
-                .setCancelable(false)
-                .setTitle("选择城市")
-                .setNumberValues(city, 2, new NumberPicker.OnValueChangeListener() {
+                .setTitle("Number")
+                .setNumberValues(numbers, index, new NumberPicker.OnValueChangeListener() {
                     @Override
                     public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
-                        curSelect = city[newVal];
+                        defValue = numbers[newVal];
                     }
                 })
-                .setNumberValueSuffix("市")
                 .setLeftButton("Cancel", null)
                 .setRightButton("OK", new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        showToast(curSelect);
+                        showToast(defValue);
+                    }
+                })
+                .show();
+    }
+
+
+    public void npTwo(View view) {
+        numbers = new String[]{"北京", "上海", "天津", "杭州", "苏州", "深圳"};
+        defValue = numbers[index];
+        new AlertNumberPickerDialog(mContext)
+                .setScaleWidth(0.8)
+                .setCancelable(false)
+                .setTitle("选择城市")
+                .setNumberValues(numbers, index, new NumberPicker.OnValueChangeListener() {
+                    @Override
+                    public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
+                        defValue = numbers[newVal];
+                    }
+                })
+                .setNumberValueSuffix("市")
+                .setLeftButton("取消", null)
+                .setRightButton("确定", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        showToast(defValue);
                     }
                 })
                 .show();
