@@ -8,8 +8,8 @@ android {
         applicationId "com.maple.iosdialog"
         minSdkVersion 14
         targetSdkVersion 28
-        versionCode 11
-        versionName "1.2.2"
+        versionCode VERSION_CODE as int
+        versionName VERSION_NAME
     }
     buildTypes {
         release {
