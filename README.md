@@ -17,7 +17,7 @@ allprojects {
 
 ```groovy
 dependencies {
-	compile 'com.github.shaoshuai904:iOS_Style_Dialog:1.2.2'
+	implementation 'com.github.shaoshuai904:iOS_Style_Dialog:1.2.3'
 }
 ```
 
@@ -130,10 +130,10 @@ dependencies {
 [完整预览各类用法 -（简单使用类 传送门）](https://github.com/shaoshuai904/iOS_Style_Dialog/blob/master/app/src/main/java/com/maple/iosdialog/MainActivity.java)
 
 ----------
-
-## v1.2.2 ##
- - 添加AlertNumberPickerDialog
+## v1.2.3 ##
+ - add AlertNumberPickerDialog
  - update AlertEditDialog text callback.
+ - update minSdkVersion to 14.
 
 ## v1.2 ##
  - 对各个Dialog的`Title`、`Message`、`Cancel/OK Button`，新增了`字体大小`，`字体颜色`，`是否加粗`等设置。
