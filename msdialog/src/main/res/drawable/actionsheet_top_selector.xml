@@ -6,10 +6,10 @@
             <solid android:color="@color/act_sel_bg"/>
             <corners
                 android:radius="0dp"
-                android:topLeftRadius="@dimen/jiaodu"
-                android:topRightRadius="@dimen/jiaodu"/>
+                android:topLeftRadius="@dimen/shape_radius"
+                android:topRightRadius="@dimen/shape_radius"/>
             <stroke
-                android:width="0.1dp"
+                android:width="@dimen/shape_width"
                 android:color="@color/act_line"/>
         </shape>
     </item>
@@ -19,10 +19,10 @@
             <solid android:color="@color/act_def_bg"/>
             <corners
                 android:radius="0dp"
-                android:topLeftRadius="@dimen/jiaodu"
-                android:topRightRadius="@dimen/jiaodu"/>
+                android:topLeftRadius="@dimen/shape_radius"
+                android:topRightRadius="@dimen/shape_radius"/>
             <stroke
-                android:width="0.1dp"
+                android:width="@dimen/shape_width"
                 android:color="@color/act_line"/>
         </shape>
     </item>

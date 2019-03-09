@@ -5,8 +5,8 @@
         <shape>
             <solid android:color="@color/act_sel_bg"/>
             <corners
-                android:bottomLeftRadius="@dimen/jiaodu"
-                android:bottomRightRadius="@dimen/jiaodu"
+                android:bottomLeftRadius="@dimen/shape_radius"
+                android:bottomRightRadius="@dimen/shape_radius"
                 android:radius="0dp"/>
         </shape>
     </item>
@@ -15,8 +15,8 @@
         <shape>
             <solid android:color="@color/act_def_bg"/>
             <corners
-                android:bottomLeftRadius="@dimen/jiaodu"
-                android:bottomRightRadius="@dimen/jiaodu"
+                android:bottomLeftRadius="@dimen/shape_radius"
+                android:bottomRightRadius="@dimen/shape_radius"
                 android:radius="0dp"/>
         </shape>
     </item>

@@ -5,7 +5,9 @@
         <shape>
             <solid android:color="@color/act_sel_bg" />
             <corners android:radius="0dp" />
-            <stroke android:width="0.1dp" android:color="@color/act_line" />
+            <stroke
+                android:width="@dimen/shape_width"
+                android:color="@color/act_line" />
         </shape>
     </item>
 
@@ -13,7 +15,9 @@
         <shape>
             <solid android:color="@color/act_def_bg" />
             <corners android:radius="0dp" />
-            <stroke android:width="0.1dp" android:color="@color/act_line" />
+            <stroke
+                android:width="@dimen/shape_width"
+                android:color="@color/act_line" />
         </shape>
     </item>
 </selector>
