@@ -1,5 +1,9 @@
 # iOS style Dialog
 
+[![demo](https://img.shields.io/badge/download-demo-blue.svg)](https://github.com/shaoshuai904/IOSDialog/blob/master/screens/app_v1.2.3_12.apk)
+[![API](https://img.shields.io/badge/API-14%2B-green.svg?style=flat)](https://android-arsenal.com/api?level=14)
+
+
 ### 快速使用
 
 **Step 1.** Add it in your root build.gradle at the end of repositories:
@@ -7,7 +11,6 @@
 ```groovy
 allprojects {
 	repositories {
-		...
 		maven { url 'https://jitpack.io' }
 	}
 }
