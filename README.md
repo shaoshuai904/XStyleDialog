@@ -1,6 +1,6 @@
 # iOS style Dialog
 
-[![demo](https://img.shields.io/badge/download-demo-blue.svg)](https://github.com/shaoshuai904/IOSDialog/blob/master/screens/app_v1.2.3_12.apk)
+[![demo](https://img.shields.io/badge/download-demo-blue.svg)](https://github.com/shaoshuai904/IOSDialog/blob/master/screens/app_v1.2.4_13.apk)
 [![API](https://img.shields.io/badge/API-14%2B-green.svg?style=flat)](https://android-arsenal.com/api?level=14)
 
 
@@ -20,7 +20,7 @@ allprojects {
 
 ```groovy
 dependencies {
-	implementation 'com.github.shaoshuai904:iOS_Style_Dialog:1.2.3'
+	implementation 'com.github.shaoshuai904:iOS_Style_Dialog:1.2.4'
 }
 ```
 
