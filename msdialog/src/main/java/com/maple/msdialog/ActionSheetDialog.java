@@ -206,7 +206,7 @@ public class ActionSheetDialog extends BaseDialog {
     // ----------------------------------------------------------------------------------------------------
 
     public interface OnSheetItemClickListener {
-        void onClick(int which);
+        void onClick(int index);
     }
 
     public class SheetItem {

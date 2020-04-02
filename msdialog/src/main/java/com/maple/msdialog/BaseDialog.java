@@ -11,7 +11,7 @@ import android.widget.LinearLayout;
 
 /**
  * @author maple
- * @time 17/4/6
+ * @time 2017/4/6
  */
 public class BaseDialog {
     public Context mContext;
