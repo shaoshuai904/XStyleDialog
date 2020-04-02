@@ -16,7 +16,7 @@ import android.widget.TextView;
  * 警告框式Dialog [ 标题 + 消息文本 + 左按钮 + 右按钮 ]
  *
  * @author maple
- * @time 17/3/21
+ * @time 2017/3/21
  */
 public class AlertDialog extends BaseDialog {
     private TextView txt_title;
