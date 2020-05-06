@@ -129,15 +129,15 @@ class ActionSheetDialog(context: Context) : BaseDialog(context) {
                 }
             }
             val textView = TextView(mContext).apply {
-                text = sheetItem.name
+                text = sheetItem.showName
                 textSize = 18f
                 gravity = Gravity.CENTER
                 setBackgroundResource(bg)
-                setTextColor(sheetItem.color)
+                setTextColor(sheetItem.ShowColor)
                 layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, dp2px(ACTION_SHEET_ITEM_HEIGHT.toFloat()))
                 // add click listener
                 setOnClickListener {
-                    sheetItem.itemClickListener?.onClick(index)
+                    sheetItem.itemClickListener?.onClick(sheetItem)
                     dialog.dismiss()
                 }
             }

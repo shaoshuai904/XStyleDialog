@@ -24,6 +24,26 @@ class MainActivity : Activity() {
         setContentView(R.layout.activity_main)
     }
 
+    // ------------------------------------ Alert Dialog -------------------------------------------
+    fun adOne(view: View?) {
+        AlertDialog(this).apply {
+            setCancelable(false)
+            setTitle("退出当前账号")
+            setMessage("再连续登陆15天，就可变身为QQ达人。退出QQ可能会使你现有记录归零，确定退出？")
+            setLeftButton("取消", null)
+            setRightButton("确认退出", View.OnClickListener { showToast("exit") })
+        }.show()
+    }
+
+    fun adTwo(view: View?) {
+        AlertDialog(this).apply {
+            setCancelable(true)
+            setScaleWidth(0.7) // 设置宽度，占屏幕宽度百分比
+            setMessage("你现在无法接收到新消息提醒。请到系统-设置-通知中开启消息提醒")
+            setRightButton("确定", View.OnClickListener { showToast("OK") })
+        }.show()
+    }
+
     // -------------------------------- Action Sheet Dialog ----------------------------------------
     fun asMessage(view: View?) {
         ActionSheetDialog(this).apply {
@@ -50,7 +70,7 @@ class MainActivity : Activity() {
     }
 
     fun asList(view: View?) {
-        val onItemClickListener = SheetItem.OnSheetItemClickListener { index -> showToast("item $index") }
+        val onItemClickListener = SheetItem.OnSheetItemClickListener { item -> showToast("item ${item.showName}") }
         ActionSheetDialog(this).apply {
             setTitle("请选择操作")
             setCancelable(false)
@@ -68,23 +88,43 @@ class MainActivity : Activity() {
         }.show()
     }
 
-    // ------------------------------------ Alert Dialog -------------------------------------------
-    fun adOne(view: View?) {
-        AlertDialog(this).apply {
-            setCancelable(false)
-            setTitle("退出当前账号")
-            setMessage("再连续登陆15天，就可变身为QQ达人。退出QQ可能会使你现有记录归零，确定退出？")
-            setLeftButton("取消", null)
-            setRightButton("确认退出", View.OnClickListener { showToast("exit") })
+    // -------------------------------- Action Sheet List Dialog ----------------------------------------
+    fun aslList(view: View?) {
+        val data = arrayListOf(
+                SheetItem("list item 0", Color.RED),
+                SheetItem("list item 1", Color.BLUE),
+                SheetItem("list item 2", Color.YELLOW),
+                SheetItem("list item 3"),
+                SheetItem("list item 4")
+        )
+        ActionSheetListDialog(this).apply {
+            setCancelText("取消")
+            addSheetItems(data, SheetItem.OnSheetItemClickListener { item ->
+                showToast(item.showName)
+            })
         }.show()
     }
 
-    fun adTwo(view: View?) {
-        AlertDialog(this).apply {
-            setCancelable(true)
-            setScaleWidth(0.7) // 设置宽度，占屏幕宽度百分比
-            setMessage("你现在无法接收到新消息提醒。请到系统-设置-通知中开启消息提醒")
-            setRightButton("确定", View.OnClickListener { showToast("OK") })
+    fun aslListTitle(view: View?) {
+        val data = arrayListOf(
+                SheetItem("list item 0", Color.RED),
+                SheetItem("list item 1", Color.BLUE),
+                SheetItem("list item 2", Color.GREEN),
+                SheetItem("list item 3", Color.YELLOW),
+                SheetItem("list item 4"),
+                SheetItem("list item 5"),
+                SheetItem("list item 6"),
+                SheetItem("list item 6"),
+                SheetItem("list item 6"),
+                SheetItem("list item 6"),
+                SheetItem("list item 7")
+        )
+        ActionSheetListDialog(this).apply {
+            setTitle("标题")
+            setCancelText("取消")
+            addSheetItems(data, SheetItem.OnSheetItemClickListener { item ->
+                showToast(item.showName)
+            })
         }.show()
     }
 
