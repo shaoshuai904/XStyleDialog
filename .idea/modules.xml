@@ -2,8 +2,11 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/GitHub-iOS_Style_Dialog.iml" filepath="$PROJECT_DIR$/GitHub-iOS_Style_Dialog.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/iOS_Style_Dialog.iml" filepath="$PROJECT_DIR$/iOS_Style_Dialog.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/iOS_Style_Dialog-app.iml" filepath="$PROJECT_DIR$/app/iOS_Style_Dialog-app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/msdialog/iOS_Style_Dialog-msdialog.iml" filepath="$PROJECT_DIR$/msdialog/iOS_Style_Dialog-msdialog.iml" />
       <module fileurl="file://$PROJECT_DIR$/msdialog/msdialog.iml" filepath="$PROJECT_DIR$/msdialog/msdialog.iml" />
     </modules>
   </component>

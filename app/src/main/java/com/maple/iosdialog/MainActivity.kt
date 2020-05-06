@@ -8,12 +8,8 @@ import android.view.View
 import android.widget.NumberPicker
 import android.widget.NumberPicker.OnValueChangeListener
 import android.widget.Toast
-import com.maple.msdialog.ActionSheetDialog
-import com.maple.msdialog.ActionSheetDialog.OnSheetItemClickListener
-import com.maple.msdialog.AlertDialog
-import com.maple.msdialog.AlertEditDialog
+import com.maple.msdialog.*
 import com.maple.msdialog.AlertEditDialog.EditTextCallListener
-import com.maple.msdialog.AlertNumberPickerDialog
 
 /**
  * Custom Dialog Demo
@@ -26,7 +22,6 @@ class MainActivity : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
     }
 
     // -------------------------------- Action Sheet Dialog ----------------------------------------
@@ -35,21 +30,13 @@ class MainActivity : Activity() {
             setCancelable(false)
             setCanceledOnTouchOutside(false)
             setTitle("清空消息列表后，聊天记录依然保留，确定要清空消息列表？")
-            addSheetItem("清空消息列表", Color.parseColor(DEF_RED), object : OnSheetItemClickListener {
-                override fun onClick(index: Int) {
-                    showToast("clear msg list")
-                }
-            })
+            addSheetItem("清空消息列表", Color.parseColor(DEF_RED), SheetItem.OnSheetItemClickListener { showToast("clear msg list") })
             setCancelText("取 消")
         }.show()
     }
 
     fun asImage(view: View?) {
-        val onItemClickListener = object : OnSheetItemClickListener {
-            override fun onClick(index: Int) {
-
-            }
-        }
+        val onItemClickListener = SheetItem.OnSheetItemClickListener { }
         ActionSheetDialog(this).apply {
             setCancelable(false)
             setCanceledOnTouchOutside(false)
@@ -63,11 +50,7 @@ class MainActivity : Activity() {
     }
 
     fun asList(view: View?) {
-        val onItemClickListener = object : OnSheetItemClickListener {
-            override fun onClick(index: Int) {
-                showToast("item $index")
-            }
-        }
+        val onItemClickListener = SheetItem.OnSheetItemClickListener { index -> showToast("item $index") }
         ActionSheetDialog(this).apply {
             setTitle("请选择操作")
             setCancelable(false)
