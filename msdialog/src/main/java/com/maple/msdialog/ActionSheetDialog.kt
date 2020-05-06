@@ -116,15 +116,15 @@ class ActionSheetDialog(context: Context) : BaseDialog(context) {
         sheetItemList?.forEachIndexed { index, sheetItem ->
             // set item background
             val bg = if (size == 1) {
-                if (showTitle) R.drawable.actionsheet_bottom_selector else R.drawable.actionsheet_single_selector
+                if (showTitle) R.drawable.sel_action_sheet_bottom else R.drawable.sel_action_sheet_single
             } else {
                 if (showTitle) {
-                    if (index < size - 1) R.drawable.actionsheet_middle_selector else R.drawable.actionsheet_bottom_selector
+                    if (index < size - 1) R.drawable.sel_action_sheet_middle else R.drawable.sel_action_sheet_bottom
                 } else {
                     when {
-                        index == 0 -> R.drawable.actionsheet_top_selector
-                        index < size - 1 -> R.drawable.actionsheet_middle_selector
-                        else -> R.drawable.actionsheet_bottom_selector
+                        index == 0 -> R.drawable.sel_action_sheet_top
+                        index < size - 1 -> R.drawable.sel_action_sheet_middle
+                        else -> R.drawable.sel_action_sheet_bottom
                     }
                 }
             }

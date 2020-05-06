@@ -162,23 +162,23 @@ class AlertNumberPickerDialog(context: Context) : BaseDialog(context) {
         if (!showRightBtn && !showLeftBtn) {
             binding.tvRight.setText(R.string.ok)
             binding.tvRight.visibility = View.VISIBLE
-            binding.tvRight.setBackgroundResource(R.drawable.alertdialog_single_selector)
+            binding.tvRight.setBackgroundResource(R.drawable.sel_alert_dialog_single)
             binding.tvRight.setOnClickListener { dialog!!.dismiss() }
         }
         if (showRightBtn && !showLeftBtn) {
             binding.tvRight.visibility = View.VISIBLE
-            binding.tvRight.setBackgroundResource(R.drawable.alertdialog_single_selector)
+            binding.tvRight.setBackgroundResource(R.drawable.sel_alert_dialog_single)
         }
         if (!showRightBtn && showLeftBtn) {
             binding.tvLeft.visibility = View.VISIBLE
-            binding.tvLeft.setBackgroundResource(R.drawable.alertdialog_single_selector)
+            binding.tvLeft.setBackgroundResource(R.drawable.sel_alert_dialog_single)
         }
         // two button
         if (showRightBtn && showLeftBtn) {
             binding.tvRight.visibility = View.VISIBLE
-            binding.tvRight.setBackgroundResource(R.drawable.alertdialog_right_selector)
+            binding.tvRight.setBackgroundResource(R.drawable.sel_alert_dialog_right)
             binding.tvLeft.visibility = View.VISIBLE
-            binding.tvLeft.setBackgroundResource(R.drawable.alertdialog_left_selector)
+            binding.tvLeft.setBackgroundResource(R.drawable.sel_alert_dialog_left)
             binding.ivLine.visibility = View.VISIBLE
         }
     }

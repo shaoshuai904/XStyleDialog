@@ -4,7 +4,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/shape_alertdialog_bg"
+        android:background="@drawable/shape_alert_dialog_bg"
         android:orientation="vertical">
 
         <TextView
@@ -40,7 +40,7 @@
             android:layout_marginTop="10dp"
             android:layout_marginRight="10dp"
             android:layout_marginBottom="5dp"
-            android:background="@drawable/actionsheet_middle_selector"
+            android:background="@drawable/sel_action_sheet_middle"
             android:padding="5dp"
             android:textCursorDrawable="@color/def_title_color" />
 
@@ -60,7 +60,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="@drawable/alertdialog_left_selector"
+                android:background="@drawable/sel_alert_dialog_left"
                 android:gravity="center"
                 android:text="@string/cancel"
                 android:textAllCaps="false"
@@ -78,7 +78,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="@drawable/alertdialog_right_selector"
+                android:background="@drawable/sel_alert_dialog_right"
                 android:gravity="center"
                 android:text="@string/ok"
                 android:textAllCaps="false"

@@ -150,23 +150,23 @@ class AlertEditDialog(context: Context) : BaseDialog(context) {
         if (!showRightBtn && !showLeftBtn) {
             binding.btRight.setText(R.string.ok)
             binding.btRight.visibility = View.VISIBLE
-            binding.btRight.setBackgroundResource(R.drawable.alertdialog_single_selector)
+            binding.btRight.setBackgroundResource(R.drawable.sel_alert_dialog_single)
             binding.btRight.setOnClickListener { dialog!!.dismiss() }
         }
         if (showRightBtn && showLeftBtn) {
             binding.btRight.visibility = View.VISIBLE
-            binding.btRight.setBackgroundResource(R.drawable.alertdialog_right_selector)
+            binding.btRight.setBackgroundResource(R.drawable.sel_alert_dialog_right)
             binding.btLeft.visibility = View.VISIBLE
-            binding.btLeft.setBackgroundResource(R.drawable.alertdialog_left_selector)
+            binding.btLeft.setBackgroundResource(R.drawable.sel_alert_dialog_left)
             binding.ivLine.visibility = View.VISIBLE
         }
         if (showRightBtn && !showLeftBtn) {
             binding.btRight.visibility = View.VISIBLE
-            binding.btRight.setBackgroundResource(R.drawable.alertdialog_single_selector)
+            binding.btRight.setBackgroundResource(R.drawable.sel_alert_dialog_single)
         }
         if (!showRightBtn && showLeftBtn) {
             binding.btLeft.visibility = View.VISIBLE
-            binding.btLeft.setBackgroundResource(R.drawable.alertdialog_single_selector)
+            binding.btLeft.setBackgroundResource(R.drawable.sel_alert_dialog_single)
         }
     }
 
