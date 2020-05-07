@@ -21,7 +21,6 @@ open class BaseDialog(var mContext: Context) {
         rootView?.layoutParams = FrameLayout.LayoutParams(
                 (screenInfo().x * scWidth).toInt(),
                 LinearLayout.LayoutParams.WRAP_CONTENT)
-
     }
 
     fun setCancelable(cancel: Boolean) {

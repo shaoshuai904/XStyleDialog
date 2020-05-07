@@ -48,12 +48,12 @@ class ActionSheetListDialog(context: Context) : BaseDialog(context) {
         }
     }
 
-    fun setTitle(title: String?): ActionSheetListDialog {
-        val color = ContextCompat.getColor(mContext, R.color.def_title_color)
-        return setTitle(title, color, 16f, false)
-    }
-
-    fun setTitle(title: String?, color: Int, spSize: Float, isBold: Boolean): ActionSheetListDialog {
+    fun setTitle(
+            title: String?,
+            color: Int = ContextCompat.getColor(mContext, R.color.def_title_color),
+            spSize: Float = 16f,
+            isBold: Boolean = false
+    ): ActionSheetListDialog {
         showTitle = true
         binding.tvTitle.apply {
             visibility = View.VISIBLE
@@ -66,12 +66,12 @@ class ActionSheetListDialog(context: Context) : BaseDialog(context) {
         return this
     }
 
-    fun setCancelText(cancelText: String?): ActionSheetListDialog {
-        val color = ContextCompat.getColor(mContext, R.color.def_title_color)
-        return setCancelText(cancelText, color, 18f, false)
-    }
-
-    fun setCancelText(cancelText: String?, color: Int, spSize: Float, isBold: Boolean): ActionSheetListDialog {
+    fun setCancelText(
+            cancelText: String?,
+            color: Int = ContextCompat.getColor(mContext, R.color.def_title_color),
+            spSize: Float = 18f,
+            isBold: Boolean = false
+    ): ActionSheetListDialog {
         binding.tvCancel.apply {
             visibility = View.VISIBLE
             text = cancelText
