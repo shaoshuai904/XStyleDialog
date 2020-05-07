@@ -33,6 +33,7 @@ class ActionSheetListDialog(context: Context) : BaseDialog(context) {
         // set Dialog min width
         rootView?.minimumWidth = screenInfo().x
         binding.tvTitle.visibility = View.GONE
+        binding.tvCancel.visibility = View.GONE
         binding.tvCancel.setOnClickListener { dialog.dismiss() }
 
         // create Dialog
@@ -49,19 +50,17 @@ class ActionSheetListDialog(context: Context) : BaseDialog(context) {
 
     fun setTitle(title: String?): ActionSheetListDialog {
         val color = ContextCompat.getColor(mContext, R.color.def_title_color)
-        return setTitle(title, color, 16, false)
+        return setTitle(title, color, 16f, false)
     }
 
-    fun setTitle(title: String?, color: Int, size: Int, isBold: Boolean): ActionSheetListDialog {
+    fun setTitle(title: String?, color: Int, spSize: Float, isBold: Boolean): ActionSheetListDialog {
         showTitle = true
         binding.tvTitle.apply {
             visibility = View.VISIBLE
             text = title
             setTextColor(color)
-            textSize = size.toFloat()
-            if (isBold) {
-                setTypeface(typeface, Typeface.BOLD)
-            }
+            textSize = spSize
+            setTypeface(typeface, if (isBold) Typeface.BOLD else Typeface.NORMAL)
         }
         adapter.showTitle(showTitle)
         return this
@@ -69,45 +68,27 @@ class ActionSheetListDialog(context: Context) : BaseDialog(context) {
 
     fun setCancelText(cancelText: String?): ActionSheetListDialog {
         val color = ContextCompat.getColor(mContext, R.color.def_title_color)
-        return setCancelText(cancelText, color, 18, false)
+        return setCancelText(cancelText, color, 18f, false)
     }
 
-    fun setCancelText(cancelText: String?, color: Int, size: Int, isBold: Boolean): ActionSheetListDialog {
+    fun setCancelText(cancelText: String?, color: Int, spSize: Float, isBold: Boolean): ActionSheetListDialog {
         binding.tvCancel.apply {
+            visibility = View.VISIBLE
             text = cancelText
             setTextColor(color)
-            textSize = size.toFloat()
-            if (isBold) {
-                setTypeface(typeface, Typeface.BOLD)
-            }
+            textSize = spSize
+            setTypeface(typeface, if (isBold) Typeface.BOLD else Typeface.NORMAL)
         }
         return this
     }
 
-//    fun addSheetItem(strItem: String?, listener: SheetItem.OnSheetItemClickListener?): ActionListDialog {
-//        val color = ContextCompat.getColor(mContext, R.color.def_message_color)
-//        return addSheetItem(strItem, color, listener)
-//    }
-//
-//    fun addSheetItem(strItem: String?, color: Int, listener: SheetItem.OnSheetItemClickListener?): ActionListDialog {
-//        return addSheetItem(SheetItem(strItem, color, listener))
-//    }
-//
-//    fun addSheetItem(item: SheetItem): ActionListDialog {
-//        if (sheetItemList == null) {
-//            sheetItemList = ArrayList()
-//        }
-//        sheetItemList?.add(item)
-//        return this
-//    }
-
-    fun addSheetItems(items: MutableList<SheetItem>, itemClickListener: SheetItem.OnSheetItemClickListener) {
+    fun addSheetItems(items: MutableList<SheetItem>, itemClickListener: SheetItem.OnSheetItemClickListener?) {
         sheetItemList = items
         binding.lvData.adapter = adapter
         adapter.refresh(sheetItemList)
         binding.lvData.setOnItemClickListener { _, _, position, _ ->
             val item = adapter.getItem(position)
-            itemClickListener.onClick(item)
+            itemClickListener?.onClick(item)
             dialog.dismiss()
         }
     }
@@ -115,7 +96,7 @@ class ActionSheetListDialog(context: Context) : BaseDialog(context) {
     /**
      * set items layout
      */
-    private fun setSheetItems() {
+    private fun setSheetLayout() {
         if (sheetItemList == null || sheetItemList!!.size <= 0) {
             return
         }
@@ -130,7 +111,7 @@ class ActionSheetListDialog(context: Context) : BaseDialog(context) {
     }
 
     fun show() {
-        setSheetItems()
+        setSheetLayout()
         dialog.show()
     }
 

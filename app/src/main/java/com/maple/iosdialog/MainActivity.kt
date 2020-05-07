@@ -105,6 +105,31 @@ class MainActivity : Activity() {
         }.show()
     }
 
+    fun aslListNoCancel(view: View?) {
+        val data = arrayListOf(
+                SheetItem("list item 0", Color.RED),
+                SheetItem("list item 1", Color.BLUE),
+                SheetItem("list item 2", Color.YELLOW),
+                SheetItem("list item 3"),
+                SheetItem("list item 3"),
+                SheetItem("list item 3"),
+                SheetItem("list item 3"),
+                SheetItem("list item 3"),
+                SheetItem("list item 3"),
+                SheetItem("list item 3"),
+                SheetItem("list item 3"),
+                SheetItem("list item 3"),
+                SheetItem("list item 3"),
+                SheetItem("list item 4")
+        )
+        ActionSheetListDialog(this).apply {
+            setTitle("标题")
+            addSheetItems(data, SheetItem.OnSheetItemClickListener { item ->
+                showToast(item.showName)
+            })
+        }.show()
+    }
+
     fun aslListTitle(view: View?) {
         val data = arrayListOf(
                 SheetItem("list item 0", Color.RED),

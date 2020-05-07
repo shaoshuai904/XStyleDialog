@@ -15,14 +15,12 @@
             android:background="@drawable/sel_action_sheet_top"
             android:gravity="center"
             android:minHeight="50dp"
-            android:paddingLeft="15dp"
-            android:paddingTop="10dp"
-            android:paddingRight="15dp"
-            android:paddingBottom="10dp"
+            android:padding="10dp"
             android:text="@string/alert"
             android:textAllCaps="false"
             android:textColor="@color/def_title_color"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            tools:visibility="visible" />
 
         <ListView
             android:id="@+id/lv_data"
@@ -51,7 +49,8 @@
             android:text="@string/cancel"
             android:textAllCaps="false"
             android:textColor="@color/def_title_color"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            tools:visibility="visible" />
 
     </LinearLayout>
 </layout>

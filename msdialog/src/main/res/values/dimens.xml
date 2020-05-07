@@ -1,6 +1,6 @@
 <resources>
 
-    <dimen name="shape_radius">8dp</dimen>
+    <dimen name="shape_radius">12dp</dimen>
     <dimen name="shape_width">1px</dimen>
 
 </resources>
