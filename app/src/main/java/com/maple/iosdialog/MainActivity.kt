@@ -4,6 +4,7 @@ import android.app.Activity
 import android.graphics.Color
 import android.os.Bundle
 import android.text.TextUtils
+import android.view.Gravity
 import android.view.View
 import android.widget.NumberPicker
 import android.widget.NumberPicker.OnValueChangeListener
@@ -30,8 +31,8 @@ class MainActivity : Activity() {
             setCancelable(false)
             setTitle("退出当前账号")
             setMessage("再连续登陆15天，就可变身为QQ达人。退出QQ可能会使你现有记录归零，确定退出？")
-            setLeftButton("取消", null)
-            setRightButton("确认退出", View.OnClickListener { showToast("exit") })
+            setLeftButton("取消")
+            setRightButton("确认退出", listener = View.OnClickListener { showToast("exit") })
         }.show()
     }
 
@@ -40,7 +41,16 @@ class MainActivity : Activity() {
             setCancelable(true)
             setScaleWidth(0.7) // 设置宽度，占屏幕宽度百分比
             setMessage("你现在无法接收到新消息提醒。请到系统-设置-通知中开启消息提醒")
-            setRightButton("确定", View.OnClickListener { showToast("OK") })
+            setRightButton("确定", listener = View.OnClickListener { showToast("OK") })
+        }.show()
+    }
+
+    fun adThree(view: View?) {
+        AlertDialog(this).apply {
+            setTitle("确认删除：XXXX？")
+            setMessage("1.必须确保空间下不存在任何文件、文件夹或图片样式，否则无法删除;\n2.存储空间删除后不可恢复且可能会影响正在使用该空间的其他用户。",
+                    spSize = 14f, gravity = Gravity.START)
+            setRightButton("确定", listener = View.OnClickListener { showToast("OK") })
         }.show()
     }
 

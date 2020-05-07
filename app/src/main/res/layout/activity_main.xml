@@ -83,6 +83,12 @@
                 android:onClick="adTwo"
                 android:text="极简" />
 
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="adThree"
+                android:text="分条" />
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

@@ -33,7 +33,7 @@
             android:textColor="@color/def_title_color"
             android:textSize="16sp" />
 
-        <ImageView
+        <View
             android:layout_width="match_parent"
             android:layout_height="1px"
             android:layout_marginTop="10dp"
@@ -57,7 +57,7 @@
                 android:textColor="@color/def_title_color"
                 android:textSize="16sp" />
 
-            <ImageView
+            <View
                 android:id="@+id/iv_line"
                 android:layout_width="1px"
                 android:layout_height="match_parent"
