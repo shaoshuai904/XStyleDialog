@@ -5,9 +5,6 @@
         <shape>
             <solid android:color="@color/act_sel_bg" />
             <corners android:radius="@dimen/shape_radius" />
-            <stroke
-                android:width="@dimen/shape_width"
-                android:color="@color/act_line" />
         </shape>
     </item>
 
@@ -15,9 +12,6 @@
         <shape>
             <solid android:color="@color/act_def_bg" />
             <corners android:radius="@dimen/shape_radius" />
-            <stroke
-                android:width="@dimen/shape_width"
-                android:color="@color/act_line" />
         </shape>
     </item>
 

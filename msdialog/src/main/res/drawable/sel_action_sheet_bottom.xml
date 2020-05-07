@@ -8,9 +8,6 @@
                 android:bottomLeftRadius="@dimen/shape_radius"
                 android:bottomRightRadius="@dimen/shape_radius"
                 android:radius="0dp"/>
-            <stroke
-                android:width="@dimen/shape_width"
-                android:color="@color/act_line"/>
         </shape>
     </item>
 
@@ -21,9 +18,6 @@
                 android:bottomLeftRadius="@dimen/shape_radius"
                 android:bottomRightRadius="@dimen/shape_radius"
                 android:radius="0dp"/>
-            <stroke
-                android:width="@dimen/shape_width"
-                android:color="@color/act_line"/>
         </shape>
     </item>
 

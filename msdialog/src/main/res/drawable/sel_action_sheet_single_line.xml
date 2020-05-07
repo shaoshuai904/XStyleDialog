@@ -4,12 +4,21 @@
     <item android:state_pressed="true">
         <shape>
             <solid android:color="@color/act_sel_bg" />
+            <corners android:radius="@dimen/shape_radius" />
+            <stroke
+                android:width="@dimen/shape_width"
+                android:color="@color/act_line" />
         </shape>
     </item>
 
     <item android:state_pressed="false">
         <shape>
             <solid android:color="@color/act_def_bg" />
+            <corners android:radius="@dimen/shape_radius" />
+            <stroke
+                android:width="@dimen/shape_width"
+                android:color="@color/act_line" />
         </shape>
     </item>
+
 </selector>

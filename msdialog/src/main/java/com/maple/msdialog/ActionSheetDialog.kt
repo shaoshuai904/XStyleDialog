@@ -110,6 +110,11 @@ class ActionSheetDialog(context: Context) : BaseDialog(context) {
         }
         // loop add item
         sheetItemList?.forEachIndexed { index, sheetItem ->
+            val view = View(mContext).apply {
+                setBackgroundResource(R.color.act_line)
+                layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, dp2px(0.3f))
+            }
+            binding.llContent.addView(view)
             // set item background
             val bg = if (size == 1) {
                 if (showTitle) R.drawable.sel_action_sheet_bottom else R.drawable.sel_action_sheet_single
