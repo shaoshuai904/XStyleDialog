@@ -19,7 +19,7 @@
             android:text="@string/alert"
             android:textAllCaps="false"
             android:textColor="@color/def_title_color"
-            android:textSize="16sp"
+            android:textSize="18sp"
             tools:visibility="visible" />
 
         <ListView
@@ -43,7 +43,7 @@
             android:id="@+id/tv_cancel"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="10dp"
             android:background="@drawable/sel_action_sheet_single"
             android:gravity="center"
             android:text="@string/cancel"

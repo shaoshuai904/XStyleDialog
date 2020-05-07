@@ -50,36 +50,32 @@ class ActionSheetDialog(context: Context) : BaseDialog(context) {
 
     fun setTitle(title: String?): ActionSheetDialog {
         val color = ContextCompat.getColor(mContext, R.color.def_title_color)
-        return setTitle(title, color, 16, false)
+        return setTitle(title, color, 16f, false)
     }
 
-    fun setTitle(title: String?, color: Int, size: Int, isBold: Boolean): ActionSheetDialog {
+    fun setTitle(title: String?, color: Int, spSize: Float, isBold: Boolean): ActionSheetDialog {
         showTitle = true
         binding.tvTitle.apply {
             visibility = View.VISIBLE
             text = title
             setTextColor(color)
-            textSize = size.toFloat()
-            if (isBold) {
-                setTypeface(typeface, Typeface.BOLD)
-            }
+            textSize = spSize
+            setTypeface(typeface, if (isBold) Typeface.BOLD else Typeface.NORMAL)
         }
         return this
     }
 
     fun setCancelText(cancelText: String?): ActionSheetDialog {
         val color = ContextCompat.getColor(mContext, R.color.def_title_color)
-        return setCancelText(cancelText, color, 18, false)
+        return setCancelText(cancelText, color)
     }
 
-    fun setCancelText(cancelText: String?, color: Int, size: Int, isBold: Boolean): ActionSheetDialog {
+    fun setCancelText(cancelText: String?, color: Int, spSize: Float = 18f, isBold: Boolean = false): ActionSheetDialog {
         binding.tvCancel.apply {
             text = cancelText
             setTextColor(color)
-            textSize = size.toFloat()
-            if (isBold) {
-                setTypeface(typeface, Typeface.BOLD)
-            }
+            textSize = spSize
+            setTypeface(typeface, if (isBold) Typeface.BOLD else Typeface.NORMAL)
         }
         return this
     }

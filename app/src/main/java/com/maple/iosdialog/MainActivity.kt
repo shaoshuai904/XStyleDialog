@@ -45,6 +45,10 @@ class MainActivity : Activity() {
     }
 
     // -------------------------------- Action Sheet Dialog ----------------------------------------
+    private val onItemClickListener = SheetItem.OnSheetItemClickListener { item ->
+        showToast("item ${item.showName}")
+    }
+
     fun asMessage(view: View?) {
         ActionSheetDialog(this).apply {
             setCancelable(false)
@@ -56,21 +60,20 @@ class MainActivity : Activity() {
     }
 
     fun asImage(view: View?) {
-        val onItemClickListener = SheetItem.OnSheetItemClickListener { }
         ActionSheetDialog(this).apply {
-            setCancelable(false)
-            setCanceledOnTouchOutside(false)
+//            setCancelable(false)
+//            setCanceledOnTouchOutside(false)
             addSheetItem("发送给好友", Color.parseColor(DEF_BLUE), onItemClickListener)
             addSheetItem("转载到空间相册", Color.parseColor(DEF_BLUE), onItemClickListener)
-            addSheetItem("上传到群相册", onItemClickListener)
-            addSheetItem("保存到手机", onItemClickListener)
-            addSheetItem("收藏", onItemClickListener)
-            addSheetItem("查看聊天图片", onItemClickListener)
+//            addSheetItem("上传到群相册", onItemClickListener)
+//            addSheetItem("保存到手机", onItemClickListener)
+//            addSheetItem("收藏", onItemClickListener)
+//            addSheetItem("查看聊天图片", onItemClickListener)
+            setCancelText("取消", Color.parseColor(DEF_BLUE))
         }.show()
     }
 
     fun asList(view: View?) {
-        val onItemClickListener = SheetItem.OnSheetItemClickListener { item -> showToast("item ${item.showName}") }
         ActionSheetDialog(this).apply {
             setTitle("请选择操作")
             setCancelable(false)
@@ -91,11 +94,8 @@ class MainActivity : Activity() {
     // -------------------------------- Action Sheet List Dialog ----------------------------------------
     fun aslList(view: View?) {
         val data = arrayListOf(
-                SheetItem("list item 0", Color.RED),
-                SheetItem("list item 1", Color.BLUE),
-                SheetItem("list item 2", Color.YELLOW),
-                SheetItem("list item 3"),
-                SheetItem("list item 4")
+                SheetItem("变更配置", Color.parseColor("#4762FE")),
+                SheetItem("续费", Color.BLUE)
         )
         ActionSheetListDialog(this).apply {
             setCancelText("取消")
@@ -215,7 +215,7 @@ class MainActivity : Activity() {
     }
 
     companion object {
-        const val DEF_BLUE = "#037BFF"
+        const val DEF_BLUE = "#4762FE"
         const val DEF_RED = "#FD4A2E"
     }
 }

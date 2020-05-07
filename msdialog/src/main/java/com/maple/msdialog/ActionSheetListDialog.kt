@@ -25,7 +25,7 @@ class ActionSheetListDialog(context: Context) : BaseDialog(context) {
     private var sheetItemList: MutableList<SheetItem>? = null
 
     companion object {
-        const val ACTION_SHEET_ITEM_HEIGHT = 45
+        const val ACTION_SHEET_ITEM_HEIGHT = 50
     }
 
     init {

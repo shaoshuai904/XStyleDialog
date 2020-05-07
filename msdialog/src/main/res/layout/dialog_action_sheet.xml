@@ -14,14 +14,11 @@
             android:background="@drawable/sel_action_sheet_top"
             android:gravity="center"
             android:minHeight="50dp"
-            android:paddingLeft="15dp"
-            android:paddingTop="10dp"
-            android:paddingRight="15dp"
-            android:paddingBottom="10dp"
+            android:padding="10dp"
             android:text="@string/alert"
             android:textAllCaps="false"
             android:textColor="@color/def_title_color"
-            android:textSize="16sp" />
+            android:textSize="18sp" />
 
         <ScrollView
             android:id="@+id/sl_content"
@@ -42,7 +39,7 @@
             android:id="@+id/tv_cancel"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="10dp"
             android:background="@drawable/sel_action_sheet_single"
             android:gravity="center"
             android:text="@string/cancel"
