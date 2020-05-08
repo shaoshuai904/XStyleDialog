@@ -133,9 +133,14 @@ dependencies {
 [完整预览各类用法 -（简单使用类 传送门）](https://github.com/shaoshuai904/iOS_Style_Dialog/blob/master/app/src/main/java/com/maple/iosdialog/MainActivity.java)
 
 ----------
-## v1.2.3 ##
- - add AlertNumberPickerDialog
- - update AlertEditDialog text callback.
+## v1.3.0 ##
+ - 用kotlin重写了项目
+ - 新增ActionSheetListDialog，以支持复杂item布局，同时支持item选中样式
+
+## v1.2.4 ##
+ - 时间久远，忘了改了啥了😓，都是小改动，java最后一个版本.
+ - add AlertNumberPickerDialog.
+ - update AlertEditDialog callback.
  - update minSdkVersion to 14.
 
 ## v1.2 ##
