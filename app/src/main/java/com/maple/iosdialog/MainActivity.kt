@@ -200,8 +200,8 @@ class MainActivity : Activity() {
         AlertNumberPickerDialog(this).apply {
             setTitle("Number")
             setNumberValues(numbers, index, OnValueChangeListener { picker: NumberPicker?, oldVal: Int, newVal: Int -> defValue = numbers[newVal] })
-            setLeftButton("Cancel", null)
-            setRightButton("OK", View.OnClickListener { showToast(defValue) })
+            setLeftButton("Cancel")
+            setRightButton("OK", listener = View.OnClickListener { showToast(defValue) })
         }.show()
     }
 
@@ -214,8 +214,8 @@ class MainActivity : Activity() {
             setTitle("选择城市")
             setNumberValues(numbers, index, OnValueChangeListener { picker: NumberPicker?, oldVal: Int, newVal: Int -> defValue = numbers[newVal] })
             setNumberValueSuffix("市")
-            setLeftButton("取消", null)
-            setRightButton("确定", View.OnClickListener { showToast(defValue) })
+            setLeftButton("取消")
+            setRightButton("确定", listener = View.OnClickListener { showToast(defValue) })
         }.show()
     }
 
