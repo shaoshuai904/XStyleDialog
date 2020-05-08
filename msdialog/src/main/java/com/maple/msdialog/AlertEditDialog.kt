@@ -28,11 +28,13 @@ class AlertEditDialog(context: Context) : BaseDialog(context) {
         rootView = binding.root
 
         // get custom Dialog layout
-        binding.tvTitle.visibility = View.GONE
-        binding.tvMsg.visibility = View.GONE
-        binding.btLeft.visibility = View.GONE
-        binding.btRight.visibility = View.GONE
-        binding.ivLine.visibility = View.GONE
+        binding.apply {
+            tvTitle.visibility = View.GONE
+            tvMsg.visibility = View.GONE
+            btLeft.visibility = View.GONE
+            btRight.visibility = View.GONE
+            ivLine.visibility = View.GONE
+        }
 
         // set Dialog style
         dialog = Dialog(context, R.style.AlertDialogStyle)
@@ -40,94 +42,79 @@ class AlertEditDialog(context: Context) : BaseDialog(context) {
         setScaleWidth(0.85)
     }
 
-
-    fun setTitle(title: String?): AlertEditDialog {
-        val color = ContextCompat.getColor(mContext, R.color.def_title_color)
-        return setTitle(title, color, 18, true)
-    }
-
-    fun setTitle(title: String?, color: Int, size: Int, isBold: Boolean): AlertEditDialog {
+    fun setTitle(
+            title: String?,
+            color: Int = ContextCompat.getColor(mContext, R.color.def_title_color),
+            spSize: Float = 18f,
+            isBold: Boolean = false
+    ): AlertEditDialog {
         showTitle = true
-        binding.tvTitle.text = title
-        if (color != -1) {
-            binding.tvTitle.setTextColor(color)
-        }
-        if (size > 0) {
-            binding.tvTitle.textSize = size.toFloat()
-        }
-        if (isBold) {
-            binding.tvTitle.setTypeface(binding.tvTitle.typeface, Typeface.BOLD)
+        binding.tvTitle.apply {
+            text = title
+            setTextColor(color)
+            textSize = spSize
+            setTypeface(typeface, if (isBold) Typeface.BOLD else Typeface.NORMAL)
         }
         return this
     }
 
-    fun setMessage(msg: String?): AlertEditDialog {
-        val color = ContextCompat.getColor(mContext, R.color.def_title_color)
-        return setMessage(msg, color, 16, false)
-    }
-
-    fun setMessage(msg: String?, color: Int, size: Int, isBold: Boolean): AlertEditDialog {
+    fun setMessage(
+            msg: String?,
+            color: Int = ContextCompat.getColor(mContext, R.color.def_title_color),
+            spSize: Float = 16f,
+            isBold: Boolean = false
+    ): AlertEditDialog {
         showMsg = true
-        binding.tvMsg.text = msg
-        if (color != -1) {
-            binding.tvMsg.setTextColor(color)
-        }
-        if (size > 0) {
-            binding.tvMsg.textSize = size.toFloat()
-        }
-        if (isBold) {
-            binding.tvMsg.setTypeface(binding.tvMsg.typeface, Typeface.BOLD)
+        binding.tvMsg.apply {
+            text = msg
+            setTextColor(color)
+            textSize = spSize
+            setTypeface(typeface, if (isBold) Typeface.BOLD else Typeface.NORMAL)
         }
         return this
     }
 
-    fun setRightButton(text: String?, listener: EditTextCallListener?): AlertEditDialog {
-        val color = ContextCompat.getColor(mContext, R.color.def_title_color)
-        return setRightButton(text, color, 16, false, listener)
-    }
-
-    fun setRightButton(text: String?, color: Int, size: Int, isBold: Boolean, listener: EditTextCallListener?): AlertEditDialog {
-        showRightBtn = true
-        binding.btRight.text = text
-        if (color != -1) {
-            binding.btRight.setTextColor(color)
-        }
-        if (size > 0) {
-            binding.btRight.textSize = size.toFloat()
-        }
-        if (isBold) {
-            binding.btRight.setTypeface(binding.btRight.typeface, Typeface.BOLD)
-        }
-        binding.btRight.setOnClickListener {
-            if (listener != null) {
-                val inputText = binding.etText.text.toString().trim()
-                listener.callBack(inputText)
-            }
-            dialog!!.dismiss()
-        }
-        return this
-    }
-
-    fun setLeftButton(text: String?, listener: View.OnClickListener?): AlertEditDialog {
-        val color = ContextCompat.getColor(mContext, R.color.def_title_color)
-        return setLeftButton(text, color, 16, false, listener)
-    }
-
-    fun setLeftButton(text: String?, color: Int, size: Int, isBold: Boolean, listener: View.OnClickListener?): AlertEditDialog {
+    fun setLeftButton(
+            text: String?,
+            color: Int = ContextCompat.getColor(mContext, R.color.def_title_color),
+            spSize: Float = 16f,
+            isBold: Boolean = false,
+            listener: View.OnClickListener? = null
+    ): AlertEditDialog {
         showLeftBtn = true
-        binding.btLeft.text = text
-        if (color != -1) {
-            binding.btLeft.setTextColor(color)
+        binding.btRight.apply {
+            this.text = text
+            setTextColor(color)
+            textSize = spSize
+            setTypeface(typeface, if (isBold) Typeface.BOLD else Typeface.NORMAL)
+            setOnClickListener { v ->
+                listener?.onClick(v)
+                dialog.dismiss()
+            }
         }
-        if (size > 0) {
-            binding.btLeft.textSize = size.toFloat()
-        }
-        if (isBold) {
-            binding.btLeft.setTypeface(binding.btLeft.typeface, Typeface.BOLD)
-        }
-        binding.btLeft.setOnClickListener { v ->
-            listener?.onClick(v)
-            dialog!!.dismiss()
+        return this
+    }
+
+    fun setRightButton(
+            text: String?,
+            color: Int = ContextCompat.getColor(mContext, R.color.def_title_color),
+            spSize: Float = 16f,
+            isBold: Boolean = false,
+            listener: EditTextCallListener? = null
+    ): AlertEditDialog {
+        showRightBtn = true
+        binding.btRight.apply {
+            this.text = text
+            setTextColor(color)
+            textSize = spSize
+            setTypeface(typeface, if (isBold) Typeface.BOLD else Typeface.NORMAL)
+            setOnClickListener {
+                if (listener != null) {
+                    val inputText = binding.etText.text.toString().trim()
+                    listener.callBack(inputText)
+                }
+                dialog.dismiss()
+            }
         }
         return this
     }
@@ -137,43 +124,42 @@ class AlertEditDialog(context: Context) : BaseDialog(context) {
     }
 
     private fun setLayout() {
-        if (!showTitle && !showMsg) {
-            binding.tvTitle.setText(R.string.alert)
-            binding.tvTitle.visibility = View.VISIBLE
-        }
-        if (showTitle) {
-            binding.tvTitle.visibility = View.VISIBLE
-        }
-        if (showMsg) {
-            binding.tvMsg.visibility = View.VISIBLE
-        }
-        if (!showRightBtn && !showLeftBtn) {
-            binding.btRight.setText(R.string.ok)
-            binding.btRight.visibility = View.VISIBLE
-            binding.btRight.setBackgroundResource(R.drawable.sel_alert_dialog_single)
-            binding.btRight.setOnClickListener { dialog!!.dismiss() }
-        }
-        if (showRightBtn && showLeftBtn) {
-            binding.btRight.visibility = View.VISIBLE
-            binding.btRight.setBackgroundResource(R.drawable.sel_alert_dialog_right)
-            binding.btLeft.visibility = View.VISIBLE
-            binding.btLeft.setBackgroundResource(R.drawable.sel_alert_dialog_left)
-            binding.ivLine.visibility = View.VISIBLE
-        }
-        if (showRightBtn && !showLeftBtn) {
-            binding.btRight.visibility = View.VISIBLE
-            binding.btRight.setBackgroundResource(R.drawable.sel_alert_dialog_single)
-        }
-        if (!showRightBtn && showLeftBtn) {
-            binding.btLeft.visibility = View.VISIBLE
-            binding.btLeft.setBackgroundResource(R.drawable.sel_alert_dialog_single)
+        binding.apply {
+            if (!showTitle && !showMsg) {
+                tvTitle.setText(R.string.alert)
+                tvTitle.visibility = View.VISIBLE
+            }
+            tvTitle.visibility = if (showTitle) View.VISIBLE else View.GONE
+            tvMsg.visibility = if (showMsg) View.VISIBLE else View.GONE
+            // one button
+            if (!showRightBtn && !showLeftBtn) {
+                btRight.setText(R.string.ok)
+                btRight.visibility = View.VISIBLE
+                btRight.setBackgroundResource(R.drawable.sel_alert_dialog_single)
+                btRight.setOnClickListener { dialog.dismiss() }
+            }
+            if (showRightBtn && !showLeftBtn) {
+                btRight.visibility = View.VISIBLE
+                btRight.setBackgroundResource(R.drawable.sel_alert_dialog_single)
+            }
+            if (!showRightBtn && showLeftBtn) {
+                btLeft.visibility = View.VISIBLE
+                btLeft.setBackgroundResource(R.drawable.sel_alert_dialog_single)
+            }
+            // two button
+            if (showRightBtn && showLeftBtn) {
+                btRight.visibility = View.VISIBLE
+                btRight.setBackgroundResource(R.drawable.sel_alert_dialog_right)
+                btLeft.visibility = View.VISIBLE
+                btLeft.setBackgroundResource(R.drawable.sel_alert_dialog_left)
+                ivLine.visibility = View.VISIBLE
+            }
         }
     }
 
     fun show() {
         setLayout()
-        dialog!!.show()
+        dialog.show()
     }
-
 
 }

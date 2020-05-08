@@ -168,8 +168,8 @@ class MainActivity : Activity() {
         AlertEditDialog(this).apply {
             setTitle("姓名")
             setMessage("请输入您的真实姓名。")
-            setLeftButton("取消", null)
-            setRightButton("确定", object : EditTextCallListener {
+            setLeftButton("取消")
+            setRightButton("确定", listener = object : EditTextCallListener {
                 override fun callBack(str: String?) {
                     showToast(str)
                 }
@@ -180,7 +180,7 @@ class MainActivity : Activity() {
     fun aeTwo(view: View?) {
         AlertEditDialog(this).apply {
             setMessage("给自己起一个好听的名字吧")
-            setRightButton("确定", object : EditTextCallListener {
+            setRightButton("确定", listener = object : EditTextCallListener {
                 override fun callBack(str: String?) {
                     if (!TextUtils.isEmpty(str)) {
                         showToast(str)
