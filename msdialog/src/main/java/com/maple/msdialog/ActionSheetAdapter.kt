@@ -20,16 +20,13 @@ class ActionSheetAdapter(mContext: Context) : AbsAdapter<SheetItem>(mContext) {
         isShowTitle = showTitle
         notifyDataSetChanged()
     }
-//    fun updatePinLoginName(pin: String, loginName: String) {
-//        mDatas.filter {
-//            it.getPin() == pin
-//        }.forEach {
-//            if (it.loginName != loginName) {
-//                it.loginName = loginName
-//                notifyDataSetChanged()
-//            }
-//        }
-//    }
+
+    fun setSelectedIndex(index: Int) {
+        mDatas.forEachIndexed { i, item ->
+            item.isSelected = (i == index)
+        }
+        notifyDataSetChanged()
+    }
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
         var returnView: View? = convertView
@@ -52,8 +49,8 @@ class ActionSheetAdapter(mContext: Context) : AbsAdapter<SheetItem>(mContext) {
             binding.apply {
                 tvName.text = item.showName
                 tvName.setTextColor(item.ShowColor)
-                ivMark.isSelected = item.isSelected
-
+                // ivMark.isSelected = item.isSelected
+                ivMark.visibility = if (item.isSelected) View.VISIBLE else View.GONE
                 val bg = if (count == 1) {
                     if (isShowTitle) R.drawable.sel_action_sheet_bottom else R.drawable.sel_action_sheet_single
                 } else {

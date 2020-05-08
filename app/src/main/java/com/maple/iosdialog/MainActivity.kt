@@ -102,65 +102,78 @@ class MainActivity : Activity() {
     }
 
     // -------------------------------- Action Sheet List Dialog ----------------------------------------
+    var asl1: ActionSheetListDialog? = null
     fun aslList(view: View?) {
-        val data = arrayListOf(
-                SheetItem("变更配置", Color.parseColor("#4762FE")),
-                SheetItem("续费", Color.BLUE)
-        )
-        ActionSheetListDialog(this).apply {
-            setCancelText("取消")
-            addSheetItems(data, SheetItem.OnSheetItemClickListener { item ->
-                showToast(item.showName)
-            })
-        }.show()
+        if (asl1 == null) {
+            val data = arrayListOf(
+                    SheetItem("region 1", Color.parseColor("#4762FE")),
+                    SheetItem("region 2", Color.BLUE)
+            )
+            asl1 = ActionSheetListDialog(this).apply {
+                setCancelText("取消")
+                addSheetItems(data, SheetItem.OnSheetItemClickListener { item ->
+                    showToast(item.showName)
+                })
+            }
+        }
+        asl1?.show()
     }
 
+    var asl2: ActionSheetListDialog? = null
     fun aslListNoCancel(view: View?) {
-        val data = arrayListOf(
-                SheetItem("list item 0", Color.RED),
-                SheetItem("list item 1", Color.BLUE),
-                SheetItem("list item 2", Color.YELLOW),
-                SheetItem("list item 3"),
-                SheetItem("list item 3"),
-                SheetItem("list item 3"),
-                SheetItem("list item 3"),
-                SheetItem("list item 3"),
-                SheetItem("list item 3"),
-                SheetItem("list item 3"),
-                SheetItem("list item 3"),
-                SheetItem("list item 3"),
-                SheetItem("list item 3"),
-                SheetItem("list item 4")
-        )
-        ActionSheetListDialog(this).apply {
-            setTitle("标题")
-            addSheetItems(data, SheetItem.OnSheetItemClickListener { item ->
-                showToast(item.showName)
-            })
-        }.show()
+        if (asl2 == null) {
+            val data = arrayListOf(
+                    SheetItem("list item 0", Color.RED),
+                    SheetItem("list item 1", Color.BLUE),
+                    SheetItem("list item 2", Color.YELLOW),
+                    SheetItem("list item 3"),
+                    SheetItem("list item 3"),
+                    SheetItem("list item 3"),
+                    SheetItem("list item 3"),
+                    SheetItem("list item 3"),
+                    SheetItem("list item 3"),
+                    SheetItem("list item 3"),
+                    SheetItem("list item 3"),
+                    SheetItem("list item 3"),
+                    SheetItem("list item 3"),
+                    SheetItem("list item 4")
+            )
+            asl2 = ActionSheetListDialog(this).apply {
+                setTitle("标题")
+                addSheetItems(data, SheetItem.OnSheetItemClickListener { item ->
+                    showToast(item.showName)
+                })
+                setSelectedIndex(3)
+            }
+        }
+        asl2?.show()
     }
 
+    var asl3: ActionSheetListDialog? = null
     fun aslListTitle(view: View?) {
-        val data = arrayListOf(
-                SheetItem("list item 0", Color.RED),
-                SheetItem("list item 1", Color.BLUE),
-                SheetItem("list item 2", Color.GREEN),
-                SheetItem("list item 3", Color.YELLOW),
-                SheetItem("list item 4"),
-                SheetItem("list item 5"),
-                SheetItem("list item 6"),
-                SheetItem("list item 6"),
-                SheetItem("list item 6"),
-                SheetItem("list item 6"),
-                SheetItem("list item 7")
-        )
-        ActionSheetListDialog(this).apply {
-            setTitle("标题")
-            setCancelText("取消")
-            addSheetItems(data, SheetItem.OnSheetItemClickListener { item ->
-                showToast(item.showName)
-            })
-        }.show()
+        if (asl3 == null) {
+            val data = arrayListOf(
+                    SheetItem("list item 0", Color.RED),
+                    SheetItem("list item 1", Color.BLUE),
+                    SheetItem("list item 2", Color.GREEN),
+                    SheetItem("list item 3", Color.YELLOW),
+                    SheetItem("list item 4"),
+                    SheetItem("list item 5"),
+                    SheetItem("list item 6"),
+                    SheetItem("list item 6"),
+                    SheetItem("list item 6"),
+                    SheetItem("list item 6"),
+                    SheetItem("list item 7")
+            )
+            asl3 = ActionSheetListDialog(this).apply {
+                setTitle("标题")
+                setCancelText("取消")
+                addSheetItems(data, SheetItem.OnSheetItemClickListener { item ->
+                    showToast(item.showName)
+                })
+            }
+        }
+        asl3?.show()
     }
 
     // --------------------------------- Alert Edit Dialog -----------------------------------------

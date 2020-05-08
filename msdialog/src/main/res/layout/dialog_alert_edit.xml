@@ -40,7 +40,7 @@
             android:layout_marginTop="10dp"
             android:layout_marginRight="10dp"
             android:layout_marginBottom="5dp"
-            android:background="@drawable/sel_action_sheet_middle"
+            android:background="@drawable/sel_action_sheet_single_line"
             android:padding="5dp"
             android:textCursorDrawable="@color/def_title_color" />
 

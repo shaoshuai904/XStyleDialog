@@ -82,15 +82,23 @@ class ActionSheetListDialog(context: Context) : BaseDialog(context) {
         return this
     }
 
-    fun addSheetItems(items: MutableList<SheetItem>, itemClickListener: SheetItem.OnSheetItemClickListener?) {
+    fun addSheetItems(
+            items: MutableList<SheetItem>,
+            itemClickListener: SheetItem.OnSheetItemClickListener?
+    ) {
         sheetItemList = items
         binding.lvData.adapter = adapter
         adapter.refresh(sheetItemList)
         binding.lvData.setOnItemClickListener { _, _, position, _ ->
             val item = adapter.getItem(position)
+            adapter.setSelectedIndex(position)
             itemClickListener?.onClick(item)
             dialog.dismiss()
         }
+    }
+
+    fun setSelectedIndex(index: Int) {
+        adapter.setSelectedIndex(index)
     }
 
     /**
