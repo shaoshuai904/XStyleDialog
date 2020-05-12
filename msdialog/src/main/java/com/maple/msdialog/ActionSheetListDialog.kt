@@ -49,7 +49,7 @@ class ActionSheetListDialog(context: Context) : BaseDialog(context) {
     }
 
     fun setTitle(
-            title: String?,
+            title: CharSequence?,
             color: Int = ContextCompat.getColor(mContext, R.color.def_title_color),
             spSize: Float = 16f,
             isBold: Boolean = false
@@ -67,7 +67,7 @@ class ActionSheetListDialog(context: Context) : BaseDialog(context) {
     }
 
     fun setCancelText(
-            cancelText: String?,
+            cancelText: CharSequence?,
             color: Int = ContextCompat.getColor(mContext, R.color.def_title_color),
             spSize: Float = 18f,
             isBold: Boolean = false

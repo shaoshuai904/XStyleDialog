@@ -83,15 +83,15 @@ class AlertDialog(context: Context) : BaseDialog(context) {
         return this
     }
 
-    fun setRightButton(
+    fun setLeftButton(
             text: CharSequence?,
-            color: Int = ContextCompat.getColor(mContext, R.color.def_right_color),
+            color: Int = ContextCompat.getColor(mContext, R.color.def_left_color),
             spSize: Float = 17f,
             isBold: Boolean = false,
             listener: View.OnClickListener? = null
     ): AlertDialog {
-        showRightBtn = true
-        binding.btRight.apply {
+        showLeftBtn = true
+        binding.btLeft.apply {
             this.text = text
             setTextColor(color)
             textSize = spSize
@@ -104,15 +104,15 @@ class AlertDialog(context: Context) : BaseDialog(context) {
         return this
     }
 
-    fun setLeftButton(
+    fun setRightButton(
             text: CharSequence?,
-            color: Int = ContextCompat.getColor(mContext, R.color.def_left_color),
+            color: Int = ContextCompat.getColor(mContext, R.color.def_right_color),
             spSize: Float = 17f,
             isBold: Boolean = false,
             listener: View.OnClickListener? = null
     ): AlertDialog {
-        showLeftBtn = true
-        binding.btLeft.apply {
+        showRightBtn = true
+        binding.btRight.apply {
             this.text = text
             setTextColor(color)
             textSize = spSize

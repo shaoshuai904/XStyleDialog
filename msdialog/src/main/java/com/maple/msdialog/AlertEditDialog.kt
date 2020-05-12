@@ -43,7 +43,7 @@ class AlertEditDialog(context: Context) : BaseDialog(context) {
     }
 
     fun setTitle(
-            title: String?,
+            title: CharSequence?,
             color: Int = ContextCompat.getColor(mContext, R.color.def_title_color),
             spSize: Float = 18f,
             isBold: Boolean = false
@@ -59,8 +59,8 @@ class AlertEditDialog(context: Context) : BaseDialog(context) {
     }
 
     fun setMessage(
-            msg: String?,
-            color: Int = ContextCompat.getColor(mContext, R.color.def_title_color),
+            msg: CharSequence?,
+            color: Int = ContextCompat.getColor(mContext, R.color.def_message_color),
             spSize: Float = 16f,
             isBold: Boolean = false
     ): AlertEditDialog {
@@ -75,8 +75,8 @@ class AlertEditDialog(context: Context) : BaseDialog(context) {
     }
 
     fun setLeftButton(
-            text: String?,
-            color: Int = ContextCompat.getColor(mContext, R.color.def_title_color),
+            text: CharSequence?,
+            color: Int = ContextCompat.getColor(mContext, R.color.def_left_color),
             spSize: Float = 16f,
             isBold: Boolean = false,
             listener: View.OnClickListener? = null
@@ -96,8 +96,8 @@ class AlertEditDialog(context: Context) : BaseDialog(context) {
     }
 
     fun setRightButton(
-            text: String?,
-            color: Int = ContextCompat.getColor(mContext, R.color.def_title_color),
+            text: CharSequence?,
+            color: Int = ContextCompat.getColor(mContext, R.color.def_right_color),
             spSize: Float = 16f,
             isBold: Boolean = false,
             listener: EditTextCallListener? = null
@@ -126,14 +126,14 @@ class AlertEditDialog(context: Context) : BaseDialog(context) {
     private fun setLayout() {
         binding.apply {
             if (!showTitle && !showMsg) {
-                tvTitle.setText(R.string.alert)
+                tvTitle.text = ""
                 tvTitle.visibility = View.VISIBLE
             }
             tvTitle.visibility = if (showTitle) View.VISIBLE else View.GONE
             tvMsg.visibility = if (showMsg) View.VISIBLE else View.GONE
             // one button
             if (!showRightBtn && !showLeftBtn) {
-                btRight.setText(R.string.ok)
+                btRight.text = "确定"
                 btRight.visibility = View.VISIBLE
                 btRight.setBackgroundResource(R.drawable.sel_alert_dialog_single)
                 btRight.setOnClickListener { dialog.dismiss() }

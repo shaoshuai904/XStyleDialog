@@ -45,7 +45,7 @@ class AlertNumberPickerDialog(context: Context) : BaseDialog(context) {
     }
 
     fun setTitle(
-            title: String?,
+            title: CharSequence?,
             color: Int = ContextCompat.getColor(mContext, R.color.def_title_color),
             spSize: Float = 18f,
             isBold: Boolean = false
@@ -77,7 +77,7 @@ class AlertNumberPickerDialog(context: Context) : BaseDialog(context) {
 
     // 设置value的后缀
     fun setNumberValueSuffix(
-            suffix: String?,
+            suffix: CharSequence?,
             color: Int = ContextCompat.getColor(mContext, R.color.def_title_color),
             spSize: Float = 16f
     ): AlertNumberPickerDialog {
@@ -91,30 +91,9 @@ class AlertNumberPickerDialog(context: Context) : BaseDialog(context) {
         return this
     }
 
-    fun setRightButton(
-            text: String?,
-            color: Int = ContextCompat.getColor(mContext, R.color.def_title_color),
-            spSize: Float = 16f,
-            isBold: Boolean = false,
-            listener: View.OnClickListener? = null
-    ): AlertNumberPickerDialog {
-        showRightBtn = true
-        binding.tvRight.apply {
-            this.text = text
-            setTextColor(color)
-            textSize = spSize
-            setTypeface(typeface, if (isBold) Typeface.BOLD else Typeface.NORMAL)
-            setOnClickListener { v ->
-                listener?.onClick(v)
-                dialog.dismiss()
-            }
-        }
-        return this
-    }
-
     fun setLeftButton(
-            text: String?,
-            color: Int = ContextCompat.getColor(mContext, R.color.def_title_color),
+            text: CharSequence?,
+            color: Int = ContextCompat.getColor(mContext, R.color.def_left_color),
             spSize: Float = 16f,
             isBold: Boolean = false,
             listener: View.OnClickListener? = null
@@ -133,10 +112,31 @@ class AlertNumberPickerDialog(context: Context) : BaseDialog(context) {
         return this
     }
 
+    fun setRightButton(
+            text: CharSequence?,
+            color: Int = ContextCompat.getColor(mContext, R.color.def_right_color),
+            spSize: Float = 16f,
+            isBold: Boolean = false,
+            listener: View.OnClickListener? = null
+    ): AlertNumberPickerDialog {
+        showRightBtn = true
+        binding.tvRight.apply {
+            this.text = text
+            setTextColor(color)
+            textSize = spSize
+            setTypeface(typeface, if (isBold) Typeface.BOLD else Typeface.NORMAL)
+            setOnClickListener { v ->
+                listener?.onClick(v)
+                dialog.dismiss()
+            }
+        }
+        return this
+    }
+
     private fun setLayout() {
         binding.apply {
             if (!showTitle && !showMsg) {
-                tvTitle.setText(R.string.alert)
+                tvTitle.text = ""
                 tvTitle.visibility = View.VISIBLE
             }
             if (showTitle) {
@@ -144,7 +144,7 @@ class AlertNumberPickerDialog(context: Context) : BaseDialog(context) {
             }
             // one button
             if (!showRightBtn && !showLeftBtn) {
-                tvRight.setText(R.string.ok)
+                tvRight.text = "确定"
                 tvRight.visibility = View.VISIBLE
                 tvRight.setBackgroundResource(R.drawable.sel_alert_dialog_single)
                 tvRight.setOnClickListener { dialog.dismiss() }
