@@ -5,6 +5,7 @@ import android.content.Context
 import android.databinding.DataBindingUtil
 import android.graphics.Typeface
 import android.support.v4.content.ContextCompat
+import android.text.Html
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
@@ -45,9 +46,9 @@ class AlertDialog(context: Context) : BaseDialog(context) {
     }
 
     fun setTitle(
-            title: String?,
+            title: CharSequence?,
             color: Int = ContextCompat.getColor(mContext, R.color.def_title_color),// 字体颜色
-            spSize: Float = 18f,// 字体大小
+            spSize: Float = 17f,// 字体大小
             isBold: Boolean = false// 是否加粗
     ): AlertDialog {
         showTitle = true
@@ -60,10 +61,14 @@ class AlertDialog(context: Context) : BaseDialog(context) {
         return this
     }
 
+    fun setHtmlMessage(message: String?): AlertDialog {
+        return setMessage(Html.fromHtml(message))
+    }
+
     fun setMessage(
-            message: String?,
+            message: CharSequence?,
             color: Int = ContextCompat.getColor(mContext, R.color.def_message_color),// 字体颜色
-            spSize: Float = 16f, // 字体大小
+            spSize: Float = 14f, // 字体大小
             isBold: Boolean = false, // 是否加粗
             gravity: Int = Gravity.CENTER// 偏左，居中，偏右
     ): AlertDialog {
@@ -79,9 +84,9 @@ class AlertDialog(context: Context) : BaseDialog(context) {
     }
 
     fun setRightButton(
-            text: String?,
-            color: Int = ContextCompat.getColor(mContext, R.color.def_title_color),
-            spSize: Float = 16f,
+            text: CharSequence?,
+            color: Int = ContextCompat.getColor(mContext, R.color.def_right_color),
+            spSize: Float = 17f,
             isBold: Boolean = false,
             listener: View.OnClickListener? = null
     ): AlertDialog {
@@ -100,9 +105,9 @@ class AlertDialog(context: Context) : BaseDialog(context) {
     }
 
     fun setLeftButton(
-            text: String?,
-            color: Int = ContextCompat.getColor(mContext, R.color.def_title_color),
-            spSize: Float = 16f,
+            text: CharSequence?,
+            color: Int = ContextCompat.getColor(mContext, R.color.def_left_color),
+            spSize: Float = 17f,
             isBold: Boolean = false,
             listener: View.OnClickListener? = null
     ): AlertDialog {

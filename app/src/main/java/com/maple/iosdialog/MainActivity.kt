@@ -30,7 +30,7 @@ class MainActivity : Activity() {
         AlertDialog(this).apply {
             setCancelable(false)
             setTitle("退出当前账号")
-            setMessage("再连续登陆15天，就可变身为QQ达人。退出QQ可能会使你现有记录归零，确定退出？")
+            setHtmlMessage("再连续登陆<font color=\"#ff0000\">15</font>天，就可变身为QQ达人。退出QQ可能会使你现有记录归零，确定退出？")
             setLeftButton("取消")
             setRightButton("确认退出", listener = View.OnClickListener { showToast("exit") })
         }.show()

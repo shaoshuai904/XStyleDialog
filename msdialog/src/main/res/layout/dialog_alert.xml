@@ -18,8 +18,7 @@
             android:text="@string/alert"
             android:textAllCaps="false"
             android:textColor="@color/def_title_color"
-            android:textSize="18sp"
-            android:textStyle="bold" />
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/tv_msg"
@@ -29,9 +28,9 @@
             android:layout_marginTop="15dp"
             android:layout_marginRight="15dp"
             android:gravity="center"
+            android:lineSpacingMultiplier="1.2"
             android:text="body text"
-            android:textColor="@color/def_title_color"
-            android:textSize="16sp" />
+            android:textSize="14sp" />
 
         <View
             android:layout_width="match_parent"
@@ -41,11 +40,11 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="43dp"
+            android:layout_height="50dp"
             android:layout_margin="1px"
             android:orientation="horizontal">
 
-            <Button
+            <TextView
                 android:id="@+id/bt_left"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -54,8 +53,8 @@
                 android:gravity="center"
                 android:text="@string/cancel"
                 android:textAllCaps="false"
-                android:textColor="@color/def_title_color"
-                android:textSize="16sp" />
+                android:textColor="@color/def_left_color"
+                android:textSize="17sp" />
 
             <View
                 android:id="@+id/iv_line"
@@ -63,7 +62,7 @@
                 android:layout_height="match_parent"
                 android:background="@color/act_line" />
 
-            <Button
+            <TextView
                 android:id="@+id/bt_right"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -72,8 +71,8 @@
                 android:gravity="center"
                 android:text="@string/ok"
                 android:textAllCaps="false"
-                android:textColor="@color/def_title_color"
-                android:textSize="16sp" />
+                android:textColor="@color/def_right_color"
+                android:textSize="17sp" />
         </LinearLayout>
 
     </LinearLayout>
