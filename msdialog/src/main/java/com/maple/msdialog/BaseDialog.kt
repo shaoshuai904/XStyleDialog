@@ -12,8 +12,7 @@ import android.widget.LinearLayout
  * @author maple
  * @time 2017/4/6
  */
-open class BaseDialog(var mContext: Context) {
-    protected var dialog: Dialog = Dialog(mContext)
+open class BaseDialog(var mContext: Context, themeResId: Int = 0) : Dialog(mContext, themeResId) {
     protected var rootView: View? = null
 
     // 设置Dialog宽度：相对于屏幕宽度比例
@@ -21,14 +20,6 @@ open class BaseDialog(var mContext: Context) {
         rootView?.layoutParams = FrameLayout.LayoutParams(
                 (screenInfo().x * scWidth).toInt(),
                 LinearLayout.LayoutParams.WRAP_CONTENT)
-    }
-
-    fun setCancelable(cancel: Boolean) {
-        dialog.setCancelable(cancel)
-    }
-
-    fun setCanceledOnTouchOutside(cancel: Boolean) {
-        dialog.setCanceledOnTouchOutside(cancel)
     }
 
     //------------------------------------- utils --------------------------------------------------

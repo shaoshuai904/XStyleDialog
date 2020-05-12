@@ -47,7 +47,7 @@ class MainActivity : Activity() {
 
     fun adThree(view: View?) {
         AlertDialog(this).apply {
-            setTitle("确认删除：XXXX？")
+            setTitle("确认删除：XXXX？", isBold = true)
             setMessage("1.必须确保空间下不存在任何文件、文件夹或图片样式，否则无法删除;\n2.存储空间删除后不可恢复且可能会影响正在使用该空间的其他用户。",
                     spSize = 14f, gravity = Gravity.START)
             setRightButton("确定", listener = View.OnClickListener { showToast("OK") })

@@ -1,6 +1,5 @@
 package com.maple.msdialog
 
-import android.app.Dialog
 import android.content.Context
 import android.databinding.DataBindingUtil
 import android.graphics.Typeface
@@ -17,7 +16,7 @@ import com.maple.msdialog.databinding.DialogAlertBinding
  * @author maple
  * @time 2017/3/21
  */
-class AlertDialog(context: Context) : BaseDialog(context) {
+class AlertDialog(context: Context) : BaseDialog(context, R.style.AlertDialogStyle) {
     private val binding: DialogAlertBinding = DataBindingUtil.inflate(
             LayoutInflater.from(context), R.layout.dialog_alert, null, false)
 
@@ -26,10 +25,8 @@ class AlertDialog(context: Context) : BaseDialog(context) {
     private var showRightBtn = false
     private var showLeftBtn = false
 
-
     init {
         rootView = binding.root
-
         // get custom Dialog layout
         binding.apply {
             tvTitle.visibility = View.GONE
@@ -40,9 +37,12 @@ class AlertDialog(context: Context) : BaseDialog(context) {
         }
 
         // set Dialog style
-        dialog = Dialog(context, R.style.AlertDialogStyle)
-        dialog.setContentView(binding.root)
+        setContentView(binding.root)
         setScaleWidth(0.85)
+    }
+
+    override fun setTitle(title: CharSequence?) {
+        this.setTitle(title, isBold = false)
     }
 
     fun setTitle(
@@ -51,6 +51,7 @@ class AlertDialog(context: Context) : BaseDialog(context) {
             spSize: Float = 17f,// 字体大小
             isBold: Boolean = false// 是否加粗
     ): AlertDialog {
+        super.setTitle(title)
         showTitle = true
         binding.tvTitle.apply {
             text = title
@@ -98,7 +99,7 @@ class AlertDialog(context: Context) : BaseDialog(context) {
             setTypeface(typeface, if (isBold) Typeface.BOLD else Typeface.NORMAL)
             setOnClickListener { v ->
                 listener?.onClick(v)
-                dialog.dismiss()
+                dismiss()
             }
         }
         return this
@@ -119,7 +120,7 @@ class AlertDialog(context: Context) : BaseDialog(context) {
             setTypeface(typeface, if (isBold) Typeface.BOLD else Typeface.NORMAL)
             setOnClickListener { v ->
                 listener?.onClick(v)
-                dialog.dismiss()
+                dismiss()
             }
         }
         return this
@@ -138,7 +139,7 @@ class AlertDialog(context: Context) : BaseDialog(context) {
                 btRight.text = "确定"
                 btRight.visibility = View.VISIBLE
                 btRight.setBackgroundResource(R.drawable.sel_alert_dialog_single)
-                btRight.setOnClickListener { dialog.dismiss() }
+                btRight.setOnClickListener { dismiss() }
             }
             if (showRightBtn && !showLeftBtn) {
                 btRight.visibility = View.VISIBLE
@@ -159,8 +160,9 @@ class AlertDialog(context: Context) : BaseDialog(context) {
         }
     }
 
-    fun show() {
+    override fun show() {
         setLayout()
-        dialog.show()
+        super.show()
     }
+
 }

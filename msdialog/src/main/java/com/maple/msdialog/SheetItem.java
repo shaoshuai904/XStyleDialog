@@ -20,6 +20,11 @@ public class SheetItem {
         ShowColor = showColor;
     }
 
+    public SheetItem(String name, OnSheetItemClickListener itemClickListener) {
+        this.showName = name;
+        this.itemClickListener = itemClickListener;
+    }
+
     public SheetItem(String name, int color, OnSheetItemClickListener itemClickListener) {
         this.showName = name;
         this.ShowColor = color;

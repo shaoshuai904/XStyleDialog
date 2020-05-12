@@ -1,6 +1,5 @@
 package com.maple.msdialog
 
-import android.app.Dialog
 import android.content.Context
 import android.databinding.DataBindingUtil
 import android.graphics.Typeface
@@ -17,7 +16,7 @@ import com.maple.msdialog.databinding.DialogActionSheetListBinding
  * @author : shaoshuai27
  * @date ：2020/5/6
  */
-class ActionSheetListDialog(context: Context) : BaseDialog(context) {
+class ActionSheetListDialog(context: Context) : BaseDialog(context, R.style.ActionSheetDialogStyle) {
     private val binding: DialogActionSheetListBinding = DataBindingUtil.inflate(
             LayoutInflater.from(context), R.layout.dialog_action_sheet_list, null, false)
     private var showTitle = false
@@ -34,18 +33,22 @@ class ActionSheetListDialog(context: Context) : BaseDialog(context) {
         rootView?.minimumWidth = screenInfo().x
         binding.tvTitle.visibility = View.GONE
         binding.tvCancel.visibility = View.GONE
-        binding.tvCancel.setOnClickListener { dialog.dismiss() }
+        binding.tvCancel.setOnClickListener { dismiss() }
 
         // create Dialog
-        dialog = Dialog(context, R.style.ActionSheetDialogStyle)
-        dialog.setContentView(binding.root)
-        dialog.window?.apply {
+        // dialog = Dialog(context, R.style.ActionSheetDialogStyle)
+        setContentView(binding.root)
+        window?.apply {
             setGravity(Gravity.LEFT or Gravity.BOTTOM)
             attributes = attributes.apply {
                 x = 0
                 y = 0
             }
         }
+    }
+
+    override fun setTitle(title: CharSequence?) {
+        this.setTitle(title, isBold = false)
     }
 
     fun setTitle(
@@ -93,7 +96,7 @@ class ActionSheetListDialog(context: Context) : BaseDialog(context) {
             val item = adapter.getItem(position)
             adapter.setSelectedIndex(position)
             itemClickListener?.onClick(item)
-            dialog.dismiss()
+            dismiss()
         }
     }
 
@@ -118,9 +121,9 @@ class ActionSheetListDialog(context: Context) : BaseDialog(context) {
         }
     }
 
-    fun show() {
+    override fun show() {
         setSheetLayout()
-        dialog.show()
+        super.show()
     }
 
 }

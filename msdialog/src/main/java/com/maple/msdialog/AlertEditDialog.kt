@@ -1,6 +1,5 @@
 package com.maple.msdialog
 
-import android.app.Dialog
 import android.content.Context
 import android.databinding.DataBindingUtil
 import android.graphics.Typeface
@@ -15,7 +14,7 @@ import com.maple.msdialog.databinding.DialogAlertEditBinding
  * @author maple
  * @time 2017/3/23
  */
-class AlertEditDialog(context: Context) : BaseDialog(context) {
+class AlertEditDialog(context: Context) : BaseDialog(context, R.style.AlertDialogStyle) {
     private val binding: DialogAlertEditBinding = DataBindingUtil.inflate(
             LayoutInflater.from(context), R.layout.dialog_alert_edit, null, false)
     private var showTitle = false
@@ -37,9 +36,13 @@ class AlertEditDialog(context: Context) : BaseDialog(context) {
         }
 
         // set Dialog style
-        dialog = Dialog(context, R.style.AlertDialogStyle)
-        dialog.setContentView(binding.root)
+        //dialog = Dialog(context, R.style.AlertDialogStyle)
+        setContentView(binding.root)
         setScaleWidth(0.85)
+    }
+
+    override fun setTitle(title: CharSequence?) {
+        this.setTitle(title, isBold = false)
     }
 
     fun setTitle(
@@ -89,7 +92,7 @@ class AlertEditDialog(context: Context) : BaseDialog(context) {
             setTypeface(typeface, if (isBold) Typeface.BOLD else Typeface.NORMAL)
             setOnClickListener { v ->
                 listener?.onClick(v)
-                dialog.dismiss()
+                dismiss()
             }
         }
         return this
@@ -113,7 +116,7 @@ class AlertEditDialog(context: Context) : BaseDialog(context) {
                     val inputText = binding.etText.text.toString().trim()
                     listener.callBack(inputText)
                 }
-                dialog.dismiss()
+                dismiss()
             }
         }
         return this
@@ -136,7 +139,7 @@ class AlertEditDialog(context: Context) : BaseDialog(context) {
                 btRight.text = "确定"
                 btRight.visibility = View.VISIBLE
                 btRight.setBackgroundResource(R.drawable.sel_alert_dialog_single)
-                btRight.setOnClickListener { dialog.dismiss() }
+                btRight.setOnClickListener { dismiss() }
             }
             if (showRightBtn && !showLeftBtn) {
                 btRight.visibility = View.VISIBLE
@@ -157,9 +160,9 @@ class AlertEditDialog(context: Context) : BaseDialog(context) {
         }
     }
 
-    fun show() {
+    override fun show() {
         setLayout()
-        dialog.show()
+        super.show()
     }
 
 }

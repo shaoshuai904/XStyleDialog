@@ -1,6 +1,5 @@
 package com.maple.msdialog
 
-import android.app.Dialog
 import android.content.Context
 import android.databinding.DataBindingUtil
 import android.graphics.Typeface
@@ -17,7 +16,7 @@ import com.maple.msdialog.databinding.DialogNumberPickerBinding
  * @author maple
  * @time 2018/12/6
  */
-class AlertNumberPickerDialog(context: Context) : BaseDialog(context) {
+class AlertNumberPickerDialog(context: Context) : BaseDialog(context, R.style.AlertDialogStyle) {
     private val binding: DialogNumberPickerBinding = DataBindingUtil.inflate(
             LayoutInflater.from(context), R.layout.dialog_number_picker, null, false)
 
@@ -39,9 +38,12 @@ class AlertNumberPickerDialog(context: Context) : BaseDialog(context) {
         }
 
         // set Dialog style
-        dialog = Dialog(context, R.style.AlertDialogStyle)
-        dialog.setContentView(binding.root)
+        setContentView(binding.root)
         setScaleWidth(0.8)
+    }
+
+    override fun setTitle(title: CharSequence?) {
+        this.setTitle(title, isBold = false)
     }
 
     fun setTitle(
@@ -106,7 +108,7 @@ class AlertNumberPickerDialog(context: Context) : BaseDialog(context) {
             setTypeface(typeface, if (isBold) Typeface.BOLD else Typeface.NORMAL)
             setOnClickListener { v ->
                 listener?.onClick(v)
-                dialog.dismiss()
+                dismiss()
             }
         }
         return this
@@ -127,7 +129,7 @@ class AlertNumberPickerDialog(context: Context) : BaseDialog(context) {
             setTypeface(typeface, if (isBold) Typeface.BOLD else Typeface.NORMAL)
             setOnClickListener { v ->
                 listener?.onClick(v)
-                dialog.dismiss()
+                dismiss()
             }
         }
         return this
@@ -147,7 +149,7 @@ class AlertNumberPickerDialog(context: Context) : BaseDialog(context) {
                 tvRight.text = "确定"
                 tvRight.visibility = View.VISIBLE
                 tvRight.setBackgroundResource(R.drawable.sel_alert_dialog_single)
-                tvRight.setOnClickListener { dialog.dismiss() }
+                tvRight.setOnClickListener { dismiss() }
             }
             if (showRightBtn && !showLeftBtn) {
                 tvRight.visibility = View.VISIBLE
@@ -168,9 +170,9 @@ class AlertNumberPickerDialog(context: Context) : BaseDialog(context) {
         }
     }
 
-    fun show() {
+    override fun show() {
         setLayout()
-        dialog.show()
+        super.show()
     }
 
 }

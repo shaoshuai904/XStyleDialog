@@ -1,6 +1,5 @@
 package com.maple.msdialog
 
-import android.app.Dialog
 import android.content.Context
 import android.databinding.DataBindingUtil
 import android.graphics.Typeface
@@ -19,7 +18,7 @@ import java.util.*
  * @author maple
  * @time 2017/3/21
  */
-class ActionSheetDialog(context: Context) : BaseDialog(context) {
+class ActionSheetDialog(context: Context) : BaseDialog(context, R.style.ActionSheetDialogStyle) {
     private val binding: DialogActionSheetBinding = DataBindingUtil.inflate(
             LayoutInflater.from(context), R.layout.dialog_action_sheet, null, false)
     private var showTitle = false
@@ -34,12 +33,11 @@ class ActionSheetDialog(context: Context) : BaseDialog(context) {
         // set Dialog min width
         rootView?.minimumWidth = screenInfo().x
         binding.tvTitle.visibility = View.GONE
-        binding.tvCancel.setOnClickListener { dialog.dismiss() }
+        binding.tvCancel.setOnClickListener { dismiss() }
 
         // create Dialog
-        dialog = Dialog(context, R.style.ActionSheetDialogStyle)
-        dialog.setContentView(binding.root)
-        dialog.window?.apply {
+        setContentView(binding.root)
+        window?.apply {
             setGravity(Gravity.LEFT or Gravity.BOTTOM)
             attributes = attributes.apply {
                 x = 0
@@ -48,8 +46,12 @@ class ActionSheetDialog(context: Context) : BaseDialog(context) {
         }
     }
 
+    override fun setTitle(title: CharSequence?) {
+        this.setTitle(title, isBold = false)
+    }
+
     fun setTitle(
-            title: String?,
+            title: CharSequence?,
             color: Int = ContextCompat.getColor(mContext, R.color.def_title_color),
             spSize: Float = 16f,
             isBold: Boolean = false
@@ -139,16 +141,16 @@ class ActionSheetDialog(context: Context) : BaseDialog(context) {
                 // add click listener
                 setOnClickListener {
                     sheetItem.itemClickListener?.onClick(sheetItem)
-                    dialog.dismiss()
+                    dismiss()
                 }
             }
             binding.llContent.addView(textView)
         }
     }
 
-    fun show() {
+    override fun show() {
         setSheetItems()
-        dialog.show()
+        super.show()
     }
 
 }
