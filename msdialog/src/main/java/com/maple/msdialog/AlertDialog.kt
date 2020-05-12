@@ -128,14 +128,14 @@ class AlertDialog(context: Context) : BaseDialog(context) {
     private fun setLayout() {
         binding.apply {
             if (!showTitle && !showMsg) {
-                tvTitle.setText(R.string.alert)
+                tvTitle.text = ""
                 tvTitle.visibility = View.VISIBLE
             }
             tvTitle.visibility = if (showTitle) View.VISIBLE else View.GONE
             tvMsg.visibility = if (showMsg) View.VISIBLE else View.GONE
             // one button
             if (!showRightBtn && !showLeftBtn) {
-                btRight.setText(R.string.ok)
+                btRight.text = "确定"
                 btRight.visibility = View.VISIBLE
                 btRight.setBackgroundResource(R.drawable.sel_alert_dialog_single)
                 btRight.setOnClickListener { dialog.dismiss() }
