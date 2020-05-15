@@ -1,5 +1,6 @@
 package com.maple.msdialog
 
+import android.app.Dialog
 import android.content.Context
 import android.databinding.DataBindingUtil
 import android.graphics.Typeface
@@ -8,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.DatePicker
 import android.widget.NumberPicker.OnValueChangeListener
+import com.maple.msdialog.DialogUtil.setScaleWidth
 import com.maple.msdialog.databinding.DialogNumberPickerBinding
 
 /**
@@ -16,18 +18,16 @@ import com.maple.msdialog.databinding.DialogNumberPickerBinding
  * @author maple
  * @time 2018/12/6
  */
-class AlertNumberPickerDialog(context: Context) : BaseDialog(context, R.style.AlertDialogStyle) {
+class AlertNumberPickerDialog(private val mContext: Context) : Dialog(mContext, R.style.AlertDialogStyle) {
     private val binding: DialogNumberPickerBinding = DataBindingUtil.inflate(
-            LayoutInflater.from(context), R.layout.dialog_number_picker, null, false)
-
+            LayoutInflater.from(mContext), R.layout.dialog_number_picker, null, false)
+    val rootView by lazy { binding.root }
     private var showTitle = false
     private var showMsg = false
     private var showRightBtn = false
     private var showLeftBtn = false
 
     init {
-        rootView = binding.root
-
         // get custom Dialog layout
         binding.apply {
             tvTitle.visibility = View.GONE
@@ -38,8 +38,8 @@ class AlertNumberPickerDialog(context: Context) : BaseDialog(context, R.style.Al
         }
 
         // set Dialog style
-        setContentView(binding.root)
-        setScaleWidth(0.8)
+        setContentView(rootView)
+        setScaleWidth(rootView, 0.8)
     }
 
     override fun setTitle(title: CharSequence?) {

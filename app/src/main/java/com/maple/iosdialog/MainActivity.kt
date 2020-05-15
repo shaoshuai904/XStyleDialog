@@ -11,6 +11,7 @@ import android.widget.NumberPicker.OnValueChangeListener
 import android.widget.Toast
 import com.maple.msdialog.*
 import com.maple.msdialog.AlertEditDialog.EditTextCallListener
+import com.maple.msdialog.DialogUtil.setScaleWidth
 
 /**
  * Custom Dialog Demo
@@ -39,7 +40,7 @@ class MainActivity : Activity() {
     fun adTwo(view: View?) {
         AlertDialog(this).apply {
             setCancelable(true)
-            setScaleWidth(0.7) // 设置宽度，占屏幕宽度百分比
+            setScaleWidth(rootView, 0.7) // 设置宽度，占屏幕宽度百分比
             setMessage("你现在无法接收到新消息提醒。请到系统-设置-通知中开启消息提醒")
             setRightButton("确定", listener = View.OnClickListener { showToast("OK") })
         }.show()
@@ -222,7 +223,7 @@ class MainActivity : Activity() {
         val numbers = arrayOf("北京", "上海", "天津", "杭州", "苏州", "深圳")
         defValue = numbers[index]
         AlertNumberPickerDialog(this).apply {
-            setScaleWidth(0.8)
+            setScaleWidth(rootView, 0.8)
             setCancelable(false)
             setTitle("选择城市")
             setNumberValues(numbers, index, OnValueChangeListener { picker: NumberPicker?, oldVal: Int, newVal: Int -> defValue = numbers[newVal] })

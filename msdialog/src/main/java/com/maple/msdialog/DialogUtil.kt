@@ -8,24 +8,19 @@ import android.view.WindowManager
 import android.widget.FrameLayout
 import android.widget.LinearLayout
 
-/**
- * @author maple
- * @time 2017/4/6
- */
-open class BaseDialog(var mContext: Context, themeResId: Int = 0) : Dialog(mContext, themeResId) {
-    protected var rootView: View? = null
+object DialogUtil {
 
     // 设置Dialog宽度：相对于屏幕宽度比例
-    open fun setScaleWidth(scWidth: Double) {
-        rootView?.layoutParams = FrameLayout.LayoutParams(
+    fun Dialog.setScaleWidth(rootView: View, scWidth: Double) {
+        rootView.layoutParams = FrameLayout.LayoutParams(
                 (screenInfo().x * scWidth).toInt(),
                 LinearLayout.LayoutParams.WRAP_CONTENT)
     }
 
     //------------------------------------- utils --------------------------------------------------
-    fun screenInfo(): Point {
+    fun Dialog.screenInfo(): Point {
         val size = Point()
-        val windowManager = mContext.getSystemService(Context.WINDOW_SERVICE) as WindowManager
+        val windowManager = context.getSystemService(Context.WINDOW_SERVICE) as WindowManager
         windowManager.defaultDisplay.getSize(size)
         return size
     }
@@ -33,9 +28,8 @@ open class BaseDialog(var mContext: Context, themeResId: Int = 0) : Dialog(mCont
     /**
      * 根据手机的分辨率从 dp 的单位 转成为 px(像素)
      */
-    fun dp2px(dpValue: Float): Int {
-        val scale = mContext.resources.displayMetrics.density
+    fun Dialog.dp2px(dpValue: Float): Int {
+        val scale = context.resources.displayMetrics.density
         return (dpValue * scale + 0.5f).toInt()
     }
-
 }

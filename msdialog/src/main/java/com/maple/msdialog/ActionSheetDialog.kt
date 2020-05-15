@@ -1,5 +1,6 @@
 package com.maple.msdialog
 
+import android.app.Dialog
 import android.content.Context
 import android.databinding.DataBindingUtil
 import android.graphics.Typeface
@@ -9,6 +10,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.LinearLayout
 import android.widget.TextView
+import com.maple.msdialog.DialogUtil.dp2px
+import com.maple.msdialog.DialogUtil.screenInfo
 import com.maple.msdialog.databinding.DialogActionSheetBinding
 import java.util.*
 
@@ -18,9 +21,10 @@ import java.util.*
  * @author maple
  * @time 2017/3/21
  */
-class ActionSheetDialog(context: Context) : BaseDialog(context, R.style.ActionSheetDialogStyle) {
+class ActionSheetDialog(private val mContext: Context) : Dialog(mContext, R.style.ActionSheetDialogStyle) {
     private val binding: DialogActionSheetBinding = DataBindingUtil.inflate(
             LayoutInflater.from(context), R.layout.dialog_action_sheet, null, false)
+    val rootView by lazy { binding.root }
     private var showTitle = false
     private var sheetItemList: MutableList<SheetItem>? = null
 
@@ -29,9 +33,8 @@ class ActionSheetDialog(context: Context) : BaseDialog(context, R.style.ActionSh
     }
 
     init {
-        rootView = binding.root
         // set Dialog min width
-        rootView?.minimumWidth = screenInfo().x
+        binding.root.minimumWidth = screenInfo().x
         binding.tvTitle.visibility = View.GONE
         binding.tvCancel.setOnClickListener { dismiss() }
 

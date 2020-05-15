@@ -1,11 +1,13 @@
 package com.maple.msdialog
 
+import android.app.Dialog
 import android.content.Context
 import android.databinding.DataBindingUtil
 import android.graphics.Typeface
 import android.support.v4.content.ContextCompat
 import android.view.LayoutInflater
 import android.view.View
+import com.maple.msdialog.DialogUtil.setScaleWidth
 import com.maple.msdialog.databinding.DialogAlertEditBinding
 
 /**
@@ -14,18 +16,16 @@ import com.maple.msdialog.databinding.DialogAlertEditBinding
  * @author maple
  * @time 2017/3/23
  */
-class AlertEditDialog(context: Context) : BaseDialog(context, R.style.AlertDialogStyle) {
+class AlertEditDialog(private val mContext: Context) : Dialog(mContext, R.style.AlertDialogStyle) {
     private val binding: DialogAlertEditBinding = DataBindingUtil.inflate(
-            LayoutInflater.from(context), R.layout.dialog_alert_edit, null, false)
+            LayoutInflater.from(mContext), R.layout.dialog_alert_edit, null, false)
+    val rootView by lazy { binding.root }
     private var showTitle = false
     private var showMsg = false
     private var showLeftBtn = false
     private var showRightBtn = false
 
-
     init {
-        rootView = binding.root
-
         // get custom Dialog layout
         binding.apply {
             tvTitle.visibility = View.GONE
@@ -38,7 +38,7 @@ class AlertEditDialog(context: Context) : BaseDialog(context, R.style.AlertDialo
         // set Dialog style
         //dialog = Dialog(context, R.style.AlertDialogStyle)
         setContentView(binding.root)
-        setScaleWidth(0.85)
+        setScaleWidth(binding.root, 0.85)
     }
 
     override fun setTitle(title: CharSequence?) {
