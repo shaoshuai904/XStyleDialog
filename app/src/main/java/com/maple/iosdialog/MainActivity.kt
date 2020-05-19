@@ -103,22 +103,51 @@ class MainActivity : Activity() {
     }
 
     // -------------------------------- Action Sheet List Dialog ----------------------------------------
-    var asl1: ActionSheetListDialog? = null
+
+    var da1: ActionSheetRecyclerDialog? = null
     fun aslList(view: View?) {
-        if (asl1 == null) {
-            val data = arrayListOf(
-                    SheetItem("region 1", Color.parseColor("#4762FE")),
-                    SheetItem("region 2", Color.BLUE)
+        if (da1 == null) {
+            val items = arrayListOf<SingleSelectItem>(
+                    SingleSelectItem("item 1"),
+                    SingleSelectItem("item 2"),
+                    SingleSelectItem("item 3"),
+                    SingleSelectItem("item 3"),
+                    SingleSelectItem("item 3"),
+                    SingleSelectItem("item 3"),
+                    SingleSelectItem("item 3"),
+                    SingleSelectItem("item 3"),
+                    SingleSelectItem("item 3"),
+                    SingleSelectItem("item 3"),
+                    SingleSelectItem("item 4")
             )
-            asl1 = ActionSheetListDialog(this).apply {
-                setCancelText("取消")
-                addSheetItems(data, SheetItem.OnSheetItemClickListener { item ->
-                    showToast(item.showName)
+            da1 = ActionSheetRecyclerDialog(this).apply {
+                setTitle("选择条目")
+                addSheetItems(items)
+                setMaxScaleHeight(0.5)
+                addSheetItemClickListener(OnSingleSelectedItemClickListener { item, position ->
+                    showToast("$position   ${item.toString()}")
                 })
             }
         }
-        asl1?.show()
+        da1?.show()
     }
+    // -------------------------------- Action Sheet List Dialog ----------------------------------------
+//    var asl1: ActionSheetList1Dialog? = null
+//    fun aslList(view: View?) {
+//        if (asl1 == null) {
+//            val data = arrayListOf(
+//                    SheetItem("region 1", Color.parseColor("#4762FE")),
+//                    SheetItem("region 2", Color.BLUE)
+//            )
+//            asl1 = ActionSheetList1Dialog(this).apply {
+//                setCancelText("取消")
+//                addSheetItems(data, SheetItem.OnSheetItemClickListener { item ->
+//                    showToast(item.showName)
+//                })
+//            }
+//        }
+//        asl1?.show()
+//    }
 
     var asl2: ActionSheetListDialog? = null
     fun aslListNoCancel(view: View?) {

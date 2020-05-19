@@ -9,7 +9,7 @@ import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.LinearLayout
-import com.maple.msdialog.DialogUtil.dp2px
+import com.maple.msdialog.DensityUtils.dp2px
 import com.maple.msdialog.DialogUtil.screenInfo
 import com.maple.msdialog.databinding.DialogActionSheetListBinding
 
@@ -117,7 +117,7 @@ class ActionSheetListDialog(private val mContext: Context) : Dialog(mContext, R.
         val size = sheetItemList!!.size
         // 添加条目过多的时候控制高度
         val screenHeight = screenInfo().y
-        if (size > screenHeight / dp2px(ACTION_SHEET_ITEM_HEIGHT * 2.toFloat())) {
+        if (size > screenHeight / (ACTION_SHEET_ITEM_HEIGHT * 2.toFloat()).dp2px(mContext)) {
             val params = binding.lvData.layoutParams as LinearLayout.LayoutParams
             params.height = screenHeight / 2
             binding.lvData.layoutParams = params

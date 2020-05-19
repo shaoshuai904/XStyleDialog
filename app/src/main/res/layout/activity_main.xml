@@ -49,19 +49,22 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:onClick="aslList"
-                android:text="sheet list" />
+                android:text="sheet list"
+                android:textAllCaps="false" />
 
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:onClick="aslListNoCancel"
-                android:text="sheet list no cancel" />
+                android:text="sheet list no cancel"
+                android:textAllCaps="false" />
 
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:onClick="aslListTitle"
-                android:text="list + title" />
+                android:text="list + title"
+                android:textAllCaps="false" />
 
             <TextView
                 android:layout_width="match_parent"
