@@ -9,8 +9,8 @@ import android.text.Html
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
-import com.maple.msdialog.utils.DialogUtil.setScaleWidth
 import com.maple.msdialog.databinding.DialogAlertBinding
+import com.maple.msdialog.utils.DialogUtil.setScaleWidth
 
 /**
  * 警告框式Dialog [ 标题 + 消息文本 + 左按钮 + 右按钮 ]
@@ -88,10 +88,15 @@ class AlertDialog(private val mContext: Context) : Dialog(mContext, R.style.Aler
 
     fun setLeftButton(
             text: CharSequence?,
+            listener: View.OnClickListener? = null
+    ) = setLeftButton(text, listener, ContextCompat.getColor(mContext, R.color.def_left_color), 17f, false)
+
+    fun setLeftButton(
+            text: CharSequence?,
+            listener: View.OnClickListener? = null,
             color: Int = ContextCompat.getColor(mContext, R.color.def_left_color),
             spSize: Float = 17f,
-            isBold: Boolean = false,
-            listener: View.OnClickListener? = null
+            isBold: Boolean = false
     ): AlertDialog {
         showLeftBtn = true
         binding.btLeft.apply {
@@ -109,10 +114,15 @@ class AlertDialog(private val mContext: Context) : Dialog(mContext, R.style.Aler
 
     fun setRightButton(
             text: CharSequence?,
+            listener: View.OnClickListener? = null
+    ) = setRightButton(text, listener, ContextCompat.getColor(mContext, R.color.def_right_color), 17f, false)
+
+    fun setRightButton(
+            text: CharSequence?,
+            listener: View.OnClickListener? = null,
             color: Int = ContextCompat.getColor(mContext, R.color.def_right_color),
             spSize: Float = 17f,
-            isBold: Boolean = false,
-            listener: View.OnClickListener? = null
+            isBold: Boolean = false
     ): AlertDialog {
         showRightBtn = true
         binding.btRight.apply {

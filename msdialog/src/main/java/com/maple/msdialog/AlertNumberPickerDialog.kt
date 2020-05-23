@@ -9,8 +9,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.DatePicker
 import android.widget.NumberPicker.OnValueChangeListener
-import com.maple.msdialog.utils.DialogUtil.setScaleWidth
 import com.maple.msdialog.databinding.DialogNumberPickerBinding
+import com.maple.msdialog.utils.DialogUtil.setScaleWidth
 
 /**
  * 警告框式数字选择器Dialog [ 标题 + 数字选择 + 左按钮 + 右按钮 ]
@@ -95,10 +95,15 @@ class AlertNumberPickerDialog(private val mContext: Context) : Dialog(mContext, 
 
     fun setLeftButton(
             text: CharSequence?,
+            listener: View.OnClickListener? = null
+    ) = setLeftButton(text, listener, ContextCompat.getColor(mContext, R.color.def_left_color), 16f, false)
+
+    fun setLeftButton(
+            text: CharSequence?,
+            listener: View.OnClickListener? = null,
             color: Int = ContextCompat.getColor(mContext, R.color.def_left_color),
             spSize: Float = 16f,
-            isBold: Boolean = false,
-            listener: View.OnClickListener? = null
+            isBold: Boolean = false
     ): AlertNumberPickerDialog {
         showLeftBtn = true
         binding.tvLeft.apply {
@@ -116,10 +121,15 @@ class AlertNumberPickerDialog(private val mContext: Context) : Dialog(mContext, 
 
     fun setRightButton(
             text: CharSequence?,
+            listener: View.OnClickListener? = null
+    ) = setRightButton(text, listener, ContextCompat.getColor(mContext, R.color.def_right_color), 16f, false)
+
+    fun setRightButton(
+            text: CharSequence?,
+            listener: View.OnClickListener? = null,
             color: Int = ContextCompat.getColor(mContext, R.color.def_right_color),
             spSize: Float = 16f,
-            isBold: Boolean = false,
-            listener: View.OnClickListener? = null
+            isBold: Boolean = false
     ): AlertNumberPickerDialog {
         showRightBtn = true
         binding.tvRight.apply {

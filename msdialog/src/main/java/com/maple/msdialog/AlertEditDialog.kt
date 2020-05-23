@@ -79,10 +79,15 @@ class AlertEditDialog(private val mContext: Context) : Dialog(mContext, R.style.
 
     fun setLeftButton(
             text: CharSequence?,
+            listener: View.OnClickListener? = null
+    ) = setLeftButton(text, listener, ContextCompat.getColor(mContext, R.color.def_left_color), 16f, false)
+
+    fun setLeftButton(
+            text: CharSequence?,
+            listener: View.OnClickListener? = null,
             color: Int = ContextCompat.getColor(mContext, R.color.def_left_color),
             spSize: Float = 16f,
-            isBold: Boolean = false,
-            listener: View.OnClickListener? = null
+            isBold: Boolean = false
     ): AlertEditDialog {
         showLeftBtn = true
         binding.btLeft.apply {
@@ -100,10 +105,15 @@ class AlertEditDialog(private val mContext: Context) : Dialog(mContext, R.style.
 
     fun setRightButton(
             text: CharSequence?,
+            listener: EditTextCallListener? = null
+    ) = setRightButton(text, listener, ContextCompat.getColor(mContext, R.color.def_right_color), 16f, false)
+
+    fun setRightButton(
+            text: CharSequence?,
+            listener: EditTextCallListener? = null,
             color: Int = ContextCompat.getColor(mContext, R.color.def_right_color),
             spSize: Float = 16f,
-            isBold: Boolean = false,
-            listener: EditTextCallListener? = null
+            isBold: Boolean = false
     ): AlertEditDialog {
         showRightBtn = true
         binding.btRight.apply {

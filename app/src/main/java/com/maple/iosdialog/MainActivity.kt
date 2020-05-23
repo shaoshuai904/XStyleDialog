@@ -34,7 +34,7 @@ class MainActivity : Activity() {
             setTitle("退出当前账号")
             setHtmlMessage("再连续登陆<font color=\"#ff0000\">15</font>天，就可变身为QQ达人。退出QQ可能会使你现有记录归零，确定退出？")
             setLeftButton("取消")
-            setRightButton("确认退出", listener = View.OnClickListener { showToast("exit") })
+            setRightButton("确认退出", View.OnClickListener { showToast("exit") })
         }.show()
     }
 
@@ -43,7 +43,7 @@ class MainActivity : Activity() {
             setCancelable(true)
             setScaleWidth(rootView, 0.7) // 设置宽度，占屏幕宽度百分比
             setMessage("你现在无法接收到新消息提醒。请到系统-设置-通知中开启消息提醒")
-            setRightButton("确定", listener = View.OnClickListener { showToast("OK") })
+            setRightButton("确定", View.OnClickListener { showToast("OK") })
         }.show()
     }
 
@@ -52,7 +52,7 @@ class MainActivity : Activity() {
             setTitle("确认删除：XXXX？", isBold = true)
             setMessage("1.必须确保空间下不存在任何文件、文件夹或图片样式，否则无法删除;\n2.存储空间删除后不可恢复且可能会影响正在使用该空间的其他用户。",
                     spSize = 14f, gravity = Gravity.START)
-            setRightButton("确定", listener = View.OnClickListener { showToast("OK") })
+            setRightButton("确定", View.OnClickListener { showToast("OK") })
         }.show()
     }
 
@@ -202,7 +202,7 @@ class MainActivity : Activity() {
             setTitle("姓名")
             setMessage("请输入您的真实姓名。")
             setLeftButton("取消")
-            setRightButton("确定", listener = object : EditTextCallListener {
+            setRightButton("确定", object : EditTextCallListener {
                 override fun callBack(str: String?) {
                     showToast(str)
                 }
@@ -213,7 +213,7 @@ class MainActivity : Activity() {
     fun aeTwo(view: View?) {
         AlertEditDialog(this).apply {
             setMessage("给自己起一个好听的名字吧")
-            setRightButton("确定", listener = object : EditTextCallListener {
+            setRightButton("确定", object : EditTextCallListener {
                 override fun callBack(str: String?) {
                     if (!TextUtils.isEmpty(str)) {
                         showToast(str)
@@ -234,7 +234,7 @@ class MainActivity : Activity() {
             setTitle("Number")
             setNumberValues(numbers, index, OnValueChangeListener { picker: NumberPicker?, oldVal: Int, newVal: Int -> defValue = numbers[newVal] })
             setLeftButton("Cancel")
-            setRightButton("OK", listener = View.OnClickListener { showToast(defValue) })
+            setRightButton("OK", View.OnClickListener { showToast(defValue) })
         }.show()
     }
 
@@ -248,7 +248,7 @@ class MainActivity : Activity() {
             setNumberValues(numbers, index, OnValueChangeListener { picker: NumberPicker?, oldVal: Int, newVal: Int -> defValue = numbers[newVal] })
             setNumberValueSuffix("市")
             setLeftButton("取消")
-            setRightButton("确定", listener = View.OnClickListener { showToast(defValue) })
+            setRightButton("确定", View.OnClickListener { showToast(defValue) })
         }.show()
     }
 

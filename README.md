@@ -1,6 +1,6 @@
 # iOS style Dialog
 
-[![API](https://img.shields.io/badge/API-14%2B-green.svg?style=flat)](https://android-arsenal.com/api?level=14)
+[![API](https://img.shields.io/badge/API-14%2B-green.svg?style=flat)](https://android-arsenal.com/api?level=19)
 [![jitpack](https://jitpack.io/v/shaoshuai904/iOS_Style_Dialog.svg)](https://jitpack.io/#shaoshuai904/iOS_Style_Dialog)
 [![demo](https://img.shields.io/badge/download-demo-blue.svg)](https://github.com/shaoshuai904/IOSDialog/blob/master/screens/app-v1.4.0_15.apk) <-- 点击下载demo
 
@@ -20,7 +20,7 @@ allprojects {
 
 ```groovy
 dependencies {
-	implementation 'com.github.shaoshuai904:iOS_Style_Dialog:1.4.0'
+	implementation 'com.github.shaoshuai904:iOS_Style_Dialog:1.4.1'
 }
 ```
 
@@ -51,24 +51,6 @@ dependencies {
                 .show();
 ```
 
-### AlertEditDialog
-
-	样式布局:[ 标题 + 消息 + 输入框 + 左按钮 + 右按钮 ]
-
-```java       
-        new AlertEditDialog(mContext)
-                .setTitle("姓名")
-                .setMessage("请输入您的真实姓名。")
-                .setLeftButton("取消", null)
-                .setRightButton("确定", new AlertEditDialog.EditTextCallListener() {
-                    @Override
-                    public void callBack(String str) {
-                        showToast(str);
-                    }
-                })
-                .show();
-```
-
 ### ActionSheetDialog
 
 	样式布局:[ 标题 + 页签条目 + 取消按钮 ]
@@ -91,37 +73,11 @@ dependencies {
             }.show()
 ```
 
-### AlertNumberPickerDialog
+[完整预览各类用法 -（简单使用类 传送门）](https://github.com/shaoshuai904/iOS_Style_Dialog/blob/master/app/src/main/java/com/maple/iosdialog/MainActivity.kt)
 
-	样式布局:[ 标题 + 选择框 + 左按钮 + 右按钮 ]
-
-```java 
-        numbers = new String[]{"1", "2", "3", "4", "5", "6", "7", "8", "9", "10"};
-        defValue = numbers[index];
-
-        new AlertNumberPickerDialog(mContext)
-                .setTitle("Number")
-                .setNumberValues(numbers, index, new NumberPicker.OnValueChangeListener() {
-                    @Override
-                    public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
-                        defValue = numbers[newVal];
-                    }
-                })
-                .setLeftButton("Cancel", null)
-                .setRightButton("OK", new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        showToast(defValue);
-                    }
-                })
-                .show();
-```
-
-
-[完整预览各类用法 -（简单使用类 传送门）](https://github.com/shaoshuai904/iOS_Style_Dialog/blob/master/app/src/main/java/com/maple/iosdialog/MainActivity.java)
 
 ----------
-## v1.4.0 ##
+## v1.4.1 ##
  - AlertDialog 兼容html样式
  - 新增ActionSheetRecyclerDialog，支持自定义item Bean，自定义最大高度，自定义样式选择
  - 更新minSdkVersion = 19
