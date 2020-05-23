@@ -4,6 +4,7 @@ import android.app.Dialog
 import android.content.Context
 import android.databinding.DataBindingUtil
 import android.graphics.Typeface
+import android.graphics.drawable.Drawable
 import android.support.v4.content.ContextCompat
 import android.view.Gravity
 import android.view.LayoutInflater
@@ -77,23 +78,45 @@ class ActionSheetRecyclerDialog(private val mContext: Context) : Dialog(mContext
         }
     }
 
+    // 设置顶部条【关闭】按钮图标
+    fun setCloseIcon(bg: Drawable) {
+        binding.ivClose.let {
+            it.background = bg
+            it.visibility = View.VISIBLE
+        }
+    }
+
+    // 设置顶部条【关闭】按钮是否显示
+    fun setCloseVisibility(isShow: Boolean) {
+        binding.ivClose.visibility = if (isShow) View.VISIBLE else View.GONE
+    }
+
+    // 添加动作页签集合
     fun addSheetItems(items: MutableList<SingleSelectItem>) {
         binding.rvData.addItemDecoration(DividerItemDecoration(10f.dp2px(context), 0.7f.dp2px(context)))
         binding.rvData.adapter = adapter
         adapter.refreshData(items)
     }
 
+    // 添加条目点击监听
     fun addSheetItemClickListener(itemClickListener: OnSingleSelectedItemClickListener?) {
         onSingleSelectedItemClickListener = itemClickListener
     }
 
+    // 设置当前选中条目
     fun setSelectedIndex(index: Int) {
         adapter.updateSelectItem(index)
     }
 
+    // 设置最大高度百分比
     fun setMaxScaleHeight(scHeight: Double) {
         val height = (screenInfo().y * scHeight).toInt()
         maxHeight = height
+    }
+
+    // 设置底部padding值
+    fun setBottomPadding(bottomPx: Float) {
+        binding.rvData.setPadding(0, 0, 0, bottomPx.dp2px(mContext))
     }
 
     /**

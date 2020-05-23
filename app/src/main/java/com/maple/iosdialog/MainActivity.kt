@@ -12,6 +12,7 @@ import android.widget.Toast
 import com.maple.msdialog.*
 import com.maple.msdialog.AlertEditDialog.EditTextCallListener
 import com.maple.msdialog.DialogUtil.setScaleWidth
+import java.util.*
 
 /**
  * Custom Dialog Demo
@@ -102,75 +103,61 @@ class MainActivity : Activity() {
         }.show()
     }
 
-    // -------------------------------- Action Sheet List Dialog ----------------------------------------
+    // -------------------------------- Action Sheet Recycler List Dialog ----------------------------------------
 
-    var da1: ActionSheetRecyclerDialog? = null
-    fun aslList(view: View?) {
-        if (da1 == null) {
-            val items = arrayListOf<SingleSelectItem>(
-                    SingleSelectItem("item 1"),
-                    SingleSelectItem("item 2"),
-                    SingleSelectItem("item 3"),
-                    SingleSelectItem("item 3"),
-                    SingleSelectItem("item 3"),
-                    SingleSelectItem("item 3"),
-                    SingleSelectItem("item 3"),
-                    SingleSelectItem("item 3"),
-                    SingleSelectItem("item 3"),
-                    SingleSelectItem("item 3"),
-                    SingleSelectItem("item 4")
-            )
-            da1 = ActionSheetRecyclerDialog(this).apply {
+    var ar1: ActionSheetRecyclerDialog? = null
+    fun asrList(view: View?) {
+        if (ar1 == null) {
+            val items = getSingleSelectItemTestData(4)
+            ar1 = ActionSheetRecyclerDialog(this).apply {
                 setTitle("选择条目")
+                setCloseVisibility(false)
+                setBottomPadding(12f)// 默认底部留白：20dp
                 addSheetItems(items)
-                setMaxScaleHeight(0.5)
                 addSheetItemClickListener(OnSingleSelectedItemClickListener { item, position ->
-                    showToast("$position   ${item.toString()}")
+                    showToast("$position   ${item.name}")
                 })
             }
         }
-        da1?.show()
+        ar1?.show()
     }
+
+    var ar2: ActionSheetRecyclerDialog? = null
+    fun asrBigDataList(view: View?) {
+        if (ar2 == null) {
+            val items = getSingleSelectItemTestData(20)
+            ar2 = ActionSheetRecyclerDialog(this).apply {
+                setTitle("选择条目")
+                addSheetItems(items)
+                setMaxScaleHeight(0.65)
+                addSheetItemClickListener(OnSingleSelectedItemClickListener { item, position ->
+                    showToast("$position   ${item.name}")
+                })
+            }
+        }
+        ar2?.show()
+    }
+
     // -------------------------------- Action Sheet List Dialog ----------------------------------------
-//    var asl1: ActionSheetList1Dialog? = null
-//    fun aslList(view: View?) {
-//        if (asl1 == null) {
-//            val data = arrayListOf(
-//                    SheetItem("region 1", Color.parseColor("#4762FE")),
-//                    SheetItem("region 2", Color.BLUE)
-//            )
-//            asl1 = ActionSheetList1Dialog(this).apply {
-//                setCancelText("取消")
-//                addSheetItems(data, SheetItem.OnSheetItemClickListener { item ->
-//                    showToast(item.showName)
-//                })
-//            }
-//        }
-//        asl1?.show()
-//    }
+    var asl1: ActionSheetListDialog? = null
+    fun aslList(view: View?) {
+        if (asl1 == null) {
+            asl1 = ActionSheetListDialog(this).apply {
+                setCancelText("取消")
+                addSheetItems(getSheetItemTestData(2), SheetItem.OnSheetItemClickListener { item ->
+                    showToast(item.showName)
+                })
+            }
+        }
+        asl1?.show()
+    }
 
     var asl2: ActionSheetListDialog? = null
     fun aslListNoCancel(view: View?) {
         if (asl2 == null) {
-            val data = arrayListOf(
-                    SheetItem("list item 0", Color.RED),
-                    SheetItem("list item 1", Color.BLUE),
-                    SheetItem("list item 2", Color.YELLOW),
-                    SheetItem("list item 3"),
-                    SheetItem("list item 3"),
-                    SheetItem("list item 3"),
-                    SheetItem("list item 3"),
-                    SheetItem("list item 3"),
-                    SheetItem("list item 3"),
-                    SheetItem("list item 3"),
-                    SheetItem("list item 3"),
-                    SheetItem("list item 3"),
-                    SheetItem("list item 3"),
-                    SheetItem("list item 4")
-            )
             asl2 = ActionSheetListDialog(this).apply {
                 setTitle("标题")
-                addSheetItems(data, SheetItem.OnSheetItemClickListener { item ->
+                addSheetItems(getSheetItemTestData(10), SheetItem.OnSheetItemClickListener { item ->
                     showToast(item.showName)
                 })
                 setSelectedIndex(3)
@@ -182,23 +169,10 @@ class MainActivity : Activity() {
     var asl3: ActionSheetListDialog? = null
     fun aslListTitle(view: View?) {
         if (asl3 == null) {
-            val data = arrayListOf(
-                    SheetItem("list item 0", Color.RED),
-                    SheetItem("list item 1", Color.BLUE),
-                    SheetItem("list item 2", Color.GREEN),
-                    SheetItem("list item 3", Color.YELLOW),
-                    SheetItem("list item 4"),
-                    SheetItem("list item 5"),
-                    SheetItem("list item 6"),
-                    SheetItem("list item 6"),
-                    SheetItem("list item 6"),
-                    SheetItem("list item 6"),
-                    SheetItem("list item 7")
-            )
             asl3 = ActionSheetListDialog(this).apply {
                 setTitle("标题")
                 setCancelText("取消")
-                addSheetItems(data, SheetItem.OnSheetItemClickListener { item ->
+                addSheetItems(getSheetItemTestData(20), SheetItem.OnSheetItemClickListener { item ->
                     showToast(item.showName)
                 })
             }
@@ -270,5 +244,24 @@ class MainActivity : Activity() {
     companion object {
         const val DEF_BLUE = "#4762FE"
         const val DEF_RED = "#FD4A2E"
+    }
+
+    // 获取测试数据
+    private fun getSheetItemTestData(count: Int): ArrayList<SheetItem> {
+        val testData = arrayListOf<SheetItem>()
+        for (index in 1..count) {
+            val mColor = -0x1000000 or Random().nextInt(0xffffff)
+            testData.add(SheetItem("list item $index", mColor))
+        }
+        return testData
+    }
+
+    // 获取测试数据
+    private fun getSingleSelectItemTestData(count: Int): ArrayList<SingleSelectItem> {
+        val testData = arrayListOf<SingleSelectItem>()
+        for (index in 1..count) {
+            testData.add(SingleSelectItem("single select item $index"))
+        }
+        return testData
     }
 }

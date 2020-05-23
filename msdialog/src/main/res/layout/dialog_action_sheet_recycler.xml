@@ -11,13 +11,13 @@
         <RelativeLayout
             android:id="@+id/rl_title_bar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:background="@drawable/sel_action_sheet_top">
 
             <TextView
                 android:id="@+id/tv_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/sel_action_sheet_top"
                 android:gravity="center"
                 android:minHeight="50dp"
                 android:padding="10dp"
@@ -45,6 +45,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#FFFFFF"
+            android:paddingBottom="20dp"
             app:layoutManager="android.support.v7.widget.LinearLayoutManager"
             tools:itemCount="4"
             tools:listitem="@layout/item_sheet" />
