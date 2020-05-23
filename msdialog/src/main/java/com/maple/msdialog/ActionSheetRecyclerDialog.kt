@@ -26,7 +26,7 @@ class ActionSheetRecyclerDialog(private val mContext: Context) : Dialog(mContext
             LayoutInflater.from(context), R.layout.dialog_action_sheet_recycler, null, false)
     private var onSingleSelectedItemClickListener: OnSingleSelectedItemClickListener? = null
     val rootView by lazy { binding.root }// 根view
-    var maxHeight: Int = 0 //最大view高度, 单位：px
+    var maxHeight: Int? = null //最大view高度, 单位：px
     private val adapter by lazy {
         SingleSelectItemListAdapter(mContext, true).apply {
             onItemClickListener = object : BaseQuickAdapter.OnItemClickListener {
@@ -100,8 +100,12 @@ class ActionSheetRecyclerDialog(private val mContext: Context) : Dialog(mContext
      * set layout
      */
     private fun setSheetLayout() {
-        rootView.measure(0, 0)
-        val height = min(maxHeight, rootView.measuredHeight)
+        val height = if (maxHeight != null) {
+            rootView.measure(0, 0)
+            min(maxHeight!!, rootView.measuredHeight)
+        } else {
+            LinearLayout.LayoutParams.WRAP_CONTENT
+        }
         rootView.layoutParams = FrameLayout.LayoutParams(
                 LinearLayout.LayoutParams.WRAP_CONTENT,
                 height)
