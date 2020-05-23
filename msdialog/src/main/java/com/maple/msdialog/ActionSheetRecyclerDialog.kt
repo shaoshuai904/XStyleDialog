@@ -1,10 +1,10 @@
 package com.maple.msdialog
 
-import android.app.Dialog
 import android.content.Context
 import android.databinding.DataBindingUtil
 import android.graphics.Typeface
 import android.graphics.drawable.Drawable
+import android.support.design.widget.BottomSheetDialog
 import android.support.v4.content.ContextCompat
 import android.view.Gravity
 import android.view.LayoutInflater
@@ -22,7 +22,7 @@ import kotlin.math.min
  * @author : shaoshuai27
  * @date ：2020/5/6
  */
-class ActionSheetRecyclerDialog(private val mContext: Context) : Dialog(mContext, R.style.ActionSheetDialogStyle) {
+class ActionSheetRecyclerDialog(private val mContext: Context) : BottomSheetDialog(mContext, R.style.ActionSheetDialogStyle) {
     private val binding: DialogActionSheetRecyclerBinding = DataBindingUtil.inflate(
             LayoutInflater.from(context), R.layout.dialog_action_sheet_recycler, null, false)
     private var onSingleSelectedItemClickListener: OnSingleSelectedItemClickListener? = null
@@ -92,7 +92,7 @@ class ActionSheetRecyclerDialog(private val mContext: Context) : Dialog(mContext
     }
 
     // 添加动作页签集合
-    fun addSheetItems(items: MutableList<SingleSelectItem>) {
+    fun addSheetItems(items: List<SingleSelectItem>) {
         binding.rvData.addItemDecoration(DividerItemDecoration(10f.dp2px(context), 0.7f.dp2px(context)))
         binding.rvData.adapter = adapter
         adapter.refreshData(items)

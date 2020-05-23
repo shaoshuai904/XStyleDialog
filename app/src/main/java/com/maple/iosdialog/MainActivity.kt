@@ -57,7 +57,7 @@ class MainActivity : Activity() {
     }
 
     // -------------------------------- Action Sheet Dialog ----------------------------------------
-    private val onItemClickListener = SheetItem.OnSheetItemClickListener { item ->
+    private val onItemClickListener = OnSheetItemClickListener { item ->
         showToast("item ${item.showName}")
     }
 
@@ -66,7 +66,7 @@ class MainActivity : Activity() {
             setCancelable(false)
             setCanceledOnTouchOutside(false)
             setTitle("清空消息列表后，聊天记录依然保留，确定要清空消息列表？")
-            addSheetItem("清空消息列表", Color.parseColor(DEF_RED), SheetItem.OnSheetItemClickListener { showToast("clear msg list") })
+            addSheetItem("清空消息列表", Color.parseColor(DEF_RED), OnSheetItemClickListener { showToast("clear msg list") })
             setCancelText("取 消")
         }.show()
     }
@@ -108,14 +108,23 @@ class MainActivity : Activity() {
     var ar1: ActionSheetRecyclerDialog? = null
     fun asrList(view: View?) {
         if (ar1 == null) {
-            val items = getSingleSelectItemTestData(4)
+            val items = arrayListOf(
+                    User("001", "张三", 23),
+                    User("002", "李四", 8),
+                    User("004", "王五", 11),
+                    User("007", "赵六六", 123)
+            )
             ar1 = ActionSheetRecyclerDialog(this).apply {
                 setTitle("选择条目")
                 setCloseVisibility(false)
                 setBottomPadding(12f)// 默认底部留白：20dp
                 addSheetItems(items)
                 addSheetItemClickListener(OnSingleSelectedItemClickListener { item, position ->
-                    showToast("$position   ${item.name}")
+                    if (item is User) {
+                        showToast("${item.name}  年龄:${item.age}岁")
+                    } else {
+                        showToast("$position   ${item.getShowName()}")
+                    }
                 })
             }
         }
@@ -131,7 +140,7 @@ class MainActivity : Activity() {
                 addSheetItems(items)
                 setMaxScaleHeight(0.65)
                 addSheetItemClickListener(OnSingleSelectedItemClickListener { item, position ->
-                    showToast("$position   ${item.name}")
+                    showToast("$position   ${item.getShowName()}")
                 })
             }
         }
@@ -144,7 +153,7 @@ class MainActivity : Activity() {
         if (asl1 == null) {
             asl1 = ActionSheetListDialog(this).apply {
                 setCancelText("取消")
-                addSheetItems(getSheetItemTestData(2), SheetItem.OnSheetItemClickListener { item ->
+                addSheetItems(getSheetItemTestData(2), OnSheetItemClickListener { item ->
                     showToast(item.showName)
                 })
             }
@@ -157,7 +166,7 @@ class MainActivity : Activity() {
         if (asl2 == null) {
             asl2 = ActionSheetListDialog(this).apply {
                 setTitle("标题")
-                addSheetItems(getSheetItemTestData(10), SheetItem.OnSheetItemClickListener { item ->
+                addSheetItems(getSheetItemTestData(10), OnSheetItemClickListener { item ->
                     showToast(item.showName)
                 })
                 setSelectedIndex(3)
@@ -172,7 +181,7 @@ class MainActivity : Activity() {
             asl3 = ActionSheetListDialog(this).apply {
                 setTitle("标题")
                 setCancelText("取消")
-                addSheetItems(getSheetItemTestData(20), SheetItem.OnSheetItemClickListener { item ->
+                addSheetItems(getSheetItemTestData(20), OnSheetItemClickListener { item ->
                     showToast(item.showName)
                 })
             }

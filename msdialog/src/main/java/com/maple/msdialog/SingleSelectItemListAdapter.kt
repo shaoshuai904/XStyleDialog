@@ -49,7 +49,7 @@ class SingleSelectItemListAdapter(
         fun bind(item: SingleSelectItem) {
             bindViewClickListener(this)
             binding.apply {
-                tvName.text = item.name
+                tvName.text = item.getShowName()
                 if (item.isSelect) {
                     tvName.setTextColor(ContextCompat.getColor(mContext, R.color.def_right_color))
                     ivMark.setImageResource(android.R.drawable.checkbox_on_background)
@@ -60,31 +60,6 @@ class SingleSelectItemListAdapter(
                 }
             }
         }
-    }
-
-}
-
-class SingleSelectItem(
-        var id: String,
-        var name: String,
-        var isSelect: Boolean = false// 是否为选中状态
-) : Serializable {
-
-    constructor(name: String) : this(name, name, false)
-
-    override fun equals(other: Any?): Boolean {
-        if (this === other) return true
-        if (javaClass != other?.javaClass) return false
-        other as SingleSelectItem
-        if (id != other.id) return false
-        if (name != other.name) return false
-        return true
-    }
-
-    override fun hashCode(): Int {
-        var result = id.hashCode()
-        result = 31 * result + name.hashCode()
-        return result
     }
 
 }

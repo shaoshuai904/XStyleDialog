@@ -48,7 +48,7 @@ class ActionSheetAdapter(mContext: Context) : AbsAdapter<SheetItem>(mContext) {
         fun bind(item: SheetItem, index: Int) {
             binding.apply {
                 tvName.text = item.showName
-                tvName.setTextColor(item.ShowColor)
+                tvName.setTextColor(item.showColor)
                 // ivMark.isSelected = item.isSelected
                 ivMark.visibility = if (item.isSelected) View.VISIBLE else View.GONE
                 val bg = if (count == 1) {

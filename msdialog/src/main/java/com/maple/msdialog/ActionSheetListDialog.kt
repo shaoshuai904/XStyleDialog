@@ -90,7 +90,7 @@ class ActionSheetListDialog(private val mContext: Context) : Dialog(mContext, R.
 
     fun addSheetItems(
             items: MutableList<SheetItem>,
-            itemClickListener: SheetItem.OnSheetItemClickListener?
+            itemClickListener:  OnSheetItemClickListener?
     ) {
         sheetItemList = items
         binding.lvData.adapter = adapter
@@ -98,7 +98,7 @@ class ActionSheetListDialog(private val mContext: Context) : Dialog(mContext, R.
         binding.lvData.setOnItemClickListener { _, _, position, _ ->
             val item = adapter.getItem(position)
             adapter.setSelectedIndex(position)
-            itemClickListener?.onClick(item)
+            itemClickListener?.onItemClick(item)
             dismiss()
         }
     }

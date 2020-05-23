@@ -85,12 +85,12 @@ class ActionSheetDialog(private val mContext: Context) : Dialog(mContext, R.styl
         return this
     }
 
-    fun addSheetItem(strItem: String?, listener: SheetItem.OnSheetItemClickListener?): ActionSheetDialog {
+    fun addSheetItem(strItem: String?, listener: OnSheetItemClickListener?): ActionSheetDialog {
         val color = ContextCompat.getColor(mContext, R.color.def_message_color)
         return addSheetItem(strItem, color, listener)
     }
 
-    fun addSheetItem(strItem: String?, color: Int, listener: SheetItem.OnSheetItemClickListener?): ActionSheetDialog {
+    fun addSheetItem(strItem: String?, color: Int, listener: OnSheetItemClickListener?): ActionSheetDialog {
         if (sheetItemList == null) {
             sheetItemList = ArrayList()
         }
@@ -139,14 +139,14 @@ class ActionSheetDialog(private val mContext: Context) : Dialog(mContext, R.styl
                 textSize = 18f
                 gravity = Gravity.CENTER
                 setBackgroundResource(bg)
-                setTextColor(sheetItem.ShowColor)
+                setTextColor(sheetItem.showColor)
                 layoutParams = LinearLayout.LayoutParams(
                         LinearLayout.LayoutParams.MATCH_PARENT,
                         (ACTION_SHEET_ITEM_HEIGHT.toFloat()).dp2px(mContext)
                 )
                 // add click listener
                 setOnClickListener {
-                    sheetItem.itemClickListener?.onClick(sheetItem)
+                    sheetItem.itemClickListener?.onItemClick(sheetItem)
                     dismiss()
                 }
             }
