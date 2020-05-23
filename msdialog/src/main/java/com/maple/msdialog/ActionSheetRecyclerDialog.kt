@@ -13,9 +13,9 @@ import android.widget.FrameLayout
 import android.widget.LinearLayout
 import com.maple.msdialog.adapter.BaseQuickAdapter
 import com.maple.msdialog.adapter.SingleSelectItemListAdapter
+import com.maple.msdialog.databinding.DialogActionSheetRecyclerBinding
 import com.maple.msdialog.utils.DensityUtils.dp2px
 import com.maple.msdialog.utils.DialogUtil.screenInfo
-import com.maple.msdialog.databinding.DialogActionSheetRecyclerBinding
 import kotlin.math.min
 
 /**
@@ -108,6 +108,12 @@ class ActionSheetRecyclerDialog(private val mContext: Context) : BottomSheetDial
     // 设置当前选中条目
     fun setSelectedIndex(index: Int) {
         adapter.updateSelectItem(index)
+    }
+
+    // 是否显示item选中标记
+    fun isShowItemMark(isShow: Boolean) {
+        adapter.isShowMark = isShow
+        adapter.notifyDataSetChanged()
     }
 
     // 设置最大高度百分比

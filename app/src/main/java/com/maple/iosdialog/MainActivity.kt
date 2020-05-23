@@ -131,6 +131,8 @@ class MainActivity : Activity() {
                         showToast("$position   ${item.getShowName()}")
                     }
                 })
+                isShowItemMark(false)// 不显示item 选中对勾
+                setSelectedIndex(1)// 选中第二个
             }
         }
         ar1?.show()
@@ -259,16 +261,6 @@ class MainActivity : Activity() {
         const val DEF_BLUE = "#4762FE"
         const val DEF_RED = "#FD4A2E"
     }
-
-//    // 获取测试数据
-//    private fun getSheetItemTestData(count: Int): ArrayList<SheetItem> {
-//        val testData = arrayListOf<SheetItem>()
-//        for (index in 1..count) {
-//            val mColor = -0x1000000 or Random().nextInt(0xffffff)
-//            testData.add(SheetItem("list item $index", mColor))
-//        }
-//        return testData
-//    }
 
     // 获取测试数据
     private fun getSingleSelectItemTestData(count: Int): ArrayList<SheetItem> {

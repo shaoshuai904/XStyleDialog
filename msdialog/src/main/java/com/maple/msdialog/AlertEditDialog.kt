@@ -7,8 +7,8 @@ import android.graphics.Typeface
 import android.support.v4.content.ContextCompat
 import android.view.LayoutInflater
 import android.view.View
-import com.maple.msdialog.utils.DialogUtil.setScaleWidth
 import com.maple.msdialog.databinding.DialogAlertEditBinding
+import com.maple.msdialog.utils.DialogUtil.setScaleWidth
 
 /**
  * 警告框式Edit Dialog [ 标题 + 输入框 + 消息文本 + 左按钮 + 右按钮 ]
@@ -85,7 +85,7 @@ class AlertEditDialog(private val mContext: Context) : Dialog(mContext, R.style.
             listener: View.OnClickListener? = null
     ): AlertEditDialog {
         showLeftBtn = true
-        binding.btRight.apply {
+        binding.btLeft.apply {
             this.text = text
             setTextColor(color)
             textSize = spSize
