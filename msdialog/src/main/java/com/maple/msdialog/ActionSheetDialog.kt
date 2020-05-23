@@ -10,9 +10,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.LinearLayout
 import android.widget.TextView
+import com.maple.msdialog.databinding.DialogActionSheetBinding
 import com.maple.msdialog.utils.DensityUtils.dp2px
 import com.maple.msdialog.utils.DialogUtil.screenInfo
-import com.maple.msdialog.databinding.DialogActionSheetBinding
 import java.util.*
 
 /**
@@ -27,6 +27,7 @@ class ActionSheetDialog(private val mContext: Context) : Dialog(mContext, R.styl
     val rootView by lazy { binding.root }
     private var showTitle = false
     private var sheetItemList: MutableList<SheetItem>? = null
+    var itemClickListener: OnSheetItemClickListener? = null
 
     companion object {
         const val ACTION_SHEET_ITEM_HEIGHT = 50
@@ -85,25 +86,27 @@ class ActionSheetDialog(private val mContext: Context) : Dialog(mContext, R.styl
         return this
     }
 
-    fun addSheetItem(strItem: String, listener: OnSheetItemClickListener?): ActionSheetDialog {
+    fun addSheetItem(strItem: String): ActionSheetDialog {
         val color = ContextCompat.getColor(mContext, R.color.def_message_color)
-        return addSheetItem(strItem, color, listener)
+        return addSheetItem(strItem, color)
     }
 
-    fun addSheetItem(strItem: String, color: Int, listener: OnSheetItemClickListener?): ActionSheetDialog {
+    fun addSheetItem(strItem: String, color: Int): ActionSheetDialog {
+        return addSheetItem(SheetItem(strItem, color))
+    }
+
+    fun addSheetItem(item: SheetItem): ActionSheetDialog {
         if (sheetItemList == null) {
             sheetItemList = ArrayList()
         }
-        sheetItemList?.add(SheetItem(strItem, color).apply {
-            itemClickListener = listener
-        })
+        sheetItemList?.add(item)
         return this
     }
 
     /**
      * set items layout
      */
-    private fun setSheetItems() {
+    private fun initLayout() {
         if (sheetItemList == null || sheetItemList!!.size <= 0) {
             return
         }
@@ -148,7 +151,7 @@ class ActionSheetDialog(private val mContext: Context) : Dialog(mContext, R.styl
                 )
                 // add click listener
                 setOnClickListener {
-                    sheetItem.itemClickListener?.onItemClick(sheetItem, index)
+                    itemClickListener?.onItemClick(sheetItem, index)
                     dismiss()
                 }
             }
@@ -157,7 +160,7 @@ class ActionSheetDialog(private val mContext: Context) : Dialog(mContext, R.styl
     }
 
     override fun show() {
-        setSheetItems()
+        initLayout()
         super.show()
     }
 
