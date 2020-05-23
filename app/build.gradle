@@ -7,7 +7,7 @@ android {
 
     defaultConfig {
         applicationId "com.maple.iosdialog"
-        minSdkVersion 14
+        minSdkVersion 19
         targetSdkVersion 28
         versionCode VERSION_CODE as int
         versionName VERSION_NAME
