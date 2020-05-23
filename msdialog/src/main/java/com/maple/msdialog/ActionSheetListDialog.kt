@@ -9,8 +9,9 @@ import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.LinearLayout
-import com.maple.msdialog.DensityUtils.dp2px
-import com.maple.msdialog.DialogUtil.screenInfo
+import com.maple.msdialog.adapter.ActionSheetAdapter
+import com.maple.msdialog.utils.DensityUtils.dp2px
+import com.maple.msdialog.utils.DialogUtil.screenInfo
 import com.maple.msdialog.databinding.DialogActionSheetListBinding
 
 /**
@@ -90,7 +91,7 @@ class ActionSheetListDialog(private val mContext: Context) : Dialog(mContext, R.
 
     fun addSheetItems(
             items: MutableList<SheetItem>,
-            itemClickListener:  OnSheetItemClickListener?
+            itemClickListener: OnSheetItemClickListener?
     ) {
         sheetItemList = items
         binding.lvData.adapter = adapter
@@ -98,7 +99,7 @@ class ActionSheetListDialog(private val mContext: Context) : Dialog(mContext, R.
         binding.lvData.setOnItemClickListener { _, _, position, _ ->
             val item = adapter.getItem(position)
             adapter.setSelectedIndex(position)
-            itemClickListener?.onItemClick(item)
+            itemClickListener?.onItemClick(item, position)
             dismiss()
         }
     }

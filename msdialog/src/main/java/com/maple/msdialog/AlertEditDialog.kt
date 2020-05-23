@@ -7,7 +7,7 @@ import android.graphics.Typeface
 import android.support.v4.content.ContextCompat
 import android.view.LayoutInflater
 import android.view.View
-import com.maple.msdialog.DialogUtil.setScaleWidth
+import com.maple.msdialog.utils.DialogUtil.setScaleWidth
 import com.maple.msdialog.databinding.DialogAlertEditBinding
 
 /**

@@ -1,10 +1,12 @@
-package com.maple.msdialog
+package com.maple.msdialog.adapter
 
 import android.content.Context
 import android.databinding.DataBindingUtil
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.maple.msdialog.R
+import com.maple.msdialog.SheetItem
 import com.maple.msdialog.databinding.ItemSheetBinding
 
 /**
@@ -47,7 +49,7 @@ class ActionSheetAdapter(mContext: Context) : AbsAdapter<SheetItem>(mContext) {
 
         fun bind(item: SheetItem, index: Int) {
             binding.apply {
-                tvName.text = item.showName
+                tvName.text = item.getShowName()
                 tvName.setTextColor(item.showColor)
                 // ivMark.isSelected = item.isSelected
                 ivMark.visibility = if (item.isSelected) View.VISIBLE else View.GONE

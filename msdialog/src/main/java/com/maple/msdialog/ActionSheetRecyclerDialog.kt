@@ -11,8 +11,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.FrameLayout
 import android.widget.LinearLayout
-import com.maple.msdialog.DensityUtils.dp2px
-import com.maple.msdialog.DialogUtil.screenInfo
+import com.maple.msdialog.adapter.BaseQuickAdapter
+import com.maple.msdialog.adapter.SingleSelectItemListAdapter
+import com.maple.msdialog.utils.DensityUtils.dp2px
+import com.maple.msdialog.utils.DialogUtil.screenInfo
 import com.maple.msdialog.databinding.DialogActionSheetRecyclerBinding
 import kotlin.math.min
 
@@ -25,7 +27,7 @@ import kotlin.math.min
 class ActionSheetRecyclerDialog(private val mContext: Context) : BottomSheetDialog(mContext, R.style.ActionSheetDialogStyle) {
     private val binding: DialogActionSheetRecyclerBinding = DataBindingUtil.inflate(
             LayoutInflater.from(context), R.layout.dialog_action_sheet_recycler, null, false)
-    private var onSingleSelectedItemClickListener: OnSingleSelectedItemClickListener? = null
+    private var onSingleSelectedItemClickListener: OnSheetItemClickListener? = null
     val rootView by lazy { binding.root }// 根view
     var maxHeight: Int? = null //最大view高度, 单位：px
     private val adapter by lazy {
@@ -92,14 +94,14 @@ class ActionSheetRecyclerDialog(private val mContext: Context) : BottomSheetDial
     }
 
     // 添加动作页签集合
-    fun addSheetItems(items: List<SingleSelectItem>) {
+    fun addSheetItems(items: List<SheetItem>) {
         binding.rvData.addItemDecoration(DividerItemDecoration(10f.dp2px(context), 0.7f.dp2px(context)))
         binding.rvData.adapter = adapter
         adapter.refreshData(items)
     }
 
     // 添加条目点击监听
-    fun addSheetItemClickListener(itemClickListener: OnSingleSelectedItemClickListener?) {
+    fun addSheetItemClickListener(itemClickListener: OnSheetItemClickListener?) {
         onSingleSelectedItemClickListener = itemClickListener
     }
 

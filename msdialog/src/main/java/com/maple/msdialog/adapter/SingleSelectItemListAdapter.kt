@@ -1,4 +1,4 @@
-package com.maple.msdialog
+package com.maple.msdialog.adapter
 
 import android.content.Context
 import android.databinding.DataBindingUtil
@@ -7,8 +7,9 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.maple.msdialog.R
+import com.maple.msdialog.SheetItem
 import com.maple.msdialog.databinding.ItemSingleStringBinding
-import java.io.Serializable
 import kotlin.math.max
 import kotlin.math.min
 
@@ -22,13 +23,13 @@ import kotlin.math.min
 class SingleSelectItemListAdapter(
         val mContext: Context,
         var isShowMark: Boolean = false // 是否显示 右侧对勾 √
-) : BaseQuickAdapter<SingleSelectItem, RecyclerView.ViewHolder>() {
+) : BaseQuickAdapter<SheetItem, RecyclerView.ViewHolder>() {
 
     fun updateSelectItem(index: Int) {
         // 合规化index值，大于0 且 小于 size
         val number = min(max(index, 0), data().size - 1)
         data().forEachIndexed { i, item ->
-            item.isSelect = (number == i)
+            item.isSelected = (number == i)
         }
         notifyDataSetChanged()
     }
@@ -46,11 +47,11 @@ class SingleSelectItemListAdapter(
     inner class MyHolder(val binding: ItemSingleStringBinding)
         : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(item: SingleSelectItem) {
+        fun bind(item: SheetItem) {
             bindViewClickListener(this)
             binding.apply {
                 tvName.text = item.getShowName()
-                if (item.isSelect) {
+                if (item.isSelected) {
                     tvName.setTextColor(ContextCompat.getColor(mContext, R.color.def_right_color))
                     ivMark.setImageResource(android.R.drawable.checkbox_on_background)
                     ivMark.visibility = if (isShowMark) View.VISIBLE else View.GONE

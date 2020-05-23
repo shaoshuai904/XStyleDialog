@@ -1,4 +1,4 @@
-package com.maple.msdialog
+package com.maple.msdialog.utils
 
 import android.content.Context
 import android.util.TypedValue

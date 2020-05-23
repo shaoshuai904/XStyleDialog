@@ -9,7 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.DatePicker
 import android.widget.NumberPicker.OnValueChangeListener
-import com.maple.msdialog.DialogUtil.setScaleWidth
+import com.maple.msdialog.utils.DialogUtil.setScaleWidth
 import com.maple.msdialog.databinding.DialogNumberPickerBinding
 
 /**

@@ -1,4 +1,4 @@
-package com.maple.msdialog
+package com.maple.msdialog.adapter
 
 import android.support.v7.widget.RecyclerView
 import android.view.View

@@ -1,4 +1,4 @@
-package com.maple.msdialog;
+package com.maple.msdialog.adapter;
 
 import android.content.Context;
 import android.widget.BaseAdapter;

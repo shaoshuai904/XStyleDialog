@@ -1,31 +1,42 @@
 package com.maple.msdialog
 
 import android.graphics.Color
+import java.io.Serializable
 
-class SheetItem {
-    var showName: String? = null
-    var showColor = Color.parseColor("#333333")
-    var isSelected = false
+/**
+ * 页签List Dialog [ 标题 + 页签条目 + 取消按钮 ]
+ *
+ * @author : shaoshuai27
+ * @date ：2020/5/6
+ */
+open class SheetItem(
+        private var id: String,
+        private var name: String,
+        var isSelected: Boolean = false// 是否为选中状态
+) : Serializable {
+    var showColor: Int = Color.parseColor("#333333")
     var itemClickListener: OnSheetItemClickListener? = null
 
-    constructor() {}
-    constructor(showName: String?) {
-        this.showName = showName
+    constructor(name: String) : this(name, name, false)
+    constructor(name: String, color: Int) : this(name, name, false) {
+        this.showColor = color
     }
 
-    constructor(showName: String?, showColor: Int) {
-        this.showName = showName
-        this.showColor = showColor
+    open fun getShowName() = name
+
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (javaClass != other?.javaClass) return false
+        other as SheetItem
+        if (id != other.id) return false
+        if (name != other.name) return false
+        return true
     }
 
-    constructor(name: String?, itemClickListener: OnSheetItemClickListener?) {
-        showName = name
-        this.itemClickListener = itemClickListener
+    override fun hashCode(): Int {
+        var result = id.hashCode()
+        result = 31 * result + name.hashCode()
+        return result
     }
 
-    constructor(name: String?, color: Int, itemClickListener: OnSheetItemClickListener?) {
-        showName = name
-        showColor = color
-        this.itemClickListener = itemClickListener
-    }
 }

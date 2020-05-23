@@ -1,4 +1,4 @@
-package com.maple.msdialog
+package com.maple.msdialog.utils
 
 import android.app.Dialog
 import android.content.Context

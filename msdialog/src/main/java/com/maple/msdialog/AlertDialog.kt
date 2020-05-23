@@ -9,7 +9,7 @@ import android.text.Html
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
-import com.maple.msdialog.DialogUtil.setScaleWidth
+import com.maple.msdialog.utils.DialogUtil.setScaleWidth
 import com.maple.msdialog.databinding.DialogAlertBinding
 
 /**

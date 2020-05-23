@@ -9,7 +9,7 @@ import android.graphics.drawable.Drawable
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.View
-import com.maple.msdialog.DensityUtils.dp2px
+import com.maple.msdialog.utils.DensityUtils.dp2px
 
 /**
  * 分割线
