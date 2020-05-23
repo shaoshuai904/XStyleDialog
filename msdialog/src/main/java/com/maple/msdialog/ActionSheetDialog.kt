@@ -50,6 +50,10 @@ class ActionSheetDialog(private val mContext: Context) : Dialog(mContext, R.styl
         }
     }
 
+    fun setDialogTitle(title: CharSequence?): ActionSheetDialog {
+        return setTitle(title, isBold = false)
+    }
+
     override fun setTitle(title: CharSequence?) {
         this.setTitle(title, isBold = false)
     }

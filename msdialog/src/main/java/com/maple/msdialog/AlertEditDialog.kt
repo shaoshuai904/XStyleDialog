@@ -41,6 +41,10 @@ class AlertEditDialog(private val mContext: Context) : Dialog(mContext, R.style.
         setScaleWidth(binding.root, 0.85)
     }
 
+    fun setDialogTitle(title: CharSequence?): AlertEditDialog {
+        return setTitle(title, isBold = false)
+    }
+
     override fun setTitle(title: CharSequence?) {
         this.setTitle(title, isBold = false)
     }
@@ -105,12 +109,12 @@ class AlertEditDialog(private val mContext: Context) : Dialog(mContext, R.style.
 
     fun setRightButton(
             text: CharSequence?,
-            listener: EditTextCallListener? = null
+            listener: OnEditTextCallListener? = null
     ) = setRightButton(text, listener, ContextCompat.getColor(mContext, R.color.def_right_color), 16f, false)
 
     fun setRightButton(
             text: CharSequence?,
-            listener: EditTextCallListener? = null,
+            listener: OnEditTextCallListener? = null,
             color: Int = ContextCompat.getColor(mContext, R.color.def_right_color),
             spSize: Float = 16f,
             isBold: Boolean = false
@@ -130,10 +134,6 @@ class AlertEditDialog(private val mContext: Context) : Dialog(mContext, R.style.
             }
         }
         return this
-    }
-
-    interface EditTextCallListener {
-        fun callBack(str: String?)
     }
 
     private fun setLayout() {

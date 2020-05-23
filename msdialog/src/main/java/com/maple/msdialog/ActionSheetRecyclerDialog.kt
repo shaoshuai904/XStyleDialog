@@ -61,6 +61,10 @@ class ActionSheetRecyclerDialog(private val mContext: Context) : BottomSheetDial
         }
     }
 
+    fun setDialogTitle(title: CharSequence?): ActionSheetRecyclerDialog {
+        return setTitle(title, isBold = false)
+    }
+
     override fun setTitle(title: CharSequence?) {
         this.setTitle(title, isBold = false)
     }
@@ -70,7 +74,7 @@ class ActionSheetRecyclerDialog(private val mContext: Context) : BottomSheetDial
             color: Int = ContextCompat.getColor(mContext, R.color.def_title_color),
             spSize: Float = 16f,
             isBold: Boolean = false
-    ) {
+    ): ActionSheetRecyclerDialog {
         binding.rlTitleBar.visibility = View.VISIBLE
         binding.tvTitle.apply {
             text = title
@@ -78,53 +82,62 @@ class ActionSheetRecyclerDialog(private val mContext: Context) : BottomSheetDial
             textSize = spSize
             setTypeface(typeface, if (isBold) Typeface.BOLD else Typeface.NORMAL)
         }
+        return this
     }
 
     // 设置顶部条【关闭】按钮图标
-    fun setCloseIcon(bg: Drawable) {
+    fun setCloseIcon(bg: Drawable): ActionSheetRecyclerDialog {
         binding.ivClose.let {
             it.background = bg
             it.visibility = View.VISIBLE
         }
+        return this
     }
 
     // 设置顶部条【关闭】按钮是否显示
-    fun setCloseVisibility(isShow: Boolean) {
+    fun setCloseVisibility(isShow: Boolean): ActionSheetRecyclerDialog {
         binding.ivClose.visibility = if (isShow) View.VISIBLE else View.GONE
+        return this
     }
 
     // 添加动作页签集合
-    fun addSheetItems(items: List<SheetItem>) {
+    fun addSheetItems(items: List<SheetItem>): ActionSheetRecyclerDialog {
         binding.rvData.addItemDecoration(DividerItemDecoration(10f.dp2px(context), 0.7f.dp2px(context)))
         binding.rvData.adapter = adapter
         adapter.refreshData(items)
+        return this
     }
 
     // 添加条目点击监听
-    fun addSheetItemClickListener(itemClickListener: OnSheetItemClickListener?) {
+    fun addSheetItemClickListener(itemClickListener: OnSheetItemClickListener?): ActionSheetRecyclerDialog {
         onSingleSelectedItemClickListener = itemClickListener
+        return this
     }
 
     // 设置当前选中条目
-    fun setSelectedIndex(index: Int) {
+    fun setSelectedIndex(index: Int): ActionSheetRecyclerDialog {
         adapter.updateSelectItem(index)
+        return this
     }
 
     // 是否显示item选中标记
-    fun isShowItemMark(isShow: Boolean) {
+    fun isShowItemMark(isShow: Boolean): ActionSheetRecyclerDialog {
         adapter.isShowMark = isShow
         adapter.notifyDataSetChanged()
+        return this
     }
 
     // 设置最大高度百分比
-    fun setMaxScaleHeight(scHeight: Double) {
+    fun setMaxScaleHeight(scHeight: Double): ActionSheetRecyclerDialog {
         val height = (screenInfo().y * scHeight).toInt()
         maxHeight = height
+        return this
     }
 
     // 设置底部padding值
-    fun setBottomPadding(bottomPx: Float) {
+    fun setBottomPadding(bottomPx: Float): ActionSheetRecyclerDialog {
         binding.rvData.setPadding(0, 0, 0, bottomPx.dp2px(mContext))
+        return this
     }
 
     /**

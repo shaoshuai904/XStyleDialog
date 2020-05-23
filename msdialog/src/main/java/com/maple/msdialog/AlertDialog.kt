@@ -42,6 +42,9 @@ class AlertDialog(private val mContext: Context) : Dialog(mContext, R.style.Aler
         setScaleWidth(rootView, 0.85)
     }
 
+    fun setDialogTitle(title: CharSequence?): AlertDialog {
+        return setTitle(title, isBold = false)
+    }
 
     override fun setTitle(title: CharSequence?) {
         this.setTitle(title, isBold = false)
@@ -53,7 +56,6 @@ class AlertDialog(private val mContext: Context) : Dialog(mContext, R.style.Aler
             spSize: Float = 17f,// 字体大小
             isBold: Boolean = false// 是否加粗
     ): AlertDialog {
-        super.setTitle(title)
         showTitle = true
         binding.tvTitle.apply {
             text = title

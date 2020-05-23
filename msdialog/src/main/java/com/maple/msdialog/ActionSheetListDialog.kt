@@ -10,9 +10,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.LinearLayout
 import com.maple.msdialog.adapter.ActionSheetAdapter
+import com.maple.msdialog.databinding.DialogActionSheetListBinding
 import com.maple.msdialog.utils.DensityUtils.dp2px
 import com.maple.msdialog.utils.DialogUtil.screenInfo
-import com.maple.msdialog.databinding.DialogActionSheetListBinding
 
 /**
  * 页签List Dialog [ 标题 + 页签条目 + 取消按钮 ]
@@ -49,6 +49,10 @@ class ActionSheetListDialog(private val mContext: Context) : Dialog(mContext, R.
                 y = 0
             }
         }
+    }
+
+    fun setDialogTitle(title: CharSequence?): ActionSheetListDialog {
+        return setTitle(title, isBold = false)
     }
 
     override fun setTitle(title: CharSequence?) {
@@ -92,7 +96,7 @@ class ActionSheetListDialog(private val mContext: Context) : Dialog(mContext, R.
     fun addSheetItems(
             items: MutableList<SheetItem>,
             itemClickListener: OnSheetItemClickListener?
-    ) {
+    ): ActionSheetListDialog {
         sheetItemList = items
         binding.lvData.adapter = adapter
         adapter.refresh(sheetItemList)
@@ -102,10 +106,12 @@ class ActionSheetListDialog(private val mContext: Context) : Dialog(mContext, R.
             itemClickListener?.onItemClick(item, position)
             dismiss()
         }
+        return this
     }
 
-    fun setSelectedIndex(index: Int) {
+    fun setSelectedIndex(index: Int): ActionSheetListDialog {
         adapter.setSelectedIndex(index)
+        return this
     }
 
     /**
