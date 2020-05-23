@@ -2,7 +2,7 @@
 
 [![API](https://img.shields.io/badge/API-14%2B-green.svg?style=flat)](https://android-arsenal.com/api?level=14)
 [![jitpack](https://jitpack.io/v/shaoshuai904/iOS_Style_Dialog.svg)](https://jitpack.io/#shaoshuai904/iOS_Style_Dialog)
-[![demo](https://img.shields.io/badge/download-demo-blue.svg)](https://github.com/shaoshuai904/IOSDialog/blob/master/screens/app_v1.3.0_14.apk) <-- 点击下载demo
+[![demo](https://img.shields.io/badge/download-demo-blue.svg)](https://github.com/shaoshuai904/IOSDialog/blob/master/screens/app-v1.4.0_15.apk) <-- 点击下载demo
 
 ### 快速使用
 
@@ -20,7 +20,7 @@ allprojects {
 
 ```groovy
 dependencies {
-	implementation 'com.github.shaoshuai904:iOS_Style_Dialog:1.3.0'
+	implementation 'com.github.shaoshuai904:iOS_Style_Dialog:1.4.0'
 }
 ```
 
@@ -29,6 +29,8 @@ dependencies {
 ![show_02](https://github.com/shaoshuai904/IOSDialog/blob/master/screens/show_02.png)
 
 ![show_03](https://github.com/shaoshuai904/IOSDialog/blob/master/screens/show_03.png)
+
+![show_04](https://github.com/shaoshuai904/IOSDialog/blob/master/screens/show_04.png)
 
 ###  AlertDialog
 
@@ -72,35 +74,21 @@ dependencies {
 	样式布局:[ 标题 + 页签条目 + 取消按钮 ]
 	
 ```java 
-        new ActionSheetDialog(mContext)
-                .setTitle("请选择操作")
-                .setCancelable(false)
-                .setCanceledOnTouchOutside(false)
-                .addSheetItem("条目一", Color.parseColor(DEF_RED), new ActionSheetDialog.OnSheetItemClickListener() {
-                    @Override
-                    public void onClick(int which) {
-                        showToast("item " + which);
-                    }
-                })
-                .addSheetItem("条目二", new ActionSheetDialog.OnSheetItemClickListener() {
-                    @Override
-                    public void onClick(int which) {
-                        showToast("item " + which);
-                    }
-                })
-                .addSheetItem("条目三", Color.BLUE, new ActionSheetDialog.OnSheetItemClickListener() {
-                    @Override
-                    public void onClick(int which) {
-                        showToast("item " + which);
-                    }
-                })
+        ActionSheetDialog(this).apply {
+                setTitle("请选择操作")
+                setCancelable(false)
+                setCanceledOnTouchOutside(false)
+                addSheetItem("条目一", Color.parseColor(DEF_RED))
+                addSheetItem("条目二")
+                addSheetItem("条目三", Color.BLUE)
                 // ……
-                .addSheetItem("条目十", new ActionSheetDialog.OnSheetItemClickListener() {
-                    @Override
-                    public void onClick(int which) {
-                        showToast("item " + which);
-                    }
-                }).show();
+                addSheetItem(SheetItem("条目九"))
+                addSheetItem(SheetItem("条目十", Color.CYAN))
+                itemClickListener = OnSheetItemClickListener { item, position ->
+                    showToast("clear msg list")
+                }
+                setCancelText("取 消")
+            }.show()
 ```
 
 ### AlertNumberPickerDialog
@@ -133,6 +121,11 @@ dependencies {
 [完整预览各类用法 -（简单使用类 传送门）](https://github.com/shaoshuai904/iOS_Style_Dialog/blob/master/app/src/main/java/com/maple/iosdialog/MainActivity.java)
 
 ----------
+## v1.4.0 ##
+ - AlertDialog 兼容html样式
+ - 新增ActionSheetRecyclerDialog，支持自定义item Bean，自定义最大高度，自定义样式选择
+ - 更新minSdkVersion = 19
+ 
 ## v1.3.0 ##
  - 用kotlin重写了项目
  - 新增ActionSheetListDialog，以支持复杂item布局，同时支持item选中样式
