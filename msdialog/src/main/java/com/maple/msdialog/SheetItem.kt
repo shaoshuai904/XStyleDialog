@@ -10,8 +10,8 @@ import java.io.Serializable
  * @date ：2020/5/6
  */
 open class SheetItem(
-        private var id: String,
-        private var name: String,
+        var id: String,
+        var name: String,
         var isSelected: Boolean = false// 是否为选中状态
 ) : Serializable {
     var showColor: Int = Color.parseColor("#333333")

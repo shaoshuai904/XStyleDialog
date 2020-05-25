@@ -3,8 +3,8 @@ package com.maple.iosdialog
 import com.maple.msdialog.SheetItem
 
 class User(
-        val id: String,
-        val name: String,
+        id: String,
+        name: String,
         var age: Int
 ) : SheetItem(id, name) {
 
