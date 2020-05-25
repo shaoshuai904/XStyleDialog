@@ -13,7 +13,7 @@ object DialogUtil {
     // 设置Dialog宽度：相对于屏幕宽度比例
     fun Dialog.setScaleWidth(rootView: View, scWidth: Double) {
         rootView.layoutParams = FrameLayout.LayoutParams(
-                (screenInfo().x * scWidth).toInt(),
+                (context.getScreenWidth() * scWidth).toInt(),
                 LinearLayout.LayoutParams.WRAP_CONTENT)
     }
 
@@ -21,13 +21,24 @@ object DialogUtil {
     fun Dialog.setScaleHeight(rootView: View, scHeight: Double) {
         rootView.layoutParams = FrameLayout.LayoutParams(
                 LinearLayout.LayoutParams.WRAP_CONTENT,
-                (screenInfo().y * scHeight).toInt())
+                (context.getScreenHeight() * scHeight).toInt())
     }
 
-    fun Dialog.screenInfo(): Point {
+    // 获取屏幕宽度
+    @JvmStatic
+    fun Context.getScreenWidth() = screenInfo().x
+
+    // 获取屏幕高度
+    @JvmStatic
+    fun Context.getScreenHeight() = screenInfo().y
+
+    // 获取屏幕信息
+    @JvmStatic
+    fun Context.screenInfo(): Point {
         val size = Point()
-        val windowManager = context.getSystemService(Context.WINDOW_SERVICE) as WindowManager
+        val windowManager = getSystemService(Context.WINDOW_SERVICE) as WindowManager
         windowManager.defaultDisplay.getSize(size)
         return size
     }
+
 }
