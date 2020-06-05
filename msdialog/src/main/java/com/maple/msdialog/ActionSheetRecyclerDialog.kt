@@ -45,7 +45,7 @@ class ActionSheetRecyclerDialog(private val mContext: Context) : BottomSheetDial
     init {
         // set Dialog min width
         binding.apply {
-            root.minimumWidth = screenInfo().x
+            root.minimumWidth = mContext.screenInfo().x
             rlTitleBar.visibility = View.GONE
             ivClose.setOnClickListener { dismiss() }
         }
@@ -129,7 +129,7 @@ class ActionSheetRecyclerDialog(private val mContext: Context) : BottomSheetDial
 
     // 设置最大高度百分比
     fun setMaxScaleHeight(scHeight: Double): ActionSheetRecyclerDialog {
-        val height = (screenInfo().y * scHeight).toInt()
+        val height = (mContext.screenInfo().y * scHeight).toInt()
         maxHeight = height
         return this
     }

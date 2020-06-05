@@ -42,6 +42,11 @@ class AlertDialog(private val mContext: Context) : Dialog(mContext, R.style.Aler
         setScaleWidth(rootView, 0.85)
     }
 
+    fun setScaleWidth(scWidth: Double): AlertDialog {
+        setScaleWidth(rootView, scWidth)
+        return this
+    }
+
     fun setDialogTitle(title: CharSequence?): AlertDialog {
         return setTitle(title, isBold = false)
     }
@@ -66,9 +71,15 @@ class AlertDialog(private val mContext: Context) : Dialog(mContext, R.style.Aler
         return this
     }
 
+    fun setTitleMinHeight(minPixels: Int) {
+        binding.tvTitle.minHeight = minPixels
+    }
+
     fun setHtmlMessage(message: String?): AlertDialog {
         return setMessage(Html.fromHtml(message))
     }
+
+    fun setMessage(message: CharSequence?) = setMessage(message, isBold = false)
 
     fun setMessage(
             message: CharSequence?,
@@ -86,6 +97,10 @@ class AlertDialog(private val mContext: Context) : Dialog(mContext, R.style.Aler
             setTypeface(typeface, if (isBold) Typeface.BOLD else Typeface.NORMAL)
         }
         return this
+    }
+
+    fun setMessageMinHeight(minPixels: Int) {
+        binding.tvMsg.minHeight = minPixels
     }
 
     fun setLeftButton(

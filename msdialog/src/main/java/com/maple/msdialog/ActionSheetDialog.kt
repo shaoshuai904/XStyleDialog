@@ -35,7 +35,7 @@ class ActionSheetDialog(private val mContext: Context) : Dialog(mContext, R.styl
 
     init {
         // set Dialog min width
-        binding.root.minimumWidth = screenInfo().x
+        binding.root.minimumWidth = mContext.screenInfo().x
         binding.tvTitle.visibility = View.GONE
         binding.tvCancel.setOnClickListener { dismiss() }
 
@@ -116,7 +116,7 @@ class ActionSheetDialog(private val mContext: Context) : Dialog(mContext, R.styl
         }
         val size = sheetItemList!!.size
         // 添加条目过多的时候控制高度
-        val screenHeight = screenInfo().y
+        val screenHeight = mContext.screenInfo().y
         if (size > screenHeight / (ACTION_SHEET_ITEM_HEIGHT * 2.toFloat()).dp2px(mContext)) {
             val params = binding.slContent.layoutParams as LinearLayout.LayoutParams
             params.height = screenHeight / 2

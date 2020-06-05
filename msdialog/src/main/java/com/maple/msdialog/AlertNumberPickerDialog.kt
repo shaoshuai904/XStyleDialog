@@ -42,6 +42,11 @@ class AlertNumberPickerDialog(private val mContext: Context) : Dialog(mContext, 
         setScaleWidth(rootView, 0.8)
     }
 
+    fun setScaleWidth(scWidth: Double): AlertNumberPickerDialog {
+        setScaleWidth(rootView, scWidth)
+        return this
+    }
+
     fun setDialogTitle(title: CharSequence?): AlertNumberPickerDialog {
         return setTitle(title, isBold = false)
     }

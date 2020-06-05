@@ -38,7 +38,7 @@
         <TextView
             android:id="@+id/tv_cancel"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="@dimen/dialog_bottom_height"
             android:layout_marginTop="10dp"
             android:background="@drawable/sel_action_sheet_single"
             android:gravity="center"

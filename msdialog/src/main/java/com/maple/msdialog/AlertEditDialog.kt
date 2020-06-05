@@ -41,6 +41,11 @@ class AlertEditDialog(private val mContext: Context) : Dialog(mContext, R.style.
         setScaleWidth(binding.root, 0.85)
     }
 
+    fun setScaleWidth(scWidth: Double): AlertEditDialog {
+        setScaleWidth(rootView, scWidth)
+        return this
+    }
+
     fun setDialogTitle(title: CharSequence?): AlertEditDialog {
         return setTitle(title, isBold = false)
     }
