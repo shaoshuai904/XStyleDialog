@@ -20,7 +20,7 @@ allprojects {
 
 ```groovy
 dependencies {
-	implementation 'com.github.shaoshuai904:iOS_Style_Dialog:1.4.2'
+	implementation 'com.github.shaoshuai904:iOS_Style_Dialog:1.4.3'
 }
 ```
 
