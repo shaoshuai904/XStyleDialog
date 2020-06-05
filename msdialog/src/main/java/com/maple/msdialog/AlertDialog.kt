@@ -10,6 +10,7 @@ import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import com.maple.msdialog.databinding.DialogAlertBinding
+import com.maple.msdialog.utils.DensityUtils
 import com.maple.msdialog.utils.DialogUtil.setScaleWidth
 
 /**
@@ -21,7 +22,6 @@ import com.maple.msdialog.utils.DialogUtil.setScaleWidth
 class AlertDialog(private val mContext: Context) : Dialog(mContext, R.style.AlertDialogStyle) {
     private val binding: DialogAlertBinding = DataBindingUtil.inflate(
             LayoutInflater.from(mContext), R.layout.dialog_alert, null, false)
-    val rootView by lazy { binding.root }
     private var showTitle = false
     private var showMsg = false
     private var showRightBtn = false
@@ -38,14 +38,20 @@ class AlertDialog(private val mContext: Context) : Dialog(mContext, R.style.Aler
         }
 
         // set Dialog style
-        setContentView(rootView)
-        setScaleWidth(rootView, 0.85)
+        setContentView(binding.root)
+        setScaleWidth(binding.root, 0.75)
     }
 
     fun setScaleWidth(scWidth: Double): AlertDialog {
-        setScaleWidth(rootView, scWidth)
+        setScaleWidth(binding.root, scWidth)
         return this
     }
+
+    fun getRootView() = binding.root
+    fun getTitleView() = binding.tvTitle
+    fun getMessageView() = binding.tvMsg
+    fun getLeftBtnView() = binding.btLeft
+    fun getRightBtnView() = binding.btRight
 
     fun setDialogTitle(title: CharSequence?): AlertDialog {
         return setTitle(title, isBold = false)
@@ -69,10 +75,6 @@ class AlertDialog(private val mContext: Context) : Dialog(mContext, R.style.Aler
             setTypeface(typeface, if (isBold) Typeface.BOLD else Typeface.NORMAL)
         }
         return this
-    }
-
-    fun setTitleMinHeight(minPixels: Int) {
-        binding.tvTitle.minHeight = minPixels
     }
 
     fun setHtmlMessage(message: String?): AlertDialog {
@@ -99,8 +101,13 @@ class AlertDialog(private val mContext: Context) : Dialog(mContext, R.style.Aler
         return this
     }
 
-    fun setMessageMinHeight(minPixels: Int) {
-        binding.tvMsg.minHeight = minPixels
+    fun setBottomViewHeightDp(heightDp: Float) = setBottomViewHeight(DensityUtils.dp2px(mContext, heightDp))
+
+    fun setBottomViewHeight(heightPixels: Int): AlertDialog {
+        with(binding.llBottom) {
+            layoutParams = layoutParams.apply { height = heightPixels }
+        }
+        return this
     }
 
     fun setLeftButton(

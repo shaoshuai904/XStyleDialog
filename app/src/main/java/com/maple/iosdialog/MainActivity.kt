@@ -38,10 +38,19 @@ class MainActivity : Activity() {
     fun adTwo(view: View?) {
         AlertDialog(this).apply {
             setCancelable(true)
-            setScaleWidth(rootView, 0.7) // 设置宽度，占屏幕宽度百分比
-            setMessage("你现在无法接收到新消息提醒。请到系统-设置-通知中开启消息提醒")
+            setScaleWidth(0.7) // 设置宽度，占屏幕宽度百分比
+            getMessageView().setPadding(0, 100, 0, 100)
+            setMessage("你现在无法接收到新消息提醒。")
+            setBottomViewHeightDp(40f)
             setRightButton("确定", View.OnClickListener { showToast("OK") })
         }.show()
+
+//        AlertDialog(this).apply {
+//            setCancelable(true)
+//            setScaleWidth(rootView, 0.7) // 设置宽度，占屏幕宽度百分比
+//            setMessage("你现在无法接收到新消息提醒。请到系统-设置-通知中开启消息提醒")
+//            setRightButton("确定", View.OnClickListener { showToast("OK") })
+//        }.show()
     }
 
     fun adThree(view: View?) {

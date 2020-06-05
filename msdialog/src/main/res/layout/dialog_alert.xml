@@ -40,6 +40,7 @@
             android:background="@color/act_line" />
 
         <LinearLayout
+            android:id="@+id/ll_bottom"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dialog_bottom_height"
             android:layout_margin="1px"
