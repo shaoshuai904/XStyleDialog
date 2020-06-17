@@ -11,7 +11,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.FrameLayout
 import android.widget.LinearLayout
-import com.maple.msdialog.adapter.BaseQuickAdapter
 import com.maple.msdialog.adapter.SingleSelectItemListAdapter
 import com.maple.msdialog.databinding.DialogActionSheetRecyclerBinding
 import com.maple.msdialog.utils.DensityUtils.dp2px
@@ -32,12 +31,10 @@ class ActionSheetRecyclerDialog(private val mContext: Context) : BottomSheetDial
     var maxHeight: Int? = null //最大view高度, 单位：px
     private val adapter by lazy {
         SingleSelectItemListAdapter(mContext, true).apply {
-            onItemClickListener = object : BaseQuickAdapter.OnItemClickListener {
-                override fun onItemClick(view: View, position: Int) {
-                    updateSelectItem(position)
-                    onSingleSelectedItemClickListener?.onItemClick(getItem(position), position)
-                    dismiss()
-                }
+            setOnItemClickListener { item, position ->
+                updateSelectItem(position)
+                onSingleSelectedItemClickListener?.onItemClick(item, position)
+                dismiss()
             }
         }
     }

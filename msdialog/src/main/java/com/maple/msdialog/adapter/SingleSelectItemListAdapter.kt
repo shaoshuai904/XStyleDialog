@@ -27,8 +27,8 @@ class SingleSelectItemListAdapter(
 
     fun updateSelectItem(index: Int) {
         // 合规化index值，大于0 且 小于 size
-        val number = min(max(index, 0), data().size - 1)
-        data().forEachIndexed { i, item ->
+        val number = min(max(index, 0), data.size - 1)
+        data.forEachIndexed { i, item ->
             item.isSelected = (number == i)
         }
         notifyDataSetChanged()
