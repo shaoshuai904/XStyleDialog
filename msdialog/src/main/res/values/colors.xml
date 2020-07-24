@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <color name="def_title_color">#000000</color>
-    <color name="def_message_color">#242425</color>
-    <color name="def_left_color">#999999</color>
-    <color name="def_right_color">#4762FE</color>
+    <color name="def_title_color">#333333</color>
+    <color name="def_message_color">#333333</color>
+    <color name="def_left_color">#666666</color>
+    <color name="def_right_color">#FE8C01</color>
 
     <!--<color name="blue">#347EFD</color>-->
 

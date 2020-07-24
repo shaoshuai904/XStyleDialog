@@ -9,6 +9,7 @@ import android.widget.NumberPicker
 import android.widget.NumberPicker.OnValueChangeListener
 import android.widget.Toast
 import com.maple.msdialog.*
+import com.maple.msdialog.utils.DensityUtils.dp2px
 import com.maple.msdialog.utils.DialogUtil.setScaleWidth
 import java.util.*
 
@@ -27,7 +28,11 @@ class MainActivity : Activity() {
 
     // ------------------------------------ Alert Dialog -------------------------------------------
     fun adOne(view: View?) {
-        AlertDialog(this)
+        val config = DialogConfig(this).apply {
+            rightBtnColor = Color.RED
+            messagePaddingBottom = 40f.dp2px(context)
+        }
+        AlertDialog(this, config)
                 .setDialogTitle("退出当前账号")
                 .setHtmlMessage("再连续登陆<font color=\"#ff0000\">15</font>天，就可变身为QQ达人。退出QQ可能会使你现有记录归零，确定退出？")
                 .setLeftButton("取消")
@@ -38,24 +43,17 @@ class MainActivity : Activity() {
     fun adTwo(view: View?) {
         AlertDialog(this).apply {
             setCancelable(true)
-            setScaleWidth(0.7) // 设置宽度，占屏幕宽度百分比
-            getMessageView().setPadding(0, 100, 0, 100)
-            setMessage("你现在无法接收到新消息提醒。")
-            setBottomViewHeightDp(40f)
+            setScaleWidth(0.75) // 设置宽度，占屏幕宽度百分比
+            // getMessageView().setPadding(15f.dp2px(context), 24f.dp2px(context), 15f.dp2px(context), 24f.dp2px(context))
+            setMessage("你现在无法接收到新消息提醒。请到系统-设置-通知中开启消息提醒")
+            // setBottomViewHeightDp(48f)
             setRightButton("确定", View.OnClickListener { showToast("OK") })
         }.show()
-
-//        AlertDialog(this).apply {
-//            setCancelable(true)
-//            setScaleWidth(rootView, 0.7) // 设置宽度，占屏幕宽度百分比
-//            setMessage("你现在无法接收到新消息提醒。请到系统-设置-通知中开启消息提醒")
-//            setRightButton("确定", View.OnClickListener { showToast("OK") })
-//        }.show()
     }
 
     fun adThree(view: View?) {
         AlertDialog(this)
-                .setTitle("确认删除：XXXX？", isBold = true)
+                .setTitle("确认删除：XXXX？", isBold = false)
                 .setMessage("1.必须确保空间下不存在任何文件、文件夹或图片样式，否则无法删除;\n2.存储空间删除后不可恢复且可能会影响正在使用该空间的其他用户。",
                         spSize = 14f, gravity = Gravity.START)
                 .setRightButton("确定", View.OnClickListener { showToast("OK") })

@@ -63,4 +63,10 @@ class SingleSelectItemListAdapter(
         }
     }
 
+    class AdapterUIConfig() {
+        var viewHeight: Int = 40
+        var textSize: Int = 20
+        var isShowMark: Boolean = false // 是否显示 右侧对勾 √
+
+    }
 }
