@@ -55,7 +55,7 @@ class SingleSelectItemListAdapter(
                 tvName.textSize = config.itemTextSizeSp
                 if (item.isSelected) {
                     tvName.setTextColor(config.itemTextSelectedColor)
-                    ivMark.background = config.selectMark
+                    ivMark.setImageDrawable(config.selectMark)
                     ivMark.visibility = if (config.isShowMark) View.VISIBLE else View.GONE
                 } else {
                     tvName.setTextColor(config.itemTextColor)

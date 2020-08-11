@@ -50,7 +50,7 @@ class ActionSheetRecyclerDialog(
         binding.apply {
             root.minimumWidth = mContext.screenInfo().x
             rlTitleBar.visibility = View.GONE
-            ivClose.background = config.closeDraw
+            ivClose.setImageDrawable(config.closeDraw)
             ivClose.setOnClickListener { dismiss() }
         }
 
@@ -98,7 +98,7 @@ class ActionSheetRecyclerDialog(
     // 设置顶部条【关闭】按钮图标
     fun setCloseIcon(bg: Drawable? = config.closeDraw): ActionSheetRecyclerDialog {
         binding.ivClose.let {
-            it.background = bg
+            it.setImageDrawable(bg)
             it.visibility = View.VISIBLE
         }
         return this

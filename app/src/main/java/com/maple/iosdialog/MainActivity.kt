@@ -3,6 +3,7 @@ package com.maple.iosdialog
 import android.app.Activity
 import android.graphics.Color
 import android.os.Bundle
+import android.support.v4.content.ContextCompat
 import android.view.Gravity
 import android.view.View
 import android.widget.NumberPicker
@@ -146,7 +147,13 @@ class MainActivity : Activity() {
     fun asrBigDataList(view: View?) {
         if (ar2 == null) {
             val items = getSingleSelectItemTestData(20)
-            ar2 = ActionSheetRecyclerDialog(this).apply {
+            ar2 = ActionSheetRecyclerDialog(this, ActionSheetRecyclerDialog.Config(this).apply {
+                titleTextSizeSp = 18f
+                closeDraw = ContextCompat.getDrawable(context, android.R.drawable.ic_delete)
+                isShowMark = true
+                selectMark = ContextCompat.getDrawable(context, android.R.drawable.ic_media_next)
+                itemTextSelectedColor = Color.RED
+            }).apply {
                 setTitle("选择条目")
                 addSheetItems(items)
                 setMaxScaleHeight(0.65)
