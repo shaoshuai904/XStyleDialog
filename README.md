@@ -20,7 +20,7 @@ allprojects {
 
 ```groovy
 dependencies {
-	implementation 'com.github.shaoshuai904:iOS_Style_Dialog:1.4.4'
+	implementation 'com.github.shaoshuai904:iOS_Style_Dialog:1.4.5'
 }
 ```
 
@@ -81,7 +81,7 @@ dependencies {
  - 更新minSdkVersion = 19
  - 提供`setScaleWidth`和`setScaleHeight`方法设置Dialog的屏幕百分比宽度和高度
  - 提供Dialog的getRootView及各个子View方法，以支持深度自定义。
- - 提供Dialog的DialogConfig配置文件，以支持不同app默认样式。
+ - 提供Dialog的Config配置文件，以支持不同app默认样式。
  - 新增AlertDialog和AlertEditDialog的`Cancelable`和`自适应宽度`设置。
  - 对各个Dialog的`Title`、`Message`、`Cancel/OK Button`新增了`字体大小`，`字体颜色`，`是否加粗`等设置。
  - 开放了ActionSheetDialog中 SheetItem `字体颜色`和 Cancel Button `显示文本`的自定义设置。
