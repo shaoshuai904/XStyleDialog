@@ -50,6 +50,7 @@ class ActionSheetRecyclerDialog(
         binding.apply {
             root.minimumWidth = mContext.screenInfo().x
             rlTitleBar.visibility = View.GONE
+            ivClose.background = config.closeDraw
             ivClose.setOnClickListener { dismiss() }
         }
 
@@ -95,7 +96,7 @@ class ActionSheetRecyclerDialog(
     }
 
     // 设置顶部条【关闭】按钮图标
-    fun setCloseIcon(bg: Drawable): ActionSheetRecyclerDialog {
+    fun setCloseIcon(bg: Drawable? = config.closeDraw): ActionSheetRecyclerDialog {
         binding.ivClose.let {
             it.background = bg
             it.visibility = View.VISIBLE
@@ -179,6 +180,7 @@ class ActionSheetRecyclerDialog(
         var maxHeight: Int? = null //最大view高度, 单位：px
         var isShowMark: Boolean = false // 是否显示 右侧对勾 √
         var selectMark: Drawable? = ContextCompat.getDrawable(context, android.R.drawable.checkbox_on_background)
+        var closeDraw: Drawable? = ContextCompat.getDrawable(context, R.drawable.svg_ic_close)
 
         // title
         var titleTextSizeSp: Float = 16f // 字体大小

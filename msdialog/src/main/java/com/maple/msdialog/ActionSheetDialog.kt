@@ -3,7 +3,10 @@ package com.maple.msdialog
 import android.app.Dialog
 import android.content.Context
 import android.databinding.DataBindingUtil
+import android.graphics.Color
 import android.graphics.Typeface
+import android.graphics.drawable.ColorDrawable
+import android.graphics.drawable.Drawable
 import android.support.v4.content.ContextCompat
 import android.view.Gravity
 import android.view.LayoutInflater
@@ -13,6 +16,7 @@ import android.widget.TextView
 import com.maple.msdialog.databinding.DialogActionSheetBinding
 import com.maple.msdialog.utils.DensityUtils.dp2px
 import com.maple.msdialog.utils.DialogUtil.screenInfo
+import java.io.Serializable
 import java.util.*
 
 /**
@@ -21,17 +25,14 @@ import java.util.*
  * @author maple
  * @time 2017/3/21
  */
-class ActionSheetDialog(private val mContext: Context) : Dialog(mContext, R.style.ActionSheetDialogStyle) {
+class ActionSheetDialog(
+        private val mContext: Context,
+        private val config: Config = Config(mContext)
+) : Dialog(mContext, R.style.ActionSheetDialogStyle) {
     private val binding: DialogActionSheetBinding = DataBindingUtil.inflate(
             LayoutInflater.from(context), R.layout.dialog_action_sheet, null, false)
-    val rootView by lazy { binding.root }
-    private var showTitle = false
     private var sheetItemList: MutableList<SheetItem>? = null
     var itemClickListener: OnSheetItemClickListener? = null
-
-    companion object {
-        const val ACTION_SHEET_ITEM_HEIGHT = 50
-    }
 
     init {
         // set Dialog min width
@@ -50,6 +51,12 @@ class ActionSheetDialog(private val mContext: Context) : Dialog(mContext, R.styl
         }
     }
 
+    constructor(mContext: Context) : this(mContext, Config(mContext))
+
+    fun getRootView() = binding.root
+    fun getTitleView() = binding.tvTitle
+    fun getCancelView() = binding.tvCancel
+
     fun setDialogTitle(title: CharSequence?): ActionSheetDialog {
         return setTitle(title, isBold = false)
     }
@@ -60,11 +67,11 @@ class ActionSheetDialog(private val mContext: Context) : Dialog(mContext, R.styl
 
     fun setTitle(
             title: CharSequence?,
-            color: Int = ContextCompat.getColor(mContext, R.color.def_title_color),
-            spSize: Float = 16f,
+            color: Int = config.titleTextColor,
+            spSize: Float = config.titleTextSizeSp,
             isBold: Boolean = false
     ): ActionSheetDialog {
-        showTitle = true
+        config.showTitle = true
         binding.tvTitle.apply {
             visibility = View.VISIBLE
             text = title
@@ -77,8 +84,8 @@ class ActionSheetDialog(private val mContext: Context) : Dialog(mContext, R.styl
 
     fun setCancelText(
             cancelText: String?,
-            color: Int = ContextCompat.getColor(mContext, R.color.def_title_color),
-            spSize: Float = 18f,
+            color: Int = config.cancelTextColor,
+            spSize: Float = config.cancelTextSizeSp,
             isBold: Boolean = false
     ): ActionSheetDialog {
         binding.tvCancel.apply {
@@ -91,7 +98,7 @@ class ActionSheetDialog(private val mContext: Context) : Dialog(mContext, R.styl
     }
 
     fun addSheetItem(strItem: String): ActionSheetDialog {
-        val color = ContextCompat.getColor(mContext, R.color.def_message_color)
+        val color = config.itemTextColor
         return addSheetItem(strItem, color)
     }
 
@@ -117,7 +124,7 @@ class ActionSheetDialog(private val mContext: Context) : Dialog(mContext, R.styl
         val size = sheetItemList!!.size
         // 添加条目过多的时候控制高度
         val screenHeight = mContext.screenInfo().y
-        if (size > screenHeight / (ACTION_SHEET_ITEM_HEIGHT * 2.toFloat()).dp2px(mContext)) {
+        if (size > screenHeight / (config.actionSheetItemHeight * 2)) {
             val params = binding.slContent.layoutParams as LinearLayout.LayoutParams
             params.height = screenHeight / 2
             binding.slContent.layoutParams = params
@@ -125,15 +132,15 @@ class ActionSheetDialog(private val mContext: Context) : Dialog(mContext, R.styl
         // loop add item
         sheetItemList?.forEachIndexed { index, sheetItem ->
             val view = View(mContext).apply {
-                setBackgroundResource(R.color.act_line)
-                layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, (0.3f).dp2px(mContext))
+                background = config.dividerColor
+                layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, config.dividerHeight)
             }
             binding.llContent.addView(view)
             // set item background
             val bg = if (size == 1) {
-                if (showTitle) R.drawable.sel_action_sheet_bottom else R.drawable.sel_action_sheet_single
+                if (config.showTitle) R.drawable.sel_action_sheet_bottom else R.drawable.sel_action_sheet_single
             } else {
-                if (showTitle) {
+                if (config.showTitle) {
                     if (index < size - 1) R.drawable.sel_action_sheet_middle else R.drawable.sel_action_sheet_bottom
                 } else {
                     when {
@@ -145,13 +152,13 @@ class ActionSheetDialog(private val mContext: Context) : Dialog(mContext, R.styl
             }
             val textView = TextView(mContext).apply {
                 text = sheetItem.getShowName()
-                textSize = 18f
+                textSize = config.itemTextSizeSp
                 gravity = Gravity.CENTER
                 setBackgroundResource(bg)
                 setTextColor(sheetItem.showColor)
                 layoutParams = LinearLayout.LayoutParams(
                         LinearLayout.LayoutParams.MATCH_PARENT,
-                        (ACTION_SHEET_ITEM_HEIGHT.toFloat()).dp2px(mContext)
+                        config.actionSheetItemHeight
                 )
                 // add click listener
                 setOnClickListener {
@@ -166,6 +173,31 @@ class ActionSheetDialog(private val mContext: Context) : Dialog(mContext, R.styl
     override fun show() {
         initLayout()
         super.show()
+    }
+
+    /**
+     * ActionSheetDialog 的配置
+     */
+    open class Config(
+            var context: Context
+    ) : Serializable {
+        // title
+        var showTitle = false
+        var titleTextSizeSp: Float = 16f // 字体大小
+        var titleTextColor: Int = ContextCompat.getColor(context, R.color.def_title_color) // 字体颜色
+
+        // item
+        var actionSheetItemHeight = 50f.dp2px(context)
+        var itemTextSizeSp: Float = 18f // 字体大小
+        var itemTextColor: Int = ContextCompat.getColor(context, R.color.def_message_color)
+
+        // divider 分割线
+        var dividerHeight: Int = 0.4f.dp2px(context) // 分割线高度
+        var dividerColor: Drawable = ColorDrawable(Color.parseColor("#C9C9C9"))// 分割线
+
+        // cancel
+        var cancelTextSizeSp: Float = 18f // 字体大小
+        var cancelTextColor: Int = ContextCompat.getColor(context, R.color.def_title_color) // 字体颜色
     }
 
 }
