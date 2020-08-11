@@ -4,13 +4,16 @@ import android.app.Dialog
 import android.content.Context
 import android.databinding.DataBindingUtil
 import android.graphics.Typeface
+import android.support.v4.content.ContextCompat
 import android.text.Html
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import com.maple.msdialog.databinding.DialogAlertBinding
 import com.maple.msdialog.utils.DensityUtils
+import com.maple.msdialog.utils.DensityUtils.dp2px
 import com.maple.msdialog.utils.DialogUtil.setScaleWidth
+import java.io.Serializable
 
 /**
  * 警告框式Dialog [ 标题 + 消息文本 + 左按钮 + 右按钮 ]
@@ -20,7 +23,7 @@ import com.maple.msdialog.utils.DialogUtil.setScaleWidth
  */
 class AlertDialog(
         private val mContext: Context,
-        val config: DialogConfig = DialogConfig(mContext)
+        private val config: Config = Config(mContext)
 ) : Dialog(mContext, R.style.AlertDialogStyle) {
     private val binding: DialogAlertBinding = DataBindingUtil.inflate(
             LayoutInflater.from(mContext), R.layout.dialog_alert, null, false)
@@ -29,7 +32,7 @@ class AlertDialog(
     private var showRightBtn = false
     private var showLeftBtn = false
 
-    constructor(mContext: Context) : this(mContext, DialogConfig(mContext))
+    constructor(mContext: Context) : this(mContext, Config(mContext))
 
     init {
         // get custom Dialog layout
@@ -216,4 +219,41 @@ class AlertDialog(
         super.show()
     }
 
+
+    /**
+     * AlertDialog 的配置
+     */
+    open class Config(
+            var context: Context
+    ) : Serializable {
+        var scaleWidth: Double = 0.75 // 宽度占屏幕宽百分比
+
+        // title
+        var titleTextSizeSp: Float = 18f // 字体大小
+        var titleColor: Int = ContextCompat.getColor(context, R.color.def_title_color) // 字体颜色
+        var titlePaddingLeft: Int = 15f.dp2px(context)
+        var titlePaddingTop: Int = 22f.dp2px(context)
+        var titlePaddingRight: Int = 15f.dp2px(context)
+        var titlePaddingBottom: Int = 0f.dp2px(context)
+
+        // message
+        var messageTextSizeSp: Float = 14f // 字体大小
+        var messageColor: Int = ContextCompat.getColor(context, R.color.def_message_color)
+        var messagePaddingLeft: Int = 15f.dp2px(context)
+        var messagePaddingTop: Int = 22f.dp2px(context)
+        var messagePaddingRight: Int = 15f.dp2px(context)
+        var messagePaddingBottom: Int = 22f.dp2px(context)
+
+        // button
+        var bottomViewHeightDp: Float = 48f // 底部按钮高度
+
+        // left button
+        var leftBtnTextSizeSp: Float = 18f // 字体大小
+        var leftBtnColor: Int = ContextCompat.getColor(context, R.color.def_left_color)
+
+        // right button
+        var rightBtnTextSizeSp: Float = 18f // 字体大小
+        var rightBtnColor: Int = ContextCompat.getColor(context, R.color.def_right_color)
+
+    }
 }

@@ -2,7 +2,9 @@ package com.maple.msdialog
 
 import android.content.Context
 import android.databinding.DataBindingUtil
+import android.graphics.Color
 import android.graphics.Typeface
+import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.Drawable
 import android.support.design.widget.BottomSheetDialog
 import android.support.v4.content.ContextCompat
@@ -15,6 +17,7 @@ import com.maple.msdialog.adapter.SingleSelectItemListAdapter
 import com.maple.msdialog.databinding.DialogActionSheetRecyclerBinding
 import com.maple.msdialog.utils.DensityUtils.dp2px
 import com.maple.msdialog.utils.DialogUtil.screenInfo
+import java.io.Serializable
 import kotlin.math.min
 
 /**
@@ -23,14 +26,15 @@ import kotlin.math.min
  * @author : shaoshuai27
  * @date ：2020/5/6
  */
-class ActionSheetRecyclerDialog(private val mContext: Context) : BottomSheetDialog(mContext, R.style.ActionSheetDialogStyle) {
+class ActionSheetRecyclerDialog(
+        private val mContext: Context,
+        private val config: Config = Config(mContext)
+) : BottomSheetDialog(mContext, R.style.ActionSheetDialogStyle) {
     private val binding: DialogActionSheetRecyclerBinding = DataBindingUtil.inflate(
             LayoutInflater.from(context), R.layout.dialog_action_sheet_recycler, null, false)
     private var onSingleSelectedItemClickListener: OnSheetItemClickListener? = null
-    val rootView by lazy { binding.root }// 根view
-    var maxHeight: Int? = null //最大view高度, 单位：px
     private val adapter by lazy {
-        SingleSelectItemListAdapter(mContext, true).apply {
+        SingleSelectItemListAdapter(mContext, config).apply {
             setOnItemClickListener { item, position ->
                 updateSelectItem(position)
                 onSingleSelectedItemClickListener?.onItemClick(item, position)
@@ -38,6 +42,8 @@ class ActionSheetRecyclerDialog(private val mContext: Context) : BottomSheetDial
             }
         }
     }
+
+    constructor(mContext: Context) : this(mContext, Config(mContext))
 
     init {
         // set Dialog min width
@@ -58,6 +64,12 @@ class ActionSheetRecyclerDialog(private val mContext: Context) : BottomSheetDial
         }
     }
 
+    fun getRootView() = binding.root // 根view
+    fun getTitleBarView() = binding.rlTitleBar
+    fun getTitleView() = binding.tvTitle
+    fun getCloseView() = binding.ivClose
+    fun getDataView() = binding.rvData
+
     fun setDialogTitle(title: CharSequence?): ActionSheetRecyclerDialog {
         return setTitle(title, isBold = false)
     }
@@ -68,8 +80,8 @@ class ActionSheetRecyclerDialog(private val mContext: Context) : BottomSheetDial
 
     fun setTitle(
             title: CharSequence?,
-            color: Int = ContextCompat.getColor(mContext, R.color.def_title_color),
-            spSize: Float = 16f,
+            color: Int = config.titleColor,
+            spSize: Float = config.titleTextSizeSp,
             isBold: Boolean = false
     ): ActionSheetRecyclerDialog {
         binding.rlTitleBar.visibility = View.VISIBLE
@@ -99,7 +111,7 @@ class ActionSheetRecyclerDialog(private val mContext: Context) : BottomSheetDial
 
     // 添加动作页签集合
     fun addSheetItems(items: List<SheetItem>): ActionSheetRecyclerDialog {
-        binding.rvData.addItemDecoration(DividerItemDecoration(10f.dp2px(context), 0.7f.dp2px(context)))
+        binding.rvData.addItemDecoration(DividerItemDecoration(config.dividerPaddingLeft, config.dividerHeight, config.dividerColor))
         binding.rvData.adapter = adapter
         adapter.refreshData(items)
         return this
@@ -119,7 +131,7 @@ class ActionSheetRecyclerDialog(private val mContext: Context) : BottomSheetDial
 
     // 是否显示item选中标记
     fun isShowItemMark(isShow: Boolean): ActionSheetRecyclerDialog {
-        adapter.isShowMark = isShow
+        adapter.config.isShowMark = isShow
         adapter.notifyDataSetChanged()
         return this
     }
@@ -127,7 +139,7 @@ class ActionSheetRecyclerDialog(private val mContext: Context) : BottomSheetDial
     // 设置最大高度百分比
     fun setMaxScaleHeight(scHeight: Double): ActionSheetRecyclerDialog {
         val height = (mContext.screenInfo().y * scHeight).toInt()
-        maxHeight = height
+        config.maxHeight = height
         return this
     }
 
@@ -141,13 +153,13 @@ class ActionSheetRecyclerDialog(private val mContext: Context) : BottomSheetDial
      * set layout
      */
     private fun setSheetLayout() {
-        val height = if (maxHeight != null) {
-            rootView.measure(0, 0)
-            min(maxHeight!!, rootView.measuredHeight)
+        val height = if (config.maxHeight != null) {
+            getRootView().measure(0, 0)
+            min(config.maxHeight!!, getRootView().measuredHeight)
         } else {
             LinearLayout.LayoutParams.WRAP_CONTENT
         }
-        rootView.layoutParams = FrameLayout.LayoutParams(
+        getRootView().layoutParams = FrameLayout.LayoutParams(
                 LinearLayout.LayoutParams.WRAP_CONTENT,
                 height)
     }
@@ -157,4 +169,35 @@ class ActionSheetRecyclerDialog(private val mContext: Context) : BottomSheetDial
         super.show()
     }
 
+
+    /**
+     * ActionSheetRecyclerDialog 的配置
+     */
+    open class Config(
+            var context: Context
+    ) : Serializable {
+        var maxHeight: Int? = null //最大view高度, 单位：px
+        var isShowMark: Boolean = false // 是否显示 右侧对勾 √
+        var selectMark: Drawable? = ContextCompat.getDrawable(context, android.R.drawable.checkbox_on_background)
+
+        // title
+        var titleTextSizeSp: Float = 16f // 字体大小
+        var titleColor: Int = ContextCompat.getColor(context, R.color.def_title_color) // 字体颜色
+
+        // item
+        var itemTextSizeSp: Float = 14f // 字体大小
+        var itemTextColor: Int = ContextCompat.getColor(context, R.color.def_left_color)
+        var itemTextSelectedColor: Int = ContextCompat.getColor(context, R.color.def_right_color)
+        var itemPaddingLeft: Int = 15f.dp2px(context)
+        var itemPaddingTop: Int = 12f.dp2px(context)
+        var itemPaddingRight: Int = 15f.dp2px(context)
+        var itemPaddingBottom: Int = 12f.dp2px(context)
+
+        // divider 分割线
+        var dividerPaddingLeft: Int = 12f.dp2px(context) // 分割线距离左侧距离
+        var dividerHeight: Int = 0.7f.dp2px(context) // 分割线高度
+        var dividerColor: Drawable = ColorDrawable(Color.parseColor("#e6e9ee"))// 分割线
+    }
+
 }
+

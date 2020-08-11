@@ -2,11 +2,11 @@ package com.maple.msdialog.adapter
 
 import android.content.Context
 import android.databinding.DataBindingUtil
-import android.support.v4.content.ContextCompat
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.maple.msdialog.ActionSheetRecyclerDialog
 import com.maple.msdialog.R
 import com.maple.msdialog.SheetItem
 import com.maple.msdialog.databinding.ItemSingleStringBinding
@@ -21,8 +21,8 @@ import kotlin.math.min
  * @date ：2020/1/7
  */
 class SingleSelectItemListAdapter(
-        val mContext: Context,
-        var isShowMark: Boolean = false // 是否显示 右侧对勾 √
+        private val mContext: Context,
+        val config: ActionSheetRecyclerDialog.Config
 ) : BaseQuickAdapter<SheetItem, RecyclerView.ViewHolder>() {
 
     fun updateSelectItem(index: Int) {
@@ -50,23 +50,19 @@ class SingleSelectItemListAdapter(
         fun bind(item: SheetItem) {
             bindViewClickListener(this)
             binding.apply {
+                root.setPadding(config.itemPaddingLeft, config.itemPaddingTop, config.itemPaddingRight, config.itemPaddingBottom)
                 tvName.text = item.getShowName()
+                tvName.textSize = config.itemTextSizeSp
                 if (item.isSelected) {
-                    tvName.setTextColor(ContextCompat.getColor(mContext, R.color.def_right_color))
-                    ivMark.setImageResource(android.R.drawable.checkbox_on_background)
-                    ivMark.visibility = if (isShowMark) View.VISIBLE else View.GONE
+                    tvName.setTextColor(config.itemTextSelectedColor)
+                    ivMark.background = config.selectMark
+                    ivMark.visibility = if (config.isShowMark) View.VISIBLE else View.GONE
                 } else {
-                    tvName.setTextColor(ContextCompat.getColor(mContext, R.color.def_left_color))
+                    tvName.setTextColor(config.itemTextColor)
                     ivMark.visibility = View.GONE
                 }
             }
         }
     }
 
-    class AdapterUIConfig() {
-        var viewHeight: Int = 40
-        var textSize: Int = 20
-        var isShowMark: Boolean = false // 是否显示 右侧对勾 √
-
-    }
 }

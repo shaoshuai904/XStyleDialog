@@ -28,7 +28,7 @@ class MainActivity : Activity() {
 
     // ------------------------------------ Alert Dialog -------------------------------------------
     fun adOne(view: View?) {
-        val config = DialogConfig(this).apply {
+        val config = AlertDialog.Config(this).apply {
             rightBtnColor = Color.RED
             messagePaddingBottom = 40f.dp2px(context)
         }
