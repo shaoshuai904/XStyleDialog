@@ -74,7 +74,7 @@ class MainActivity : Activity() {
             addSheetItem("清空消息列表", OnSheetItemClickListener { item, position ->
                 showToast("clear msg list")
             })
-            setCancelText("取 消")
+            // setCancelText("取 消")
         }.show()
     }
 

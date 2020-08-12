@@ -40,6 +40,7 @@ class ActionSheetDialog(
         binding.root.minimumWidth = mContext.screenInfo().x
         binding.tvTitle.visibility = View.GONE
         binding.tvCancel.setOnClickListener { dismiss() }
+        setCancelText()
 
         // create Dialog
         setContentView(binding.root)
@@ -84,12 +85,13 @@ class ActionSheetDialog(
     }
 
     fun setCancelText(
-            cancelText: String?,
+            cancelText: String? = config.cancelText,
             color: Int = config.cancelTextColor,
             spSize: Float = config.cancelTextSizeSp,
             isBold: Boolean = false
     ): ActionSheetDialog {
         binding.tvCancel.apply {
+            visibility = View.GONE
             text = cancelText
             setTextColor(color)
             textSize = spSize
@@ -139,14 +141,20 @@ class ActionSheetDialog(
                 background = config.dividerColor
                 layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, config.dividerHeight)
             }
-            binding.llContent.addView(view)
             // set item background
             val bg = if (size == 1) {
-                if (config.showTitle) config.sheetBottom else config.sheetSingle
+                if (config.showTitle) {
+                    binding.llContent.addView(view)
+                    config.sheetBottom
+                } else config.sheetSingle
             } else {
                 if (config.showTitle) {
+                    binding.llContent.addView(view)
                     if (index < size - 1) config.sheetMiddle else config.sheetBottom
                 } else {
+                    if (index != 0) {
+                        binding.llContent.addView(view)
+                    }
                     when {
                         index == 0 -> config.sheetTop
                         index < size - 1 -> config.sheetMiddle
@@ -205,6 +213,7 @@ class ActionSheetDialog(
         var dividerColor: Drawable = ColorDrawable(Color.parseColor("#C9C9C9"))// 分割线
 
         // cancel
+        var cancelText: String = "取消"
         var cancelTextSizeSp: Float = 18f // 字体大小
         var cancelTextColor: Int = ContextCompat.getColor(context, R.color.def_title_color) // 字体颜色
     }

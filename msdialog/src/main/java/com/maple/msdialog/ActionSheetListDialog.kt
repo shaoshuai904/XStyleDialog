@@ -39,6 +39,7 @@ class ActionSheetListDialog(
         binding.tvTitle.visibility = View.GONE
         binding.tvCancel.visibility = View.GONE
         binding.tvCancel.setOnClickListener { dismiss() }
+        setCancelText()
 
         // create Dialog
         // dialog = Dialog(context, R.style.ActionSheetDialogStyle)
@@ -85,7 +86,7 @@ class ActionSheetListDialog(
     }
 
     fun setCancelText(
-            cancelText: CharSequence?,
+            cancelText: CharSequence? = config.cancelText,
             color: Int = config.cancelTextColor,
             spSize: Float = config.cancelTextSizeSp,
             isBold: Boolean = false
@@ -164,6 +165,7 @@ class ActionSheetListDialog(
         var dividerColor: Drawable = ColorDrawable(Color.parseColor("#C9C9C9"))// 分割线
 
         // cancel
+        var cancelText: String = "取消"
         var cancelTextSizeSp: Float = 18f // 字体大小
         var cancelTextColor: Int = ContextCompat.getColor(context, R.color.def_title_color) // 字体颜色
     }
