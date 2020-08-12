@@ -48,7 +48,10 @@ class MainActivity : Activity() {
             // getMessageView().setPadding(15f.dp2px(context), 24f.dp2px(context), 15f.dp2px(context), 24f.dp2px(context))
             setMessage("你现在无法接收到新消息提醒。请到系统-设置-通知中开启消息提醒")
             // setBottomViewHeightDp(48f)
-            setRightButton("确定", View.OnClickListener { showToast("OK") })
+            setRightButton("确定", View.OnClickListener {
+                throw NullPointerException("The tag for activity_co aaaa")
+                showToast("OK")
+            })
         }.show()
     }
 
@@ -153,6 +156,8 @@ class MainActivity : Activity() {
             }).apply {
                 setTitle("选择条目")
                 addSheetItems(items)
+                setCancelable(false)
+                setCanceledOnTouchOutside(false)
                 setMaxScaleHeight(0.65)
                 addSheetItemClickListener(OnSheetItemClickListener { item, position ->
                     showToast("$position   ${item.getShowName()}")
