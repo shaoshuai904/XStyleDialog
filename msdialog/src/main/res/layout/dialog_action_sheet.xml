@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -15,10 +16,10 @@
             android:gravity="center"
             android:minHeight="50dp"
             android:padding="10dp"
-            android:text="@string/alert"
             android:textAllCaps="false"
             android:textColor="@color/def_title_color"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            tools:text="Alert" />
 
         <ScrollView
             android:id="@+id/sl_content"
@@ -42,10 +43,10 @@
             android:layout_marginTop="10dp"
             android:background="@drawable/sel_action_sheet_single"
             android:gravity="center"
-            android:text="@string/cancel"
             android:textAllCaps="false"
             android:textColor="@color/def_title_color"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            tools:text="Cancel" />
 
     </LinearLayout>
 </layout>

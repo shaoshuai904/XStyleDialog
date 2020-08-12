@@ -48,10 +48,7 @@ class MainActivity : Activity() {
             // getMessageView().setPadding(15f.dp2px(context), 24f.dp2px(context), 15f.dp2px(context), 24f.dp2px(context))
             setMessage("你现在无法接收到新消息提醒。请到系统-设置-通知中开启消息提醒")
             // setBottomViewHeightDp(48f)
-            setRightButton("确定", View.OnClickListener {
-                throw NullPointerException("The tag for activity_co aaaa")
-                showToast("OK")
-            })
+            setRightButton("确定", View.OnClickListener { showToast("OK") })
         }.show()
     }
 

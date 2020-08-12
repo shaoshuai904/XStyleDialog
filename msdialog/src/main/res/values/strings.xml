@@ -1,8 +1,0 @@
-<resources>
-    <string name="app_name">MsDialog</string>
-
-    <string name="ok">OK</string>
-    <string name="cancel">Cancel</string>
-    <string name="alert">Alert</string>
-
-</resources>

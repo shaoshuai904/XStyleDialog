@@ -16,10 +16,10 @@
             android:gravity="center"
             android:minHeight="50dp"
             android:padding="10dp"
-            android:text="@string/alert"
             android:textAllCaps="false"
             android:textColor="@color/def_title_color"
             android:textSize="18sp"
+            tools:text="Alert"
             tools:visibility="visible" />
 
         <ListView
@@ -28,7 +28,7 @@
             android:layout_height="wrap_content"
             android:divider="@color/act_line"
             android:dividerHeight="1px"
-            tools:listitem="@layout/item_sheet" />
+            tools:listitem="@layout/ms_item_sheet" />
 
         <!--        <android.support.v7.widget.RecyclerView-->
         <!--            android:id="@+id/rv_data"-->
@@ -37,7 +37,7 @@
         <!--            android:padding="5dp"-->
         <!--            app:layoutManager="android.support.v7.widget.LinearLayoutManager"-->
         <!--            tools:itemCount="4"-->
-        <!--            tools:listitem="@layout/item_sheet" />-->
+        <!--            tools:listitem="@layout/ms_item_sheet" />-->
 
         <TextView
             android:id="@+id/tv_cancel"
@@ -46,10 +46,10 @@
             android:layout_marginTop="10dp"
             android:background="@drawable/sel_action_sheet_single"
             android:gravity="center"
-            android:text="@string/cancel"
             android:textAllCaps="false"
             android:textColor="@color/def_title_color"
             android:textSize="18sp"
+            tools:text="Cancel"
             tools:visibility="visible" />
 
     </LinearLayout>

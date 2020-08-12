@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -15,10 +16,10 @@
             android:layout_marginTop="15dp"
             android:layout_marginRight="15dp"
             android:gravity="center"
-            android:text="@string/alert"
             android:textAllCaps="false"
             android:textSize="18sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            tools:text="Alert" />
 
 
         <TextView
@@ -29,8 +30,8 @@
             android:layout_marginTop="15dp"
             android:layout_marginRight="15dp"
             android:gravity="center"
-            android:text="body text"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            tools:text="body text" />
 
         <EditText
             android:id="@+id/et_text"
@@ -62,10 +63,10 @@
                 android:layout_weight="1"
                 android:background="@drawable/sel_alert_dialog_left"
                 android:gravity="center"
-                android:text="@string/cancel"
                 android:textAllCaps="false"
                 android:textColor="@color/def_title_color"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                tools:text="Cancel" />
 
             <ImageView
                 android:id="@+id/iv_line"
@@ -80,11 +81,11 @@
                 android:layout_weight="1"
                 android:background="@drawable/sel_alert_dialog_right"
                 android:gravity="center"
-                android:text="@string/ok"
                 android:textAllCaps="false"
                 android:textColor="@color/def_title_color"
                 android:textSize="16sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                tools:text="OK" />
         </LinearLayout>
 
     </LinearLayout>

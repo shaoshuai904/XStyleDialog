@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.maple.msdialog.R
 import com.maple.msdialog.SheetItem
-import com.maple.msdialog.databinding.ItemSheetBinding
+import com.maple.msdialog.databinding.MsItemSheetBinding
 
 /**
  * Action sheet adapter
@@ -34,7 +34,7 @@ class ActionSheetAdapter(mContext: Context) : AbsAdapter<SheetItem>(mContext) {
         var returnView: View? = convertView
         val holder: MyHolder
         if (returnView == null) {
-            val binding: ItemSheetBinding = DataBindingUtil.inflate(LayoutInflater.from(mContext), R.layout.item_sheet, parent, false)
+            val binding: MsItemSheetBinding = DataBindingUtil.inflate(LayoutInflater.from(mContext), R.layout.ms_item_sheet, parent, false)
             holder = MyHolder(binding)
             returnView = binding.root
             returnView.tag = holder
@@ -45,7 +45,7 @@ class ActionSheetAdapter(mContext: Context) : AbsAdapter<SheetItem>(mContext) {
         return returnView
     }
 
-    inner class MyHolder(val binding: ItemSheetBinding) {
+    inner class MyHolder(val binding: MsItemSheetBinding) {
 
         fun bind(item: SheetItem, index: Int) {
             binding.apply {

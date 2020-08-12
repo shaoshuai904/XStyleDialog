@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import com.maple.msdialog.ActionSheetRecyclerDialog
 import com.maple.msdialog.R
 import com.maple.msdialog.SheetItem
-import com.maple.msdialog.databinding.ItemSingleStringBinding
+import com.maple.msdialog.databinding.MsItemSingleStringBinding
 import kotlin.math.max
 import kotlin.math.min
 
@@ -35,8 +35,8 @@ class SingleSelectItemListAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyHolder {
-        val binding: ItemSingleStringBinding = DataBindingUtil.inflate(
-                LayoutInflater.from(mContext), R.layout.item_single_string, parent, false)
+        val binding: MsItemSingleStringBinding = DataBindingUtil.inflate(
+                LayoutInflater.from(mContext), R.layout.ms_item_single_string, parent, false)
         return MyHolder(binding)
     }
 
@@ -44,7 +44,7 @@ class SingleSelectItemListAdapter(
         (holder as MyHolder).bind(getItem(position))
     }
 
-    inner class MyHolder(val binding: ItemSingleStringBinding)
+    inner class MyHolder(val binding: MsItemSingleStringBinding)
         : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: SheetItem) {
