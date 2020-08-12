@@ -15,10 +15,15 @@ open class SheetItem(
         var isSelected: Boolean = false// 是否为选中状态
 ) : Serializable {
     var showColor: Int = Color.parseColor("#333333")
+    var itemClickListener: OnSheetItemClickListener? = null
 
     constructor(name: String) : this(name, name, false)
-    constructor(name: String, color: Int) : this(name, name, false) {
+    constructor(
+            name: String, color: Int = Color.parseColor("#333333"),
+            clickListener: OnSheetItemClickListener? = null
+    ) : this(name, name, false) {
         this.showColor = color
+        this.itemClickListener = clickListener
     }
 
     open fun getShowName() = name

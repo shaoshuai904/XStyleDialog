@@ -7,6 +7,7 @@ import android.graphics.Color
 import android.graphics.Typeface
 import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.Drawable
+import android.support.annotation.DrawableRes
 import android.support.v4.content.ContextCompat
 import android.view.Gravity
 import android.view.LayoutInflater
@@ -32,7 +33,7 @@ class ActionSheetDialog(
     private val binding: DialogActionSheetBinding = DataBindingUtil.inflate(
             LayoutInflater.from(context), R.layout.dialog_action_sheet, null, false)
     private var sheetItemList: MutableList<SheetItem>? = null
-    var itemClickListener: OnSheetItemClickListener? = null
+    // var itemClickListener: OnSheetItemClickListener? = null
 
     init {
         // set Dialog min width
@@ -98,12 +99,15 @@ class ActionSheetDialog(
     }
 
     fun addSheetItem(strItem: String): ActionSheetDialog {
-        val color = config.itemTextColor
-        return addSheetItem(strItem, color)
+        return addSheetItem(strItem, config.itemTextColor, null)
     }
 
-    fun addSheetItem(strItem: String, color: Int): ActionSheetDialog {
-        return addSheetItem(SheetItem(strItem, color))
+    fun addSheetItem(strItem: String, clickListener: OnSheetItemClickListener?): ActionSheetDialog {
+        return addSheetItem(SheetItem(strItem, config.itemTextColor, clickListener))
+    }
+
+    fun addSheetItem(strItem: String, color: Int = config.itemTextColor, clickListener: OnSheetItemClickListener?): ActionSheetDialog {
+        return addSheetItem(SheetItem(strItem, color, clickListener))
     }
 
     fun addSheetItem(item: SheetItem): ActionSheetDialog {
@@ -138,15 +142,15 @@ class ActionSheetDialog(
             binding.llContent.addView(view)
             // set item background
             val bg = if (size == 1) {
-                if (config.showTitle) R.drawable.sel_action_sheet_bottom else R.drawable.sel_action_sheet_single
+                if (config.showTitle) config.sheetBottom else config.sheetSingle
             } else {
                 if (config.showTitle) {
-                    if (index < size - 1) R.drawable.sel_action_sheet_middle else R.drawable.sel_action_sheet_bottom
+                    if (index < size - 1) config.sheetMiddle else config.sheetBottom
                 } else {
                     when {
-                        index == 0 -> R.drawable.sel_action_sheet_top
-                        index < size - 1 -> R.drawable.sel_action_sheet_middle
-                        else -> R.drawable.sel_action_sheet_bottom
+                        index == 0 -> config.sheetTop
+                        index < size - 1 -> config.sheetMiddle
+                        else -> config.sheetBottom
                     }
                 }
             }
@@ -162,7 +166,8 @@ class ActionSheetDialog(
                 )
                 // add click listener
                 setOnClickListener {
-                    itemClickListener?.onItemClick(sheetItem, index)
+                    sheetItem.itemClickListener?.onItemClick(sheetItem, index)
+                    // itemClickListener?.onItemClick(sheetItem, index)
                     dismiss()
                 }
             }
@@ -190,6 +195,10 @@ class ActionSheetDialog(
         var actionSheetItemHeight = 50f.dp2px(context)
         var itemTextSizeSp: Float = 18f // 字体大小
         var itemTextColor: Int = ContextCompat.getColor(context, R.color.def_message_color)
+        @DrawableRes var sheetSingle: Int = R.drawable.sel_action_sheet_single
+        @DrawableRes var sheetTop: Int = R.drawable.sel_action_sheet_top
+        @DrawableRes var sheetMiddle: Int = R.drawable.sel_action_sheet_middle
+        @DrawableRes var sheetBottom: Int = R.drawable.sel_action_sheet_bottom
 
         // divider 分割线
         var dividerHeight: Int = 0.4f.dp2px(context) // 分割线高度

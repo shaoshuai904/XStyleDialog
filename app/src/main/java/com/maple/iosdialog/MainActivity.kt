@@ -71,10 +71,9 @@ class MainActivity : Activity() {
             setCancelable(false)
             setCanceledOnTouchOutside(false)
             setTitle("清空消息列表后，聊天记录依然保留，确定要清空消息列表？")
-            addSheetItem("清空消息列表", Color.parseColor(DEF_RED))
-            itemClickListener = OnSheetItemClickListener { _, _ ->
+            addSheetItem("清空消息列表", OnSheetItemClickListener { item, position ->
                 showToast("clear msg list")
-            }
+            })
             setCancelText("取 消")
         }.show()
     }
@@ -83,13 +82,12 @@ class MainActivity : Activity() {
         ActionSheetDialog(this).apply {
 //            setCancelable(false)
 //            setCanceledOnTouchOutside(false)
-            addSheetItem("发送给好友", Color.parseColor(DEF_BLUE))
-            addSheetItem("转载到空间相册", Color.parseColor(DEF_BLUE))
+            addSheetItem("发送给好友", Color.parseColor(DEF_BLUE), onItemClickListener)
+            addSheetItem("转载到空间相册", Color.parseColor(DEF_BLUE), onItemClickListener)
 //            addSheetItem("上传到群相册")
 //            addSheetItem("保存到手机")
 //            addSheetItem("收藏")
 //            addSheetItem("查看聊天图片")
-            itemClickListener = onItemClickListener
             setCancelText("取消", Color.parseColor(DEF_BLUE))
         }.show()
     }
@@ -99,17 +97,16 @@ class MainActivity : Activity() {
             setTitle("请选择操作")
             setCancelable(false)
             setCanceledOnTouchOutside(false)
-            addSheetItem("条目一", Color.parseColor(DEF_RED))
-            addSheetItem("条目二")
-            addSheetItem("条目三", Color.BLUE)
-            addSheetItem("条目四", Color.CYAN)
-            addSheetItem("条目五")
-            addSheetItem("条目六")
-            addSheetItem("条目七")
-            addSheetItem("条目八")
-            addSheetItem(SheetItem("条目九"))
-            addSheetItem(SheetItem("条目十", Color.CYAN))
-            itemClickListener = onItemClickListener
+            addSheetItem("条目一", Color.parseColor(DEF_RED), onItemClickListener)
+            addSheetItem("条目二", onItemClickListener)
+            addSheetItem("条目三", Color.BLUE, onItemClickListener)
+            addSheetItem("条目四", Color.CYAN, onItemClickListener)
+            addSheetItem("条目五", onItemClickListener)
+            addSheetItem("条目六", onItemClickListener)
+            addSheetItem("条目七", onItemClickListener)
+            addSheetItem("条目八", onItemClickListener)
+            addSheetItem(SheetItem("条目九").apply { itemClickListener = onItemClickListener })
+            addSheetItem(SheetItem("条目十", Color.CYAN, onItemClickListener))
         }.show()
     }
 
