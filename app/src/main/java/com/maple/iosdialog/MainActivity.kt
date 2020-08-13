@@ -94,6 +94,7 @@ class MainActivity : Activity() {
 
     fun asList(view: View?) {
         ActionSheetDialog(this, ActionSheetDialog.Config(this).apply {
+            paddingBottom = 15f.dp2px(context)
             showCancel = true
             cancelText = "Config Cancel"
         }).apply {

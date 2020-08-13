@@ -38,6 +38,7 @@ class ActionSheetDialog(
     init {
         // set Dialog min width
         binding.root.minimumWidth = mContext.screenInfo().x
+        binding.root.setPadding(config.paddingLeft, config.paddingTop, config.paddingRight, config.paddingBottom)
         binding.tvTitle.visibility = if (config.showTitle) View.VISIBLE else View.GONE
         binding.tvCancel.setOnClickListener { dismiss() }
         binding.tvCancel.visibility = if (config.showCancel) {
@@ -198,6 +199,12 @@ class ActionSheetDialog(
     open class Config(
             var context: Context
     ) : Serializable {
+        // root
+        var paddingLeft: Int = 10f.dp2px(context)
+        var paddingTop: Int = 10f.dp2px(context)
+        var paddingRight: Int = 10f.dp2px(context)
+        var paddingBottom: Int = 10f.dp2px(context)
+
         // title
         var showTitle: Boolean = false
         var titleTextSizeSp: Float = 16f // 字体大小
