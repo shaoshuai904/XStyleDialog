@@ -74,7 +74,7 @@ class MainActivity : Activity() {
             addSheetItem("清空消息列表", OnSheetItemClickListener { item, position ->
                 showToast("clear msg list")
             })
-            // setCancelText("取 消")
+            setCancelText("取 消")
         }.show()
     }
 
@@ -88,12 +88,15 @@ class MainActivity : Activity() {
 //            addSheetItem("保存到手机")
 //            addSheetItem("收藏")
 //            addSheetItem("查看聊天图片")
-            setCancelText("取消", Color.parseColor(DEF_BLUE))
+            setCancelText("取消哦", Color.parseColor(DEF_BLUE))
         }.show()
     }
 
     fun asList(view: View?) {
-        ActionSheetDialog(this).apply {
+        ActionSheetDialog(this, ActionSheetDialog.Config(this).apply {
+            showCancel = true
+            cancelText = "Config Cancel"
+        }).apply {
             setTitle("请选择操作")
             setCancelable(false)
             setCanceledOnTouchOutside(false)

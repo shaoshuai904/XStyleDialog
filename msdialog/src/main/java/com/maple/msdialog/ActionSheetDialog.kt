@@ -38,9 +38,12 @@ class ActionSheetDialog(
     init {
         // set Dialog min width
         binding.root.minimumWidth = mContext.screenInfo().x
-        binding.tvTitle.visibility = View.GONE
+        binding.tvTitle.visibility = if (config.showTitle) View.VISIBLE else View.GONE
         binding.tvCancel.setOnClickListener { dismiss() }
-        setCancelText()
+        binding.tvCancel.visibility = if (config.showCancel) {
+            setCancelText()
+            View.VISIBLE
+        } else View.GONE
 
         // create Dialog
         setContentView(binding.root)
@@ -75,7 +78,6 @@ class ActionSheetDialog(
     ): ActionSheetDialog {
         config.showTitle = true
         binding.tvTitle.apply {
-            visibility = View.VISIBLE
             text = title
             setTextColor(color)
             textSize = spSize
@@ -90,8 +92,8 @@ class ActionSheetDialog(
             spSize: Float = config.cancelTextSizeSp,
             isBold: Boolean = false
     ): ActionSheetDialog {
+        config.showCancel = true
         binding.tvCancel.apply {
-            visibility = View.GONE
             text = cancelText
             setTextColor(color)
             textSize = spSize
@@ -124,6 +126,8 @@ class ActionSheetDialog(
      * set items layout
      */
     private fun initLayout() {
+        binding.tvTitle.visibility = if (config.showTitle) View.VISIBLE else View.GONE
+        binding.tvCancel.visibility = if (config.showCancel) View.VISIBLE else View.GONE
         if (sheetItemList == null || sheetItemList!!.size <= 0) {
             return
         }
@@ -195,12 +199,12 @@ class ActionSheetDialog(
             var context: Context
     ) : Serializable {
         // title
-        var showTitle = false
+        var showTitle: Boolean = false
         var titleTextSizeSp: Float = 16f // 字体大小
         var titleTextColor: Int = ContextCompat.getColor(context, R.color.def_title_color) // 字体颜色
 
         // item
-        var actionSheetItemHeight = 50f.dp2px(context)
+        var actionSheetItemHeight: Int = 50f.dp2px(context)
         var itemTextSizeSp: Float = 18f // 字体大小
         var itemTextColor: Int = ContextCompat.getColor(context, R.color.def_message_color)
         @DrawableRes var sheetSingle: Int = R.drawable.sel_action_sheet_single
@@ -209,10 +213,11 @@ class ActionSheetDialog(
         @DrawableRes var sheetBottom: Int = R.drawable.sel_action_sheet_bottom
 
         // divider 分割线
-        var dividerHeight: Int = 0.4f.dp2px(context) // 分割线高度
+        var dividerHeight: Int = 1 // 0.4f.dp2px(context) // 分割线高度
         var dividerColor: Drawable = ColorDrawable(Color.parseColor("#C9C9C9"))// 分割线
 
         // cancel
+        var showCancel: Boolean = false
         var cancelText: String = "取消"
         var cancelTextSizeSp: Float = 18f // 字体大小
         var cancelTextColor: Int = ContextCompat.getColor(context, R.color.def_title_color) // 字体颜色
