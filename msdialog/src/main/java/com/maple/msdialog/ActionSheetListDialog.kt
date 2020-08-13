@@ -92,7 +92,7 @@ class ActionSheetListDialog(
             spSize: Float = config.cancelTextSizeSp,
             isBold: Boolean = false
     ): ActionSheetListDialog {
-        config.showTitle = true
+        config.showCancel = true
         binding.tvCancel.apply {
             text = cancelText
             setTextColor(color)

@@ -173,10 +173,10 @@ class MainActivity : Activity() {
     fun aslList(view: View?) {
         if (asl1 == null) {
             asl1 = ActionSheetListDialog(this).apply {
-                setCancelText("取消")
                 addSheetItems(getSingleSelectItemTestData(2), OnSheetItemClickListener { item, position ->
                     showToast(item.getShowName())
                 })
+                setCancelText("取消")
             }
         }
         asl1?.show()
