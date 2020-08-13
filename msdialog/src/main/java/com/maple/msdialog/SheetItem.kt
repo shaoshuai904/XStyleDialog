@@ -22,6 +22,9 @@ open class SheetItem(
             name: String, color: Int = Color.parseColor("#333333"),
             clickListener: OnSheetItemClickListener? = null
     ) : this(name, name, false) {
+        this.id = name
+        this.name = name
+        this.isSelected = false
         this.showColor = color
         this.itemClickListener = clickListener
     }

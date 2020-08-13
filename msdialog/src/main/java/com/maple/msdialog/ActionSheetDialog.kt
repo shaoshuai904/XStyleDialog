@@ -87,6 +87,8 @@ class ActionSheetDialog(
         return this
     }
 
+    fun setCancelText(cancelText: String?) = setCancelText(cancelText, isBold = false)
+
     fun setCancelText(
             cancelText: String? = config.cancelText,
             color: Int = config.cancelTextColor,

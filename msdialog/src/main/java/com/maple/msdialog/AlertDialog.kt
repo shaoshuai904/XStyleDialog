@@ -10,7 +10,6 @@ import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import com.maple.msdialog.databinding.DialogAlertBinding
-import com.maple.msdialog.utils.DensityUtils
 import com.maple.msdialog.utils.DensityUtils.dp2px
 import com.maple.msdialog.utils.DialogUtil.setScaleWidth
 import java.io.Serializable
@@ -116,7 +115,7 @@ class AlertDialog(
         return this
     }
 
-    fun setBottomViewHeightDp(heightDp: Float = config.bottomViewHeightDp) = setBottomViewHeight(DensityUtils.dp2px(mContext, heightDp))
+    fun setBottomViewHeightDp(heightDp: Float = config.bottomViewHeightDp) = setBottomViewHeight(dp2px(mContext, heightDp))
 
     fun setBottomViewHeight(heightPixels: Int): AlertDialog {
         with(binding.llBottom) {
