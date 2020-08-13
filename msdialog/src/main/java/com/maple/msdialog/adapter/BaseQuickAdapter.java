@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * https://github.com/CymChad/BaseRecyclerViewAdapterHelper
  *
- * @author maple
+ * @author shaoshuai
  * @time 2018-08-06
  */
 public abstract class BaseQuickAdapter<T, K extends RecyclerView.ViewHolder> extends RecyclerView.Adapter<K> {

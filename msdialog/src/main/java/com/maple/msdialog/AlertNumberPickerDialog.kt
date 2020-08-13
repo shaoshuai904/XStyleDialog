@@ -15,7 +15,7 @@ import com.maple.msdialog.utils.DialogUtil.setScaleWidth
 /**
  * 警告框式数字选择器Dialog [ 标题 + 数字选择 + 左按钮 + 右按钮 ]
  *
- * @author maple
+ * @author shaoshuai
  * @time 2018/12/6
  */
 class AlertNumberPickerDialog(private val mContext: Context) : Dialog(mContext, R.style.AlertDialogStyle) {

@@ -14,7 +14,7 @@ import com.maple.msdialog.utils.DensityUtils.dp2px
 /**
  * 分割线
  *
- * @author : shaoshuai27
+ * @author : shaoshuai
  * @date ：2020/5/18
  */
 class DividerItemDecoration(

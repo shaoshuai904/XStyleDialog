@@ -21,7 +21,7 @@ import java.io.Serializable
 /**
  * 页签List Dialog [ 标题 + 页签条目 + 取消按钮 ]
  *
- * @author : shaoshuai27
+ * @author : shaoshuai
  * @date ：2020/5/6
  */
 class ActionSheetListDialog(

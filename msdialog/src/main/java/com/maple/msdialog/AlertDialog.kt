@@ -18,7 +18,7 @@ import java.io.Serializable
 /**
  * 警告框式Dialog [ 标题 + 消息文本 + 左按钮 + 右按钮 ]
  *
- * @author maple
+ * @author shaoshuai
  * @time 2017/3/21
  */
 class AlertDialog(

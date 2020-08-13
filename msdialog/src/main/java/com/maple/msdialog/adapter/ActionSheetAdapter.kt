@@ -12,7 +12,7 @@ import com.maple.msdialog.databinding.MsItemSheetBinding
 /**
  * Action sheet adapter
  *
- * @author : shaoshuai27
+ * @author : shaoshuai
  * @date ：2020/5/6
  */
 class ActionSheetAdapter(mContext: Context) : AbsAdapter<SheetItem>(mContext) {

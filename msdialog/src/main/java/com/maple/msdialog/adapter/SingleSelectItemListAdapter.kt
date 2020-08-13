@@ -17,7 +17,7 @@ import kotlin.math.min
 /**
  * 单选 item适配器
  *
- * @author : shaoshuai27
+ * @author : shaoshuai
  * @date ：2020/1/7
  */
 class SingleSelectItemListAdapter(

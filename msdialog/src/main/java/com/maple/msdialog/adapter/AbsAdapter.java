@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * Base Adapter
  *
- * @author maple
+ * @author shaoshuai
  * @time 2018/10/11
  */
 public abstract class AbsAdapter<T> extends BaseAdapter {

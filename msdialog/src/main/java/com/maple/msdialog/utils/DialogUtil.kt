@@ -8,6 +8,12 @@ import android.view.WindowManager
 import android.widget.FrameLayout
 import android.widget.LinearLayout
 
+/**
+ * Dialog Utils
+ *
+ * @author : shaoshuai
+ * @date ：2020/8/13
+ */
 object DialogUtil {
 
     // 设置Dialog宽度：相对于屏幕宽度比例

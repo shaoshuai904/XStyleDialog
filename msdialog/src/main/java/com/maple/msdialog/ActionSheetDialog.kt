@@ -23,7 +23,7 @@ import java.util.*
 /**
  * 页签式Dialog [ 标题 + 页签条目 + 取消按钮 ]
  *
- * @author maple
+ * @author shaoshuai
  * @time 2017/3/21
  */
 class ActionSheetDialog(

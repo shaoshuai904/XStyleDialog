@@ -4,7 +4,7 @@ import android.content.Context
 import android.util.TypedValue
 
 /**
- * @author maple
+ * @author shaoshuai
  * @time 2018/3/10
  */
 object DensityUtils {

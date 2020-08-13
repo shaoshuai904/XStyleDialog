@@ -13,7 +13,7 @@ import com.maple.msdialog.utils.DialogUtil.setScaleWidth
 /**
  * 警告框式Edit Dialog [ 标题 + 输入框 + 消息文本 + 左按钮 + 右按钮 ]
  *
- * @author maple
+ * @author shaoshuai
  * @time 2017/3/23
  */
 class AlertEditDialog(private val mContext: Context) : Dialog(mContext, R.style.AlertDialogStyle) {
