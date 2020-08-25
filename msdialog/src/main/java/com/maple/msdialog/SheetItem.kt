@@ -37,12 +37,14 @@ open class SheetItem(
         other as SheetItem
         if (id != other.id) return false
         if (name != other.name) return false
+        if (getShowName() != other.getShowName()) return false
         return true
     }
 
     override fun hashCode(): Int {
         var result = id.hashCode()
         result = 31 * result + name.hashCode()
+        result = 31 * result + getShowName().hashCode()
         return result
     }
 

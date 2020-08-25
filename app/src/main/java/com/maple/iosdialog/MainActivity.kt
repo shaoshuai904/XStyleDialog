@@ -4,6 +4,7 @@ import android.app.Activity
 import android.graphics.Color
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
+import android.util.Log
 import android.view.Gravity
 import android.view.View
 import android.widget.NumberPicker
@@ -132,6 +133,7 @@ class MainActivity : Activity() {
                 addSheetItems(items)
                 addSheetItemClickListener(OnSheetItemClickListener { item, position ->
                     if (item is User) {
+                        Log.e("okhttp", "item: ${item.toString()}")
                         showToast("${item.name}  年龄:${item.age}岁")
                     } else {
                         showToast("$position   ${item.getShowName()}")
