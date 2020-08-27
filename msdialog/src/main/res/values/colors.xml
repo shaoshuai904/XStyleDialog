@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <color name="def_title_color">#333333</color>
-    <color name="def_message_color">#333333</color>
-    <color name="def_left_color">#666666</color>
-    <color name="def_right_color">#FE8C01</color>
+    <color name="ms_def_title_color">#333333</color>
+    <color name="ms_def_message_color">#333333</color>
+    <color name="ms_def_left_color">#666666</color>
+    <color name="ms_def_right_color">#FE8C01</color>
 
     <!--<color name="blue">#347EFD</color>-->
 
-    <color name="act_def_bg">#FFFFFF</color>
-    <color name="act_sel_bg">#D9D9D9</color>
-    <color name="act_line">#C9C9C9</color>
+    <color name="ms_act_def_bg">#FFFFFF</color>
+    <color name="ms_act_sel_bg">#D9D9D9</color>
+    <color name="ms_act_line">#C9C9C9</color>
 
 </resources>

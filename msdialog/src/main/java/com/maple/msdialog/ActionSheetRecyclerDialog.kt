@@ -15,7 +15,7 @@ import android.view.View
 import android.widget.FrameLayout
 import android.widget.LinearLayout
 import com.maple.msdialog.adapter.SingleSelectItemListAdapter
-import com.maple.msdialog.databinding.DialogActionSheetRecyclerBinding
+import com.maple.msdialog.databinding.MsDialogActionSheetRecyclerBinding
 import com.maple.msdialog.utils.DensityUtils.dp2px
 import com.maple.msdialog.utils.DialogUtil.screenInfo
 import java.io.Serializable
@@ -30,8 +30,8 @@ class ActionSheetRecyclerDialog(
         private val mContext: Context,
         private val config: Config = Config(mContext)
 ) : BottomSheetDialog(mContext, R.style.ActionSheetDialogStyle) {
-    private val binding: DialogActionSheetRecyclerBinding = DataBindingUtil.inflate(
-            LayoutInflater.from(context), R.layout.dialog_action_sheet_recycler, null, false)
+    private val binding: MsDialogActionSheetRecyclerBinding = DataBindingUtil.inflate(
+            LayoutInflater.from(context), R.layout.ms_dialog_action_sheet_recycler, null, false)
     private var onSingleSelectedItemClickListener: OnSheetItemClickListener? = null
     private val adapter by lazy {
         SingleSelectItemListAdapter(mContext, config).apply {
@@ -195,17 +195,17 @@ class ActionSheetRecyclerDialog(
 
         var isShowMark: Boolean = false // 是否显示 右侧对勾 √
         var selectMark: Drawable? = ContextCompat.getDrawable(context, android.R.drawable.checkbox_on_background)
-        var closeDraw: Drawable? = ContextCompat.getDrawable(context, R.drawable.svg_ic_close)
+        var closeDraw: Drawable? = ContextCompat.getDrawable(context, R.drawable.ms_svg_ic_close)
 
         // title
         var titleTextSizeSp: Float = 16f // 字体大小
-        var titleColor: Int = ContextCompat.getColor(context, R.color.def_title_color) // 字体颜色
+        var titleColor: Int = ContextCompat.getColor(context, R.color.ms_def_title_color) // 字体颜色
 
         // item
         var itemBg: Drawable? = ColorDrawable(Color.WHITE) // item背景
         var itemTextSizeSp: Float = 14f // 字体大小
-        var itemTextColor: Int = ContextCompat.getColor(context, R.color.def_left_color)
-        var itemTextSelectedColor: Int = ContextCompat.getColor(context, R.color.def_right_color)
+        var itemTextColor: Int = ContextCompat.getColor(context, R.color.ms_def_left_color)
+        var itemTextSelectedColor: Int = ContextCompat.getColor(context, R.color.ms_def_right_color)
         var itemPaddingLeft: Int = 15f.dp2px(context)
         var itemPaddingTop: Int = 12f.dp2px(context)
         var itemPaddingRight: Int = 15f.dp2px(context)

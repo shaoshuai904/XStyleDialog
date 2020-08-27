@@ -5,7 +5,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="@drawable/sel_action_sheet_middle"
+        android:background="@drawable/ms_sel_action_sheet_middle"
         android:gravity="center"
         android:orientation="horizontal">
 

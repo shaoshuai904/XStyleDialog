@@ -5,7 +5,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/shape_alert_dialog_bg"
+        android:background="@drawable/ms_shape_alert_dialog_bg"
         android:orientation="vertical">
 
         <TextView
@@ -18,50 +18,53 @@
             android:gravity="center"
             android:textAllCaps="false"
             android:textSize="18sp"
+            android:textStyle="bold"
             tools:text="Alert" />
 
-        <LinearLayout
+
+        <TextView
+            android:id="@+id/tv_msg"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="15dp"
             android:gravity="center"
-            android:orientation="horizontal">
+            android:textSize="16sp"
+            tools:text="body text" />
 
-            <NumberPicker
-                android:id="@+id/np_number"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:gravity="center_horizontal" />
-
-            <TextView
-                android:id="@+id/tv_suffix"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="16sp"
-                tools:text="市" />
-
-        </LinearLayout>
+        <EditText
+            android:id="@+id/et_text"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/ms_sel_action_sheet_single_line"
+            android:padding="5dp"
+            android:textCursorDrawable="@color/ms_def_title_color" />
 
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="1px"
-            android:background="@color/act_line" />
+            android:background="@color/ms_act_line" />
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/dialog_bottom_height"
+            android:layout_height="@dimen/ms_dialog_bottom_height"
             android:layout_margin="1px"
             android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/tv_left"
-                android:layout_width="0dp"
+            <Button
+                android:id="@+id/bt_left"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="@drawable/sel_alert_dialog_left"
+                android:background="@drawable/ms_sel_alert_dialog_left"
                 android:gravity="center"
                 android:textAllCaps="false"
-                android:textColor="@color/def_title_color"
+                android:textColor="@color/ms_def_title_color"
                 android:textSize="16sp"
                 tools:text="Cancel" />
 
@@ -69,20 +72,22 @@
                 android:id="@+id/iv_line"
                 android:layout_width="1px"
                 android:layout_height="match_parent"
-                android:background="@color/act_line" />
+                android:background="@color/ms_act_line" />
 
-            <TextView
-                android:id="@+id/tv_right"
-                android:layout_width="0dp"
+            <Button
+                android:id="@+id/bt_right"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="@drawable/sel_alert_dialog_right"
+                android:background="@drawable/ms_sel_alert_dialog_right"
                 android:gravity="center"
                 android:textAllCaps="false"
-                android:textColor="@color/def_title_color"
+                android:textColor="@color/ms_def_title_color"
                 android:textSize="16sp"
+                android:textStyle="bold"
                 tools:text="OK" />
         </LinearLayout>
 
     </LinearLayout>
+
 </layout>

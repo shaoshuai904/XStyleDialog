@@ -12,12 +12,12 @@
             android:id="@+id/tv_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/sel_action_sheet_top"
+            android:background="@drawable/ms_sel_action_sheet_top"
             android:gravity="center"
             android:minHeight="50dp"
             android:padding="10dp"
             android:textAllCaps="false"
-            android:textColor="@color/def_title_color"
+            android:textColor="@color/ms_def_title_color"
             android:textSize="18sp"
             tools:text="Alert" />
 
@@ -39,12 +39,12 @@
         <TextView
             android:id="@+id/tv_cancel"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/dialog_bottom_height"
+            android:layout_height="@dimen/ms_dialog_bottom_height"
             android:layout_marginTop="10dp"
-            android:background="@drawable/sel_action_sheet_single"
+            android:background="@drawable/ms_sel_action_sheet_single"
             android:gravity="center"
             android:textAllCaps="false"
-            android:textColor="@color/def_title_color"
+            android:textColor="@color/ms_def_title_color"
             android:textSize="18sp"
             tools:text="Cancel" />
 

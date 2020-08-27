@@ -1,8 +1,8 @@
 <resources>
 
-    <dimen name="shape_radius">12dp</dimen>
-    <dimen name="shape_width">1px</dimen>
+    <dimen name="ms_shape_radius">12dp</dimen>
+    <dimen name="ms_shape_width">1px</dimen>
     <!--  dialog 底部按钮高度  -->
-    <dimen name="dialog_bottom_height">48dp</dimen>
+    <dimen name="ms_dialog_bottom_height">48dp</dimen>
 
 </resources>

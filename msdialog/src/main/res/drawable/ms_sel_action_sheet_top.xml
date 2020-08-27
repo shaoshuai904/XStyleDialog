@@ -3,21 +3,21 @@
 
     <item android:state_pressed="true">
         <shape>
-            <solid android:color="@color/act_sel_bg"/>
+            <solid android:color="@color/ms_act_sel_bg"/>
             <corners
                 android:radius="0dp"
-                android:topLeftRadius="@dimen/shape_radius"
-                android:topRightRadius="@dimen/shape_radius"/>
+                android:topLeftRadius="@dimen/ms_shape_radius"
+                android:topRightRadius="@dimen/ms_shape_radius"/>
         </shape>
     </item>
 
     <item android:state_pressed="false">
         <shape>
-            <solid android:color="@color/act_def_bg"/>
+            <solid android:color="@color/ms_act_def_bg"/>
             <corners
                 android:radius="0dp"
-                android:topLeftRadius="@dimen/shape_radius"
-                android:topRightRadius="@dimen/shape_radius"/>
+                android:topLeftRadius="@dimen/ms_shape_radius"
+                android:topRightRadius="@dimen/ms_shape_radius"/>
         </shape>
     </item>
 </selector>

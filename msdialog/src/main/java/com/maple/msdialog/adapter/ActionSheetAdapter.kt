@@ -54,15 +54,15 @@ class ActionSheetAdapter(mContext: Context) : AbsAdapter<SheetItem>(mContext) {
                 // ivMark.isSelected = item.isSelected
                 ivMark.visibility = if (item.isSelected) View.VISIBLE else View.GONE
                 val bg = if (count == 1) {
-                    if (isShowTitle) R.drawable.sel_action_sheet_bottom else R.drawable.sel_action_sheet_single
+                    if (isShowTitle) R.drawable.ms_sel_action_sheet_bottom else R.drawable.ms_sel_action_sheet_single
                 } else {
                     if (isShowTitle) {
-                        if (index < count - 1) R.drawable.sel_action_sheet_middle else R.drawable.sel_action_sheet_bottom
+                        if (index < count - 1) R.drawable.ms_sel_action_sheet_middle else R.drawable.ms_sel_action_sheet_bottom
                     } else {
                         when {
-                            index == 0 -> R.drawable.sel_action_sheet_top
-                            index < count - 1 -> R.drawable.sel_action_sheet_middle
-                            else -> R.drawable.sel_action_sheet_bottom
+                            index == 0 -> R.drawable.ms_sel_action_sheet_top
+                            index < count - 1 -> R.drawable.ms_sel_action_sheet_middle
+                            else -> R.drawable.ms_sel_action_sheet_bottom
                         }
                     }
                 }

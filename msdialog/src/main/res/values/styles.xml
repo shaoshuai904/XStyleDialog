@@ -18,8 +18,8 @@
 
     <!-- ActionSheet进出动画 -->
     <style name="ActionSheetDialogAnimation" parent="@android:style/Animation.Dialog">
-        <item name="android:windowEnterAnimation">@anim/action_sheet_dialog_in</item>
-        <item name="android:windowExitAnimation">@anim/action_sheet_dialog_out</item>
+        <item name="android:windowEnterAnimation">@anim/ms_action_sheet_dialog_in</item>
+        <item name="android:windowExitAnimation">@anim/ms_action_sheet_dialog_out</item>
     </style>
 
 

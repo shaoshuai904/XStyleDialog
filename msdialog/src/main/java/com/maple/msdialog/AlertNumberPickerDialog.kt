@@ -9,7 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.DatePicker
 import android.widget.NumberPicker.OnValueChangeListener
-import com.maple.msdialog.databinding.DialogNumberPickerBinding
+import com.maple.msdialog.databinding.MsDialogNumberPickerBinding
 import com.maple.msdialog.utils.DialogUtil.setScaleWidth
 
 /**
@@ -19,8 +19,8 @@ import com.maple.msdialog.utils.DialogUtil.setScaleWidth
  * @time 2018/12/6
  */
 class AlertNumberPickerDialog(private val mContext: Context) : Dialog(mContext, R.style.AlertDialogStyle) {
-    private val binding: DialogNumberPickerBinding = DataBindingUtil.inflate(
-            LayoutInflater.from(mContext), R.layout.dialog_number_picker, null, false)
+    private val binding: MsDialogNumberPickerBinding = DataBindingUtil.inflate(
+            LayoutInflater.from(mContext), R.layout.ms_dialog_number_picker, null, false)
     val rootView by lazy { binding.root }
     private var showTitle = false
     private var showMsg = false
@@ -57,7 +57,7 @@ class AlertNumberPickerDialog(private val mContext: Context) : Dialog(mContext, 
 
     fun setTitle(
             title: CharSequence?,
-            color: Int = ContextCompat.getColor(mContext, R.color.def_title_color),
+            color: Int = ContextCompat.getColor(mContext, R.color.ms_def_title_color),
             spSize: Float = 18f,
             isBold: Boolean = false
     ): AlertNumberPickerDialog {
@@ -89,7 +89,7 @@ class AlertNumberPickerDialog(private val mContext: Context) : Dialog(mContext, 
     // 设置value的后缀
     fun setNumberValueSuffix(
             suffix: CharSequence?,
-            color: Int = ContextCompat.getColor(mContext, R.color.def_title_color),
+            color: Int = ContextCompat.getColor(mContext, R.color.ms_def_title_color),
             spSize: Float = 16f
     ): AlertNumberPickerDialog {
         showMsg = true
@@ -105,12 +105,12 @@ class AlertNumberPickerDialog(private val mContext: Context) : Dialog(mContext, 
     fun setLeftButton(
             text: CharSequence?,
             listener: View.OnClickListener? = null
-    ) = setLeftButton(text, listener, ContextCompat.getColor(mContext, R.color.def_left_color), 16f, false)
+    ) = setLeftButton(text, listener, ContextCompat.getColor(mContext, R.color.ms_def_left_color), 16f, false)
 
     fun setLeftButton(
             text: CharSequence?,
             listener: View.OnClickListener? = null,
-            color: Int = ContextCompat.getColor(mContext, R.color.def_left_color),
+            color: Int = ContextCompat.getColor(mContext, R.color.ms_def_left_color),
             spSize: Float = 16f,
             isBold: Boolean = false
     ): AlertNumberPickerDialog {
@@ -131,12 +131,12 @@ class AlertNumberPickerDialog(private val mContext: Context) : Dialog(mContext, 
     fun setRightButton(
             text: CharSequence?,
             listener: View.OnClickListener? = null
-    ) = setRightButton(text, listener, ContextCompat.getColor(mContext, R.color.def_right_color), 16f, false)
+    ) = setRightButton(text, listener, ContextCompat.getColor(mContext, R.color.ms_def_right_color), 16f, false)
 
     fun setRightButton(
             text: CharSequence?,
             listener: View.OnClickListener? = null,
-            color: Int = ContextCompat.getColor(mContext, R.color.def_right_color),
+            color: Int = ContextCompat.getColor(mContext, R.color.ms_def_right_color),
             spSize: Float = 16f,
             isBold: Boolean = false
     ): AlertNumberPickerDialog {
@@ -167,23 +167,23 @@ class AlertNumberPickerDialog(private val mContext: Context) : Dialog(mContext, 
             if (!showRightBtn && !showLeftBtn) {
                 tvRight.text = "确定"
                 tvRight.visibility = View.VISIBLE
-                tvRight.setBackgroundResource(R.drawable.sel_alert_dialog_single)
+                tvRight.setBackgroundResource(R.drawable.ms_sel_alert_dialog_single)
                 tvRight.setOnClickListener { dismiss() }
             }
             if (showRightBtn && !showLeftBtn) {
                 tvRight.visibility = View.VISIBLE
-                tvRight.setBackgroundResource(R.drawable.sel_alert_dialog_single)
+                tvRight.setBackgroundResource(R.drawable.ms_sel_alert_dialog_single)
             }
             if (!showRightBtn && showLeftBtn) {
                 tvLeft.visibility = View.VISIBLE
-                tvLeft.setBackgroundResource(R.drawable.sel_alert_dialog_single)
+                tvLeft.setBackgroundResource(R.drawable.ms_sel_alert_dialog_single)
             }
             // two button
             if (showRightBtn && showLeftBtn) {
                 tvRight.visibility = View.VISIBLE
-                tvRight.setBackgroundResource(R.drawable.sel_alert_dialog_right)
+                tvRight.setBackgroundResource(R.drawable.ms_sel_alert_dialog_right)
                 tvLeft.visibility = View.VISIBLE
-                tvLeft.setBackgroundResource(R.drawable.sel_alert_dialog_left)
+                tvLeft.setBackgroundResource(R.drawable.ms_sel_alert_dialog_left)
                 ivLine.visibility = View.VISIBLE
             }
         }

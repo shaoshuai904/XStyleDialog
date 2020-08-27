@@ -13,7 +13,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.LinearLayout
 import com.maple.msdialog.adapter.ActionSheetAdapter
-import com.maple.msdialog.databinding.DialogActionSheetListBinding
+import com.maple.msdialog.databinding.MsDialogActionSheetListBinding
 import com.maple.msdialog.utils.DensityUtils.dp2px
 import com.maple.msdialog.utils.DialogUtil.screenInfo
 import java.io.Serializable
@@ -28,8 +28,8 @@ class ActionSheetListDialog(
         private val mContext: Context,
         private val config: Config = Config(mContext)
 ) : Dialog(mContext, R.style.ActionSheetDialogStyle) {
-    private val binding: DialogActionSheetListBinding = DataBindingUtil.inflate(
-            LayoutInflater.from(context), R.layout.dialog_action_sheet_list, null, false)
+    private val binding: MsDialogActionSheetListBinding = DataBindingUtil.inflate(
+            LayoutInflater.from(context), R.layout.ms_dialog_action_sheet_list, null, false)
     private val adapter by lazy { ActionSheetAdapter(mContext) }
     private var sheetItemList: MutableList<SheetItem>? = null
 
@@ -156,12 +156,12 @@ class ActionSheetListDialog(
         // title
         var showTitle: Boolean = false
         var titleTextSizeSp: Float = 16f // 字体大小
-        var titleTextColor: Int = ContextCompat.getColor(context, R.color.def_title_color) // 字体颜色
+        var titleTextColor: Int = ContextCompat.getColor(context, R.color.ms_def_title_color) // 字体颜色
 
         // item
         var actionSheetItemHeight: Int = 50f.dp2px(context)
         var itemTextSizeSp: Float = 18f // 字体大小
-        var itemTextColor: Int = ContextCompat.getColor(context, R.color.def_message_color)
+        var itemTextColor: Int = ContextCompat.getColor(context, R.color.ms_def_message_color)
 
         // divider 分割线
         var dividerHeight: Int = 0.4f.dp2px(context) // 分割线高度
@@ -171,6 +171,6 @@ class ActionSheetListDialog(
         var showCancel: Boolean = false
         var cancelText: String = "取消"
         var cancelTextSizeSp: Float = 18f // 字体大小
-        var cancelTextColor: Int = ContextCompat.getColor(context, R.color.def_title_color) // 字体颜色
+        var cancelTextColor: Int = ContextCompat.getColor(context, R.color.ms_def_title_color) // 字体颜色
     }
 }

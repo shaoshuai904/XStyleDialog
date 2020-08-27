@@ -12,7 +12,7 @@
             android:id="@+id/rl_title_bar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/sel_action_sheet_top">
+            android:background="@drawable/ms_sel_action_sheet_top">
 
             <TextView
                 android:id="@+id/tv_title"
@@ -22,7 +22,7 @@
                 android:minHeight="50dp"
                 android:padding="10dp"
                 android:textAllCaps="false"
-                android:textColor="@color/def_title_color"
+                android:textColor="@color/ms_def_title_color"
                 android:textSize="18sp"
                 tools:text="Alert"
                 tools:visibility="visible" />
@@ -35,7 +35,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginEnd="5dp"
                 android:padding="12dp"
-                android:src="@drawable/svg_ic_close" />
+                android:src="@drawable/ms_svg_ic_close" />
         </RelativeLayout>
 
         <android.support.v7.widget.RecyclerView

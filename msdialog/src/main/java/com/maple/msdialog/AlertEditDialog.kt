@@ -7,7 +7,7 @@ import android.graphics.Typeface
 import android.support.v4.content.ContextCompat
 import android.view.LayoutInflater
 import android.view.View
-import com.maple.msdialog.databinding.DialogAlertEditBinding
+import com.maple.msdialog.databinding.MsDialogAlertEditBinding
 import com.maple.msdialog.utils.DialogUtil.setScaleWidth
 
 /**
@@ -17,8 +17,8 @@ import com.maple.msdialog.utils.DialogUtil.setScaleWidth
  * @time 2017/3/23
  */
 class AlertEditDialog(private val mContext: Context) : Dialog(mContext, R.style.AlertDialogStyle) {
-    private val binding: DialogAlertEditBinding = DataBindingUtil.inflate(
-            LayoutInflater.from(mContext), R.layout.dialog_alert_edit, null, false)
+    private val binding: MsDialogAlertEditBinding = DataBindingUtil.inflate(
+            LayoutInflater.from(mContext), R.layout.ms_dialog_alert_edit, null, false)
     val rootView by lazy { binding.root }
     private var showTitle = false
     private var showMsg = false
@@ -56,7 +56,7 @@ class AlertEditDialog(private val mContext: Context) : Dialog(mContext, R.style.
 
     fun setTitle(
             title: CharSequence?,
-            color: Int = ContextCompat.getColor(mContext, R.color.def_title_color),
+            color: Int = ContextCompat.getColor(mContext, R.color.ms_def_title_color),
             spSize: Float = 18f,
             isBold: Boolean = false
     ): AlertEditDialog {
@@ -72,7 +72,7 @@ class AlertEditDialog(private val mContext: Context) : Dialog(mContext, R.style.
 
     fun setMessage(
             msg: CharSequence?,
-            color: Int = ContextCompat.getColor(mContext, R.color.def_message_color),
+            color: Int = ContextCompat.getColor(mContext, R.color.ms_def_message_color),
             spSize: Float = 16f,
             isBold: Boolean = false
     ): AlertEditDialog {
@@ -89,12 +89,12 @@ class AlertEditDialog(private val mContext: Context) : Dialog(mContext, R.style.
     fun setLeftButton(
             text: CharSequence?,
             listener: View.OnClickListener? = null
-    ) = setLeftButton(text, listener, ContextCompat.getColor(mContext, R.color.def_left_color), 16f, false)
+    ) = setLeftButton(text, listener, ContextCompat.getColor(mContext, R.color.ms_def_left_color), 16f, false)
 
     fun setLeftButton(
             text: CharSequence?,
             listener: View.OnClickListener? = null,
-            color: Int = ContextCompat.getColor(mContext, R.color.def_left_color),
+            color: Int = ContextCompat.getColor(mContext, R.color.ms_def_left_color),
             spSize: Float = 16f,
             isBold: Boolean = false
     ): AlertEditDialog {
@@ -115,12 +115,12 @@ class AlertEditDialog(private val mContext: Context) : Dialog(mContext, R.style.
     fun setRightButton(
             text: CharSequence?,
             listener: OnEditTextCallListener? = null
-    ) = setRightButton(text, listener, ContextCompat.getColor(mContext, R.color.def_right_color), 16f, false)
+    ) = setRightButton(text, listener, ContextCompat.getColor(mContext, R.color.ms_def_right_color), 16f, false)
 
     fun setRightButton(
             text: CharSequence?,
             listener: OnEditTextCallListener? = null,
-            color: Int = ContextCompat.getColor(mContext, R.color.def_right_color),
+            color: Int = ContextCompat.getColor(mContext, R.color.ms_def_right_color),
             spSize: Float = 16f,
             isBold: Boolean = false
     ): AlertEditDialog {
@@ -153,23 +153,23 @@ class AlertEditDialog(private val mContext: Context) : Dialog(mContext, R.style.
             if (!showRightBtn && !showLeftBtn) {
                 btRight.text = "确定"
                 btRight.visibility = View.VISIBLE
-                btRight.setBackgroundResource(R.drawable.sel_alert_dialog_single)
+                btRight.setBackgroundResource(R.drawable.ms_sel_alert_dialog_single)
                 btRight.setOnClickListener { dismiss() }
             }
             if (showRightBtn && !showLeftBtn) {
                 btRight.visibility = View.VISIBLE
-                btRight.setBackgroundResource(R.drawable.sel_alert_dialog_single)
+                btRight.setBackgroundResource(R.drawable.ms_sel_alert_dialog_single)
             }
             if (!showRightBtn && showLeftBtn) {
                 btLeft.visibility = View.VISIBLE
-                btLeft.setBackgroundResource(R.drawable.sel_alert_dialog_single)
+                btLeft.setBackgroundResource(R.drawable.ms_sel_alert_dialog_single)
             }
             // two button
             if (showRightBtn && showLeftBtn) {
                 btRight.visibility = View.VISIBLE
-                btRight.setBackgroundResource(R.drawable.sel_alert_dialog_right)
+                btRight.setBackgroundResource(R.drawable.ms_sel_alert_dialog_right)
                 btLeft.visibility = View.VISIBLE
-                btLeft.setBackgroundResource(R.drawable.sel_alert_dialog_left)
+                btLeft.setBackgroundResource(R.drawable.ms_sel_alert_dialog_left)
                 ivLine.visibility = View.VISIBLE
             }
         }

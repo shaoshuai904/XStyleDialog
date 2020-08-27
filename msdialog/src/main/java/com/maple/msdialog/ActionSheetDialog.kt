@@ -14,7 +14,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.LinearLayout
 import android.widget.TextView
-import com.maple.msdialog.databinding.DialogActionSheetBinding
+import com.maple.msdialog.databinding.MsDialogActionSheetBinding
 import com.maple.msdialog.utils.DensityUtils.dp2px
 import com.maple.msdialog.utils.DialogUtil.screenInfo
 import java.io.Serializable
@@ -30,8 +30,8 @@ class ActionSheetDialog(
         private val mContext: Context,
         private val config: Config = Config(mContext)
 ) : Dialog(mContext, R.style.ActionSheetDialogStyle) {
-    private val binding: DialogActionSheetBinding = DataBindingUtil.inflate(
-            LayoutInflater.from(context), R.layout.dialog_action_sheet, null, false)
+    private val binding: MsDialogActionSheetBinding = DataBindingUtil.inflate(
+            LayoutInflater.from(context), R.layout.ms_dialog_action_sheet, null, false)
     private var sheetItemList: MutableList<SheetItem>? = null
     // var itemClickListener: OnSheetItemClickListener? = null
 
@@ -210,16 +210,16 @@ class ActionSheetDialog(
         // title
         var showTitle: Boolean = false
         var titleTextSizeSp: Float = 16f // 字体大小
-        var titleTextColor: Int = ContextCompat.getColor(context, R.color.def_title_color) // 字体颜色
+        var titleTextColor: Int = ContextCompat.getColor(context, R.color.ms_def_title_color) // 字体颜色
 
         // item
         var actionSheetItemHeight: Int = 50f.dp2px(context)
         var itemTextSizeSp: Float = 18f // 字体大小
-        var itemTextColor: Int = ContextCompat.getColor(context, R.color.def_message_color)
-        @DrawableRes var sheetSingle: Int = R.drawable.sel_action_sheet_single
-        @DrawableRes var sheetTop: Int = R.drawable.sel_action_sheet_top
-        @DrawableRes var sheetMiddle: Int = R.drawable.sel_action_sheet_middle
-        @DrawableRes var sheetBottom: Int = R.drawable.sel_action_sheet_bottom
+        var itemTextColor: Int = ContextCompat.getColor(context, R.color.ms_def_message_color)
+        @DrawableRes var sheetSingle: Int = R.drawable.ms_sel_action_sheet_single
+        @DrawableRes var sheetTop: Int = R.drawable.ms_sel_action_sheet_top
+        @DrawableRes var sheetMiddle: Int = R.drawable.ms_sel_action_sheet_middle
+        @DrawableRes var sheetBottom: Int = R.drawable.ms_sel_action_sheet_bottom
 
         // divider 分割线
         var dividerHeight: Int = 1 // 0.4f.dp2px(context) // 分割线高度
@@ -229,7 +229,7 @@ class ActionSheetDialog(
         var showCancel: Boolean = false
         var cancelText: String = "取消"
         var cancelTextSizeSp: Float = 18f // 字体大小
-        var cancelTextColor: Int = ContextCompat.getColor(context, R.color.def_title_color) // 字体颜色
+        var cancelTextColor: Int = ContextCompat.getColor(context, R.color.ms_def_title_color) // 字体颜色
     }
 
 }

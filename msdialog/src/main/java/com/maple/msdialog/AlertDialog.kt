@@ -9,7 +9,7 @@ import android.text.Html
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
-import com.maple.msdialog.databinding.DialogAlertBinding
+import com.maple.msdialog.databinding.MsDialogAlertBinding
 import com.maple.msdialog.utils.DensityUtils.dp2px
 import com.maple.msdialog.utils.DialogUtil.setScaleWidth
 import java.io.Serializable
@@ -24,8 +24,8 @@ class AlertDialog(
         private val mContext: Context,
         private val config: Config = Config(mContext)
 ) : Dialog(mContext, R.style.AlertDialogStyle) {
-    private val binding: DialogAlertBinding = DataBindingUtil.inflate(
-            LayoutInflater.from(mContext), R.layout.dialog_alert, null, false)
+    private val binding: MsDialogAlertBinding = DataBindingUtil.inflate(
+            LayoutInflater.from(mContext), R.layout.ms_dialog_alert, null, false)
     private var showTitle = false
     private var showMsg = false
     private var showRightBtn = false
@@ -189,25 +189,25 @@ class AlertDialog(
             tvMsg.visibility = if (showMsg) View.VISIBLE else View.GONE
             // one button
             if (!showRightBtn && !showLeftBtn) {
-                btRight.text = "确定"
+                btRight.text = config.defButtonText
                 btRight.visibility = View.VISIBLE
-                btRight.setBackgroundResource(R.drawable.sel_alert_dialog_single)
+                btRight.setBackgroundResource(R.drawable.ms_sel_alert_dialog_single)
                 btRight.setOnClickListener { dismiss() }
             }
             if (showRightBtn && !showLeftBtn) {
                 btRight.visibility = View.VISIBLE
-                btRight.setBackgroundResource(R.drawable.sel_alert_dialog_single)
+                btRight.setBackgroundResource(R.drawable.ms_sel_alert_dialog_single)
             }
             if (!showRightBtn && showLeftBtn) {
                 btLeft.visibility = View.VISIBLE
-                btLeft.setBackgroundResource(R.drawable.sel_alert_dialog_single)
+                btLeft.setBackgroundResource(R.drawable.ms_sel_alert_dialog_single)
             }
             // two button
             if (showRightBtn && showLeftBtn) {
                 btRight.visibility = View.VISIBLE
-                btRight.setBackgroundResource(R.drawable.sel_alert_dialog_right)
+                btRight.setBackgroundResource(R.drawable.ms_sel_alert_dialog_right)
                 btLeft.visibility = View.VISIBLE
-                btLeft.setBackgroundResource(R.drawable.sel_alert_dialog_left)
+                btLeft.setBackgroundResource(R.drawable.ms_sel_alert_dialog_left)
                 ivLine.visibility = View.VISIBLE
             }
         }
@@ -229,7 +229,7 @@ class AlertDialog(
 
         // title
         var titleTextSizeSp: Float = 18f // 字体大小
-        var titleColor: Int = ContextCompat.getColor(context, R.color.def_title_color) // 字体颜色
+        var titleColor: Int = ContextCompat.getColor(context, R.color.ms_def_title_color) // 字体颜色
         var titlePaddingLeft: Int = 15f.dp2px(context)
         var titlePaddingTop: Int = 22f.dp2px(context)
         var titlePaddingRight: Int = 15f.dp2px(context)
@@ -237,7 +237,7 @@ class AlertDialog(
 
         // message
         var messageTextSizeSp: Float = 14f // 字体大小
-        var messageColor: Int = ContextCompat.getColor(context, R.color.def_message_color)
+        var messageColor: Int = ContextCompat.getColor(context, R.color.ms_def_message_color)
         var messagePaddingLeft: Int = 15f.dp2px(context)
         var messagePaddingTop: Int = 22f.dp2px(context)
         var messagePaddingRight: Int = 15f.dp2px(context)
@@ -245,14 +245,15 @@ class AlertDialog(
 
         // button
         var bottomViewHeightDp: Float = 48f // 底部按钮高度
+        var defButtonText: String = "确定" // 默认按钮文本
 
         // left button
         var leftBtnTextSizeSp: Float = 18f // 字体大小
-        var leftBtnColor: Int = ContextCompat.getColor(context, R.color.def_left_color)
+        var leftBtnColor: Int = ContextCompat.getColor(context, R.color.ms_def_left_color)
 
         // right button
         var rightBtnTextSizeSp: Float = 18f // 字体大小
-        var rightBtnColor: Int = ContextCompat.getColor(context, R.color.def_right_color)
+        var rightBtnColor: Int = ContextCompat.getColor(context, R.color.ms_def_right_color)
 
     }
 }
