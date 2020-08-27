@@ -20,7 +20,7 @@ allprojects {
 
 ```groovy
 dependencies {
-	implementation 'com.github.shaoshuai904:iOS_Style_Dialog:1.4.8'
+	implementation 'com.github.shaoshuai904:iOS_Style_Dialog:1.4.9'
 }
 ```
 
@@ -92,7 +92,7 @@ dependencies {
  
  - ActionSheetDialog
  - ActionSheetListDialog，支持复杂item布局，同时支持item选中样式
- - ActionSheetRecyclerDialog，支持自定义item Bean，自定义最大高度，自定义样式选择
+ - ActionSheetRecyclerDialog，支持自定义item Bean，自定义最大、最小高度，自定义分割线，自定义样式选择
  
  
  
