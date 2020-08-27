@@ -50,6 +50,7 @@ class SingleSelectItemListAdapter(
         fun bind(item: SheetItem) {
             bindViewClickListener(this)
             binding.apply {
+                root.background = config.itemBg
                 root.setPadding(config.itemPaddingLeft, config.itemPaddingTop, config.itemPaddingRight, config.itemPaddingBottom)
                 tvName.text = item.getShowName()
                 tvName.textSize = config.itemTextSizeSp

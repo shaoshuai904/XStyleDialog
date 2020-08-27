@@ -7,8 +7,6 @@ import android.support.v4.content.ContextCompat
 import android.util.Log
 import android.view.Gravity
 import android.view.View
-import android.widget.NumberPicker
-import android.widget.NumberPicker.OnValueChangeListener
 import android.widget.Toast
 import com.maple.msdialog.*
 import com.maple.msdialog.utils.DensityUtils.dp2px
@@ -38,7 +36,7 @@ class MainActivity : Activity() {
                 .setDialogTitle("退出当前账号")
                 .setHtmlMessage("再连续登陆<font color=\"#ff0000\">15</font>天，就可变身为QQ达人。退出QQ可能会使你现有记录归零，确定退出？")
                 .setLeftButton("取消")
-                .setRightButton("确认退出", View.OnClickListener { showToast("exit") })
+                .setRightButton("确认退出") { showToast("exit") }
                 .show()
     }
 
@@ -49,7 +47,7 @@ class MainActivity : Activity() {
             // getMessageView().setPadding(15f.dp2px(context), 24f.dp2px(context), 15f.dp2px(context), 24f.dp2px(context))
             setMessage("你现在无法接收到新消息提醒。请到系统-设置-通知中开启消息提醒")
             // setBottomViewHeightDp(48f)
-            setRightButton("确定", View.OnClickListener { showToast("OK") })
+            setRightButton("确定") { showToast("OK") }
         }.show()
     }
 
@@ -58,7 +56,7 @@ class MainActivity : Activity() {
                 .setTitle("确认删除：XXXX？", isBold = false)
                 .setMessage("1.必须确保空间下不存在任何文件、文件夹或图片样式，否则无法删除;\n2.存储空间删除后不可恢复且可能会影响正在使用该空间的其他用户。",
                         spSize = 14f, gravity = Gravity.START)
-                .setRightButton("确定", View.OnClickListener { showToast("OK") })
+                .setRightButton("确定") { showToast("OK") }
                 .show()
     }
 
@@ -72,9 +70,9 @@ class MainActivity : Activity() {
             setCancelable(false)
             setCanceledOnTouchOutside(false)
             setTitle("清空消息列表后，聊天记录依然保留，确定要清空消息列表？")
-            addSheetItem("清空消息列表", OnSheetItemClickListener { item, position ->
+            addSheetItem("清空消息列表") { item, position ->
                 showToast("clear msg list")
-            })
+            }
             setCancelText("取 消")
         }.show()
     }
@@ -117,6 +115,7 @@ class MainActivity : Activity() {
 
     // -------------------------------- Action Sheet Recycler List Dialog ----------------------------------------
 
+
     var ar1: ActionSheetRecyclerDialog? = null
     fun asrList(view: View?) {
         if (ar1 == null) {
@@ -128,7 +127,8 @@ class MainActivity : Activity() {
             )
             ar1 = ActionSheetRecyclerDialog(this).apply {
                 setTitle("选择条目")
-                setCloseVisibility(false)
+                setCloseVisibility(true)
+                isShowItemMark(true)
                 setMinScaleHeight(0.3)
                 setBottomPadding(12f)// 默认底部留白：20dp
                 addSheetItems(items)
@@ -140,8 +140,8 @@ class MainActivity : Activity() {
                         showToast("$position   ${item.getShowName()}")
                     }
                 }
-                isShowItemMark(false)// 不显示item 选中对勾
-                setSelectedIndex(1)// 选中第二个
+                // isShowItemMark(false)// 不显示item 选中对勾
+                // setSelectedIndex(1)// 选中第二个
             }
         }
         ar1?.show()
@@ -163,9 +163,9 @@ class MainActivity : Activity() {
                 setCancelable(false)
                 setCanceledOnTouchOutside(false)
                 setMaxScaleHeight(0.65)
-                addSheetItemClickListener(OnSheetItemClickListener { item, position ->
+                addSheetItemClickListener { item, position ->
                     showToast("$position   ${item.getShowName()}")
-                })
+                }
             }
         }
         ar2?.show()
@@ -176,9 +176,9 @@ class MainActivity : Activity() {
     fun aslList(view: View?) {
         if (asl1 == null) {
             asl1 = ActionSheetListDialog(this).apply {
-                addSheetItems(getSingleSelectItemTestData(2), OnSheetItemClickListener { item, position ->
+                addSheetItems(getSingleSelectItemTestData(2)) { item, position ->
                     showToast(item.getShowName())
-                })
+                }
                 setCancelText("取消")
             }
         }
@@ -190,9 +190,9 @@ class MainActivity : Activity() {
         if (asl2 == null) {
             asl2 = ActionSheetListDialog(this).apply {
                 setTitle("标题")
-                addSheetItems(getSingleSelectItemTestData(10), OnSheetItemClickListener { item, position ->
+                addSheetItems(getSingleSelectItemTestData(10)) { item, position ->
                     showToast(item.getShowName())
-                })
+                }
                 setSelectedIndex(3)
             }
         }
@@ -205,9 +205,9 @@ class MainActivity : Activity() {
             asl3 = ActionSheetListDialog(this).apply {
                 setTitle("标题")
                 setCancelText("取消")
-                addSheetItems(getSingleSelectItemTestData(20), OnSheetItemClickListener { item, position ->
+                addSheetItems(getSingleSelectItemTestData(20)) { item, position ->
                     showToast(item.getShowName())
-                })
+                }
             }
         }
         asl3?.show()
@@ -219,18 +219,18 @@ class MainActivity : Activity() {
             setTitle("姓名")
             setMessage("请输入您的真实姓名。")
             setLeftButton("取消")
-            setRightButton("确定", OnEditTextCallListener {
+            setRightButton("确定") {
                 showToast(it)
-            })
+            }
         }.show()
     }
 
     fun aeTwo(view: View?) {
         AlertEditDialog(this).apply {
             setMessage("给自己起一个好听的名字吧")
-            setRightButton("确定", OnEditTextCallListener {
+            setRightButton("确定") {
                 showToast(it)
-            })
+            }
         }.show()
     }
 
@@ -243,9 +243,13 @@ class MainActivity : Activity() {
         defValue = numbers[index]
         AlertNumberPickerDialog(this).apply {
             setTitle("Number")
-            setNumberValues(numbers, index, OnValueChangeListener { picker: NumberPicker?, oldVal: Int, newVal: Int -> defValue = numbers[newVal] })
+            setNumberValues(numbers, index) { picker, oldVal, newVal ->
+                defValue = numbers[newVal]
+            }
             setLeftButton("Cancel")
-            setRightButton("OK", View.OnClickListener { showToast(defValue) })
+            setRightButton("OK") {
+                showToast(defValue)
+            }
         }.show()
     }
 
@@ -256,10 +260,12 @@ class MainActivity : Activity() {
             setScaleWidth(rootView, 0.8)
             setCancelable(false)
             setTitle("选择城市")
-            setNumberValues(numbers, index, OnValueChangeListener { picker: NumberPicker?, oldVal: Int, newVal: Int -> defValue = numbers[newVal] })
+            setNumberValues(numbers, index) { picker, oldVal, newVal ->
+                defValue = numbers[newVal]
+            }
             setNumberValueSuffix("市")
             setLeftButton("取消")
-            setRightButton("确定", View.OnClickListener { showToast(defValue) })
+            setRightButton("确定") { showToast(defValue) }
         }.show()
     }
 

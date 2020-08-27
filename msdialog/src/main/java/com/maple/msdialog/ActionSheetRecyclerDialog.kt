@@ -192,6 +192,7 @@ class ActionSheetRecyclerDialog(
     ) : Serializable {
         var minHeight: Int? = null //最小view高度, 单位：px
         var maxHeight: Int? = null //最大view高度, 单位：px
+
         var isShowMark: Boolean = false // 是否显示 右侧对勾 √
         var selectMark: Drawable? = ContextCompat.getDrawable(context, android.R.drawable.checkbox_on_background)
         var closeDraw: Drawable? = ContextCompat.getDrawable(context, R.drawable.svg_ic_close)
@@ -201,6 +202,7 @@ class ActionSheetRecyclerDialog(
         var titleColor: Int = ContextCompat.getColor(context, R.color.def_title_color) // 字体颜色
 
         // item
+        var itemBg: Drawable? = ColorDrawable(Color.WHITE) // item背景
         var itemTextSizeSp: Float = 14f // 字体大小
         var itemTextColor: Int = ContextCompat.getColor(context, R.color.def_left_color)
         var itemTextSelectedColor: Int = ContextCompat.getColor(context, R.color.def_right_color)
