@@ -174,7 +174,7 @@ class ActionSheetRecyclerDialog(
         }
 
         getRootView().layoutParams = FrameLayout.LayoutParams(
-                LinearLayout.LayoutParams.WRAP_CONTENT,
+                LinearLayout.LayoutParams.MATCH_PARENT,
                 height)
     }
 
