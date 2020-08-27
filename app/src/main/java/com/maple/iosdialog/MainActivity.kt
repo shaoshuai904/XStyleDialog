@@ -129,16 +129,17 @@ class MainActivity : Activity() {
             ar1 = ActionSheetRecyclerDialog(this).apply {
                 setTitle("选择条目")
                 setCloseVisibility(false)
+                setMinScaleHeight(0.3)
                 setBottomPadding(12f)// 默认底部留白：20dp
                 addSheetItems(items)
-                addSheetItemClickListener(OnSheetItemClickListener { item, position ->
+                addSheetItemClickListener { item, position ->
                     if (item is User) {
                         Log.e("okhttp", "item: ${item.toString()}")
                         showToast("${item.name}  年龄:${item.age}岁")
                     } else {
                         showToast("$position   ${item.getShowName()}")
                     }
-                })
+                }
                 isShowItemMark(false)// 不显示item 选中对勾
                 setSelectedIndex(1)// 选中第二个
             }

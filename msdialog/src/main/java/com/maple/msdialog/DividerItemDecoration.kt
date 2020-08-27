@@ -21,7 +21,8 @@ class DividerItemDecoration(
         private val leftPadding: Int = 10,// 距离左侧的距离
         private val mDividerHeight: Int = 1,// 分割线高度
         private val mDivider: Drawable = ColorDrawable(Color.parseColor("#e6e9ee")),// 分割线
-        private val mOrientation: Int = LinearLayoutManager.VERTICAL // 方向
+        private val mOrientation: Int = LinearLayoutManager.VERTICAL,// 方向
+        private val skipLastItems: Int = 1 // 跳过几个item不画分割线，默认只在item中间画线
 ) : RecyclerView.ItemDecoration() {
 
     constructor(context: Context, leftDp: Float, divDp: Float) : this(leftDp.dp2px(context), divDp.dp2px(context))
@@ -46,8 +47,8 @@ class DividerItemDecoration(
     private fun drawVertical(c: Canvas, parent: RecyclerView) {
         val left = parent.paddingLeft + leftPadding //左侧偏移量
         val right = parent.width - parent.paddingRight
-        // 最后一个item 底部不画分割线
-        for (i in 0 until parent.childCount - 1) {
+        // 最后一个item 底部不画分割线 parent.childCount -1
+        for (i in 0 until parent.childCount - skipLastItems) {
             val child = parent.getChildAt(i)
             val params = child.layoutParams as RecyclerView.LayoutParams
             val top = child.bottom + params.bottomMargin
@@ -62,7 +63,7 @@ class DividerItemDecoration(
     private fun drawHorizontal(c: Canvas, parent: RecyclerView) {
         val top = parent.paddingTop
         val bottom = parent.height - parent.paddingBottom
-        for (i in 0 until parent.childCount - 1) {
+        for (i in 0 until parent.childCount - skipLastItems) {
             val child = parent.getChildAt(i)
             val params = child.layoutParams as RecyclerView.LayoutParams
             val left = child.right + params.rightMargin

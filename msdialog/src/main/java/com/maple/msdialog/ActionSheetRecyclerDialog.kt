@@ -8,6 +8,7 @@ import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.Drawable
 import android.support.design.widget.BottomSheetDialog
 import android.support.v4.content.ContextCompat
+import android.support.v7.widget.LinearLayoutManager
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
@@ -18,7 +19,6 @@ import com.maple.msdialog.databinding.DialogActionSheetRecyclerBinding
 import com.maple.msdialog.utils.DensityUtils.dp2px
 import com.maple.msdialog.utils.DialogUtil.screenInfo
 import java.io.Serializable
-import kotlin.math.min
 
 /**
  * 页签List Dialog [ 标题 + 页签条目 + 取消按钮 ]
@@ -112,7 +112,9 @@ class ActionSheetRecyclerDialog(
 
     // 添加动作页签集合
     fun addSheetItems(items: List<SheetItem>): ActionSheetRecyclerDialog {
-        binding.rvData.addItemDecoration(DividerItemDecoration(config.dividerPaddingLeft, config.dividerHeight, config.dividerColor))
+        binding.rvData.addItemDecoration(DividerItemDecoration(
+                config.dividerPaddingLeft, config.dividerHeight, config.dividerColor,
+                LinearLayoutManager.VERTICAL, config.skipLastItems))
         binding.rvData.adapter = adapter
         adapter.refreshData(items)
         return this
@@ -137,6 +139,13 @@ class ActionSheetRecyclerDialog(
         return this
     }
 
+    // 设置最小高度百分比
+    fun setMinScaleHeight(scHeight: Double): ActionSheetRecyclerDialog {
+        val height = (mContext.screenInfo().y * scHeight).toInt()
+        config.minHeight = height
+        return this
+    }
+
     // 设置最大高度百分比
     fun setMaxScaleHeight(scHeight: Double): ActionSheetRecyclerDialog {
         val height = (mContext.screenInfo().y * scHeight).toInt()
@@ -154,12 +163,16 @@ class ActionSheetRecyclerDialog(
      * set layout
      */
     private fun setSheetLayout() {
-        val height = if (config.maxHeight != null) {
-            getRootView().measure(0, 0)
-            min(config.maxHeight!!, getRootView().measuredHeight)
+        getRootView().measure(0, 0)
+        val curHeight = getRootView().measuredHeight // 当前实际高度
+        val height = if (config.minHeight != null && curHeight < config.minHeight!!) {
+            config.minHeight!!
+        } else if (config.maxHeight != null && curHeight > config.maxHeight!!) {
+            config.maxHeight!!
         } else {
             LinearLayout.LayoutParams.WRAP_CONTENT
         }
+
         getRootView().layoutParams = FrameLayout.LayoutParams(
                 LinearLayout.LayoutParams.WRAP_CONTENT,
                 height)
@@ -177,6 +190,7 @@ class ActionSheetRecyclerDialog(
     open class Config(
             var context: Context
     ) : Serializable {
+        var minHeight: Int? = null //最小view高度, 单位：px
         var maxHeight: Int? = null //最大view高度, 单位：px
         var isShowMark: Boolean = false // 是否显示 右侧对勾 √
         var selectMark: Drawable? = ContextCompat.getDrawable(context, android.R.drawable.checkbox_on_background)
@@ -199,6 +213,7 @@ class ActionSheetRecyclerDialog(
         var dividerPaddingLeft: Int = 12f.dp2px(context) // 分割线距离左侧距离
         var dividerHeight: Int = 0.7f.dp2px(context) // 分割线高度
         var dividerColor: Drawable = ColorDrawable(Color.parseColor("#e6e9ee"))// 分割线
+        var skipLastItems: Int = 0 // 跳过几个item不画分割线，默认每个item底部都有分割线
     }
 
 }
