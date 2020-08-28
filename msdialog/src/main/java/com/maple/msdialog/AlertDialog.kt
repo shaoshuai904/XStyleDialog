@@ -4,8 +4,10 @@ import android.app.Dialog
 import android.content.Context
 import android.databinding.DataBindingUtil
 import android.graphics.Typeface
+import android.os.Build
 import android.support.v4.content.ContextCompat
 import android.text.Html
+import android.text.Spanned
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
@@ -81,7 +83,7 @@ class AlertDialog(
     ): AlertDialog {
         showTitle = true
         binding.tvTitle.apply {
-            text = title
+            text = title ?: config.defNullText
             setTextColor(color)
             textSize = spSize
             setPadding(config.titlePaddingLeft, config.titlePaddingTop, config.titlePaddingRight, config.titlePaddingBottom)
@@ -91,7 +93,17 @@ class AlertDialog(
     }
 
     fun setHtmlMessage(message: String?): AlertDialog {
-        return setMessage(Html.fromHtml(message))
+        return setMessage(convertHtmlText(message))
+    }
+
+    // 将html类文本转换成普通文本
+    fun convertHtmlText(htmlText: String?): Spanned {
+        val source = htmlText ?: config.defNullText
+        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            Html.fromHtml(source, Html.FROM_HTML_MODE_LEGACY)
+        } else {
+            Html.fromHtml(source)
+        }
     }
 
     fun setMessage(message: CharSequence?) = setMessage(message, isBold = false)
@@ -105,7 +117,7 @@ class AlertDialog(
     ): AlertDialog {
         showMsg = true
         binding.tvMsg.apply {
-            text = message
+            text = message ?: config.defNullText
             setTextColor(color)
             this.gravity = gravity
             textSize = spSize
@@ -138,7 +150,7 @@ class AlertDialog(
     ): AlertDialog {
         showLeftBtn = true
         binding.btLeft.apply {
-            this.text = text
+            this.text = text ?: config.defNullText
             setTextColor(color)
             textSize = spSize
             setTypeface(typeface, if (isBold) Typeface.BOLD else Typeface.NORMAL)
@@ -164,7 +176,7 @@ class AlertDialog(
     ): AlertDialog {
         showRightBtn = true
         binding.btRight.apply {
-            this.text = text
+            this.text = text ?: config.defNullText
             setTextColor(color)
             textSize = spSize
             setTypeface(typeface, if (isBold) Typeface.BOLD else Typeface.NORMAL)
@@ -182,14 +194,14 @@ class AlertDialog(
 
         binding.apply {
             if (!showTitle && !showMsg) {
-                tvTitle.text = ""
+                tvTitle.text = config.defNullText
                 tvTitle.visibility = View.VISIBLE
             }
             tvTitle.visibility = if (showTitle) View.VISIBLE else View.GONE
             tvMsg.visibility = if (showMsg) View.VISIBLE else View.GONE
             // one button
             if (!showRightBtn && !showLeftBtn) {
-                btRight.text = config.defButtonText
+                btRight.text = config.defNullText
                 btRight.visibility = View.VISIBLE
                 btRight.setBackgroundResource(R.drawable.ms_sel_alert_dialog_single)
                 btRight.setOnClickListener { dismiss() }
@@ -226,6 +238,7 @@ class AlertDialog(
             var context: Context
     ) : Serializable {
         var scaleWidth: Double = 0.75 // 宽度占屏幕宽百分比
+        var defNullText: String = "null" // 默认空文本
 
         // title
         var titleTextSizeSp: Float = 18f // 字体大小
@@ -245,7 +258,6 @@ class AlertDialog(
 
         // button
         var bottomViewHeightDp: Float = 48f // 底部按钮高度
-        var defButtonText: String = "确定" // 默认按钮文本
 
         // left button
         var leftBtnTextSizeSp: Float = 18f // 字体大小
