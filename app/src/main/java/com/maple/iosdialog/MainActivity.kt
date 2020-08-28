@@ -1,6 +1,7 @@
 package com.maple.iosdialog
 
 import android.app.Activity
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
@@ -8,6 +9,7 @@ import android.util.Log
 import android.view.Gravity
 import android.view.View
 import android.widget.Toast
+import com.maple.iosdialog.custom.CustomAlertDialogActivity
 import com.maple.msdialog.*
 import com.maple.msdialog.utils.DensityUtils.dp2px
 import com.maple.msdialog.utils.DialogUtil.setScaleWidth
@@ -52,12 +54,13 @@ class MainActivity : Activity() {
     }
 
     fun adThree(view: View?) {
-        AlertDialog(this)
-                .setTitle("确认删除：XXXX？", isBold = false)
-                .setMessage("1.必须确保空间下不存在任何文件、文件夹或图片样式，否则无法删除;\n2.存储空间删除后不可恢复且可能会影响正在使用该空间的其他用户。",
-                        spSize = 14f, gravity = Gravity.START)
-                .setRightButton("确定") { showToast("OK") }
-                .show()
+        startActivity(Intent(this, CustomAlertDialogActivity::class.java))
+//        AlertDialog(this)
+//                .setTitle("确认删除：XXXX？", isBold = false)
+//                .setMessage("1.必须确保空间下不存在任何文件、文件夹或图片样式，否则无法删除;\n2.存储空间删除后不可恢复且可能会影响正在使用该空间的其他用户。",
+//                        spSize = 14f, gravity = Gravity.START)
+//                .setRightButton("确定") { showToast("OK") }
+//                .show()
     }
 
     // -------------------------------- Action Sheet Dialog ----------------------------------------

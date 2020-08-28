@@ -44,7 +44,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:onClick="adThree"
-                    android:text="分条" />
+                    android:text="深度自定义" />
             </LinearLayout>
 
             <TextView
