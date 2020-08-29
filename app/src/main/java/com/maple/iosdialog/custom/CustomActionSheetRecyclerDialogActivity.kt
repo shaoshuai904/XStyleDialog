@@ -13,6 +13,7 @@ import com.maple.iosdialog.R
 import com.maple.msdialog.ActionSheetRecyclerDialog
 import com.maple.msdialog.SheetItem
 import com.maple.msdialog.utils.DensityUtils.dp2px
+import com.maple.msdialog.utils.DialogUtil.setScaleWidth
 import kotlinx.android.synthetic.main.custom_action_sheet_recycler_dialog.*
 import java.util.*
 
@@ -23,7 +24,6 @@ import java.util.*
  * @date ：2020/8/29
  */
 class CustomActionSheetRecyclerDialogActivity : Activity() {
-    // var mScaleWidth: Double = 0.7
     var mScaleHeightMin: Double = 0.25
     var mScaleHeightMax: Double = 0.6
     var isCancelable: Boolean = true // 点击其他区域消失
@@ -41,9 +41,7 @@ class CustomActionSheetRecyclerDialogActivity : Activity() {
     var mItemCount: Int = 3
     var mItemTextSpSize: Float = 14f
     var mItemPaddingTopBottom: Float = 12f
-
-    // 分割线
-    var mLineHeight: Int = 1
+    var mLineHeight: Int = 1// 分割线
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -93,6 +91,7 @@ class CustomActionSheetRecyclerDialogActivity : Activity() {
         ActionSheetRecyclerDialog(this, config).apply {
             setCancelable(isCancelable)
             setCanceledOnTouchOutside(isCancelable)
+            // setScaleWidth(getRootView(), 0.8)
             setMinScaleHeight(mScaleHeightMin)
             setMaxScaleHeight(mScaleHeightMax)
             setBottomPadding(mDialogPaddingBottom)
@@ -107,6 +106,12 @@ class CustomActionSheetRecyclerDialogActivity : Activity() {
         }.show()
     }
 
+    // ----------------------------------- other methods -------------------------------------------
+
+    private fun showToast(msg: String?) {
+        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
+    }
+
     // 获取测试数据
     private fun getSingleSelectItemTestData(count: Int): ArrayList<SheetItem> {
         val testData = arrayListOf<SheetItem>()
@@ -115,11 +120,6 @@ class CustomActionSheetRecyclerDialogActivity : Activity() {
             testData.add(SheetItem("single select item $index", mColor))
         }
         return testData
-    }
-
-    // ----------------------------------- other methods -------------------------------------------
-    private fun showToast(msg: String?) {
-        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
     }
 
     // 各种变化监听
