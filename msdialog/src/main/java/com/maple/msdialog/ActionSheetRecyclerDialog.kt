@@ -12,7 +12,6 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
-import android.widget.FrameLayout
 import android.widget.LinearLayout
 import com.maple.msdialog.adapter.SingleSelectItemListAdapter
 import com.maple.msdialog.databinding.MsDialogActionSheetRecyclerBinding
@@ -87,10 +86,19 @@ class ActionSheetRecyclerDialog(
     ): ActionSheetRecyclerDialog {
         binding.rlTitleBar.visibility = View.VISIBLE
         binding.tvTitle.apply {
-            text = title
+            text = title ?: "null"
             setTextColor(color)
             textSize = spSize
             setTypeface(typeface, if (isBold) Typeface.BOLD else Typeface.NORMAL)
+        }
+        return this
+    }
+
+    // 设置底部按钮高度
+    fun setTitleViewHeight(heightPixels: Int = config.titleViewHeight): ActionSheetRecyclerDialog {
+        with(binding.rlTitleBar) {
+            config.titleViewHeight = heightPixels
+            layoutParams = layoutParams.apply { height = heightPixels }
         }
         return this
     }
@@ -163,6 +171,8 @@ class ActionSheetRecyclerDialog(
      * set layout
      */
     private fun setSheetLayout() {
+        setTitleViewHeight()
+
         getRootView().measure(0, 0)
         val curHeight = getRootView().measuredHeight // 当前实际高度
         val height = if (config.minHeight != null && curHeight < config.minHeight!!) {
@@ -173,9 +183,9 @@ class ActionSheetRecyclerDialog(
             LinearLayout.LayoutParams.WRAP_CONTENT
         }
 
-        getRootView().layoutParams = FrameLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT,
-                height)
+        getRootView().layoutParams = getRootView().layoutParams.apply {
+            this.height = height
+        }
     }
 
     override fun show() {
@@ -193,19 +203,19 @@ class ActionSheetRecyclerDialog(
         var minHeight: Int? = null //最小view高度, 单位：px
         var maxHeight: Int? = null //最大view高度, 单位：px
 
-        var isShowMark: Boolean = false // 是否显示 右侧对勾 √
-        var selectMark: Drawable? = ContextCompat.getDrawable(context, android.R.drawable.checkbox_on_background)
-        var closeDraw: Drawable? = ContextCompat.getDrawable(context, R.drawable.ms_svg_ic_close)
-
         // title
         var titleTextSizeSp: Float = 16f // 字体大小
         var titleColor: Int = ContextCompat.getColor(context, R.color.ms_def_title_color) // 字体颜色
+        var titleViewHeight: Int = 48f.dp2px(context) // 标题栏高度
+        var closeDraw: Drawable? = ContextCompat.getDrawable(context, R.drawable.ms_svg_ic_close)
 
         // item
         var itemBg: Drawable? = ColorDrawable(Color.WHITE) // item背景
         var itemTextSizeSp: Float = 14f // 字体大小
         var itemTextColor: Int = ContextCompat.getColor(context, R.color.ms_def_left_color)
         var itemTextSelectedColor: Int = ContextCompat.getColor(context, R.color.ms_def_right_color)
+        var isShowMark: Boolean = false // 是否显示 右侧对勾 √
+        var selectMark: Drawable? = ContextCompat.getDrawable(context, android.R.drawable.checkbox_on_background)
         var itemPaddingLeft: Int = 15f.dp2px(context)
         var itemPaddingTop: Int = 12f.dp2px(context)
         var itemPaddingRight: Int = 15f.dp2px(context)

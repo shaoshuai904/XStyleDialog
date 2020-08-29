@@ -15,7 +15,7 @@ import com.maple.msdialog.utils.DensityUtils.dp2px
 import kotlinx.android.synthetic.main.custom_alert_dialog.*
 
 /**
- * 深度自定义AlertDialog
+ * 深度自定义 AlertDialog
  *
  * @author : shaoshuai27
  * @date ：2020/8/27

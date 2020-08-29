@@ -6,9 +6,9 @@ import android.graphics.Color
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
 import android.util.Log
-import android.view.Gravity
 import android.view.View
 import android.widget.Toast
+import com.maple.iosdialog.custom.CustomActionSheetRecyclerDialogActivity
 import com.maple.iosdialog.custom.CustomAlertDialogActivity
 import com.maple.msdialog.*
 import com.maple.msdialog.utils.DensityUtils.dp2px
@@ -172,6 +172,10 @@ class MainActivity : Activity() {
             }
         }
         ar2?.show()
+    }
+
+    fun customACR(view: View?) {
+        startActivity(Intent(this, CustomActionSheetRecyclerDialogActivity::class.java))
     }
 
     // -------------------------------- Action Sheet List Dialog ----------------------------------------

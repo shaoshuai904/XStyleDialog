@@ -11,7 +11,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_margin="20dp"
-            android:text="Alert Dialog"
+            android:text="Action Sheet Recycler Dialog"
             android:textSize="18sp" />
 
         <Button
@@ -21,7 +21,7 @@
             android:layout_marginEnd="30dp"
             android:layout_marginBottom="30dp"
             android:onClick="showDialog"
-            android:text="点击显示自定义AlertDialog"
+            android:text="点击显示自定义ActionSheetRecyclerDialog"
             android:textAllCaps="false" />
 
 
@@ -43,27 +43,75 @@
                     android:text="自定义设置："
                     android:textSize="18sp" />
 
+                <!--                <TextView-->
+                <!--                    android:id="@+id/tv_scale_width"-->
+                <!--                    android:layout_width="wrap_content"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:text="宽度百分比:" />-->
+                <!--                -->
+                <!--                <SeekBar-->
+                <!--                    android:id="@+id/sb_scale_width"-->
+                <!--                    style="@style/Widget.AppCompat.SeekBar.Discrete"-->
+                <!--                    android:layout_width="match_parent"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:layout_marginBottom="10dp"-->
+                <!--                    android:max="10"-->
+                <!--                    android:progress="2" />-->
+
                 <TextView
-                    android:id="@+id/tv_scale_width"
+                    android:id="@+id/tv_scale_height_min"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="宽度百分比:" />
+                    android:text="最小高度百分比:" />
 
                 <SeekBar
-                    android:id="@+id/sb_scale_width"
+                    android:id="@+id/sb_scale_height_min"
                     style="@style/Widget.AppCompat.SeekBar.Discrete"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
-                    android:max="10"
+                    android:max="20"
                     android:progress="2" />
+
+                <TextView
+                    android:id="@+id/tv_scale_height_max"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="最大百分比:" />
+
+                <SeekBar
+                    android:id="@+id/sb_scale_height_max"
+                    style="@style/Widget.AppCompat.SeekBar.Discrete"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:max="20"
+                    android:progress="18" />
 
                 <Switch
                     android:id="@+id/sw_cancelable"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
+                    android:checked="true"
                     android:text="点击其他区域消失" />
+
+                <Switch
+                    android:id="@+id/sw_show_close"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:checked="true"
+                    android:text="设置顶部条【关闭】按钮是否显示 " />
+
+                <Switch
+                    android:id="@+id/sw_show_mark"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:checked="true"
+                    android:text="是否显示 item 右侧对勾 " />
+
 
                 <EditText
                     android:id="@+id/et_title"
@@ -93,160 +141,44 @@
                     android:progress="3" />
 
                 <TextView
+                    android:id="@+id/tv_title_height"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="上、下、左、右 间距同理：" />
-
-                <TextView
-                    android:id="@+id/tv_title_padding_top"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="标题上间距:" />
+                    android:text="标题大小:" />
 
                 <SeekBar
-                    android:id="@+id/sb_title_padding_top"
+                    android:id="@+id/sb_title_height"
                     style="@style/Widget.AppCompat.SeekBar.Discrete"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
-                    android:max="10"
-                    android:progress="2" />
-
-                <EditText
-                    android:id="@+id/et_message"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="5dp"
-                    android:background="@drawable/ms_sel_action_sheet_middle"
-                    android:hint="输入自定义消息"
-                    android:padding="10dp"
-                    android:text="自定义消息，支持Html格式"
-                    android:textSize="14sp" />
+                    android:max="20"
+                    android:progress="3" />
 
                 <TextView
-                    android:id="@+id/tv_msg_size"
+                    android:id="@+id/tv_item_count"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="消息大小:" />
+                    android:layout_marginTop="20dp"
+                    android:text="Item个数:" />
 
                 <SeekBar
-                    android:id="@+id/sb_msg_size"
+                    android:id="@+id/sb_item_count"
                     style="@style/Widget.AppCompat.SeekBar.Discrete"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
-                    android:max="10"
+                    android:max="50"
                     android:progress="6" />
 
                 <TextView
+                    android:id="@+id/tv_item_text_size"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="上、下、左、右 间距同理：" />
-
-                <TextView
-                    android:id="@+id/tv_msg_padding_bottom"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="消息下间距:" />
+                    android:text="Item字体大小:" />
 
                 <SeekBar
-                    android:id="@+id/sb_msg_padding_bottom"
-                    style="@style/Widget.AppCompat.SeekBar.Discrete"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:max="10"
-                    android:progress="2" />
-
-                <RadioGroup
-                    android:id="@+id/rg_msg_style"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:checkedButton="@id/rb_msg_center"
-                    android:orientation="horizontal">
-
-                    <RadioButton
-                        android:id="@+id/rb_msg_left"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="偏左" />
-
-                    <RadioButton
-                        android:id="@+id/rb_msg_center"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="居中" />
-
-                    <RadioButton
-                        android:id="@+id/rb_msg_right"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="偏右" />
-                </RadioGroup>
-
-                <Switch
-                    android:id="@+id/sw_html_msg"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:checked="true"
-                    android:text="消息富文本" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="左右按钮设置了就显示，不设置就不显示" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:orientation="horizontal">
-
-                    <EditText
-                        android:id="@+id/et_left_btn"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="5dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/ms_sel_action_sheet_middle"
-                        android:gravity="center"
-                        android:hint="输入左侧按钮"
-                        android:padding="10dp"
-                        android:text="取消"
-                        android:textSize="14sp" />
-
-                    <EditText
-                        android:id="@+id/et_right_btn"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="5dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/ms_sel_action_sheet_middle"
-                        android:gravity="center"
-                        android:hint="输入标题"
-                        android:padding="10dp"
-                        android:text="确定"
-                        android:textSize="14sp" />
-                </LinearLayout>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="左、右 按钮字体大小、颜色可分别设置" />
-
-                <TextView
-                    android:id="@+id/tv_button_text_size"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="按钮字体大小:" />
-
-                <SeekBar
-                    android:id="@+id/sb_button_text_size"
+                    android:id="@+id/sb_item_text_size"
                     style="@style/Widget.AppCompat.SeekBar.Discrete"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -255,19 +187,62 @@
                     android:progress="1" />
 
                 <TextView
-                    android:id="@+id/tv_button_height"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="底部按钮高度:" />
+                    android:text="上、下、左、右 间距 可以分别设置：" />
+
+                <TextView
+                    android:id="@+id/tv_item_padding_tb"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Item上下间距:" />
 
                 <SeekBar
-                    android:id="@+id/sb_button_height"
+                    android:id="@+id/sb_item_padding_tb"
+                    style="@style/Widget.AppCompat.SeekBar.Discrete"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:max="20"
+                    android:progress="2" />
+
+                <TextView
+                    android:id="@+id/tv_divider_height"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="分割线高度:" />
+
+                <SeekBar
+                    android:id="@+id/sb_divider_height"
                     style="@style/Widget.AppCompat.SeekBar.Discrete"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
                     android:max="10"
                     android:progress="3" />
+
+                <Switch
+                    android:id="@+id/sw_last_item_line"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:checked="true"
+                    android:text="最后一个item是否画分割线 " />
+
+                <TextView
+                    android:id="@+id/tv_button_padding"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="底部间隔高度:" />
+
+                <SeekBar
+                    android:id="@+id/sb_button_padding"
+                    style="@style/Widget.AppCompat.SeekBar.Discrete"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:max="20"
+                    android:progress="1" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -277,7 +252,6 @@
                     android:gravity="center"
                     android:text="还有更多更多自定义配置，\n请看具体Dialog的Config配置类"
                     android:textSize="14sp" />
-
             </LinearLayout>
 
         </android.support.v4.widget.NestedScrollView>

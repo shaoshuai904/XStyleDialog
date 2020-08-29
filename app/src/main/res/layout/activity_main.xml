@@ -151,6 +151,13 @@
                     android:text="大数据量\n自定义最大高度"
                     android:textAllCaps="false" />
 
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:onClick="customACR"
+                    android:text="深度\n自定义"
+                    android:textAllCaps="false" />
             </LinearLayout>
 
 

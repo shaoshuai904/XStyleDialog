@@ -17,6 +17,7 @@
         </activity>
         <!--  自定义调试页  -->
         <activity android:name=".custom.CustomAlertDialogActivity" />
+        <activity android:name=".custom.CustomActionSheetRecyclerDialogActivity" />
     </application>
 
 </manifest>
