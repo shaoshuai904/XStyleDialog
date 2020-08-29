@@ -22,16 +22,25 @@ import kotlinx.android.synthetic.main.custom_alert_dialog.*
  */
 class CustomAlertDialogActivity : Activity() {
     var mScaleWidth: Double = 0.7
+    var isCancelable: Boolean = false // 点击其他区域消失
+
+    // 标题
     var mTitle: String? = null
     var mTitleSpSize: Float = 18f
+    var mTitlePaddingTop: Float = 22f
+
+    // 消息
     var mMsg: String? = null
     var mMsgSpSize: Float = 14f
-    var mGravity: Int = Gravity.CENTER // 消息显示位置
     var isHtmlMsg: Boolean = true // 富文本消息
-    var mBottomHeight: Float = 48f // 按钮高度
+    var mGravity: Int = Gravity.CENTER // 消息显示位置
+    var mMessagePaddingBottom: Float = 22f
+
+    // 按钮
     var mLeftBtn: String? = null
     var mRightBtn: String? = null
-    var isCancelable: Boolean = false // 点击其他区域消失
+    var mBottomHeight: Float = 48f // 按钮高度
+    var mBtnTextSizeSp: Float = 18f // 字体大小
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -49,19 +58,26 @@ class CustomAlertDialogActivity : Activity() {
         et_left_btn.setText("取消")
         et_right_btn.setText("确认退出")
         sb_scale_width.progress = 5 // 默认宽度：0.75
-        sb_title_size.progress = 4
-        sb_msg_size.progress = 4
-        sb_button_height.progress = 6
+        sb_title_size.progress = 4 // 标题文本大小
+        sb_title_padding_top.progress = 3 // 标题上间距
+        sb_msg_size.progress = 4 // 消息文本大小
+        sb_msg_padding_bottom.progress = 3 // 消息下间距
+        sb_button_height.progress = 6 // 按钮高度
+        sb_button_text_size.progress = 4 // 按钮字体大小
     }
 
     fun showDialog(view: View?) {
         // config统一配置 或 具体方法设置
         val config = AlertDialog.Config(this).apply {
             titleTextSizeSp = mTitleSpSize
+            titlePaddingTop = mTitlePaddingTop.dp2px(context)
             messageTextSizeSp = mMsgSpSize
-            messagePaddingBottom = 40f.dp2px(context)
-            rightBtnColor = Color.RED
+            messagePaddingBottom = mMessagePaddingBottom.dp2px(context)
+
             bottomViewHeightDp = mBottomHeight
+            leftBtnTextSizeSp = mBtnTextSizeSp
+            rightBtnTextSizeSp = mBtnTextSizeSp
+            rightBtnColor = Color.RED
         }
         AlertDialog(this, config).apply {
             setCancelable(isCancelable)
@@ -153,7 +169,24 @@ class CustomAlertDialogActivity : Activity() {
                 tv_msg_size.text = "消息大小${mMsgSpSize}sp"
             }
         })
-
+        sb_title_padding_top.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+            override fun onStartTrackingTouch(seekBar: SeekBar?) {}
+            override fun onStopTrackingTouch(seekBar: SeekBar?) {}
+            override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
+                // 最小10，一格 +4dp
+                mTitlePaddingTop = 10 + progress * 4f
+                tv_title_padding_top.text = "标题上间距${mTitlePaddingTop}dp"
+            }
+        })
+        sb_msg_padding_bottom.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+            override fun onStartTrackingTouch(seekBar: SeekBar?) {}
+            override fun onStopTrackingTouch(seekBar: SeekBar?) {}
+            override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
+                // 最小10，一格 +4dp
+                mMessagePaddingBottom = 10 + progress * 4f
+                tv_msg_padding_bottom.text = "消息下间距${mMessagePaddingBottom}dp"
+            }
+        })
         sb_button_height.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onStartTrackingTouch(seekBar: SeekBar?) {}
             override fun onStopTrackingTouch(seekBar: SeekBar?) {}
@@ -161,6 +194,15 @@ class CustomAlertDialogActivity : Activity() {
                 // 最小30，一格 +3 sp
                 mBottomHeight = 30 + progress * 3f
                 tv_button_height.text = "底部按钮高度${mBottomHeight}dp"
+            }
+        })
+        sb_button_text_size.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+            override fun onStartTrackingTouch(seekBar: SeekBar?) {}
+            override fun onStopTrackingTouch(seekBar: SeekBar?) {}
+            override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
+                // 最小10，一格 +2 sp
+                mBtnTextSizeSp = 10 + progress * 2f
+                tv_button_text_size.text = "按钮字体大小${mBtnTextSizeSp}sp"
             }
         })
         rg_msg_style.setOnCheckedChangeListener { group, checkedId ->

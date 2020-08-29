@@ -34,7 +34,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
-                android:padding="10dp">
+                android:paddingStart="10dp"
+                android:paddingTop="10dp"
+                android:paddingEnd="10dp"
+                android:paddingBottom="40dp">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -58,6 +61,13 @@
                     android:max="10"
                     android:progress="2" />
 
+                <Switch
+                    android:id="@+id/sw_cancelable"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:text="点击其他区域消失" />
+
                 <EditText
                     android:id="@+id/et_title"
                     android:layout_width="match_parent"
@@ -66,8 +76,9 @@
                     android:background="@drawable/ms_sel_action_sheet_middle"
                     android:gravity="center"
                     android:hint="输入标题"
-                    android:padding="5dp"
-                    android:text="自定义标题" />
+                    android:padding="10dp"
+                    android:text="自定义标题"
+                    android:textSize="14sp" />
 
                 <TextView
                     android:id="@+id/tv_title_size"
@@ -84,6 +95,26 @@
                     android:max="10"
                     android:progress="3" />
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="上、下、左、右 间距同理：" />
+
+                <TextView
+                    android:id="@+id/tv_title_padding_top"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="标题上间距:" />
+
+                <SeekBar
+                    android:id="@+id/sb_title_padding_top"
+                    style="@style/Widget.AppCompat.SeekBar.Discrete"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:max="10"
+                    android:progress="2" />
+
                 <EditText
                     android:id="@+id/et_message"
                     android:layout_width="match_parent"
@@ -91,8 +122,9 @@
                     android:layout_marginBottom="5dp"
                     android:background="@drawable/ms_sel_action_sheet_middle"
                     android:hint="输入自定义消息"
-                    android:padding="5dp"
-                    android:text="自定义消息，支持Html格式" />
+                    android:padding="10dp"
+                    android:text="自定义消息，支持Html格式"
+                    android:textSize="14sp" />
 
                 <TextView
                     android:id="@+id/tv_msg_size"
@@ -108,6 +140,26 @@
                     android:layout_marginBottom="10dp"
                     android:max="10"
                     android:progress="6" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="上、下、左、右 间距同理：" />
+
+                <TextView
+                    android:id="@+id/tv_msg_padding_bottom"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="消息下间距:" />
+
+                <SeekBar
+                    android:id="@+id/sb_msg_padding_bottom"
+                    style="@style/Widget.AppCompat.SeekBar.Discrete"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:max="10"
+                    android:progress="2" />
 
                 <RadioGroup
                     android:id="@+id/rg_msg_style"
@@ -139,6 +191,19 @@
                         android:text="偏右" />
                 </RadioGroup>
 
+                <Switch
+                    android:id="@+id/sw_html_msg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:checked="true"
+                    android:text="消息富文本" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="左右按钮设置了就显示，不设置就不显示" />
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -154,8 +219,9 @@
                         android:background="@drawable/ms_sel_action_sheet_middle"
                         android:gravity="center"
                         android:hint="输入左侧按钮"
-                        android:padding="5dp"
-                        android:text="取消" />
+                        android:padding="10dp"
+                        android:text="取消"
+                        android:textSize="14sp" />
 
                     <EditText
                         android:id="@+id/et_right_btn"
@@ -166,9 +232,30 @@
                         android:background="@drawable/ms_sel_action_sheet_middle"
                         android:gravity="center"
                         android:hint="输入标题"
-                        android:padding="5dp"
-                        android:text="确定" />
+                        android:padding="10dp"
+                        android:text="确定"
+                        android:textSize="14sp" />
                 </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="左、右 按钮字体大小、颜色可分别设置" />
+
+                <TextView
+                    android:id="@+id/tv_button_text_size"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="按钮字体大小:" />
+
+                <SeekBar
+                    android:id="@+id/sb_button_text_size"
+                    style="@style/Widget.AppCompat.SeekBar.Discrete"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:max="10"
+                    android:progress="1" />
 
                 <TextView
                     android:id="@+id/tv_button_height"
@@ -185,20 +272,6 @@
                     android:max="10"
                     android:progress="3" />
 
-                <Switch
-                    android:id="@+id/sw_html_msg"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:checked="true"
-                    android:text="消息富文本" />
-
-                <Switch
-                    android:id="@+id/sw_cancelable"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:text="点击其他区域消失" />
 
             </LinearLayout>
 
