@@ -74,7 +74,7 @@ class CustomAlertDialogActivity : Activity() {
             messageTextSizeSp = mMsgSpSize
             messagePaddingBottom = mMessagePaddingBottom.dp2px(context)
 
-            bottomViewHeightDp = mBottomHeight
+            bottomViewHeight = mBottomHeight.dp2px(context)
             leftBtnTextSizeSp = mBtnTextSizeSp
             rightBtnTextSizeSp = mBtnTextSizeSp
             rightBtnColor = Color.RED

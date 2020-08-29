@@ -128,10 +128,12 @@ class AlertDialog(
         return this
     }
 
-    fun setBottomViewHeightDp(heightDp: Float = config.bottomViewHeightDp) = setBottomViewHeight(dp2px(mContext, heightDp))
+    fun setBottomViewHeightDp(heightDp: Float) = setBottomViewHeight(heightDp.dp2px(mContext))
 
-    fun setBottomViewHeight(heightPixels: Int): AlertDialog {
+    // 设置底部按钮高度
+    fun setBottomViewHeight(heightPixels: Int = config.bottomViewHeight): AlertDialog {
         with(binding.llBottom) {
+            config.bottomViewHeight = heightPixels
             layoutParams = layoutParams.apply { height = heightPixels }
         }
         return this
@@ -191,7 +193,7 @@ class AlertDialog(
 
     private fun setLayout() {
         setScaleWidth(binding.root, config.scaleWidth)
-        setBottomViewHeightDp()
+        setBottomViewHeight()
 
         binding.apply {
             if (!showTitle && !showMsg) {
@@ -258,7 +260,7 @@ class AlertDialog(
         var messagePaddingBottom: Int = 22f.dp2px(context)
 
         // button
-        var bottomViewHeightDp: Float = 48f // 底部按钮高度
+        var bottomViewHeight: Int = 48f.dp2px(context) // 底部按钮高度
 
         // left button
         var leftBtnTextSizeSp: Float = 18f // 字体大小
