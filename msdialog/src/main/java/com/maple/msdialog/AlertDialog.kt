@@ -50,6 +50,7 @@ class AlertDialog(
     }
 
     fun setScaleWidth(scWidth: Double): AlertDialog {
+        config.scaleWidth = scWidth
         setScaleWidth(binding.root, scWidth)
         return this
     }
