@@ -87,45 +87,6 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:gravity="center"
-                android:text="Action Sheet List Dialog"
-                android:textSize="18sp" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
-
-                <Button
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:onClick="aslList"
-                    android:text="sheet list"
-                    android:textAllCaps="false" />
-
-                <Button
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:onClick="aslListNoCancel"
-                    android:text="sheet list no cancel"
-                    android:textAllCaps="false" />
-
-                <Button
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:onClick="aslListTitle"
-                    android:text="list + title"
-                    android:textAllCaps="false" />
-            </LinearLayout>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:gravity="center"
                 android:text="Action Sheet Recycler List Dialog"
                 android:textSize="18sp" />
 
@@ -157,6 +118,46 @@
                     android:layout_weight="1"
                     android:onClick="customACR"
                     android:text="深度\n自定义"
+                    android:textAllCaps="false" />
+            </LinearLayout>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:gravity="center"
+                android:text="Action Sheet List Dialog"
+                android:textSize="18sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:onClick="aslList"
+                    android:text="sheet list"
+                    android:textAllCaps="false" />
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:onClick="aslListNoCancel"
+                    android:text="sheet list no cancel"
+                    android:textAllCaps="false" />
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:onClick="aslListTitle"
+                    android:text="list + title"
                     android:textAllCaps="false" />
             </LinearLayout>
 

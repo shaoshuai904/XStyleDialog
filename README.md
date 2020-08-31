@@ -77,7 +77,7 @@ dependencies {
 
 
 ----------
-## v1.4.1 ##
+## v1.5.0 ##
  - 更新minSdkVersion = 19
  - 提供`setScaleWidth`和`setScaleHeight`方法设置Dialog的屏幕百分比宽度和高度
  - 提供Dialog的getRootView及各个子View方法，以支持深度自定义。

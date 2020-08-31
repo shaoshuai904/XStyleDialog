@@ -73,7 +73,7 @@ class MainActivity : Activity() {
             setCancelable(false)
             setCanceledOnTouchOutside(false)
             setTitle("清空消息列表后，聊天记录依然保留，确定要清空消息列表？")
-            addSheetItem("清空消息列表") { item, position ->
+            addSheetItem("清空消息列表", Color.parseColor(DEF_BLUE)) { item, position ->
                 showToast("clear msg list")
             }
             setCancelText("取 消")
