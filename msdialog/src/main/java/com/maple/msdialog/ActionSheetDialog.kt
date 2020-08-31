@@ -37,19 +37,14 @@ class ActionSheetDialog(
 
     init {
         // set Dialog min width
-        binding.root.minimumWidth = mContext.screenInfo().x
-        binding.root.setPadding(config.paddingLeft, config.paddingTop, config.paddingRight, config.paddingBottom)
-        binding.tvTitle.visibility = if (config.showTitle) View.VISIBLE else View.GONE
-        binding.tvCancel.setOnClickListener { dismiss() }
-        binding.tvCancel.visibility = if (config.showCancel) {
-            setCancelText()
-            View.VISIBLE
-        } else View.GONE
-
+        binding.apply {
+            root.minimumWidth = mContext.screenInfo().x
+            tvCancel.setOnClickListener { dismiss() }
+        }
         // create Dialog
         setContentView(binding.root)
         window?.apply {
-            setGravity(Gravity.LEFT or Gravity.BOTTOM)
+            setGravity(Gravity.START or Gravity.BOTTOM)
             attributes = attributes.apply {
                 x = 0
                 y = 0
@@ -105,17 +100,25 @@ class ActionSheetDialog(
         return this
     }
 
-    fun addSheetItem(strItem: String): ActionSheetDialog {
-        return addSheetItem(strItem, config.itemTextColor, null)
+    fun setCancelViewHeightDp(heightDp: Float) = setCancelViewHeight(heightDp.dp2px(mContext))
+
+    // 设置底部按钮高度
+    fun setCancelViewHeight(heightPixels: Int = config.cancelViewHeight): ActionSheetDialog {
+        with(binding.tvCancel) {
+            config.cancelViewHeight = heightPixels
+            layoutParams = layoutParams.apply { height = heightPixels }
+        }
+        return this
     }
 
-    fun addSheetItem(strItem: String, clickListener: OnSheetItemClickListener?): ActionSheetDialog {
-        return addSheetItem(SheetItem(strItem, config.itemTextColor, clickListener))
-    }
+    fun addSheetItem(strItem: String) =
+            addSheetItem(strItem, config.itemTextColor, null)
 
-    fun addSheetItem(strItem: String, color: Int = config.itemTextColor, clickListener: OnSheetItemClickListener?): ActionSheetDialog {
-        return addSheetItem(SheetItem(strItem, color, clickListener))
-    }
+    fun addSheetItem(strItem: String, clickListener: OnSheetItemClickListener?) =
+            addSheetItem(SheetItem(strItem, config.itemTextColor, clickListener))
+
+    fun addSheetItem(strItem: String, color: Int = config.itemTextColor, clickListener: OnSheetItemClickListener?) =
+            addSheetItem(SheetItem(strItem, color, clickListener))
 
     fun addSheetItem(item: SheetItem): ActionSheetDialog {
         if (sheetItemList == null) {
@@ -129,8 +132,13 @@ class ActionSheetDialog(
      * set items layout
      */
     private fun initLayout() {
+        // binding.root.minimumWidth = mContext.screenInfo().x
+        binding.root.setPadding(config.paddingLeft, config.paddingTop, config.paddingRight, config.paddingBottom)
         binding.tvTitle.visibility = if (config.showTitle) View.VISIBLE else View.GONE
-        binding.tvCancel.visibility = if (config.showCancel) View.VISIBLE else View.GONE
+        binding.tvCancel.visibility = if (config.showCancel) {
+            setCancelText()
+            View.VISIBLE
+        } else View.GONE
         if (sheetItemList == null || sheetItemList!!.size <= 0) {
             return
         }
@@ -230,6 +238,7 @@ class ActionSheetDialog(
         var cancelText: String = "取消"
         var cancelTextSizeSp: Float = 18f // 字体大小
         var cancelTextColor: Int = ContextCompat.getColor(context, R.color.ms_def_title_color) // 字体颜色
+        var cancelViewHeight: Int = 48f.dp2px(context) // 底部按钮高度
     }
 
 }
