@@ -1,8 +1,8 @@
-# iOS style Dialog
+# X style Dialog - 万能样式Dialog 
 
 [![API](https://img.shields.io/badge/API-19%2B-green.svg?style=flat)](https://android-arsenal.com/api?level=19)
-[![jitpack](https://jitpack.io/v/shaoshuai904/iOS_Style_Dialog.svg)](https://jitpack.io/#shaoshuai904/iOS_Style_Dialog)
-[![demo](https://img.shields.io/badge/download-demo-blue.svg)](https://github.com/shaoshuai904/IOSDialog/blob/master/screens/app-v1.5.0_25.apk) <-- 点击下载demo
+[![jitpack](https://jitpack.io/v/shaoshuai904/XStyleDialog.svg)](https://jitpack.io/#shaoshuai904/XStyleDialog)
+[![demo](https://img.shields.io/badge/download-demo-blue.svg)](https://github.com/shaoshuai904/XStyleDialog/blob/master/screens/app-v1.5.0_25.apk) <-- 点击下载demo
 
 ### 快速使用
 
@@ -20,17 +20,17 @@ allprojects {
 
 ```groovy
 dependencies {
-	implementation 'com.github.shaoshuai904:iOS_Style_Dialog:1.5.0'
+	implementation 'com.github.shaoshuai904:XStyleDialog:1.5.0'
 }
 ```
 
-![show_01](https://github.com/shaoshuai904/IOSDialog/blob/master/screens/show_01.png)
+![show_01](https://github.com/shaoshuai904/XStyleDialog/blob/master/screens/show_01.png)
 
-![show_02](https://github.com/shaoshuai904/IOSDialog/blob/master/screens/show_02.png)
+![show_02](https://github.com/shaoshuai904/XStyleDialog/blob/master/screens/show_02.png)
 
-![show_03](https://github.com/shaoshuai904/IOSDialog/blob/master/screens/show_03.png)
+![show_03](https://github.com/shaoshuai904/XStyleDialog/blob/master/screens/show_03.png)
 
-![show_04](https://github.com/shaoshuai904/IOSDialog/blob/master/screens/show_04.png)
+![show_04](https://github.com/shaoshuai904/XStyleDialog/blob/master/screens/show_04.png)
 
 ###  AlertDialog
 
