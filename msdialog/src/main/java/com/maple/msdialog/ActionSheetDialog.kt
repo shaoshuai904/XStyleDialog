@@ -58,9 +58,7 @@ class ActionSheetDialog(
     fun getTitleView() = binding.tvTitle
     fun getCancelView() = binding.tvCancel
 
-    fun setDialogTitle(title: CharSequence?): ActionSheetDialog {
-        return setTitle(title, isBold = false)
-    }
+    fun setDialogTitle(title: CharSequence?) = setTitle(title, isBold = false)
 
     override fun setTitle(title: CharSequence?) {
         this.setTitle(title, isBold = false)
