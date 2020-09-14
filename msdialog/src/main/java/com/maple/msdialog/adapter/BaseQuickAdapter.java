@@ -1,6 +1,6 @@
 package com.maple.msdialog.adapter;
 
-import android.support.v7.widget.RecyclerView;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.View;
 
 import java.util.ArrayList;

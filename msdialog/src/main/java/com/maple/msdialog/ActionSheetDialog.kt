@@ -2,13 +2,13 @@ package com.maple.msdialog
 
 import android.app.Dialog
 import android.content.Context
-import android.databinding.DataBindingUtil
+import androidx.databinding.DataBindingUtil
 import android.graphics.Color
 import android.graphics.Typeface
 import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.Drawable
-import android.support.annotation.DrawableRes
-import android.support.v4.content.ContextCompat
+import androidx.annotation.DrawableRes
+import androidx.core.content.ContextCompat
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View

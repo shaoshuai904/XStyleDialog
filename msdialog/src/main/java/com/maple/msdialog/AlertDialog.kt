@@ -2,10 +2,10 @@ package com.maple.msdialog
 
 import android.app.Dialog
 import android.content.Context
-import android.databinding.DataBindingUtil
+import androidx.databinding.DataBindingUtil
 import android.graphics.Typeface
 import android.os.Build
-import android.support.v4.content.ContextCompat
+import androidx.core.content.ContextCompat
 import android.text.Html
 import android.text.Spanned
 import android.view.Gravity
