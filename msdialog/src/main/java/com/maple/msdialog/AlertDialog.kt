@@ -73,6 +73,7 @@ class AlertDialog(
     }
 
     override fun setTitle(title: CharSequence?) {
+        super.setTitle(title)
         this.setTitle(title, isBold = false)
     }
 
