@@ -1,7 +1,8 @@
 package com.maple.msdialog.adapter;
 
-import androidx.recyclerview.widget.RecyclerView;
 import android.view.View;
+
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,10 +14,10 @@ import java.util.List;
  * @time 2018-08-06
  */
 public abstract class BaseQuickAdapter<T, K extends RecyclerView.ViewHolder> extends RecyclerView.Adapter<K> {
-    private List<T> mDataList = new ArrayList();
+    private List<T> mDataList = new ArrayList<T>();
 
     public void refreshData(List<T> newData) {
-        mDataList = newData != null ? newData : new ArrayList<>();
+        mDataList = newData != null ? newData : new ArrayList<T>();
         this.notifyDataSetChanged();
     }
 
@@ -28,13 +29,20 @@ public abstract class BaseQuickAdapter<T, K extends RecyclerView.ViewHolder> ext
         return mDataList.get(position);
     }
 
-//    public void add(T t) {
-//        if (t == null)
-//            return;
-//        mDataList.add(t);
-//        this.notifyDataSetChanged();
-//    }
-//
+    public void add(T t) {
+        if (t == null)
+            return;
+        mDataList.add(t);
+        this.notifyDataSetChanged();
+    }
+
+    public void add(List<T> data) {
+        if (data != null && data.size() > 0) {
+            mDataList.addAll(data);
+            this.notifyDataSetChanged();
+        }
+    }
+
 //    public void remove(int index) {
 //        if (index < 0 || index >= mDataList.size())
 //            return;
