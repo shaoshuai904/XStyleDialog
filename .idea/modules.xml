@@ -2,12 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/GitHub-iOS_Style_Dialog.iml" filepath="$PROJECT_DIR$/GitHub-iOS_Style_Dialog.iml" group="iOS_Style_Dialog" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/iOS_Style_Dialog.iml" filepath="$PROJECT_DIR$/iOS_Style_Dialog.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/iOS_Style_Dialog-app.iml" filepath="$PROJECT_DIR$/app/iOS_Style_Dialog-app.iml" group="iOS_Style_Dialog/app" />
-      <module fileurl="file://$PROJECT_DIR$/msdialog/iOS_Style_Dialog-msdialog.iml" filepath="$PROJECT_DIR$/msdialog/iOS_Style_Dialog-msdialog.iml" group="iOS_Style_Dialog/msdialog" />
-      <module fileurl="file://$PROJECT_DIR$/msdialog/msdialog.iml" filepath="$PROJECT_DIR$/msdialog/msdialog.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/X_Style_Dialog.iml" filepath="$PROJECT_DIR$/.idea/X_Style_Dialog.iml" group="X_Style_Dialog" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/app.iml" group="X_Style_Dialog/app" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/msdialog/msdialog.iml" filepath="$PROJECT_DIR$/.idea/modules/msdialog/msdialog.iml" group="X_Style_Dialog/msdialog" />
     </modules>
   </component>
 </project>
