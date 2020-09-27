@@ -20,9 +20,9 @@ allprojects {
 
 ```groovy
 dependencies {
-    // for Support
+	// for Support
 	implementation 'com.github.shaoshuai904:XStyleDialog:1.5.0'
-    // for androidx
+	// for androidx
 	implementation 'com.github.shaoshuai904:XStyleDialog:2.0.0'
 }
 ```
@@ -80,7 +80,7 @@ dependencies {
 
 
 ----------
-## v1.5.0 ##
+## v2.0.0 ##
  - 更新minSdkVersion = 19
  - 提供`setScaleWidth`和`setScaleHeight`方法设置Dialog的屏幕百分比宽度和高度
  - 提供Dialog的getRootView及各个子View方法，以支持深度自定义。
