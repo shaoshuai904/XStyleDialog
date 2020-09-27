@@ -20,7 +20,10 @@ allprojects {
 
 ```groovy
 dependencies {
+    // for Support
 	implementation 'com.github.shaoshuai904:XStyleDialog:1.5.0'
+    // for androidx
+	implementation 'com.github.shaoshuai904:XStyleDialog:2.0.0'
 }
 ```
 
