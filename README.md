@@ -2,7 +2,7 @@
 
 [![API](https://img.shields.io/badge/API-19%2B-green.svg?style=flat)](https://android-arsenal.com/api?level=19)
 [![jitpack](https://jitpack.io/v/shaoshuai904/XStyleDialog.svg)](https://jitpack.io/#shaoshuai904/XStyleDialog)
-[![demo](https://img.shields.io/badge/download-demo-blue.svg)](https://github.com/shaoshuai904/XStyleDialog/blob/master/screens/app-v1.5.0_25.apk) <-- 点击下载demo
+[![demo](https://img.shields.io/badge/download-demo-blue.svg)](https://github.com/shaoshuai904/XStyleDialog/blob/master/screens/app-v2.0.0_40.apk) <-- 点击下载demo
 
 ### 快速使用
 
@@ -21,7 +21,7 @@ allprojects {
 ```groovy
 dependencies {
 	// for Support
-	implementation 'com.github.shaoshuai904:XStyleDialog:1.5.0'
+	implementation 'com.github.shaoshuai904:XStyleDialog:1.5.1'
 	// for androidx
 	implementation 'com.github.shaoshuai904:XStyleDialog:2.0.0'
 }
