@@ -1,8 +1,5 @@
 <component name="ProjectCodeStyleConfiguration">
   <code_scheme name="Project" version="173">
-    <JavaCodeStyleSettings>
-      <option name="DO_NOT_WRAP_AFTER_SINGLE_ANNOTATION" value="true" />
-    </JavaCodeStyleSettings>
     <JetCodeStyleSettings>
       <option name="PACKAGES_TO_USE_STAR_IMPORTS">
         <value>
@@ -21,10 +18,6 @@
         </value>
       </option>
     </JetCodeStyleSettings>
-    <codeStyleSettings language="JAVA">
-      <option name="METHOD_ANNOTATION_WRAP" value="0" />
-      <option name="FIELD_ANNOTATION_WRAP" value="0" />
-    </codeStyleSettings>
     <codeStyleSettings language="XML">
       <indentOptions>
         <option name="CONTINUATION_INDENT_SIZE" value="4" />
@@ -136,9 +129,6 @@
           </section>
         </rules>
       </arrangement>
-    </codeStyleSettings>
-    <codeStyleSettings language="kotlin">
-      <option name="FIELD_ANNOTATION_WRAP" value="0" />
     </codeStyleSettings>
   </code_scheme>
 </component>
