@@ -2,14 +2,16 @@ package com.maple.msdialog
 
 import android.app.Dialog
 import android.content.Context
+import android.graphics.Color
 import android.graphics.Typeface
+import android.graphics.drawable.ColorDrawable
+import android.graphics.drawable.Drawable
 import android.os.Build
 import android.text.Html
 import android.text.Spanned
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
-import androidx.annotation.DrawableRes
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import com.maple.msdialog.databinding.MsDialogAlertBinding
@@ -201,7 +203,15 @@ class AlertDialog(
         setBottomViewHeight()
 
         binding.apply {
-            llContent.setBackgroundResource(config.dialogBg)
+            llContent.background = config.dialogBg
+            with(vLine) {
+                background = config.dividerColor
+                layoutParams = layoutParams.apply { height = config.dividerWidth }
+            }
+            with(vBtnLine) {
+                background = config.dividerColor
+                layoutParams = layoutParams.apply { width = config.dividerWidth }
+            }
             if (!showTitle && !showMsg) {
                 tvTitle.text = config.defNullText
                 tvTitle.visibility = View.VISIBLE
@@ -214,19 +224,19 @@ class AlertDialog(
             }
             if (showRightBtn && !showLeftBtn) {
                 btRight.visibility = View.VISIBLE
-                btRight.setBackgroundResource(config.singleBtnBg)
+                btRight.background = config.singleBtnBg
             }
             if (!showRightBtn && showLeftBtn) {
                 btLeft.visibility = View.VISIBLE
-                btLeft.setBackgroundResource(config.singleBtnBg)
+                btLeft.background = config.singleBtnBg
             }
             // two button
             if (showRightBtn && showLeftBtn) {
                 btLeft.visibility = View.VISIBLE
-                btLeft.setBackgroundResource(config.leftBtnBg)
+                btLeft.background = config.leftBtnBg
                 vBtnLine.visibility = View.VISIBLE
                 btRight.visibility = View.VISIBLE
-                btRight.setBackgroundResource(config.rightBtnBg)
+                btRight.background = config.rightBtnBg
             }
         }
     }
@@ -264,18 +274,22 @@ class AlertDialog(
 
         // button
         var bottomViewHeight: Int = 48f.dp2px(context) // 底部按钮高度
-        @DrawableRes var dialogBg: Int = R.drawable.ms_shape_alert_dialog_bg // 整个Dialog的背景
-        @DrawableRes var singleBtnBg: Int = R.drawable.ms_sel_alert_dialog_single // 单按钮背景
+        var dialogBg: Drawable? = ContextCompat.getDrawable(context, R.drawable.ms_shape_alert_dialog_bg) // 整个Dialog的背景
+        var singleBtnBg: Drawable? = ContextCompat.getDrawable(context, R.drawable.ms_sel_alert_dialog_single) // 单按钮背景
 
         // left button
         var leftBtnTextSizeSp: Float = 18f // 字体大小
         var leftBtnColor: Int = ContextCompat.getColor(context, R.color.ms_def_left_color) // 字体颜色
-        @DrawableRes var leftBtnBg: Int = R.drawable.ms_sel_alert_dialog_left // 左侧按钮背景
+        var leftBtnBg: Drawable? = ContextCompat.getDrawable(context, R.drawable.ms_sel_alert_dialog_left) // 左侧按钮背景
 
         // right button
         var rightBtnTextSizeSp: Float = 18f // 字体大小
         var rightBtnColor: Int = ContextCompat.getColor(context, R.color.ms_def_right_color) // 字体颜色
-        @DrawableRes var rightBtnBg: Int = R.drawable.ms_sel_alert_dialog_right // 右侧按钮背景
+        var rightBtnBg: Drawable? = ContextCompat.getDrawable(context, R.drawable.ms_sel_alert_dialog_right) // 右侧按钮背景
+
+        // divider 分割线
+        var dividerWidth: Int = 1 //0.4f.dp2px(context) // 分割线宽度
+        var dividerColor: Drawable = ColorDrawable(Color.parseColor("#C9C9C9"))// 分割线
 
     }
 }
