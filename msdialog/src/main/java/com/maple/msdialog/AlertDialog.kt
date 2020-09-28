@@ -2,15 +2,16 @@ package com.maple.msdialog
 
 import android.app.Dialog
 import android.content.Context
-import androidx.databinding.DataBindingUtil
 import android.graphics.Typeface
 import android.os.Build
-import androidx.core.content.ContextCompat
 import android.text.Html
 import android.text.Spanned
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
+import androidx.annotation.DrawableRes
+import androidx.core.content.ContextCompat
+import androidx.databinding.DataBindingUtil
 import com.maple.msdialog.databinding.MsDialogAlertBinding
 import com.maple.msdialog.utils.DensityUtils.dp2px
 import com.maple.msdialog.utils.DialogUtil.setScaleWidth
@@ -40,9 +41,10 @@ class AlertDialog(
         binding.apply {
             tvTitle.visibility = View.GONE
             tvMsg.visibility = View.GONE
+            vLine.visibility = View.VISIBLE
             btLeft.visibility = View.GONE
             btRight.visibility = View.GONE
-            ivLine.visibility = View.GONE
+            vBtnLine.visibility = View.GONE
         }
 
         // set Dialog style
@@ -60,6 +62,8 @@ class AlertDialog(
     fun getMessageView() = binding.tvMsg
     fun getLeftBtnView() = binding.btLeft
     fun getRightBtnView() = binding.btRight
+    fun getLineView() = binding.vLine
+    fun getBtnLineView() = binding.vBtnLine
 
     // 点击外围是否可取消
     fun setDialogCancelable(cancelable: Boolean = true): AlertDialog {
@@ -197,6 +201,7 @@ class AlertDialog(
         setBottomViewHeight()
 
         binding.apply {
+            llContent.setBackgroundResource(config.dialogBg)
             if (!showTitle && !showMsg) {
                 tvTitle.text = config.defNullText
                 tvTitle.visibility = View.VISIBLE
@@ -205,26 +210,23 @@ class AlertDialog(
             tvMsg.visibility = if (showMsg) View.VISIBLE else View.GONE
             // one button
             if (!showRightBtn && !showLeftBtn) {
-                btRight.text = config.defNullText
-                btRight.visibility = View.VISIBLE
-                btRight.setBackgroundResource(R.drawable.ms_sel_alert_dialog_single)
-                btRight.setOnClickListener { dismiss() }
+                vLine.visibility = View.GONE
             }
             if (showRightBtn && !showLeftBtn) {
                 btRight.visibility = View.VISIBLE
-                btRight.setBackgroundResource(R.drawable.ms_sel_alert_dialog_single)
+                btRight.setBackgroundResource(config.singleBtnBg)
             }
             if (!showRightBtn && showLeftBtn) {
                 btLeft.visibility = View.VISIBLE
-                btLeft.setBackgroundResource(R.drawable.ms_sel_alert_dialog_single)
+                btLeft.setBackgroundResource(config.singleBtnBg)
             }
             // two button
             if (showRightBtn && showLeftBtn) {
-                btRight.visibility = View.VISIBLE
-                btRight.setBackgroundResource(R.drawable.ms_sel_alert_dialog_right)
                 btLeft.visibility = View.VISIBLE
-                btLeft.setBackgroundResource(R.drawable.ms_sel_alert_dialog_left)
-                ivLine.visibility = View.VISIBLE
+                btLeft.setBackgroundResource(config.leftBtnBg)
+                vBtnLine.visibility = View.VISIBLE
+                btRight.visibility = View.VISIBLE
+                btRight.setBackgroundResource(config.rightBtnBg)
             }
         }
     }
@@ -247,29 +249,33 @@ class AlertDialog(
         // title
         var titleTextSizeSp: Float = 18f // 字体大小
         var titleColor: Int = ContextCompat.getColor(context, R.color.ms_def_title_color) // 字体颜色
-        var titlePaddingLeft: Int = 15f.dp2px(context)
-        var titlePaddingTop: Int = 22f.dp2px(context)
-        var titlePaddingRight: Int = 15f.dp2px(context)
-        var titlePaddingBottom: Int = 0f.dp2px(context)
+        var titlePaddingLeft: Int = 15f.dp2px(context) // 左边距
+        var titlePaddingTop: Int = 22f.dp2px(context) // 上边距
+        var titlePaddingRight: Int = 15f.dp2px(context) // 右边距
+        var titlePaddingBottom: Int = 0f.dp2px(context) // 下边距
 
         // message
         var messageTextSizeSp: Float = 14f // 字体大小
-        var messageColor: Int = ContextCompat.getColor(context, R.color.ms_def_message_color)
-        var messagePaddingLeft: Int = 15f.dp2px(context)
-        var messagePaddingTop: Int = 22f.dp2px(context)
-        var messagePaddingRight: Int = 15f.dp2px(context)
-        var messagePaddingBottom: Int = 22f.dp2px(context)
+        var messageColor: Int = ContextCompat.getColor(context, R.color.ms_def_message_color) // 字体颜色
+        var messagePaddingLeft: Int = 15f.dp2px(context) // 左边距
+        var messagePaddingTop: Int = 22f.dp2px(context) // 上边距
+        var messagePaddingRight: Int = 15f.dp2px(context) // 右边距
+        var messagePaddingBottom: Int = 22f.dp2px(context) // 下边距
 
         // button
         var bottomViewHeight: Int = 48f.dp2px(context) // 底部按钮高度
+        @DrawableRes var dialogBg: Int = R.drawable.ms_shape_alert_dialog_bg // 整个Dialog的背景
+        @DrawableRes var singleBtnBg: Int = R.drawable.ms_sel_alert_dialog_single // 单按钮背景
 
         // left button
         var leftBtnTextSizeSp: Float = 18f // 字体大小
-        var leftBtnColor: Int = ContextCompat.getColor(context, R.color.ms_def_left_color)
+        var leftBtnColor: Int = ContextCompat.getColor(context, R.color.ms_def_left_color) // 字体颜色
+        @DrawableRes var leftBtnBg: Int = R.drawable.ms_sel_alert_dialog_left // 左侧按钮背景
 
         // right button
         var rightBtnTextSizeSp: Float = 18f // 字体大小
-        var rightBtnColor: Int = ContextCompat.getColor(context, R.color.ms_def_right_color)
+        var rightBtnColor: Int = ContextCompat.getColor(context, R.color.ms_def_right_color) // 字体颜色
+        @DrawableRes var rightBtnBg: Int = R.drawable.ms_sel_alert_dialog_right // 右侧按钮背景
 
     }
 }
