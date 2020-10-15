@@ -218,10 +218,12 @@ class AlertDialog(
             }
             tvTitle.visibility = if (showTitle) View.VISIBLE else View.GONE
             tvMsg.visibility = if (showMsg) View.VISIBLE else View.GONE
-            // one button
+            // zero button
             if (!showRightBtn && !showLeftBtn) {
                 vLine.visibility = View.GONE
+                llBottom.visibility = View.GONE
             }
+            // one button
             if (showRightBtn && !showLeftBtn) {
                 btRight.visibility = View.VISIBLE
                 btRight.background = config.singleBtnBg
