@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/XStyleDialog.iml" filepath="$PROJECT_DIR$/.idea/modules/XStyleDialog.iml" group="XStyleDialog" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/app.iml" group="XStyleDialog/app" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/msdialog/msdialog.iml" filepath="$PROJECT_DIR$/.idea/modules/msdialog/msdialog.iml" group="XStyleDialog/msdialog" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/XStyleDialog.iml" filepath="$PROJECT_DIR$/.idea/modules/XStyleDialog.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/XStyleDialog.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/XStyleDialog.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/msdialog/XStyleDialog.msdialog.iml" filepath="$PROJECT_DIR$/.idea/modules/msdialog/XStyleDialog.msdialog.iml" />
     </modules>
   </component>
 </project>
