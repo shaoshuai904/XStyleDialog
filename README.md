@@ -7,7 +7,7 @@
 
 XStyleDialog中内置多种常见样式的Dialog。
 
-以AlertDialog为例，可以自定义整体大小比例、`Title`、`Message`、`Left/Right Button`的 `字体颜色`和`大小`、`是否加粗`、`上下左右间距`，以及`分割线`的`颜色`和`粗细`。
+以AlertDialog为例，可以自定义整体`大小比例`、`背景`及`Title`、`Message`、`Left/Right Button`的 `字体颜色`和`大小`、`是否加粗`、`上下左右间距`，以及`分割线`的`颜色`和`粗细`。
 
 支持链式调用。需要那个设置那个，自动管理按钮的显示隐藏。以最简单的方式，实现Dialog的快速使用。
 

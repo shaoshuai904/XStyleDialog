@@ -31,8 +31,11 @@ class MainActivity : Activity() {
     // ------------------------------------ Alert Dialog -------------------------------------------
     fun adOne(view: View?) {
         val config = AlertDialog.Config(this).apply {
+            scaleWidth = 0.78
             rightBtnColor = Color.RED
-            messagePaddingBottom = 40f.dp2px(context)
+//            titlePaddingTop = 20f.dp2px(context)
+//            messagePaddingTop = 15f.dp2px(context)
+//            messagePaddingBottom = 20f.dp2px(context)
         }
         AlertDialog(this, config)
                 .setDialogTitle("退出当前账号")
