@@ -10,9 +10,10 @@
         android:orientation="horizontal">
 
         <ImageView
-            android:layout_width="15dp"
-            android:layout_height="15dp"
-            android:layout_margin="15dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
             android:src="@android:drawable/ic_menu_edit" />
 
         <LinearLayout
@@ -33,17 +34,18 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="北京_中国移动_互联港湾"
                 android:textColor="#666666"
-                android:textSize="13sp"
-                android:text="北京_中国移动_互联港湾" />
+                android:textSize="13sp" />
         </LinearLayout>
 
         <ImageView
             android:id="@+id/iv_mark"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="15dp"
-            android:src="@android:drawable/checkbox_on_background" />
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:src="@drawable/ms_svg_round_check" />
 
     </LinearLayout>
 

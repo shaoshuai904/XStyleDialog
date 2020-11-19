@@ -161,7 +161,7 @@ class MainActivity : Activity() {
                 titleTextSizeSp = 18f
                 closeDraw = ContextCompat.getDrawable(context, android.R.drawable.ic_delete)
                 isShowMark = true
-                selectMark = ContextCompat.getDrawable(context, android.R.drawable.ic_media_next)
+                selectMark = ContextCompat.getDrawable(context, R.drawable.ms_svg_round_check)
                 itemTextSelectedColor = Color.RED
             }).apply {
                 setTitle("选择条目")

@@ -24,9 +24,9 @@
 
         <ImageView
             android:id="@+id/iv_mark"
-            android:layout_width="15dp"
-            android:layout_height="15dp"
-            android:src="@android:drawable/checkbox_on_background" />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ms_svg_round_check" />
 
     </LinearLayout>
 

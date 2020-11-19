@@ -33,7 +33,7 @@
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
                 android:layout_marginEnd="5dp"
-                android:padding="12dp"
+                android:padding="11dp"
                 android:src="@drawable/ms_svg_ic_close" />
         </RelativeLayout>
 

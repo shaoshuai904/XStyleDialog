@@ -215,7 +215,7 @@ class ActionSheetRecyclerDialog(
         var itemTextColor: Int = ContextCompat.getColor(context, R.color.ms_def_left_color)
         var itemTextSelectedColor: Int = ContextCompat.getColor(context, R.color.ms_def_right_color)
         var isShowMark: Boolean = false // 是否显示 右侧对勾 √
-        var selectMark: Drawable? = ContextCompat.getDrawable(context, android.R.drawable.checkbox_on_background)
+        var selectMark: Drawable? = ContextCompat.getDrawable(context, R.drawable.ms_svg_round_check)
         var itemPaddingLeft: Int = 15f.dp2px(context)
         var itemPaddingTop: Int = 12f.dp2px(context)
         var itemPaddingRight: Int = 15f.dp2px(context)
