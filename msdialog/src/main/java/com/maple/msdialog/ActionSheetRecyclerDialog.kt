@@ -11,9 +11,7 @@ import android.view.View
 import android.widget.LinearLayout
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomsheet.BottomSheetDialog
-import com.maple.msdialog.adapter.SingleSelectItemListAdapter
 import com.maple.msdialog.databinding.MsDialogActionSheetRecyclerBinding
 import com.maple.msdialog.utils.DensityUtils.dp2px
 import com.maple.msdialog.utils.DialogUtil.screenInfo
@@ -22,25 +20,22 @@ import java.io.Serializable
 /**
  * 页签List Dialog [ 标题 + 页签条目 + 取消按钮 ]
  *
+ * 此类是abstract的原因是：
+ * 没有实现RecyclerView的数据填充。请自行实现adapter并填充数据。
+ *
+ * 示例子类：
+ * 单选  ActionSheetRecyclerSingleSelectedDialog
+ * 多选  ActionSheetRecyclerMultipleSelectedDialog
+ *
  * @author : shaoshuai
  * @date ：2020/5/6
  */
-class ActionSheetRecyclerDialog(
+abstract class ActionSheetRecyclerDialog(
         private val mContext: Context,
         private val config: Config = Config(mContext)
 ) : BottomSheetDialog(mContext, R.style.ActionSheetDialogStyle) {
     private val binding: MsDialogActionSheetRecyclerBinding = DataBindingUtil.inflate(
             LayoutInflater.from(context), R.layout.ms_dialog_action_sheet_recycler, null, false)
-    private var onSingleSelectedItemClickListener: OnSheetItemClickListener? = null
-    private val adapter by lazy {
-        SingleSelectItemListAdapter(mContext, config).apply {
-            setOnItemClickListener { item, position ->
-                updateSelectItem(position)
-                onSingleSelectedItemClickListener?.onItemClick(item, position)
-                dismiss()
-            }
-        }
-    }
 
     constructor(mContext: Context) : this(mContext, Config(mContext))
 
@@ -115,35 +110,6 @@ class ActionSheetRecyclerDialog(
     // 设置顶部条【关闭】按钮是否显示
     fun setCloseVisibility(isShow: Boolean): ActionSheetRecyclerDialog {
         binding.ivClose.visibility = if (isShow) View.VISIBLE else View.GONE
-        return this
-    }
-
-    // 添加动作页签集合
-    fun addSheetItems(items: List<SheetItem>): ActionSheetRecyclerDialog {
-        binding.rvData.addItemDecoration(DividerItemDecoration(
-                config.dividerPaddingLeft, config.dividerHeight, config.dividerColor,
-                LinearLayoutManager.VERTICAL, config.skipLastItems))
-        binding.rvData.adapter = adapter
-        adapter.refreshData(items)
-        return this
-    }
-
-    // 添加条目点击监听
-    fun addSheetItemClickListener(itemClickListener: OnSheetItemClickListener?): ActionSheetRecyclerDialog {
-        onSingleSelectedItemClickListener = itemClickListener
-        return this
-    }
-
-    // 设置当前选中条目
-    fun setSelectedIndex(index: Int): ActionSheetRecyclerDialog {
-        adapter.updateSelectItem(index)
-        return this
-    }
-
-    // 是否显示item选中标记
-    fun isShowItemMark(isShow: Boolean): ActionSheetRecyclerDialog {
-        adapter.config.isShowMark = isShow
-        adapter.notifyDataSetChanged()
         return this
     }
 

@@ -20,7 +20,7 @@ import kotlin.math.min
  * @author : shaoshuai
  * @date ：2020/1/7
  */
-class SingleSelectItemListAdapter(
+class SheetSingleSelectedAdapter(
         private val mContext: Context,
         val config: ActionSheetRecyclerDialog.Config
 ) : BaseQuickAdapter<SheetItem, RecyclerView.ViewHolder>() {

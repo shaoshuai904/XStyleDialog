@@ -122,7 +122,7 @@ class MainActivity : Activity() {
     // -------------------------------- Action Sheet Recycler List Dialog ----------------------------------------
 
 
-    var ar1: ActionSheetRecyclerDialog? = null
+    var ar1: ActionSheetRecyclerSingleSelectedDialog? = null
     fun asrList(view: View?) {
         if (ar1 == null) {
             val items = arrayListOf(
@@ -131,7 +131,7 @@ class MainActivity : Activity() {
                     User("004", "王五", 11),
                     User("007", "赵六六", 123)
             )
-            ar1 = ActionSheetRecyclerDialog(this).apply {
+            ar1 = ActionSheetRecyclerSingleSelectedDialog(this).apply {
                 setTitle("选择条目")
                 setCloseVisibility(true)
                 isShowItemMark(true)
@@ -153,11 +153,11 @@ class MainActivity : Activity() {
         ar1?.show()
     }
 
-    var ar2: ActionSheetRecyclerDialog? = null
+    var ar2: ActionSheetRecyclerSingleSelectedDialog? = null
     fun asrBigDataList(view: View?) {
         if (ar2 == null) {
             val items = getSingleSelectItemTestData(20)
-            ar2 = ActionSheetRecyclerDialog(this, ActionSheetRecyclerDialog.Config(this).apply {
+            ar2 = ActionSheetRecyclerSingleSelectedDialog(this, ActionSheetRecyclerDialog.Config(this).apply {
                 titleTextSizeSp = 18f
                 closeDraw = ContextCompat.getDrawable(context, android.R.drawable.ic_delete)
                 isShowMark = true

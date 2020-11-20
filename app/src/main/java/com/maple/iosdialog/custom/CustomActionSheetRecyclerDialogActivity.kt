@@ -3,17 +3,17 @@ package com.maple.iosdialog.custom
 import android.app.Activity
 import android.graphics.Color
 import android.os.Bundle
-import androidx.core.content.ContextCompat
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
 import android.widget.SeekBar
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import com.maple.iosdialog.R
 import com.maple.msdialog.ActionSheetRecyclerDialog
+import com.maple.msdialog.ActionSheetRecyclerSingleSelectedDialog
 import com.maple.msdialog.SheetItem
 import com.maple.msdialog.utils.DensityUtils.dp2px
-import com.maple.msdialog.utils.DialogUtil.setScaleWidth
 import kotlinx.android.synthetic.main.custom_action_sheet_recycler_dialog.*
 import java.util.*
 
@@ -88,7 +88,7 @@ class CustomActionSheetRecyclerDialogActivity : Activity() {
             skipLastItems = if (isShowLastItemLine) 0 else 1
             dividerHeight = mLineHeight  // 分割线高度
         }
-        ActionSheetRecyclerDialog(this, config).apply {
+        ActionSheetRecyclerSingleSelectedDialog(this, config).apply {
             setCancelable(isCancelable)
             setCanceledOnTouchOutside(isCancelable)
             // setScaleWidth(getRootView(), 0.8)
