@@ -59,7 +59,7 @@ class ActionSheetRecyclerMultipleSelectedDialog(
         }
     }
 
-    // 添加动作页签集合
+    // 添加数据集合
     fun addSheetItems(items: List<SheetItem>): ActionSheetRecyclerMultipleSelectedDialog {
         getDataView().adapter = adapter
         adapter.refreshData(items)
@@ -98,7 +98,7 @@ class ActionSheetRecyclerMultipleSelectedDialog(
                 adapter.isSelectAll(cbSelectAll.isChecked)
             }
             tvConfirm.setOnClickListener {
-                val currentSelectList = adapter.getCurrentSelectedItemList()
+                val currentSelectList = getCurrentSelectedItemList()
                 onSheetItemSelectConfirmListener?.onSelectConfirm(currentSelectList)
                 dismiss()
             }
