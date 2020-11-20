@@ -126,10 +126,10 @@ class MainActivity : Activity() {
     fun asrList(view: View?) {
         if (ar1 == null) {
             val items = arrayListOf(
-                    User("001", "张三", 23),
-                    User("002", "李四", 8),
-                    User("004", "王五", 11),
-                    User("007", "赵六六", 123)
+                    User("001", "张三", "男", 23),
+                    User("002", "李四", "女", 8),
+                    User("004", "王五", "男", 11),
+                    User("007", "赵六六", "女", 123)
             )
             ar1 = ActionSheetRecyclerSingleSelectedDialog(this).apply {
                 setTitle("选择条目")
@@ -141,7 +141,7 @@ class MainActivity : Activity() {
                 addSheetItemClickListener { item, position ->
                     if (item is User) {
                         Log.e("okhttp", "item: ${item.toString()}")
-                        showToast("${item.name}  年龄:${item.age}岁")
+                        showToast("${item.name}  性别:${item.sex}  年龄:${item.age}岁")
                     } else {
                         showToast("$position   ${item.getShowName()}")
                     }
@@ -153,11 +153,11 @@ class MainActivity : Activity() {
         ar1?.show()
     }
 
-    var ar2: ActionSheetRecyclerSingleSelectedDialog? = null
+    var ar2: ActionSheetRecyclerMultipleSelectedDialog? = null
     fun asrBigDataList(view: View?) {
         if (ar2 == null) {
-            val items = getSingleSelectItemTestData(20)
-            ar2 = ActionSheetRecyclerSingleSelectedDialog(this, ActionSheetRecyclerDialog.Config(this).apply {
+            val items = getSheetItemTestData(20)
+            ar2 = ActionSheetRecyclerMultipleSelectedDialog(this, ActionSheetRecyclerDialog.Config(this).apply {
                 titleTextSizeSp = 18f
                 closeDraw = ContextCompat.getDrawable(context, android.R.drawable.ic_delete)
                 isShowMark = true
@@ -170,7 +170,7 @@ class MainActivity : Activity() {
                 setCanceledOnTouchOutside(false)
                 setMaxScaleHeight(0.65)
                 addSheetItemClickListener { item, position ->
-                    showToast("$position   ${item.getShowName()}")
+                    // showToast("$position   ${item.getShowName()}")
                 }
             }
         }
@@ -186,7 +186,7 @@ class MainActivity : Activity() {
     fun aslList(view: View?) {
         if (asl1 == null) {
             asl1 = ActionSheetListDialog(this).apply {
-                addSheetItems(getSingleSelectItemTestData(2)) { item, position ->
+                addSheetItems(getSheetItemTestData(2)) { item, position ->
                     showToast(item.getShowName())
                 }
                 setCancelText("取消")
@@ -200,7 +200,7 @@ class MainActivity : Activity() {
         if (asl2 == null) {
             asl2 = ActionSheetListDialog(this).apply {
                 setTitle("标题")
-                addSheetItems(getSingleSelectItemTestData(10)) { item, position ->
+                addSheetItems(getSheetItemTestData(10)) { item, position ->
                     showToast(item.getShowName())
                 }
                 setSelectedIndex(3)
@@ -215,7 +215,7 @@ class MainActivity : Activity() {
             asl3 = ActionSheetListDialog(this).apply {
                 setTitle("标题")
                 setCancelText("取消")
-                addSheetItems(getSingleSelectItemTestData(20)) { item, position ->
+                addSheetItems(getSheetItemTestData(20)) { item, position ->
                     showToast(item.getShowName())
                 }
             }
@@ -290,7 +290,7 @@ class MainActivity : Activity() {
     }
 
     // 获取测试数据
-    private fun getSingleSelectItemTestData(count: Int): ArrayList<SheetItem> {
+    private fun getSheetItemTestData(count: Int): ArrayList<SheetItem> {
         val testData = arrayListOf<SheetItem>()
         for (index in 1..count) {
             val mColor = -0x1000000 or Random().nextInt(0xffffff)

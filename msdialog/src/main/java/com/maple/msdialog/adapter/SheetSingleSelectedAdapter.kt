@@ -51,9 +51,9 @@ class SheetSingleSelectedAdapter(
             bindViewClickListener(this)
             binding.apply {
                 root.background = config.itemBg
-                root.setPadding(config.itemPaddingLeft, config.itemPaddingTop, config.itemPaddingRight, config.itemPaddingBottom)
                 tvName.text = item.getShowName()
                 tvName.textSize = config.itemTextSizeSp
+                tvName.setPadding(config.itemPaddingLeft, config.itemPaddingTop, config.itemPaddingRight, config.itemPaddingBottom)
                 if (item.isSelected) {
                     tvName.setTextColor(config.itemTextSelectedColor)
                     ivMark.setImageDrawable(config.selectMark)

@@ -68,11 +68,11 @@ class CustomActionSheetRecyclerDialogActivity : Activity() {
         sb_button_padding.progress = 2 // Dialog底部padding
     }
 
-
+    var currentSelectedIndex = 0 // 当前选中条目
     fun showDialog(view: View?) {
-        val items = getSingleSelectItemTestData(mItemCount).apply {
-            // 默认选中第一个
-            firstOrNull()?.isSelected = true
+        val items = getSingleSelectItemTestData(mItemCount)
+        if (currentSelectedIndex < items.size) {
+            items[currentSelectedIndex].isSelected = true
         }
         // config统一配置 或 具体方法设置
         val config = ActionSheetRecyclerDialog.Config(this).apply {
@@ -84,7 +84,7 @@ class CustomActionSheetRecyclerDialogActivity : Activity() {
             itemPaddingTop = mItemPaddingTopBottom.dp2px(context)
             itemPaddingBottom = mItemPaddingTopBottom.dp2px(context)
             isShowMark = isShowItemMark
-            selectMark = ContextCompat.getDrawable(context, android.R.drawable.ic_media_next)
+            selectMark = ContextCompat.getDrawable(context, android.R.drawable.checkbox_on_background)
             skipLastItems = if (isShowLastItemLine) 0 else 1
             dividerHeight = mLineHeight  // 分割线高度
         }
@@ -101,6 +101,7 @@ class CustomActionSheetRecyclerDialogActivity : Activity() {
 
             addSheetItems(items)
             addSheetItemClickListener { item, position ->
+                currentSelectedIndex = position
                 showToast("点击了：$position   ${item.getShowName()}")
             }
         }.show()
