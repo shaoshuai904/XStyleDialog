@@ -157,6 +157,8 @@ class CustomMultipleSelectedDialog(
             cbSelectAll.setOnClickListener {
                 // cbSelectAll.text = if (cbSelectAll.isChecked) "取消全选" else "全选"
                 adapter.isSelectAll(cbSelectAll.isChecked)
+                val size: Int = getCurrentSelectedItemList()?.size ?: 0
+                confirmView.tvConfirm.text = if (size > 0) "确认(${size})" else "确认"
             }
             tvConfirm.setOnClickListener {
                 val currentSelectList = getCurrentSelectedItemList()
