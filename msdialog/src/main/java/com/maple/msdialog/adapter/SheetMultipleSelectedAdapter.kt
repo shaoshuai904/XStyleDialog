@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.maple.msdialog.ActionSheetRecyclerDialog
 import com.maple.msdialog.R
 import com.maple.msdialog.SheetItem
+import com.maple.msdialog.databinding.MsItemSheetBinding
 import com.maple.msdialog.databinding.MsItemSingleStringBinding
 
 
@@ -52,8 +53,8 @@ class SheetMultipleSelectedAdapter(
     fun getCurrentSelectedItemList(): List<SheetItem>? = data.filter { it.isSelected }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyHolder {
-        val binding: MsItemSingleStringBinding = DataBindingUtil.inflate(
-                LayoutInflater.from(mContext), R.layout.ms_item_single_string, parent, false)
+        val binding: MsItemSheetBinding = DataBindingUtil.inflate(
+                LayoutInflater.from(mContext), R.layout.ms_item_sheet, parent, false)
         return MyHolder(binding)
     }
 
@@ -61,16 +62,16 @@ class SheetMultipleSelectedAdapter(
         (holder as MyHolder).bind(getItem(position))
     }
 
-    inner class MyHolder(val binding: MsItemSingleStringBinding)
+    inner class MyHolder(val binding: MsItemSheetBinding)
         : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: SheetItem) {
             bindViewClickListener(this)
             binding.apply {
                 root.background = config.itemBg
+                root.setPadding(config.itemPaddingLeft, config.itemPaddingTop, config.itemPaddingRight, config.itemPaddingBottom)
                 tvName.text = item.getShowName()
                 tvName.textSize = config.itemTextSizeSp
-                tvName.setPadding(config.itemPaddingLeft, config.itemPaddingTop, config.itemPaddingRight, config.itemPaddingBottom)
                 if (item.isSelected) {
                     tvName.setTextColor(config.itemTextSelectedColor)
                     ivMark.setImageDrawable(config.selectMark)

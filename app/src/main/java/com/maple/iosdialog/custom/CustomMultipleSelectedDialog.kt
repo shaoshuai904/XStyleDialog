@@ -32,6 +32,8 @@ class CustomMultipleSelectedDialog(
                 val newItem = item.apply { isSelected = !isSelected }
                 updateItemStatus(newItem)// 选中状态取反
                 confirmView.cbSelectAll.isChecked = !isSelectAll()// 判断是否已经全选
+                val size: Int = getCurrentSelectedItemList()?.size ?: 0
+                confirmView.tvConfirm.text = if (size > 0) "确认(${size})" else "确认"
                 onSheetItemClickListener?.onItemClick(newItem, position)
             }
         }
@@ -103,10 +105,11 @@ class CustomMultipleSelectedDialog(
 
     // 获取测试数据
     private fun getSheetItemTestData(count: Int): ArrayList<SheetItem> {
+        val startIndex = adapter.data.size
         val testData = arrayListOf<SheetItem>()
         for (index in 1..count) {
             val mColor = -0x1000000 or Random().nextInt(0xffffff)
-            testData.add(SheetItem("custom sheet view $index", mColor))
+            testData.add(SheetItem("custom sheet view ${startIndex + index}", mColor))
         }
         return testData
     }
