@@ -29,6 +29,7 @@ android {
 
 dependencies {
     implementation project(path: ':msdialog')
+    implementation 'com.github.shaoshuai904:PageStateManager:1.0.1'
     // "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 }
 repositories {

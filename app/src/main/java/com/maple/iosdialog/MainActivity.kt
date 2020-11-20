@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.core.content.ContextCompat
 import com.maple.iosdialog.custom.CustomActionSheetRecyclerDialogActivity
 import com.maple.iosdialog.custom.CustomAlertDialogActivity
+import com.maple.iosdialog.custom.CustomMultipleSelectedDialog
 import com.maple.msdialog.*
 import com.maple.msdialog.utils.DensityUtils.dp2px
 import com.maple.msdialog.utils.DialogUtil.setScaleWidth
@@ -238,9 +239,22 @@ class MainActivity : Activity() {
     }
 
 
-    fun customMultipleACR(view: View?){
-
+    var arm3: CustomMultipleSelectedDialog? = null
+    fun customMultipleACR(view: View?) {
+        if (arm3 == null) {
+            arm3 = CustomMultipleSelectedDialog(this, ActionSheetRecyclerDialog.Config(this).apply {
+                titleTextSizeSp = 18f
+                isShowMark = true
+                itemTextSelectedColor = Color.RED
+            }).apply {
+                addSheetItemSelectedConfirmListener { list ->
+                    showToast("选中了 ${list.size} 个")
+                }
+            }
+        }
+        arm3?.show()
     }
+
     // -------------------------------- Action Sheet List Dialog ----------------------------------------
     var asl1: ActionSheetListDialog? = null
     fun aslList(view: View?) {

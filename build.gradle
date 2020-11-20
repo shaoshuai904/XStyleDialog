@@ -23,6 +23,7 @@ allprojects {
         maven{ url 'https://maven.aliyun.com/repository/jcenter'}
         jcenter()
         google()
+        maven { url 'https://jitpack.io' }
     }
 }
 

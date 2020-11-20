@@ -63,6 +63,7 @@ abstract class ActionSheetRecyclerDialog(
     fun getTitleBarView() = binding.rlTitleBar
     fun getTitleView() = binding.tvTitle
     fun getCloseView() = binding.ivClose
+    fun getContentView() = binding.flContent
     fun getDataView() = binding.rvData
     fun getFooterRoot() = binding.llFooter
 
@@ -137,7 +138,7 @@ abstract class ActionSheetRecyclerDialog(
     /**
      * set layout
      */
-    private fun setSheetLayout() {
+    protected fun setSheetLayout() {
         setTitleViewHeight()
 
         getRootView().measure(0, 0)
