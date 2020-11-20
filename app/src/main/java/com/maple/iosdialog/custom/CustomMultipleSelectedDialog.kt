@@ -43,7 +43,7 @@ class CustomMultipleSelectedDialog(
         setTitle("多选条目")
         setCancelable(false)
         setCanceledOnTouchOutside(false)
-        setBottomPadding(0f)
+        setDataBottomPadding(0f)
         setMinScaleHeight(0.7) // 设置最小高度
         setMaxScaleHeight(0.7) // 设置最大高度
 

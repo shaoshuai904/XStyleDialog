@@ -130,15 +130,15 @@ abstract class ActionSheetRecyclerDialog(
     }
 
     // 设置底部padding值
-    fun setBottomPadding(bottomPx: Float): ActionSheetRecyclerDialog {
+    fun setDataBottomPadding(bottomPx: Float): ActionSheetRecyclerDialog {
         binding.rvData.setPadding(0, 0, 0, bottomPx.dp2px(mContext))
         return this
     }
 
     /**
-     * set layout
+     * reset layout
      */
-    protected fun setSheetLayout() {
+    fun resetSheetLayout() {
         setTitleViewHeight()
 
         getRootView().measure(0, 0)
@@ -157,7 +157,7 @@ abstract class ActionSheetRecyclerDialog(
     }
 
     override fun show() {
-        setSheetLayout()
+        resetSheetLayout()
         super.show()
     }
 

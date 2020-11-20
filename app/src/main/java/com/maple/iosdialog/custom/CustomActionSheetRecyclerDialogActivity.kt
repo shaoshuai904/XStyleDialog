@@ -94,7 +94,7 @@ class CustomActionSheetRecyclerDialogActivity : Activity() {
             // setScaleWidth(getRootView(), 0.8)
             setMinScaleHeight(mScaleHeightMin)
             setMaxScaleHeight(mScaleHeightMax)
-            setBottomPadding(mDialogPaddingBottom)
+            setDataBottomPadding(mDialogPaddingBottom)
 
             setTitle(mTitle)
             setCloseVisibility(isShowClose)

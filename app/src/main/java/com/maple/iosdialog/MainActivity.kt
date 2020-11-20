@@ -137,7 +137,7 @@ class MainActivity : Activity() {
                 setCloseVisibility(true)
                 isShowItemMark(true)
                 setMinScaleHeight(0.3)
-                setBottomPadding(12f)// 默认底部留白：20dp
+                setDataBottomPadding(12f)// 默认底部留白：20dp
                 addSheetItems(items)
                 addSheetItemClickListener { item, position ->
                     if (item is User) {
@@ -198,7 +198,7 @@ class MainActivity : Activity() {
                 addSheetItems(items)
                 setCancelable(false)
                 setCanceledOnTouchOutside(false)
-                setBottomPadding(0f)
+                setDataBottomPadding(0f)
                 setMinScaleHeight(0.45) // 设置最小高度
                 addSheetItemClickListener { item, position ->
                     // showToast("$position   ${item.getShowName()}")
@@ -224,7 +224,7 @@ class MainActivity : Activity() {
                 addSheetItems(items)
                 setCancelable(false)
                 setCanceledOnTouchOutside(false)
-                setBottomPadding(0f)
+                setDataBottomPadding(0f)
                 setMinScaleHeight(0.45) // 设置最小高度
                 setMaxScaleHeight(1.0) // 设置最大高度
                 addSheetItemClickListener { item, position ->
