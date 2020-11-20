@@ -63,6 +63,7 @@ abstract class ActionSheetRecyclerDialog(
     fun getTitleBarView() = binding.rlTitleBar
     fun getTitleView() = binding.tvTitle
     fun getCloseView() = binding.ivClose
+    fun getTopLineView() = binding.vTopLine
     fun getContentView() = binding.flContent
     fun getDataView() = binding.rvData
     fun getFooterRoot() = binding.llFooter
@@ -112,6 +113,12 @@ abstract class ActionSheetRecyclerDialog(
     // 设置顶部条【关闭】按钮是否显示
     fun setCloseVisibility(isShow: Boolean): ActionSheetRecyclerDialog {
         binding.ivClose.visibility = if (isShow) View.VISIBLE else View.GONE
+        return this
+    }
+
+    // 设置顶部条【下划线】是否显示
+    fun setTopLineVisibility(isShow: Boolean): ActionSheetRecyclerDialog {
+        binding.vTopLine.visibility = if (isShow) View.VISIBLE else View.GONE
         return this
     }
 

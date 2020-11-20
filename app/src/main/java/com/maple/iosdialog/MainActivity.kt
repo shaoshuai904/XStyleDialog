@@ -7,7 +7,6 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Toast
-import androidx.core.content.ContextCompat
 import com.maple.iosdialog.custom.CustomActionSheetRecyclerDialogActivity
 import com.maple.iosdialog.custom.CustomAlertDialogActivity
 import com.maple.iosdialog.custom.CustomMultipleSelectedDialog
@@ -134,7 +133,8 @@ class MainActivity : Activity() {
             )
             ar1 = ActionSheetRecyclerSingleSelectedDialog(this).apply {
                 setTitle("选择条目")
-                setCloseVisibility(true)
+                setCloseVisibility(false)
+                setTopLineVisibility(true)
                 isShowItemMark(true)
                 setMinScaleHeight(0.3)
                 setDataBottomPadding(12f)// 默认底部留白：20dp
@@ -160,9 +160,9 @@ class MainActivity : Activity() {
             val items = getSheetItemTestData(20)
             ar2 = ActionSheetRecyclerSingleSelectedDialog(this, ActionSheetRecyclerDialog.Config(this).apply {
                 titleTextSizeSp = 18f
-                closeDraw = ContextCompat.getDrawable(context, android.R.drawable.ic_delete)
+                // closeDraw = ContextCompat.getDrawable(context, android.R.drawable.ic_delete)
                 isShowMark = true
-                selectMark = ContextCompat.getDrawable(context, R.drawable.ms_svg_round_check)
+                // selectMark = ContextCompat.getDrawable(context, R.drawable.ms_svg_round_check)
                 itemTextSelectedColor = Color.RED
             }).apply {
                 setTitle("选择条目")
