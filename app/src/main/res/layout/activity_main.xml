@@ -90,6 +90,11 @@
                 android:text="Action Sheet Recycler List Dialog"
                 android:textSize="18sp" />
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Single Selected : " />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -117,6 +122,42 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:onClick="customACR"
+                    android:text="深度\n自定义"
+                    android:textAllCaps="false" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Multiple Selected : " />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:onClick="multipleList1"
+                    android:text="少数据量\n限定最小高度"
+                    android:textAllCaps="false" />
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:onClick="multipleList2"
+                    android:text="大数据量\n自适应高度"
+                    android:textAllCaps="false" />
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:onClick="customMultipleACR"
                     android:text="深度\n自定义"
                     android:textAllCaps="false" />
             </LinearLayout>

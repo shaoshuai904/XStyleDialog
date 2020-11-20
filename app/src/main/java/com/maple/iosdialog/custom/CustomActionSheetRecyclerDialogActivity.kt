@@ -118,7 +118,7 @@ class CustomActionSheetRecyclerDialogActivity : Activity() {
         val testData = arrayListOf<SheetItem>()
         for (index in 1..count) {
             val mColor = -0x1000000 or Random().nextInt(0xffffff)
-            testData.add(SheetItem("single select item $index", mColor))
+            testData.add(SheetItem("Custom Sheet View $index", mColor))
         }
         return testData
     }

@@ -23,6 +23,15 @@ class SheetMultipleSelectedAdapter(
         val config: ActionSheetRecyclerDialog.Config
 ) : BaseQuickAdapter<SheetItem, RecyclerView.ViewHolder>() {
 
+    // 是否选择全部
+    fun isSelectAll(isSelected: Boolean) {
+        data.forEach { it.isSelected = isSelected }
+        notifyDataSetChanged()
+    }
+
+    // 是否已经选择所有
+    fun isSelectAll(): Boolean = data.any { !it.isSelected }
+
     // 更新item选中状态
     fun updateItemStatus(item: SheetItem) {
         data.filter {

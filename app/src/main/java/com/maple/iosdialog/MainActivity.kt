@@ -153,11 +153,11 @@ class MainActivity : Activity() {
         ar1?.show()
     }
 
-    var ar2: ActionSheetRecyclerMultipleSelectedDialog? = null
+    var ar2: ActionSheetRecyclerSingleSelectedDialog? = null
     fun asrBigDataList(view: View?) {
         if (ar2 == null) {
             val items = getSheetItemTestData(20)
-            ar2 = ActionSheetRecyclerMultipleSelectedDialog(this, ActionSheetRecyclerDialog.Config(this).apply {
+            ar2 = ActionSheetRecyclerSingleSelectedDialog(this, ActionSheetRecyclerDialog.Config(this).apply {
                 titleTextSizeSp = 18f
                 closeDraw = ContextCompat.getDrawable(context, android.R.drawable.ic_delete)
                 isShowMark = true
@@ -181,6 +181,66 @@ class MainActivity : Activity() {
         startActivity(Intent(this, CustomActionSheetRecyclerDialogActivity::class.java))
     }
 
+
+    // -------------------------------- Action Sheet Recycler List Dialog ----------------------------------------
+
+    var arm1: ActionSheetRecyclerMultipleSelectedDialog? = null
+    fun multipleList1(view: View?) {
+        if (arm1 == null) {
+            val items = getSheetItemTestData(3)
+            arm1 = ActionSheetRecyclerMultipleSelectedDialog(this, ActionSheetRecyclerDialog.Config(this).apply {
+                titleTextSizeSp = 18f
+                isShowMark = true
+                itemTextSelectedColor = Color.RED
+            }).apply {
+                setTitle("多选条目")
+                addSheetItems(items)
+                setCancelable(false)
+                setCanceledOnTouchOutside(false)
+                setBottomPadding(0f)
+                setMinScaleHeight(0.45) // 设置最小高度
+                addSheetItemClickListener { item, position ->
+                    // showToast("$position   ${item.getShowName()}")
+                }
+                addSheetItemSelectedConfirmListener { list ->
+                    showToast("选中了 ${list.size} 个")
+                }
+            }
+        }
+        arm1?.show()
+    }
+
+    var arm2: ActionSheetRecyclerMultipleSelectedDialog? = null
+    fun multipleList2(view: View?) {
+        if (arm2 == null) {
+            val items = getSheetItemTestData(20)
+            arm2 = ActionSheetRecyclerMultipleSelectedDialog(this, ActionSheetRecyclerDialog.Config(this).apply {
+                titleTextSizeSp = 18f
+                isShowMark = true
+                itemTextSelectedColor = Color.RED
+            }).apply {
+                setTitle("多选条目")
+                addSheetItems(items)
+                setCancelable(false)
+                setCanceledOnTouchOutside(false)
+                setBottomPadding(0f)
+                setMinScaleHeight(0.45) // 设置最小高度
+                setMaxScaleHeight(1.0) // 设置最大高度
+                addSheetItemClickListener { item, position ->
+                    // showToast("$position   ${item.getShowName()}")
+                }
+                addSheetItemSelectedConfirmListener { list ->
+                    showToast("选中了 ${list.size} 个")
+                }
+            }
+        }
+        arm2?.show()
+    }
+
+
+    fun customMultipleACR(view: View?){
+
+    }
     // -------------------------------- Action Sheet List Dialog ----------------------------------------
     var asl1: ActionSheetListDialog? = null
     fun aslList(view: View?) {
@@ -294,7 +354,7 @@ class MainActivity : Activity() {
         val testData = arrayListOf<SheetItem>()
         for (index in 1..count) {
             val mColor = -0x1000000 or Random().nextInt(0xffffff)
-            testData.add(SheetItem("single select item $index", mColor))
+            testData.add(SheetItem("custom sheet view $index", mColor))
         }
         return testData
     }

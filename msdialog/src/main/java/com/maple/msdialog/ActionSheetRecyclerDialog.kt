@@ -64,6 +64,7 @@ abstract class ActionSheetRecyclerDialog(
     fun getTitleView() = binding.tvTitle
     fun getCloseView() = binding.ivClose
     fun getDataView() = binding.rvData
+    fun getFooterRoot() = binding.llFooter
 
     fun setDialogTitle(title: CharSequence?): ActionSheetRecyclerDialog {
         return setTitle(title, isBold = false)
