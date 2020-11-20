@@ -141,18 +141,18 @@ abstract class ActionSheetRecyclerDialog(
     fun resetSheetLayout() {
         setTitleViewHeight()
 
-        getRootView().measure(0, 0)
-        val curHeight = getRootView().measuredHeight // 当前实际高度
-        val height = if (config.minHeight != null && curHeight < config.minHeight!!) {
-            config.minHeight!!
-        } else if (config.maxHeight != null && curHeight > config.maxHeight!!) {
-            config.maxHeight!!
-        } else {
-            LinearLayout.LayoutParams.WRAP_CONTENT
-        }
-
-        getRootView().layoutParams = getRootView().layoutParams.apply {
-            this.height = height
+        getRootView().let {
+            it.measure(0, 0)
+            val curHeight = it.measuredHeight // 当前实际高度
+            val height = if (config.minHeight != null && curHeight < config.minHeight!!) {
+                config.minHeight!!
+            } else if (config.maxHeight != null && curHeight > config.maxHeight!!) {
+                config.maxHeight!!
+            } else {
+                LinearLayout.LayoutParams.WRAP_CONTENT
+            }
+            it.layoutParams = it.layoutParams.apply { this.height = height }
+            it.setPadding(config.rootPaddingLeft, config.rootPaddingTop, config.rootPaddingRight, config.rootPaddingBottom)
         }
     }
 
@@ -170,6 +170,10 @@ abstract class ActionSheetRecyclerDialog(
     ) : Serializable {
         var minHeight: Int? = null //最小view高度, 单位：px
         var maxHeight: Int? = null //最大view高度, 单位：px
+        var rootPaddingLeft: Int = 0
+        var rootPaddingTop: Int = 0
+        var rootPaddingRight: Int = 0
+        var rootPaddingBottom: Int = 0
 
         // title
         var titleTextSizeSp: Float = 16f // 字体大小
