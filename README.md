@@ -13,28 +13,6 @@ XStyleDialog中内置多种常见样式的Dialog。
 
 同时提供具体View的获取方法，可以满足任意需求的改造。而不失优雅。
 
-- 基础风格确定
-
-通过重写AlertDialog的Config类，实现对Dialog样式的基础定义。以满足自己app的风格。
-
-[示例用法 -（自定义风格Config类 传送门）](https://github.com/shaoshuai904/XStyleDialog/blob/master/app/src/main/java/com/maple/iosdialog/custom/MsDialogConfigs.kt)
-
-- 基础之外的特例
-
-在具体使用时，可以单独设置 特定样式，以满足  基础样式 之外的特定需求。
-
-```java
-    // 方法1. 重写Config类中的属性
-    val config = AlertDialog.Config(mContext).apply {
-        rightBtnColor = Color.RED
-        messagePaddingBottom = 40f.dp2px(mContext)
-    }
-    AlertDialog(mContext, config)
-        .setXXX ...
-        .setMessage("消息内容", spSize = 14f) // 方法2. 在setXXX方法中设置。（有效级最高，会覆盖Config中的配置）
-        .show()
-```
-
 
 ### 快速使用
 
@@ -69,6 +47,29 @@ dependencies {
 ![show_03](https://github.com/shaoshuai904/XStyleDialog/blob/master/screens/show_03.png)
 
 ![show_04](https://github.com/shaoshuai904/XStyleDialog/blob/master/screens/show_04.png)
+
+
+- 基础风格确定
+
+通过重写AlertDialog的Config类，实现对Dialog样式的基础定义。以满足自己app的风格。
+
+[示例用法 -（自定义风格Config类 传送门）](https://github.com/shaoshuai904/XStyleDialog/blob/master/app/src/main/java/com/maple/iosdialog/custom/MsDialogConfigs.kt)
+
+- 基础之外的特例
+
+在具体使用时，可以单独设置 特定样式，以满足  基础样式 之外的特定需求。
+
+```java
+    // 方法1. 重写Config类中的属性
+    val config = AlertDialog.Config(mContext).apply {
+        rightBtnColor = Color.RED
+        messagePaddingBottom = 40f.dp2px(mContext)
+    }
+    AlertDialog(mContext, config)
+        .setXXX ...
+        .setMessage("消息内容", spSize = 14f) // 方法2. 在setXXX方法中设置。（有效级最高，会覆盖Config中的配置）
+        .show()
+```
 
 ###  AlertDialog
 
