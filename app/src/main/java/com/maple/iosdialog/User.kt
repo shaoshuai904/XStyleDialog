@@ -6,7 +6,7 @@ import com.maple.msdialog.SheetItem
  * SheetItem只实现了必要的属性字段，
  * 很多时候 SheetItem 内容不满足需求，此时可以 通过继承 丰富完善它
  *
- * @author : shaoshuai27
+ * @author : shaoshuai
  * @date ：2020/11/20
  */
 class User(
@@ -21,6 +21,6 @@ class User(
     }
 
     override fun toString(): String {
-        return "id:$_sheetId    name:$_sheetName   isSelected:$isSelected   username:$name  sex:$sex  age:$age"
+        return "id:$sheetId    name:$sheetName   isSelected:$isSelected   username:$name  sex:$sex  age:$age"
     }
 }

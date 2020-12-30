@@ -17,7 +17,7 @@ import kotlinx.android.synthetic.main.custom_alert_dialog.*
 /**
  * 深度自定义 AlertDialog
  *
- * @author : shaoshuai27
+ * @author : shaoshuai
  * @date ：2020/8/27
  */
 class CustomAlertDialogActivity : Activity() {

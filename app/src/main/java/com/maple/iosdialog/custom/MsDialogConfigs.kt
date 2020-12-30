@@ -11,7 +11,7 @@ import com.maple.msdialog.AlertDialog
  * 自定义样式Dialog配置
  * https://github.com/shaoshuai904/iOS_Style_Dialog
  *
- * @author : shaoshuai27
+ * @author : shaoshuai
  * @date ：2020/8/12
  */
 object MsDialogConfigs {

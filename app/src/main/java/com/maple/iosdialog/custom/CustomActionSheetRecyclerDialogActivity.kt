@@ -20,7 +20,7 @@ import java.util.*
 /**
  * 深度自定义 ActionSheetRecyclerDialog
  *
- * @author : shaoshuai27
+ * @author : shaoshuai
  * @date ：2020/8/29
  */
 class CustomActionSheetRecyclerDialogActivity : Activity() {
