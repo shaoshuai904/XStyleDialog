@@ -1,8 +1,8 @@
-package com.maple.iosdialog.custom
+package com.maple.xdialog.custom
 
 import android.content.Context
 import androidx.core.content.ContextCompat
-import com.maple.iosdialog.R
+import com.maple.xdialog.R
 import com.maple.msdialog.ActionSheetDialog
 import com.maple.msdialog.ActionSheetRecyclerDialog
 import com.maple.msdialog.AlertDialog

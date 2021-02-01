@@ -1,4 +1,4 @@
-package com.maple.iosdialog.custom
+package com.maple.xdialog.custom
 
 import android.app.Activity
 import android.graphics.Color
@@ -9,7 +9,7 @@ import android.view.View
 import android.widget.SeekBar
 import android.widget.Toast
 import androidx.core.content.ContextCompat
-import com.maple.iosdialog.R
+import com.maple.xdialog.R
 import com.maple.msdialog.ActionSheetRecyclerDialog
 import com.maple.msdialog.ActionSheetRecyclerSingleSelectedDialog
 import com.maple.msdialog.SheetItem

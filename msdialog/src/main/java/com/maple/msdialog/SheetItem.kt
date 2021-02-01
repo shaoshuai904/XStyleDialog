@@ -18,8 +18,10 @@ open class SheetItem(
     var itemClickListener: OnSheetItemClickListener? = null
 
     constructor(name: String) : this(name, name, false)
+
     constructor(
-            name: String, color: Int = Color.parseColor("#333333"),
+            name: String,
+            color: Int = Color.parseColor("#333333"),
             clickListener: OnSheetItemClickListener? = null
     ) : this(name, name, false) {
         this.sheetId = name

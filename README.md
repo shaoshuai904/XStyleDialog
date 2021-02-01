@@ -2,7 +2,7 @@
 
 [![API](https://img.shields.io/badge/API-19%2B-green.svg?style=flat)](https://android-arsenal.com/api?level=19)
 [![jitpack](https://jitpack.io/v/shaoshuai904/XStyleDialog.svg)](https://jitpack.io/#shaoshuai904/XStyleDialog)
-[![demo](https://img.shields.io/badge/download-demo-blue.svg)](https://github.com/shaoshuai904/XStyleDialog/blob/master/screens/app-v2.0.3_44.apk) <-- 点击下载demo
+[![demo](https://img.shields.io/badge/download-demo-blue.svg)](/screens/app-v2.0.3_44.apk) <-- 点击下载demo
 
 
 XStyleDialog中内置多种常见样式的Dialog。
@@ -38,15 +38,15 @@ dependencies {
 ```
 
 
-![show_01](https://github.com/shaoshuai904/XStyleDialog/blob/master/screens/show_01.png)
+![show_01](/screens/show_01.png)
 
-![show_02](https://github.com/shaoshuai904/XStyleDialog/blob/master/screens/show_02.png)
+![show_02](/screens/show_02.png)
 
-![show_05](https://github.com/shaoshuai904/XStyleDialog/blob/master/screens/show_05.png)
+![show_05](/screens/show_05.png)
 
-![show_03](https://github.com/shaoshuai904/XStyleDialog/blob/master/screens/show_03.png)
+![show_03](/screens/show_03.png)
 
-![show_04](https://github.com/shaoshuai904/XStyleDialog/blob/master/screens/show_04.png)
+![show_04](/screens/show_04.png)
 
 
 - 基础风格确定

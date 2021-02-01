@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.maple.iosdialog">
+    package="com.maple.xdialog">
 
     <application
         android:allowBackup="true"
