@@ -7,7 +7,7 @@ android {
     compileSdkVersion 30
 
     defaultConfig {
-        applicationId "com.maple.iosdialog"
+        applicationId "com.maple.xdialog"
         minSdkVersion 19
         targetSdkVersion 30
         versionCode VERSION_CODE as int

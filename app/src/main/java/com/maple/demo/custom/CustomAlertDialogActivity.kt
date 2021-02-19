@@ -1,4 +1,4 @@
-package com.maple.xdialog.custom
+package com.maple.demo.custom
 
 import android.app.Activity
 import android.graphics.Color
@@ -9,7 +9,7 @@ import android.view.Gravity
 import android.view.View
 import android.widget.SeekBar
 import android.widget.Toast
-import com.maple.xdialog.R
+import com.maple.demo.R
 import com.maple.msdialog.AlertDialog
 import com.maple.msdialog.utils.DensityUtils.dp2px
 import kotlinx.android.synthetic.main.custom_alert_dialog.*

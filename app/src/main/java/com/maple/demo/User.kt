@@ -1,4 +1,4 @@
-package com.maple.xdialog
+package com.maple.demo
 
 import com.maple.msdialog.SheetItem
 

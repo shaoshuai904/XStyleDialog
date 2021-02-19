@@ -1,4 +1,4 @@
-package com.maple.xdialog
+package com.maple.demo
 
 import android.app.Activity
 import android.content.Intent
@@ -7,9 +7,9 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Toast
-import com.maple.xdialog.custom.CustomActionSheetRecyclerDialogActivity
-import com.maple.xdialog.custom.CustomAlertDialogActivity
-import com.maple.xdialog.custom.CustomMultipleSelectedDialog
+import com.maple.demo.custom.CustomActionSheetRecyclerDialogActivity
+import com.maple.demo.custom.CustomAlertDialogActivity
+import com.maple.demo.custom.CustomMultipleSelectedDialog
 import com.maple.msdialog.*
 import com.maple.msdialog.utils.DensityUtils.dp2px
 import com.maple.msdialog.utils.DialogUtil.setScaleWidth
