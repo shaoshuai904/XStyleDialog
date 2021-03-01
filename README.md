@@ -33,7 +33,7 @@ dependencies {
 	// for Support
 	implementation 'com.github.shaoshuai904:XStyleDialog:1.5.1'
 	// for androidx
-	implementation 'com.github.shaoshuai904:XStyleDialog:2.0.3'
+	implementation 'com.github.shaoshuai904:XStyleDialog:2.0.4'
 }
 ```
 
@@ -116,7 +116,7 @@ dependencies {
 
 
 ----------
-## v2.0.3 ##
+## v2.0.4 ##
  - 更新minSdkVersion = 19
  - 提供`setScaleWidth`和`setScaleHeight`方法设置Dialog的屏幕百分比宽度和高度
  - 提供Dialog的getRootView及各个子View方法，以支持深度自定义。
