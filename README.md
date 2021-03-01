@@ -53,7 +53,7 @@ dependencies {
 
 通过重写AlertDialog的Config类，实现对Dialog样式的基础定义。以满足自己app的风格。
 
-[示例用法 -（自定义风格Config类 传送门）](https://github.com/shaoshuai904/XStyleDialog/blob/master/app/src/main/java/com/maple/iosdialog/custom/MsDialogConfigs.kt)
+[示例用法 -（自定义风格Config类 传送门）](https://github.com/shaoshuai904/XStyleDialog/blob/master/app/src/main/java/com/maple/demo/custom/MsDialogConfigs.kt)
 
 - 基础之外的特例
 
@@ -112,7 +112,7 @@ dependencies {
             }.show()
 ```
 
-[完整预览各类用法 -（简单使用类 传送门）](https://github.com/shaoshuai904/iOS_Style_Dialog/blob/master/app/src/main/java/com/maple/iosdialog/MainActivity.kt)
+[完整预览各类用法 -（简单使用类 传送门）](https://github.com/shaoshuai904/XStyleDialog/blob/master/app/src/main/java/com/maple/demo/MainActivity.kt)
 
 
 ----------
