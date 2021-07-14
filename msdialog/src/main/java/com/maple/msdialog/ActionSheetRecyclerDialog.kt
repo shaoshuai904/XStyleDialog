@@ -10,7 +10,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.LinearLayout
 import androidx.core.content.ContextCompat
-import androidx.databinding.DataBindingUtil
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.maple.msdialog.databinding.MsDialogActionSheetRecyclerBinding
 import com.maple.msdialog.utils.DensityUtils.dp2px
@@ -34,8 +33,8 @@ abstract class ActionSheetRecyclerDialog(
         private val mContext: Context,
         private val config: Config = Config(mContext)
 ) : BottomSheetDialog(mContext, R.style.ActionSheetDialogStyle) {
-    private val binding: MsDialogActionSheetRecyclerBinding = DataBindingUtil.inflate(
-            LayoutInflater.from(context), R.layout.ms_dialog_action_sheet_recycler, null, false)
+    private val binding: MsDialogActionSheetRecyclerBinding = MsDialogActionSheetRecyclerBinding.inflate(
+            LayoutInflater.from(context), null, false)
 
     constructor(mContext: Context) : this(mContext, Config(mContext))
 

@@ -2,7 +2,6 @@ package com.maple.msdialog
 
 import android.app.Dialog
 import android.content.Context
-import androidx.databinding.DataBindingUtil
 import android.graphics.Color
 import android.graphics.Typeface
 import android.graphics.drawable.ColorDrawable
@@ -28,8 +27,8 @@ class ActionSheetListDialog(
         private val mContext: Context,
         private val config: Config = Config(mContext)
 ) : Dialog(mContext, R.style.ActionSheetDialogStyle) {
-    private val binding: MsDialogActionSheetListBinding = DataBindingUtil.inflate(
-            LayoutInflater.from(context), R.layout.ms_dialog_action_sheet_list, null, false)
+    private val binding: MsDialogActionSheetListBinding = MsDialogActionSheetListBinding.inflate(
+            LayoutInflater.from(context), null, false)
     private val adapter by lazy { ActionSheetAdapter(mContext) }
     private var sheetItemList: MutableList<SheetItem>? = null
 

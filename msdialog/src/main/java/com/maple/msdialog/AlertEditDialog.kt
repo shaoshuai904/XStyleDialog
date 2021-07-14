@@ -2,7 +2,6 @@ package com.maple.msdialog
 
 import android.app.Dialog
 import android.content.Context
-import androidx.databinding.DataBindingUtil
 import android.graphics.Typeface
 import androidx.core.content.ContextCompat
 import android.view.LayoutInflater
@@ -17,8 +16,8 @@ import com.maple.msdialog.utils.DialogUtil.setScaleWidth
  * @time 2017/3/23
  */
 class AlertEditDialog(private val mContext: Context) : Dialog(mContext, R.style.AlertDialogStyle) {
-    private val binding: MsDialogAlertEditBinding = DataBindingUtil.inflate(
-            LayoutInflater.from(mContext), R.layout.ms_dialog_alert_edit, null, false)
+    private val binding: MsDialogAlertEditBinding = MsDialogAlertEditBinding.inflate(
+            LayoutInflater.from(mContext), null, false)
     val rootView by lazy { binding.root }
     private var showTitle = false
     private var showMsg = false

@@ -1,56 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="10dp">
 
-    <LinearLayout
+    <TextView
+        android:id="@+id/tv_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="10dp">
+        android:background="@drawable/ms_sel_action_sheet_top"
+        android:gravity="center"
+        android:minHeight="50dp"
+        android:padding="10dp"
+        android:textAllCaps="false"
+        android:textColor="@color/ms_def_title_color"
+        android:textSize="18sp"
+        tools:text="Alert"
+        tools:visibility="visible" />
 
-        <TextView
-            android:id="@+id/tv_title"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/ms_sel_action_sheet_top"
-            android:gravity="center"
-            android:minHeight="50dp"
-            android:padding="10dp"
-            android:textAllCaps="false"
-            android:textColor="@color/ms_def_title_color"
-            android:textSize="18sp"
-            tools:text="Alert"
-            tools:visibility="visible" />
+    <ListView
+        android:id="@+id/lv_data"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:divider="@color/ms_act_line"
+        android:dividerHeight="1px"
+        tools:listitem="@layout/ms_item_sheet" />
 
-        <ListView
-            android:id="@+id/lv_data"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:divider="@color/ms_act_line"
-            android:dividerHeight="1px"
-            tools:listitem="@layout/ms_item_sheet" />
+    <!--        <android.support.v7.widget.RecyclerView-->
+    <!--            android:id="@+id/rv_data"-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:padding="5dp"-->
+    <!--            app:layoutManager="android.support.v7.widget.LinearLayoutManager"-->
+    <!--            tools:itemCount="4"-->
+    <!--            tools:listitem="@layout/ms_item_sheet" />-->
 
-        <!--        <android.support.v7.widget.RecyclerView-->
-        <!--            android:id="@+id/rv_data"-->
-        <!--            android:layout_width="match_parent"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:padding="5dp"-->
-        <!--            app:layoutManager="android.support.v7.widget.LinearLayoutManager"-->
-        <!--            tools:itemCount="4"-->
-        <!--            tools:listitem="@layout/ms_item_sheet" />-->
+    <TextView
+        android:id="@+id/tv_cancel"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/ms_dialog_bottom_height"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/ms_sel_action_sheet_single"
+        android:gravity="center"
+        android:textAllCaps="false"
+        android:textColor="@color/ms_def_title_color"
+        android:textSize="18sp"
+        tools:text="Cancel"
+        tools:visibility="visible" />
 
-        <TextView
-            android:id="@+id/tv_cancel"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/ms_dialog_bottom_height"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/ms_sel_action_sheet_single"
-            android:gravity="center"
-            android:textAllCaps="false"
-            android:textColor="@color/ms_def_title_color"
-            android:textSize="18sp"
-            tools:text="Cancel"
-            tools:visibility="visible" />
-
-    </LinearLayout>
-</layout>
+</LinearLayout>

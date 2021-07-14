@@ -1,34 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#ffffff"
+    android:gravity="center"
+    android:orientation="horizontal">
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/tv_name"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="#ffffff"
-        android:gravity="center"
-        android:orientation="horizontal">
+        android:layout_weight="1"
+        android:paddingStart="15dp"
+        android:paddingTop="12dp"
+        android:paddingRight="15dp"
+        android:paddingBottom="12dp"
+        android:textColor="#333333"
+        android:textSize="15sp"
+        tools:text="北京_中国移动_互联港湾" />
 
-        <TextView
-            android:id="@+id/tv_name"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:paddingStart="15dp"
-            android:paddingTop="12dp"
-            android:paddingRight="15dp"
-            android:paddingBottom="12dp"
-            android:textColor="#333333"
-            android:textSize="15sp"
-            tools:text="北京_中国移动_互联港湾" />
+    <ImageView
+        android:id="@+id/iv_mark"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="15dp"
+        android:src="@drawable/ms_svg_round_check" />
 
-        <ImageView
-            android:id="@+id/iv_mark"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="15dp"
-            android:src="@drawable/ms_svg_round_check" />
-
-    </LinearLayout>
-
-</layout>
+</LinearLayout>

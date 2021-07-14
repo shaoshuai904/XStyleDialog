@@ -4,7 +4,6 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.maple.msdialog.ActionSheetRecyclerDialog
 import com.maple.msdialog.R
@@ -35,8 +34,8 @@ class SheetSingleSelectedAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyHolder {
-        val binding: MsItemSingleStringBinding = DataBindingUtil.inflate(
-                LayoutInflater.from(mContext), R.layout.ms_item_single_string, parent, false)
+        val binding: MsItemSingleStringBinding = MsItemSingleStringBinding.inflate(
+                LayoutInflater.from(mContext), parent, false)
         return MyHolder(binding)
     }
 

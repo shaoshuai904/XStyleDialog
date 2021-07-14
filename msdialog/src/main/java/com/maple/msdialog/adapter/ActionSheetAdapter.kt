@@ -1,7 +1,6 @@
 package com.maple.msdialog.adapter
 
 import android.content.Context
-import androidx.databinding.DataBindingUtil
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -34,7 +33,7 @@ class ActionSheetAdapter(mContext: Context) : AbsAdapter<SheetItem>(mContext) {
         var returnView: View? = convertView
         val holder: MyHolder
         if (returnView == null) {
-            val binding: MsItemSheetBinding = DataBindingUtil.inflate(LayoutInflater.from(mContext), R.layout.ms_item_sheet, parent, false)
+            val binding: MsItemSheetBinding = MsItemSheetBinding.inflate(LayoutInflater.from(mContext), parent, false)
             holder = MyHolder(binding)
             returnView = binding.root
             returnView.tag = holder

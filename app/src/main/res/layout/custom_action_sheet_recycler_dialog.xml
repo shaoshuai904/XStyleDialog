@@ -1,260 +1,257 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-    <LinearLayout
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="20dp"
+        android:text="Action Sheet Recycler Dialog"
+        android:textSize="18sp" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="30dp"
+        android:onClick="showDialog"
+        android:text="点击显示自定义ActionSheetRecyclerDialog"
+        android:textAllCaps="false" />
+
+
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:background="#EDEDED">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_margin="20dp"
-            android:text="Action Sheet Recycler Dialog"
-            android:textSize="18sp" />
-
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="30dp"
-            android:layout_marginEnd="30dp"
-            android:layout_marginBottom="30dp"
-            android:onClick="showDialog"
-            android:text="点击显示自定义ActionSheetRecyclerDialog"
-            android:textAllCaps="false" />
-
-
-        <androidx.core.widget.NestedScrollView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#EDEDED">
+            android:orientation="vertical"
+            android:padding="10dp">
 
-            <LinearLayout
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:text="自定义设置："
+                android:textSize="18sp" />
+
+            <!--                <TextView-->
+            <!--                    android:id="@+id/tv_scale_width"-->
+            <!--                    android:layout_width="wrap_content"-->
+            <!--                    android:layout_height="wrap_content"-->
+            <!--                    android:text="宽度百分比:" />-->
+            <!--                -->
+            <!--                <SeekBar-->
+            <!--                    android:id="@+id/sb_scale_width"-->
+            <!--                    style="@style/Widget.AppCompat.SeekBar.Discrete"-->
+            <!--                    android:layout_width="match_parent"-->
+            <!--                    android:layout_height="wrap_content"-->
+            <!--                    android:layout_marginBottom="10dp"-->
+            <!--                    android:max="10"-->
+            <!--                    android:progress="2" />-->
+
+            <TextView
+                android:id="@+id/tv_scale_height_min"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="最小高度百分比:" />
+
+            <SeekBar
+                android:id="@+id/sb_scale_height_min"
+                style="@style/Widget.AppCompat.SeekBar.Discrete"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:padding="10dp">
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:max="20"
+                android:progress="2" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:text="自定义设置："
-                    android:textSize="18sp" />
+            <TextView
+                android:id="@+id/tv_scale_height_max"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="最大百分比:" />
 
-                <!--                <TextView-->
-                <!--                    android:id="@+id/tv_scale_width"-->
-                <!--                    android:layout_width="wrap_content"-->
-                <!--                    android:layout_height="wrap_content"-->
-                <!--                    android:text="宽度百分比:" />-->
-                <!--                -->
-                <!--                <SeekBar-->
-                <!--                    android:id="@+id/sb_scale_width"-->
-                <!--                    style="@style/Widget.AppCompat.SeekBar.Discrete"-->
-                <!--                    android:layout_width="match_parent"-->
-                <!--                    android:layout_height="wrap_content"-->
-                <!--                    android:layout_marginBottom="10dp"-->
-                <!--                    android:max="10"-->
-                <!--                    android:progress="2" />-->
+            <SeekBar
+                android:id="@+id/sb_scale_height_max"
+                style="@style/Widget.AppCompat.SeekBar.Discrete"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:max="20"
+                android:progress="18" />
 
-                <TextView
-                    android:id="@+id/tv_scale_height_min"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="最小高度百分比:" />
+            <Switch
+                android:id="@+id/sw_cancelable"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:checked="true"
+                android:text="点击其他区域消失" />
 
-                <SeekBar
-                    android:id="@+id/sb_scale_height_min"
-                    style="@style/Widget.AppCompat.SeekBar.Discrete"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:max="20"
-                    android:progress="2" />
+            <Switch
+                android:id="@+id/sw_show_close"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:checked="true"
+                android:text="设置顶部条【关闭】按钮是否显示 " />
 
-                <TextView
-                    android:id="@+id/tv_scale_height_max"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="最大百分比:" />
-
-                <SeekBar
-                    android:id="@+id/sb_scale_height_max"
-                    style="@style/Widget.AppCompat.SeekBar.Discrete"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:max="20"
-                    android:progress="18" />
-
-                <Switch
-                    android:id="@+id/sw_cancelable"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:checked="true"
-                    android:text="点击其他区域消失" />
-
-                <Switch
-                    android:id="@+id/sw_show_close"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:checked="true"
-                    android:text="设置顶部条【关闭】按钮是否显示 " />
-
-                <Switch
-                    android:id="@+id/sw_show_mark"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:checked="true"
-                    android:text="是否显示 item 右侧对勾 " />
+            <Switch
+                android:id="@+id/sw_show_mark"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:checked="true"
+                android:text="是否显示 item 右侧对勾 " />
 
 
-                <EditText
-                    android:id="@+id/et_title"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="5dp"
-                    android:background="@drawable/ms_sel_action_sheet_middle"
-                    android:gravity="center"
-                    android:hint="输入标题"
-                    android:padding="10dp"
-                    android:text="自定义标题"
-                    android:textSize="14sp" />
+            <EditText
+                android:id="@+id/et_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/ms_sel_action_sheet_middle"
+                android:gravity="center"
+                android:hint="输入标题"
+                android:padding="10dp"
+                android:text="自定义标题"
+                android:textSize="14sp" />
 
-                <TextView
-                    android:id="@+id/tv_title_size"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="标题大小:" />
+            <TextView
+                android:id="@+id/tv_title_size"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="标题大小:" />
 
-                <SeekBar
-                    android:id="@+id/sb_title_size"
-                    style="@style/Widget.AppCompat.SeekBar.Discrete"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:max="10"
-                    android:progress="3" />
+            <SeekBar
+                android:id="@+id/sb_title_size"
+                style="@style/Widget.AppCompat.SeekBar.Discrete"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:max="10"
+                android:progress="3" />
 
-                <TextView
-                    android:id="@+id/tv_title_height"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="标题大小:" />
+            <TextView
+                android:id="@+id/tv_title_height"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="标题大小:" />
 
-                <SeekBar
-                    android:id="@+id/sb_title_height"
-                    style="@style/Widget.AppCompat.SeekBar.Discrete"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:max="20"
-                    android:progress="3" />
+            <SeekBar
+                android:id="@+id/sb_title_height"
+                style="@style/Widget.AppCompat.SeekBar.Discrete"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:max="20"
+                android:progress="3" />
 
-                <TextView
-                    android:id="@+id/tv_item_count"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:text="Item个数:" />
+            <TextView
+                android:id="@+id/tv_item_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="Item个数:" />
 
-                <SeekBar
-                    android:id="@+id/sb_item_count"
-                    style="@style/Widget.AppCompat.SeekBar.Discrete"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:max="50"
-                    android:progress="6" />
+            <SeekBar
+                android:id="@+id/sb_item_count"
+                style="@style/Widget.AppCompat.SeekBar.Discrete"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:max="50"
+                android:progress="6" />
 
-                <TextView
-                    android:id="@+id/tv_item_text_size"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Item字体大小:" />
+            <TextView
+                android:id="@+id/tv_item_text_size"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Item字体大小:" />
 
-                <SeekBar
-                    android:id="@+id/sb_item_text_size"
-                    style="@style/Widget.AppCompat.SeekBar.Discrete"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:max="10"
-                    android:progress="1" />
+            <SeekBar
+                android:id="@+id/sb_item_text_size"
+                style="@style/Widget.AppCompat.SeekBar.Discrete"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:max="10"
+                android:progress="1" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="上、下、左、右 间距 可以分别设置：" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="上、下、左、右 间距 可以分别设置：" />
 
-                <TextView
-                    android:id="@+id/tv_item_padding_tb"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Item上下间距:" />
+            <TextView
+                android:id="@+id/tv_item_padding_tb"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Item上下间距:" />
 
-                <SeekBar
-                    android:id="@+id/sb_item_padding_tb"
-                    style="@style/Widget.AppCompat.SeekBar.Discrete"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:max="20"
-                    android:progress="2" />
+            <SeekBar
+                android:id="@+id/sb_item_padding_tb"
+                style="@style/Widget.AppCompat.SeekBar.Discrete"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:max="20"
+                android:progress="2" />
 
-                <TextView
-                    android:id="@+id/tv_divider_height"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="分割线高度:" />
+            <TextView
+                android:id="@+id/tv_divider_height"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="分割线高度:" />
 
-                <SeekBar
-                    android:id="@+id/sb_divider_height"
-                    style="@style/Widget.AppCompat.SeekBar.Discrete"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:max="10"
-                    android:progress="3" />
+            <SeekBar
+                android:id="@+id/sb_divider_height"
+                style="@style/Widget.AppCompat.SeekBar.Discrete"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:max="10"
+                android:progress="3" />
 
-                <Switch
-                    android:id="@+id/sw_last_item_line"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:checked="true"
-                    android:text="最后一个item是否画分割线 " />
+            <Switch
+                android:id="@+id/sw_last_item_line"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:checked="true"
+                android:text="最后一个item是否画分割线 " />
 
-                <TextView
-                    android:id="@+id/tv_button_padding"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="底部间隔高度:" />
+            <TextView
+                android:id="@+id/tv_button_padding"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="底部间隔高度:" />
 
-                <SeekBar
-                    android:id="@+id/sb_button_padding"
-                    style="@style/Widget.AppCompat.SeekBar.Discrete"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:max="20"
-                    android:progress="1" />
+            <SeekBar
+                android:id="@+id/sb_button_padding"
+                style="@style/Widget.AppCompat.SeekBar.Discrete"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:max="20"
+                android:progress="1" />
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginBottom="40dp"
-                    android:gravity="center"
-                    android:text="还有更多更多自定义配置，\n请看具体Dialog的Config配置类"
-                    android:textSize="14sp" />
-            </LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="40dp"
+                android:gravity="center"
+                android:text="还有更多更多自定义配置，\n请看具体Dialog的Config配置类"
+                android:textSize="14sp" />
+        </LinearLayout>
 
-        </androidx.core.widget.NestedScrollView>
+    </androidx.core.widget.NestedScrollView>
 
-    </LinearLayout>
-</layout>
+</LinearLayout>

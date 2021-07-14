@@ -13,7 +13,6 @@ import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import androidx.core.content.ContextCompat
-import androidx.databinding.DataBindingUtil
 import com.maple.msdialog.databinding.MsDialogAlertBinding
 import com.maple.msdialog.utils.DensityUtils.dp2px
 import com.maple.msdialog.utils.DialogUtil.setScaleWidth
@@ -29,8 +28,8 @@ class AlertDialog(
         private val mContext: Context,
         private val config: Config = Config(mContext)
 ) : Dialog(mContext, R.style.AlertDialogStyle) {
-    private val binding: MsDialogAlertBinding = DataBindingUtil.inflate(
-            LayoutInflater.from(mContext), R.layout.ms_dialog_alert, null, false)
+    private val binding: MsDialogAlertBinding = MsDialogAlertBinding.inflate(
+            LayoutInflater.from(mContext), null, false)
     private var showTitle = false
     private var showMsg = false
     private var showRightBtn = false

@@ -2,7 +2,6 @@ package com.maple.msdialog
 
 import android.content.Context
 import android.view.LayoutInflater
-import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.maple.msdialog.adapter.SheetMultipleSelectedAdapter
@@ -90,8 +89,8 @@ class ActionSheetRecyclerMultipleSelectedDialog(
 
     // 底部确认选择View
     private fun getSelectConfirmBinding(): MsLayoutSelectConfirmBinding {
-        val binding: MsLayoutSelectConfirmBinding = DataBindingUtil.inflate(LayoutInflater.from(mContext),
-                R.layout.ms_layout_select_confirm, null, false)
+        val binding: MsLayoutSelectConfirmBinding = MsLayoutSelectConfirmBinding.inflate(
+            LayoutInflater.from(mContext), null, false)
         return binding.apply {
             cbSelectAll.setOnClickListener {
                 // cbSelectAll.text = if (cbSelectAll.isChecked) "取消全选" else "全选"

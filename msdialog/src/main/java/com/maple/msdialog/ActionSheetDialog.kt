@@ -2,18 +2,17 @@ package com.maple.msdialog
 
 import android.app.Dialog
 import android.content.Context
-import androidx.databinding.DataBindingUtil
 import android.graphics.Color
 import android.graphics.Typeface
 import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.Drawable
-import androidx.annotation.DrawableRes
-import androidx.core.content.ContextCompat
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.annotation.DrawableRes
+import androidx.core.content.ContextCompat
 import com.maple.msdialog.databinding.MsDialogActionSheetBinding
 import com.maple.msdialog.utils.DensityUtils.dp2px
 import com.maple.msdialog.utils.DialogUtil.screenInfo
@@ -30,8 +29,8 @@ class ActionSheetDialog(
         private val mContext: Context,
         private val config: Config = Config(mContext)
 ) : Dialog(mContext, R.style.ActionSheetDialogStyle) {
-    private val binding: MsDialogActionSheetBinding = DataBindingUtil.inflate(
-            LayoutInflater.from(context), R.layout.ms_dialog_action_sheet, null, false)
+    private val binding: MsDialogActionSheetBinding = MsDialogActionSheetBinding.inflate(
+        LayoutInflater.from(context), null, false)
     private var sheetItemList: MutableList<SheetItem>? = null
     // var itemClickListener: OnSheetItemClickListener? = null
 

@@ -4,7 +4,6 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.maple.msdialog.ActionSheetRecyclerDialog
 import com.maple.msdialog.R
@@ -53,8 +52,8 @@ class SheetMultipleSelectedAdapter(
     fun getCurrentSelectedItemList(): List<SheetItem>? = data.filter { it.isSelected }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyHolder {
-        val binding: MsItemSheetBinding = DataBindingUtil.inflate(
-                LayoutInflater.from(mContext), R.layout.ms_item_sheet, parent, false)
+        val binding: MsItemSheetBinding = MsItemSheetBinding.inflate(
+                LayoutInflater.from(mContext), parent, false)
         return MyHolder(binding)
     }
 
