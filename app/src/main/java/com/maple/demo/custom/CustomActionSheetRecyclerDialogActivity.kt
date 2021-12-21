@@ -9,12 +9,11 @@ import android.view.View
 import android.widget.SeekBar
 import android.widget.Toast
 import androidx.core.content.ContextCompat
-import com.maple.demo.R
+import com.maple.demo.databinding.CustomActionSheetRecyclerDialogBinding
 import com.maple.msdialog.ActionSheetRecyclerDialog
 import com.maple.msdialog.ActionSheetRecyclerSingleSelectedDialog
 import com.maple.msdialog.SheetItem
 import com.maple.msdialog.utils.DensityUtils.dp2px
-import kotlinx.android.synthetic.main.custom_action_sheet_recycler_dialog.*
 import java.util.*
 
 /**
@@ -24,6 +23,7 @@ import java.util.*
  * @date ：2020/8/29
  */
 class CustomActionSheetRecyclerDialogActivity : Activity() {
+    private lateinit var binding: CustomActionSheetRecyclerDialogBinding
     var mScaleHeightMin: Double = 0.25
     var mScaleHeightMax: Double = 0.6
     var isCancelable: Boolean = true // 点击其他区域消失
@@ -46,7 +46,8 @@ class CustomActionSheetRecyclerDialogActivity : Activity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.custom_action_sheet_recycler_dialog)
+        binding = CustomActionSheetRecyclerDialogBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         initListener()
         setDefaultValue()
@@ -54,18 +55,20 @@ class CustomActionSheetRecyclerDialogActivity : Activity() {
 
     // 设置默认值
     private fun setDefaultValue() {
-        sb_scale_height_min.progress = 7 // 最小高度
-        sb_scale_height_max.progress = 12 // 最大高度
-        et_title.setText("退出当前账号")
-        sb_title_size.progress = 4 // 标题文本大小
-        sb_title_height.progress = 5 // 标题高度
+        with(binding) {
+            sbScaleHeightMin.progress = 7 // 最小高度
+            sbScaleHeightMax.progress = 12 // 最大高度
+            etTitle.setText("退出当前账号")
+            sbTitleSize.progress = 4 // 标题文本大小
+            sbTitleHeight.progress = 5 // 标题高度
 
-        sb_item_count.progress = 3 // item个数
-        sb_item_text_size.progress = 2 // item字体大小
-        sb_item_padding_tb.progress = 6 // item上下间距
+            sbItemCount.progress = 3 // item个数
+            sbItemTextSize.progress = 2 // item字体大小
+            sbItemPaddingTb.progress = 6 // item上下间距
 
-        sb_divider_height.progress = 2 // 分割线高度
-        sb_button_padding.progress = 2 // Dialog底部padding
+            sbDividerHeight.progress = 2 // 分割线高度
+            sbButtonPadding.progress = 2 // Dialog底部padding
+        }
     }
 
     var currentSelectedIndex = 0 // 当前选中条目
@@ -84,7 +87,8 @@ class CustomActionSheetRecyclerDialogActivity : Activity() {
             itemPaddingTop = mItemPaddingTopBottom.dp2px(context)
             itemPaddingBottom = mItemPaddingTopBottom.dp2px(context)
             isShowMark = isShowItemMark
-            selectMark = ContextCompat.getDrawable(context, android.R.drawable.checkbox_on_background)
+            selectMark =
+                ContextCompat.getDrawable(context, android.R.drawable.checkbox_on_background)
             skipLastItems = if (isShowLastItemLine) 0 else 1
             dividerHeight = mLineHeight  // 分割线高度
         }
@@ -125,98 +129,103 @@ class CustomActionSheetRecyclerDialogActivity : Activity() {
 
     // 各种变化监听
     private fun initListener() {
-        et_title.addTextChangedListener(object : TextWatcher {
+        binding.etTitle.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {}
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 mTitle = s?.toString()?.trim()
             }
         })
-        sb_scale_height_min.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+        binding.sbScaleHeightMin.setOnSeekBarChangeListener(object :
+            SeekBar.OnSeekBarChangeListener {
             override fun onStartTrackingTouch(seekBar: SeekBar?) {}
             override fun onStopTrackingTouch(seekBar: SeekBar?) {}
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
                 mScaleHeightMin = (progress * 5.0) / 100.0
-                tv_scale_height_min.text = "最小高度百分比：${mScaleHeightMin * 100}%"
+                binding.tvScaleHeightMin.text = "最小高度百分比：${mScaleHeightMin * 100}%"
             }
         })
-        sb_scale_height_max.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+        binding.sbScaleHeightMax.setOnSeekBarChangeListener(object :
+            SeekBar.OnSeekBarChangeListener {
             override fun onStartTrackingTouch(seekBar: SeekBar?) {}
             override fun onStopTrackingTouch(seekBar: SeekBar?) {}
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
                 mScaleHeightMax = (progress * 5.0) / 100.0
-                tv_scale_height_max.text = "最大高度百分比：${mScaleHeightMax * 100}%"
+                binding.tvScaleHeightMax.text = "最大高度百分比：${mScaleHeightMax * 100}%"
             }
         })
-        sb_title_size.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+        binding.sbTitleSize.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onStartTrackingTouch(seekBar: SeekBar?) {}
             override fun onStopTrackingTouch(seekBar: SeekBar?) {}
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
                 // 最小10，一格 +2 sp
                 mTitleSpSize = 10 + progress * 2f
-                tv_title_size.text = "标题大小: ${mTitleSpSize}sp"
+                binding.tvTitleSize.text = "标题大小: ${mTitleSpSize}sp"
             }
         })
-        sb_title_height.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+        binding.sbTitleHeight.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onStartTrackingTouch(seekBar: SeekBar?) {}
             override fun onStopTrackingTouch(seekBar: SeekBar?) {}
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
                 mTitleHeight = 30 + progress * 4f
-                tv_title_height.text = "标题高度: ${mTitleHeight}dp"
+                binding.tvTitleHeight.text = "标题高度: ${mTitleHeight}dp"
             }
         })
-        sb_item_count.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+        binding.sbItemCount.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onStartTrackingTouch(seekBar: SeekBar?) {}
             override fun onStopTrackingTouch(seekBar: SeekBar?) {}
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
                 mItemCount = progress
-                tv_item_count.text = "Item个数: ${mItemCount}个"
+                binding.tvItemCount.text = "Item个数: ${mItemCount}个"
             }
         })
-        sb_item_text_size.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+        binding.sbItemTextSize.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onStartTrackingTouch(seekBar: SeekBar?) {}
             override fun onStopTrackingTouch(seekBar: SeekBar?) {}
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
                 // 最小10，一格 +2sp
                 mItemTextSpSize = 10 + progress * 2f
-                tv_item_text_size.text = "Item字体大小${mItemTextSpSize}sp"
+                binding.tvItemTextSize.text = "Item字体大小${mItemTextSpSize}sp"
             }
         })
-        sb_item_padding_tb.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+        binding.sbItemPaddingTb.setOnSeekBarChangeListener(object :
+            SeekBar.OnSeekBarChangeListener {
             override fun onStartTrackingTouch(seekBar: SeekBar?) {}
             override fun onStopTrackingTouch(seekBar: SeekBar?) {}
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
                 mItemPaddingTopBottom = progress * 2f
-                tv_item_padding_tb.text = "Item上下间距${mItemPaddingTopBottom}dp"
+                binding.tvItemPaddingTb.text = "Item上下间距${mItemPaddingTopBottom}dp"
             }
         })
 
-        sb_divider_height.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+        binding.sbDividerHeight.setOnSeekBarChangeListener(object :
+            SeekBar.OnSeekBarChangeListener {
             override fun onStartTrackingTouch(seekBar: SeekBar?) {}
             override fun onStopTrackingTouch(seekBar: SeekBar?) {}
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
                 mLineHeight = progress
-                tv_divider_height.text = "分割线高度：${mLineHeight}px"
+                binding.tvDividerHeight.text = "分割线高度：${mLineHeight}px"
             }
         })
-        sb_button_padding.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+        binding.sbButtonPadding.setOnSeekBarChangeListener(object :
+            SeekBar.OnSeekBarChangeListener {
             override fun onStartTrackingTouch(seekBar: SeekBar?) {}
             override fun onStopTrackingTouch(seekBar: SeekBar?) {}
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
                 mDialogPaddingBottom = progress * 3f
-                tv_button_padding.text = "Dialog底部间距：${mDialogPaddingBottom}dp"
+                binding.tvButtonPadding.text = "Dialog底部间距：${mDialogPaddingBottom}dp"
             }
         })
-        sw_cancelable.setOnCheckedChangeListener { _, isChecked ->
+        binding.swCancelable.setOnCheckedChangeListener { _, isChecked ->
             isCancelable = isChecked
         }
-        sw_show_close.setOnCheckedChangeListener { _, isChecked ->
+        binding.swShowClose.setOnCheckedChangeListener { _, isChecked ->
             isShowClose = isChecked
         }
-        sw_show_mark.setOnCheckedChangeListener { _, isChecked ->
+        binding.swShowMark.setOnCheckedChangeListener { _, isChecked ->
             isShowItemMark = isChecked
         }
-        sw_last_item_line.setOnCheckedChangeListener { _, isChecked ->
+        binding.swLastItemLine.setOnCheckedChangeListener { _, isChecked ->
             isShowLastItemLine = isChecked
         }
     }
