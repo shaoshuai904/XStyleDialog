@@ -168,7 +168,7 @@ class ActionSheetListDialog(
 
         // cancel
         var showCancel: Boolean = false
-        var cancelText: String = "取消"
+        var cancelText: CharSequence = "取消"
         var cancelTextSizeSp: Float = 18f // 字体大小
         var cancelTextColor: Int = ContextCompat.getColor(context, R.color.ms_def_title_color) // 字体颜色
     }

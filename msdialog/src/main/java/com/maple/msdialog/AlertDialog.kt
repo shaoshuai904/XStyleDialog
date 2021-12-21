@@ -12,6 +12,7 @@ import android.text.Spanned
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
+import androidx.annotation.ColorInt
 import androidx.core.content.ContextCompat
 import com.maple.msdialog.databinding.MsDialogAlertBinding
 import com.maple.msdialog.utils.DensityUtils.dp2px
@@ -84,7 +85,7 @@ class AlertDialog(
 
     fun setTitle(
             title: CharSequence?,
-            color: Int = config.titleColor,// 字体颜色
+            @ColorInt color: Int = config.titleColor,// 字体颜色
             spSize: Float = config.titleTextSizeSp,// 字体大小
             isBold: Boolean = false// 是否加粗
     ): AlertDialog {
@@ -105,7 +106,7 @@ class AlertDialog(
 
     // 将html类文本转换成普通文本
     fun convertHtmlText(htmlText: String?): Spanned {
-        val source = htmlText ?: config.defNullText
+        val source = htmlText ?: (config.defNullText) as String
         return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             Html.fromHtml(source, Html.FROM_HTML_MODE_LEGACY)
         } else {
@@ -117,7 +118,7 @@ class AlertDialog(
 
     fun setMessage(
             message: CharSequence?,
-            color: Int = config.messageColor,// 字体颜色
+            @ColorInt color: Int = config.messageColor,// 字体颜色
             spSize: Float = config.messageTextSizeSp, // 字体大小
             isBold: Boolean = false, // 是否加粗
             gravity: Int = Gravity.CENTER// 偏左，居中，偏右
@@ -255,11 +256,11 @@ class AlertDialog(
             var context: Context
     ) : Serializable {
         var scaleWidth: Double = 0.75 // 宽度占屏幕宽百分比
-        var defNullText: String = "null" // 默认空文本
+        var defNullText: CharSequence = "null" // 默认空文本
 
         // title
         var titleTextSizeSp: Float = 18f // 字体大小
-        var titleColor: Int = ContextCompat.getColor(context, R.color.ms_def_title_color) // 字体颜色
+        @ColorInt var titleColor: Int = ContextCompat.getColor(context, R.color.ms_def_title_color) // 字体颜色
         var titlePaddingLeft: Int = 15f.dp2px(context) // 左边距
         var titlePaddingTop: Int = 22f.dp2px(context) // 上边距
         var titlePaddingRight: Int = 15f.dp2px(context) // 右边距
@@ -267,7 +268,7 @@ class AlertDialog(
 
         // message
         var messageTextSizeSp: Float = 14f // 字体大小
-        var messageColor: Int = ContextCompat.getColor(context, R.color.ms_def_message_color) // 字体颜色
+        @ColorInt var messageColor: Int = ContextCompat.getColor(context, R.color.ms_def_message_color) // 字体颜色
         var messagePaddingLeft: Int = 15f.dp2px(context) // 左边距
         var messagePaddingTop: Int = 22f.dp2px(context) // 上边距
         var messagePaddingRight: Int = 15f.dp2px(context) // 右边距

@@ -6,6 +6,7 @@ import android.graphics.Typeface
 import androidx.core.content.ContextCompat
 import android.view.LayoutInflater
 import android.view.View
+import androidx.annotation.ColorInt
 import com.maple.msdialog.databinding.MsDialogAlertEditBinding
 import com.maple.msdialog.utils.DialogUtil.setScaleWidth
 
@@ -55,7 +56,7 @@ class AlertEditDialog(private val mContext: Context) : Dialog(mContext, R.style.
 
     fun setTitle(
             title: CharSequence?,
-            color: Int = ContextCompat.getColor(mContext, R.color.ms_def_title_color),
+            @ColorInt color: Int = ContextCompat.getColor(mContext, R.color.ms_def_title_color),
             spSize: Float = 18f,
             isBold: Boolean = false
     ): AlertEditDialog {
@@ -71,7 +72,7 @@ class AlertEditDialog(private val mContext: Context) : Dialog(mContext, R.style.
 
     fun setMessage(
             msg: CharSequence?,
-            color: Int = ContextCompat.getColor(mContext, R.color.ms_def_message_color),
+            @ColorInt color: Int = ContextCompat.getColor(mContext, R.color.ms_def_message_color),
             spSize: Float = 16f,
             isBold: Boolean = false
     ): AlertEditDialog {
@@ -93,7 +94,7 @@ class AlertEditDialog(private val mContext: Context) : Dialog(mContext, R.style.
     fun setLeftButton(
             text: CharSequence?,
             listener: View.OnClickListener? = null,
-            color: Int = ContextCompat.getColor(mContext, R.color.ms_def_left_color),
+            @ColorInt color: Int = ContextCompat.getColor(mContext, R.color.ms_def_left_color),
             spSize: Float = 16f,
             isBold: Boolean = false
     ): AlertEditDialog {
@@ -119,7 +120,7 @@ class AlertEditDialog(private val mContext: Context) : Dialog(mContext, R.style.
     fun setRightButton(
             text: CharSequence?,
             listener: OnEditTextCallListener? = null,
-            color: Int = ContextCompat.getColor(mContext, R.color.ms_def_right_color),
+            @ColorInt color: Int = ContextCompat.getColor(mContext, R.color.ms_def_right_color),
             spSize: Float = 16f,
             isBold: Boolean = false
     ): AlertEditDialog {

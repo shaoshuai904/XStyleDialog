@@ -1,6 +1,7 @@
 package com.maple.msdialog
 
 import android.graphics.Color
+import androidx.annotation.ColorInt
 import java.io.Serializable
 
 /**
@@ -14,14 +15,14 @@ open class SheetItem(
         var sheetName: String,
         var isSelected: Boolean = false// 是否为选中状态
 ) : Serializable {
-    var showColor: Int = Color.parseColor("#333333")
+    @ColorInt var showColor: Int = Color.parseColor("#333333")
     var itemClickListener: OnSheetItemClickListener? = null
 
     constructor(name: String) : this(name, name, false)
 
     constructor(
             name: String,
-            color: Int = Color.parseColor("#333333"),
+            @ColorInt color: Int = Color.parseColor("#333333"),
             clickListener: OnSheetItemClickListener? = null
     ) : this(name, name, false) {
         this.sheetId = name

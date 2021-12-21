@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.DatePicker
 import android.widget.NumberPicker.OnValueChangeListener
+import androidx.annotation.ColorInt
 import androidx.core.content.ContextCompat
 import com.maple.msdialog.databinding.MsDialogNumberPickerBinding
 import com.maple.msdialog.utils.DialogUtil.setScaleWidth
@@ -56,7 +57,7 @@ class AlertNumberPickerDialog(private val mContext: Context) : Dialog(mContext, 
 
     fun setTitle(
             title: CharSequence?,
-            color: Int = ContextCompat.getColor(mContext, R.color.ms_def_title_color),
+            @ColorInt color: Int = ContextCompat.getColor(mContext, R.color.ms_def_title_color),
             spSize: Float = 18f,
             isBold: Boolean = false
     ): AlertNumberPickerDialog {
@@ -88,7 +89,7 @@ class AlertNumberPickerDialog(private val mContext: Context) : Dialog(mContext, 
     // 设置value的后缀
     fun setNumberValueSuffix(
             suffix: CharSequence?,
-            color: Int = ContextCompat.getColor(mContext, R.color.ms_def_title_color),
+            @ColorInt color: Int = ContextCompat.getColor(mContext, R.color.ms_def_title_color),
             spSize: Float = 16f
     ): AlertNumberPickerDialog {
         showMsg = true
@@ -109,7 +110,7 @@ class AlertNumberPickerDialog(private val mContext: Context) : Dialog(mContext, 
     fun setLeftButton(
             text: CharSequence?,
             listener: View.OnClickListener? = null,
-            color: Int = ContextCompat.getColor(mContext, R.color.ms_def_left_color),
+            @ColorInt color: Int = ContextCompat.getColor(mContext, R.color.ms_def_left_color),
             spSize: Float = 16f,
             isBold: Boolean = false
     ): AlertNumberPickerDialog {
@@ -135,7 +136,7 @@ class AlertNumberPickerDialog(private val mContext: Context) : Dialog(mContext, 
     fun setRightButton(
             text: CharSequence?,
             listener: View.OnClickListener? = null,
-            color: Int = ContextCompat.getColor(mContext, R.color.ms_def_right_color),
+            @ColorInt color: Int = ContextCompat.getColor(mContext, R.color.ms_def_right_color),
             spSize: Float = 16f,
             isBold: Boolean = false
     ): AlertNumberPickerDialog {

@@ -11,6 +11,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.annotation.ColorInt
 import androidx.annotation.DrawableRes
 import androidx.core.content.ContextCompat
 import com.maple.msdialog.databinding.MsDialogActionSheetBinding
@@ -65,7 +66,7 @@ class ActionSheetDialog(
 
     fun setTitle(
             title: CharSequence?,
-            color: Int = config.titleTextColor,
+            @ColorInt color: Int = config.titleTextColor,
             spSize: Float = config.titleTextSizeSp,
             isBold: Boolean = false
     ): ActionSheetDialog {
@@ -79,11 +80,11 @@ class ActionSheetDialog(
         return this
     }
 
-    fun setCancelText(cancelText: String?) = setCancelText(cancelText, isBold = false)
+    fun setCancelText(cancelText: CharSequence?) = setCancelText(cancelText, isBold = false)
 
     fun setCancelText(
-            cancelText: String? = config.cancelText,
-            color: Int = config.cancelTextColor,
+            cancelText: CharSequence? = config.cancelText,
+            @ColorInt color: Int = config.cancelTextColor,
             spSize: Float = config.cancelTextSizeSp,
             isBold: Boolean = false
     ): ActionSheetDialog {
@@ -114,7 +115,7 @@ class ActionSheetDialog(
     fun addSheetItem(strItem: String, clickListener: OnSheetItemClickListener?) =
             addSheetItem(SheetItem(strItem, config.itemTextColor, clickListener))
 
-    fun addSheetItem(strItem: String, color: Int = config.itemTextColor, clickListener: OnSheetItemClickListener?) =
+    fun addSheetItem(strItem: String, @ColorInt color: Int = config.itemTextColor, clickListener: OnSheetItemClickListener?) =
             addSheetItem(SheetItem(strItem, color, clickListener))
 
     fun addSheetItem(item: SheetItem): ActionSheetDialog {
@@ -215,7 +216,7 @@ class ActionSheetDialog(
         // title
         var showTitle: Boolean = false
         var titleTextSizeSp: Float = 16f // 字体大小
-        var titleTextColor: Int = ContextCompat.getColor(context, R.color.ms_def_title_color) // 字体颜色
+        @ColorInt var titleTextColor: Int = ContextCompat.getColor(context, R.color.ms_def_title_color) // 字体颜色
 
         // item
         var actionSheetItemHeight: Int = 50f.dp2px(context)
@@ -232,9 +233,9 @@ class ActionSheetDialog(
 
         // cancel
         var showCancel: Boolean = false
-        var cancelText: String = "取消"
+        var cancelText: CharSequence = "取消"
         var cancelTextSizeSp: Float = 18f // 字体大小
-        var cancelTextColor: Int = ContextCompat.getColor(context, R.color.ms_def_title_color) // 字体颜色
+        @ColorInt var cancelTextColor: Int = ContextCompat.getColor(context, R.color.ms_def_title_color) // 字体颜色
         var cancelViewHeight: Int = 48f.dp2px(context) // 底部按钮高度
     }
 
