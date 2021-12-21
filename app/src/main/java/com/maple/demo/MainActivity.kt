@@ -341,7 +341,7 @@ class MainActivity : Activity() {
         val numbers = arrayOf("北京", "上海", "天津", "杭州", "苏州", "深圳")
         defValue = numbers[index]
         AlertNumberPickerDialog(this).apply {
-            setScaleWidth(rootView, 0.8)
+            setScaleWidth(0.8)
             setCancelable(false)
             setTitle("选择城市")
             setNumberValues(numbers, index) { picker, oldVal, newVal ->

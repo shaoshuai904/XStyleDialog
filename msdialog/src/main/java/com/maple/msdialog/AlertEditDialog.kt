@@ -225,7 +225,7 @@ class AlertEditDialog(
     }
 
     /**
-     * AlertDialog 的配置
+     * AlertEditDialog 的配置
      */
     open class Config(
             var context: Context

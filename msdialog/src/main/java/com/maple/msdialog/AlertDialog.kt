@@ -158,7 +158,7 @@ class AlertDialog(
     fun setLeftButton(
             text: CharSequence?,
             listener: View.OnClickListener? = null,
-            color: Int = config.leftBtnColor,
+            @ColorInt color: Int = config.leftBtnColor,
             spSize: Float = config.leftBtnTextSizeSp,
             isBold: Boolean = false
     ): AlertDialog {
@@ -184,7 +184,7 @@ class AlertDialog(
     fun setRightButton(
             text: CharSequence?,
             listener: View.OnClickListener? = null,
-            color: Int = config.rightBtnColor,
+            @ColorInt color: Int = config.rightBtnColor,
             spSize: Float = config.rightBtnTextSizeSp,
             isBold: Boolean = false
     ): AlertDialog {
