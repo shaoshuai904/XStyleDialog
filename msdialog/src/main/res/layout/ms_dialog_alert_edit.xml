@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ll_content"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/ms_shape_alert_dialog_bg"
@@ -10,9 +11,9 @@
         android:id="@+id/tv_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginRight="15dp"
+        android:paddingLeft="15dp"
+        android:paddingTop="15dp"
+        android:paddingRight="15dp"
         android:gravity="center"
         android:textAllCaps="false"
         android:textSize="18sp"
@@ -24,9 +25,9 @@
         android:id="@+id/tv_msg"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginRight="15dp"
+        android:paddingLeft="15dp"
+        android:paddingTop="15dp"
+        android:paddingRight="15dp"
         android:gravity="center"
         android:textSize="16sp"
         tools:text="body text" />
@@ -36,19 +37,22 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginLeft="10dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="0dp"
         android:layout_marginRight="10dp"
         android:layout_marginBottom="5dp"
         android:background="@drawable/ms_sel_action_sheet_single_line"
         android:padding="5dp"
         android:textCursorDrawable="@color/ms_def_title_color" />
 
-    <ImageView
+    <View
+        android:id="@+id/v_line"
         android:layout_width="match_parent"
         android:layout_height="1px"
+        android:layout_marginTop="1dp"
         android:background="@color/ms_act_line" />
 
     <LinearLayout
+        android:id="@+id/ll_bottom"
         android:layout_width="match_parent"
         android:layout_height="@dimen/ms_dialog_bottom_height"
         android:layout_margin="1px"
@@ -66,8 +70,8 @@
             android:textSize="16sp"
             tools:text="Cancel" />
 
-        <ImageView
-            android:id="@+id/iv_line"
+        <View
+            android:id="@+id/v_btn_line"
             android:layout_width="1px"
             android:layout_height="match_parent"
             android:background="@color/ms_act_line" />

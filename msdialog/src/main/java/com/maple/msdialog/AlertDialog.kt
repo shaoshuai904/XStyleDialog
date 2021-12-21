@@ -57,12 +57,6 @@ class AlertDialog(
         setContentView(binding.root)
     }
 
-    fun setScaleWidth(scWidth: Double): AlertDialog {
-        config.scaleWidth = scWidth
-        setScaleWidth(binding.root, scWidth)
-        return this
-    }
-
     fun getRootView() = binding.root
     fun getTitleView() = binding.tvTitle
     fun getMessageView() = binding.tvMsg
@@ -70,6 +64,12 @@ class AlertDialog(
     fun getRightBtnView() = binding.btRight
     fun getLineView() = binding.vLine
     fun getBtnLineView() = binding.vBtnLine
+
+    fun setScaleWidth(scWidth: Double): AlertDialog {
+        config.scaleWidth = scWidth
+        setScaleWidth(binding.root, scWidth)
+        return this
+    }
 
     // 点击外围是否可取消
     fun setDialogCancelable(cancelable: Boolean = true): AlertDialog {
