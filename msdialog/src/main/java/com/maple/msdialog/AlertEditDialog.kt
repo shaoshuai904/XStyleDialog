@@ -3,10 +3,11 @@ package com.maple.msdialog
 import android.app.Dialog
 import android.content.Context
 import android.graphics.Typeface
-import androidx.core.content.ContextCompat
 import android.view.LayoutInflater
 import android.view.View
 import androidx.annotation.ColorInt
+import androidx.annotation.StyleRes
+import androidx.core.content.ContextCompat
 import com.maple.msdialog.databinding.MsDialogAlertEditBinding
 import com.maple.msdialog.utils.DialogUtil.setScaleWidth
 
@@ -16,14 +17,19 @@ import com.maple.msdialog.utils.DialogUtil.setScaleWidth
  * @author shaoshuai
  * @time 2017/3/23
  */
-class AlertEditDialog(private val mContext: Context) : Dialog(mContext, R.style.AlertDialogStyle) {
+class AlertEditDialog(
+        private val mContext: Context,
+        @StyleRes private val themeResId: Int = R.style.AlertDialogStyle
+) : Dialog(mContext, themeResId) {
     private val binding: MsDialogAlertEditBinding = MsDialogAlertEditBinding.inflate(
             LayoutInflater.from(mContext), null, false)
-    val rootView by lazy { binding.root }
     private var showTitle = false
     private var showMsg = false
     private var showLeftBtn = false
     private var showRightBtn = false
+
+    // 方便java调用
+    constructor(mContext: Context) : this(mContext, R.style.AlertDialogStyle)
 
     init {
         // get custom Dialog layout
@@ -41,8 +47,14 @@ class AlertEditDialog(private val mContext: Context) : Dialog(mContext, R.style.
         setScaleWidth(binding.root, 0.85)
     }
 
+    fun getRootView() = binding.root
+    fun getTitleView() = binding.tvTitle
+    fun getMessageView() = binding.tvMsg
+    fun getLeftBtnView() = binding.btLeft
+    fun getRightBtnView() = binding.btRight
+
     fun setScaleWidth(scWidth: Double): AlertEditDialog {
-        setScaleWidth(rootView, scWidth)
+        setScaleWidth(getRootView(), scWidth)
         return this
     }
 

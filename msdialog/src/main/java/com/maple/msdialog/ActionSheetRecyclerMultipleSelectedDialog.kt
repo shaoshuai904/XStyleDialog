@@ -2,6 +2,7 @@ package com.maple.msdialog
 
 import android.content.Context
 import android.view.LayoutInflater
+import androidx.annotation.StyleRes
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.maple.msdialog.adapter.SheetMultipleSelectedAdapter
@@ -15,8 +16,9 @@ import com.maple.msdialog.databinding.MsLayoutSelectConfirmBinding
  */
 class ActionSheetRecyclerMultipleSelectedDialog(
         private val mContext: Context,
-        private val config: Config = Config(mContext)
-) : ActionSheetRecyclerDialog(mContext, config) {
+        private val config: Config = Config(mContext),
+        @StyleRes private val themeResId: Int = R.style.ActionSheetDialogStyle
+) : ActionSheetRecyclerDialog(mContext, config, themeResId) {
     private lateinit var confirmView: MsLayoutSelectConfirmBinding
     private var onSheetItemClickListener: OnSheetItemClickListener? = null
     private var onSheetItemSelectConfirmListener: OnSheetItemSelectConfirmListener? = null
@@ -30,6 +32,10 @@ class ActionSheetRecyclerMultipleSelectedDialog(
             }
         }
     }
+
+    // 方便java调用
+    constructor(mContext: Context) : this(mContext, Config(mContext), R.style.ActionSheetDialogStyle)
+    constructor(mContext: Context, config: Config) : this(mContext, config, R.style.ActionSheetDialogStyle)
 
     init {
         confirmView = getSelectConfirmBinding()

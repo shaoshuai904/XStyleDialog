@@ -8,6 +8,7 @@ import android.view.View
 import android.widget.DatePicker
 import android.widget.NumberPicker.OnValueChangeListener
 import androidx.annotation.ColorInt
+import androidx.annotation.StyleRes
 import androidx.core.content.ContextCompat
 import com.maple.msdialog.databinding.MsDialogNumberPickerBinding
 import com.maple.msdialog.utils.DialogUtil.setScaleWidth
@@ -18,7 +19,10 @@ import com.maple.msdialog.utils.DialogUtil.setScaleWidth
  * @author shaoshuai
  * @time 2018/12/6
  */
-class AlertNumberPickerDialog(private val mContext: Context) : Dialog(mContext, R.style.AlertDialogStyle) {
+class AlertNumberPickerDialog(
+        private val mContext: Context,
+        @StyleRes private val themeResId: Int = R.style.AlertDialogStyle
+) : Dialog(mContext, themeResId) {
     private val binding: MsDialogNumberPickerBinding = MsDialogNumberPickerBinding.inflate(
             LayoutInflater.from(mContext), null, false)
     val rootView by lazy { binding.root }
@@ -26,6 +30,9 @@ class AlertNumberPickerDialog(private val mContext: Context) : Dialog(mContext, 
     private var showMsg = false
     private var showRightBtn = false
     private var showLeftBtn = false
+
+    // 方便java调用
+    constructor(mContext: Context) : this(mContext, R.style.AlertDialogStyle)
 
     init {
         // get custom Dialog layout

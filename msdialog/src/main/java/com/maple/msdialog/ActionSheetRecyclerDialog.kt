@@ -9,6 +9,7 @@ import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.LinearLayout
+import androidx.annotation.StyleRes
 import androidx.core.content.ContextCompat
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.maple.msdialog.databinding.MsDialogActionSheetRecyclerBinding
@@ -31,12 +32,15 @@ import java.io.Serializable
  */
 abstract class ActionSheetRecyclerDialog(
         private val mContext: Context,
-        private val config: Config = Config(mContext)
-) : BottomSheetDialog(mContext, R.style.ActionSheetDialogStyle) {
+        private val config: Config = Config(mContext),
+        @StyleRes private val themeResId: Int = R.style.ActionSheetDialogStyle
+) : BottomSheetDialog(mContext, themeResId) {
     private val binding: MsDialogActionSheetRecyclerBinding = MsDialogActionSheetRecyclerBinding.inflate(
             LayoutInflater.from(context), null, false)
 
-    constructor(mContext: Context) : this(mContext, Config(mContext))
+    // 方便java调用
+    constructor(mContext: Context) : this(mContext, Config(mContext), R.style.ActionSheetDialogStyle)
+    constructor(mContext: Context, config: Config) : this(mContext, config, R.style.ActionSheetDialogStyle)
 
     init {
         // set Dialog min width

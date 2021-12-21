@@ -13,6 +13,7 @@ import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import androidx.annotation.ColorInt
+import androidx.annotation.StyleRes
 import androidx.core.content.ContextCompat
 import com.maple.msdialog.databinding.MsDialogAlertBinding
 import com.maple.msdialog.utils.DensityUtils.dp2px
@@ -27,8 +28,9 @@ import java.io.Serializable
  */
 class AlertDialog(
         private val mContext: Context,
-        private val config: Config = Config(mContext)
-) : Dialog(mContext, R.style.AlertDialogStyle) {
+        private val config: Config = Config(mContext),
+        @StyleRes private val themeResId: Int = R.style.AlertDialogStyle
+) : Dialog(mContext, themeResId) {
     private val binding: MsDialogAlertBinding = MsDialogAlertBinding.inflate(
             LayoutInflater.from(mContext), null, false)
     private var showTitle = false
@@ -36,7 +38,9 @@ class AlertDialog(
     private var showRightBtn = false
     private var showLeftBtn = false
 
-    constructor(mContext: Context) : this(mContext, Config(mContext))
+    // 方便java调用
+    constructor(mContext: Context) : this(mContext, Config(mContext), R.style.AlertDialogStyle)
+    constructor(mContext: Context, config: Config) : this(mContext, config, R.style.AlertDialogStyle)
 
     init {
         // get custom Dialog layout

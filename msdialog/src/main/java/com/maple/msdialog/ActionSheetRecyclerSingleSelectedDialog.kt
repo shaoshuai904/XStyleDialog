@@ -1,6 +1,7 @@
 package com.maple.msdialog
 
 import android.content.Context
+import androidx.annotation.StyleRes
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.maple.msdialog.adapter.SheetSingleSelectedAdapter
 
@@ -12,8 +13,9 @@ import com.maple.msdialog.adapter.SheetSingleSelectedAdapter
  */
 class ActionSheetRecyclerSingleSelectedDialog(
         private val mContext: Context,
-        private val config: Config = Config(mContext)
-) : ActionSheetRecyclerDialog(mContext, config) {
+        private val config: Config = Config(mContext),
+        @StyleRes private val themeResId: Int = R.style.ActionSheetDialogStyle
+) : ActionSheetRecyclerDialog(mContext, config, themeResId) {
     private var onSingleSelectedItemClickListener: OnSheetItemClickListener? = null
     private val adapter by lazy {
         SheetSingleSelectedAdapter(mContext, config).apply {
@@ -24,6 +26,10 @@ class ActionSheetRecyclerSingleSelectedDialog(
             }
         }
     }
+
+    // 方便java调用
+    constructor(mContext: Context) : this(mContext, Config(mContext), R.style.ActionSheetDialogStyle)
+    constructor(mContext: Context, config: Config) : this(mContext, config, R.style.ActionSheetDialogStyle)
 
     // 添加动作页签集合
     fun addSheetItems(items: List<SheetItem>): ActionSheetRecyclerSingleSelectedDialog {

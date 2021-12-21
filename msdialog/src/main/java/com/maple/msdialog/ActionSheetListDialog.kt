@@ -11,6 +11,7 @@ import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.LinearLayout
+import androidx.annotation.StyleRes
 import com.maple.msdialog.adapter.ActionSheetAdapter
 import com.maple.msdialog.databinding.MsDialogActionSheetListBinding
 import com.maple.msdialog.utils.DensityUtils.dp2px
@@ -25,12 +26,17 @@ import java.io.Serializable
  */
 class ActionSheetListDialog(
         private val mContext: Context,
-        private val config: Config = Config(mContext)
-) : Dialog(mContext, R.style.ActionSheetDialogStyle) {
+        private val config: Config = Config(mContext),
+        @StyleRes private val themeResId: Int = R.style.ActionSheetDialogStyle
+) : Dialog(mContext, themeResId) {
     private val binding: MsDialogActionSheetListBinding = MsDialogActionSheetListBinding.inflate(
             LayoutInflater.from(context), null, false)
     private val adapter by lazy { ActionSheetAdapter(mContext) }
     private var sheetItemList: MutableList<SheetItem>? = null
+
+    // 方便java调用
+    constructor(mContext: Context) : this(mContext, Config(mContext), R.style.ActionSheetDialogStyle)
+    constructor(mContext: Context, config: Config) : this(mContext, config, R.style.ActionSheetDialogStyle)
 
     init {
         // set Dialog min width
@@ -53,8 +59,6 @@ class ActionSheetListDialog(
             }
         }
     }
-
-    constructor(mContext: Context) : this(mContext, Config(mContext))
 
     fun getRootView() = binding.root
     fun getTitleView() = binding.tvTitle
