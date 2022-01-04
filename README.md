@@ -2,7 +2,8 @@
 
 [![API](https://img.shields.io/badge/API-19%2B-green.svg?style=flat)](https://android-arsenal.com/api?level=19)
 [![jitpack](https://jitpack.io/v/shaoshuai904/XStyleDialog.svg)](https://jitpack.io/#shaoshuai904/XStyleDialog)
-[![demo](https://img.shields.io/badge/download-demo-blue.svg)](/screens/app-v2.0.3_44.apk) <-- 点击下载demo
+
+[下载demo.apk](/screens/app-v2.0.3_44.apk)
 
 
 XStyleDialog中内置多种常见样式的Dialog。
