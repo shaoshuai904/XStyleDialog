@@ -280,7 +280,6 @@ class AlertNumberPickerDialog(
         // divider 分割线
         var dividerWidth: Int = 1 //0.4f.dp2px(context) // 分割线宽度
         var dividerColor: Drawable = ColorDrawable(Color.parseColor("#C9C9C9"))// 分割线
-
     }
 
 }

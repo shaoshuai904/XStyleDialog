@@ -46,14 +46,14 @@ class AlertEditDialog(
 //        setContentView(getRootView())
 //    }
 
-    private fun getRootView() = binding.root
-    private fun getTitleView() = binding.tvTitle
-    private fun getMessageView() = binding.tvMsg
-    private fun getLineView() = binding.vLine
-    private fun getBottomBtnView() = binding.llBottom // 底部bottom区域
-    private fun getLeftBtnView() = binding.btLeft // 左侧按钮
-    private fun getRightBtnView() = binding.btRight // 右侧按钮
-    private fun getBtnLineView() = binding.vBtnLine // 左右按钮分割线
+    fun getRootView() = binding.root
+    fun getTitleView() = binding.tvTitle
+    fun getMessageView() = binding.tvMsg
+    fun getLineView() = binding.vLine
+    fun getBottomBtnView() = binding.llBottom // 底部bottom区域
+    fun getLeftBtnView() = binding.btLeft // 左侧按钮
+    fun getRightBtnView() = binding.btRight // 右侧按钮
+    fun getBtnLineView() = binding.vBtnLine // 左右按钮分割线
 
     fun setScaleWidth(scWidth: Double): AlertEditDialog {
         config.scaleWidth = scWidth
