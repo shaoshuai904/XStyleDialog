@@ -35,43 +35,33 @@ class AlertDialog(
             LayoutInflater.from(mContext), null, false)
     private var showTitle = false
     private var showMsg = false
-    private var showRightBtn = false
     private var showLeftBtn = false
+    private var showRightBtn = false
 
     // 方便java调用
     constructor(mContext: Context) : this(mContext, Config(mContext), R.style.AlertDialogStyle)
     constructor(mContext: Context, config: Config) : this(mContext, config, R.style.AlertDialogStyle)
 
-    init {
-        // get custom Dialog layout
-        binding.apply {
-            tvTitle.visibility = View.GONE
-            tvMsg.visibility = View.GONE
-            vLine.visibility = View.VISIBLE
-            btLeft.visibility = View.GONE
-            btRight.visibility = View.GONE
-            vBtnLine.visibility = View.GONE
-        }
+    private fun getRootView() = binding.root
+    private fun getTitleView() = binding.tvTitle
+    private fun getMessageView() = binding.tvMsg
+    private fun getLineView() = binding.vLine
+    private fun getBottomBtnView() = binding.llBottom // 底部bottom区域
+    private fun getLeftBtnView() = binding.btLeft // 左侧按钮
+    private fun getRightBtnView() = binding.btRight // 右侧按钮
+    private fun getBtnLineView() = binding.vBtnLine // 左右按钮分割线
 
-        // set Dialog style
-        setContentView(binding.root)
-    }
-
-    fun getRootView() = binding.root
-    fun getTitleView() = binding.tvTitle
-    fun getMessageView() = binding.tvMsg
-    fun getLeftBtnView() = binding.btLeft
-    fun getRightBtnView() = binding.btRight
-    fun getLineView() = binding.vLine
-    fun getBtnLineView() = binding.vBtnLine
-
+    /**
+     * 设置Dialog宽度：相对于屏幕宽度比例
+     */
     fun setScaleWidth(scWidth: Double): AlertDialog {
         config.scaleWidth = scWidth
-        setScaleWidth(binding.root, scWidth)
         return this
     }
 
-    // 点击外围是否可取消
+    /**
+     * 点击外围是否可取消
+     */
     fun setDialogCancelable(cancelable: Boolean = true): AlertDialog {
         setCancelable(cancelable)
         setCanceledOnTouchOutside(cancelable)
@@ -94,7 +84,7 @@ class AlertDialog(
             isBold: Boolean = false// 是否加粗
     ): AlertDialog {
         showTitle = true
-        binding.tvTitle.apply {
+        getTitleView().apply {
             text = title ?: config.defNullText
             setTextColor(color)
             textSize = spSize
@@ -108,7 +98,9 @@ class AlertDialog(
         return setMessage(convertHtmlText(message))
     }
 
-    // 将html类文本转换成普通文本
+    /**
+     * 将html类文本转换成普通文本
+     */
     fun convertHtmlText(htmlText: String?): Spanned {
         val source = htmlText ?: (config.defNullText) as String
         return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
@@ -128,7 +120,7 @@ class AlertDialog(
             gravity: Int = Gravity.CENTER// 偏左，居中，偏右
     ): AlertDialog {
         showMsg = true
-        binding.tvMsg.apply {
+        getMessageView().apply {
             text = message ?: config.defNullText
             setTextColor(color)
             this.gravity = gravity
@@ -139,11 +131,16 @@ class AlertDialog(
         return this
     }
 
+    /**
+     * 设置底部按钮高度，单位: dp
+     */
     fun setBottomViewHeightDp(heightDp: Float) = setBottomViewHeight(heightDp.dp2px(mContext))
 
-    // 设置底部按钮高度
+    /**
+     * 设置底部按钮高度，单位：px
+     */
     fun setBottomViewHeight(heightPixels: Int = config.bottomViewHeight): AlertDialog {
-        with(binding.llBottom) {
+        with(getBottomBtnView()) {
             config.bottomViewHeight = heightPixels
             layoutParams = layoutParams.apply { height = heightPixels }
         }
@@ -163,7 +160,7 @@ class AlertDialog(
             isBold: Boolean = false
     ): AlertDialog {
         showLeftBtn = true
-        binding.btLeft.apply {
+        getLeftBtnView().apply {
             this.text = text ?: config.defNullText
             setTextColor(color)
             textSize = spSize
@@ -189,7 +186,7 @@ class AlertDialog(
             isBold: Boolean = false
     ): AlertDialog {
         showRightBtn = true
-        binding.btRight.apply {
+        getRightBtnView().apply {
             this.text = text ?: config.defNullText
             setTextColor(color)
             textSize = spSize
@@ -203,47 +200,53 @@ class AlertDialog(
     }
 
     private fun setLayout() {
-        setScaleWidth(binding.root, config.scaleWidth)
-        setBottomViewHeight()
-
-        binding.apply {
-            llContent.background = config.dialogBg
-            with(vLine) {
-                background = config.dividerColor
-                layoutParams = layoutParams.apply { height = config.dividerWidth }
-            }
-            with(vBtnLine) {
+        setContentView(getRootView())
+        setScaleWidth(getRootView(), config.scaleWidth)
+        getRootView().background = config.dialogBg
+        // title & msg
+        getTitleView().visibility = if (showTitle) View.VISIBLE else View.GONE
+        getMessageView().visibility = if (showMsg) View.VISIBLE else View.GONE
+        if (!showTitle && !showMsg) {
+            getTitleView().text = config.defNullText
+            getTitleView().visibility = View.VISIBLE
+        }
+        with(getLineView()) {
+            background = config.dividerColor
+            layoutParams = layoutParams.apply { height = config.dividerWidth }
+        }
+        setBottomViewHeight(config.bottomViewHeight)
+        // zero button
+        if (!showRightBtn && !showLeftBtn) {
+            getLineView().visibility = View.GONE
+            getBottomBtnView().visibility = View.GONE
+        } else {
+            getLineView().visibility = View.VISIBLE
+            getBottomBtnView().visibility = View.VISIBLE
+        }
+        // one button
+        if (showRightBtn && !showLeftBtn) {
+            getLeftBtnView().visibility = View.GONE
+            getBtnLineView().visibility = View.GONE
+            getRightBtnView().visibility = View.VISIBLE
+            getRightBtnView().background = config.singleBtnBg
+        }
+        if (!showRightBtn && showLeftBtn) {
+            getLeftBtnView().visibility = View.VISIBLE
+            getLeftBtnView().background = config.singleBtnBg
+            getBtnLineView().visibility = View.GONE
+            getRightBtnView().visibility = View.GONE
+        }
+        // two button
+        if (showRightBtn && showLeftBtn) {
+            getLeftBtnView().visibility = View.VISIBLE
+            getLeftBtnView().background = config.leftBtnBg
+            with(getBtnLineView()) {
+                visibility = View.VISIBLE
                 background = config.dividerColor
                 layoutParams = layoutParams.apply { width = config.dividerWidth }
             }
-            if (!showTitle && !showMsg) {
-                tvTitle.text = config.defNullText
-                tvTitle.visibility = View.VISIBLE
-            }
-            tvTitle.visibility = if (showTitle) View.VISIBLE else View.GONE
-            tvMsg.visibility = if (showMsg) View.VISIBLE else View.GONE
-            // zero button
-            if (!showRightBtn && !showLeftBtn) {
-                vLine.visibility = View.GONE
-                llBottom.visibility = View.GONE
-            }
-            // one button
-            if (showRightBtn && !showLeftBtn) {
-                btRight.visibility = View.VISIBLE
-                btRight.background = config.singleBtnBg
-            }
-            if (!showRightBtn && showLeftBtn) {
-                btLeft.visibility = View.VISIBLE
-                btLeft.background = config.singleBtnBg
-            }
-            // two button
-            if (showRightBtn && showLeftBtn) {
-                btLeft.visibility = View.VISIBLE
-                btLeft.background = config.leftBtnBg
-                vBtnLine.visibility = View.VISIBLE
-                btRight.visibility = View.VISIBLE
-                btRight.background = config.rightBtnBg
-            }
+            getRightBtnView().visibility = View.VISIBLE
+            getRightBtnView().background = config.rightBtnBg
         }
     }
 
@@ -252,11 +255,10 @@ class AlertDialog(
         super.show()
     }
 
-
     /**
      * AlertDialog 的配置
      */
-    open class Config(
+    class Config(
             var context: Context
     ) : Serializable {
         var scaleWidth: Double = 0.75 // 宽度占屏幕宽百分比
@@ -296,6 +298,6 @@ class AlertDialog(
         // divider 分割线
         var dividerWidth: Int = 1 //0.4f.dp2px(context) // 分割线宽度
         var dividerColor: Drawable = ColorDrawable(Color.parseColor("#C9C9C9"))// 分割线
-
     }
+
 }

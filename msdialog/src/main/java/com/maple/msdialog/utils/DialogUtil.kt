@@ -14,7 +14,9 @@ import android.view.WindowManager
  */
 object DialogUtil {
 
-    // 设置Dialog宽度：相对于屏幕宽度比例
+    /**
+     * 设置Dialog宽度：相对于屏幕宽度比例
+     */
     fun Dialog.setScaleWidth(rootView: View, scWidth: Double) {
         val newWidth = (context.getScreenWidth() * scWidth).toInt()
         rootView.layoutParams = rootView.layoutParams.apply {
@@ -22,7 +24,9 @@ object DialogUtil {
         }
     }
 
-    // 设置Dialog高度：相对于屏幕高度比例
+    /**
+     * 设置Dialog高度：相对于屏幕高度比例
+     */
     fun Dialog.setScaleHeight(rootView: View, scHeight: Double) {
         val newHeight = (context.getScreenHeight() * scHeight).toInt()
         rootView.layoutParams = rootView.layoutParams.apply {

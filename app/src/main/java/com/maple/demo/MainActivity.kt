@@ -303,18 +303,18 @@ class MainActivity : Activity() {
             setTitle("姓名")
             setMessage("请输入您的真实姓名。")
             setLeftButton("取消")
-            setRightButton("确定") {
+            setRightButton("确定", OnEditTextCallListener {
                 showToast(it)
-            }
+            })
         }.show()
     }
 
     fun aeTwo(view: View?) {
         AlertEditDialog(this).apply {
             setMessage("给自己起一个好听的名字吧")
-            setRightButton("确定") {
+            setRightButton("确定", OnEditTextCallListener {
                 showToast(it)
-            }
+            })
         }.show()
     }
 

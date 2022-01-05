@@ -6,6 +6,10 @@ import android.graphics.Color
 import android.graphics.Typeface
 import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.Drawable
+import android.os.Build
+import android.text.Html
+import android.text.Spanned
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import androidx.annotation.ColorInt
@@ -17,7 +21,7 @@ import com.maple.msdialog.utils.DialogUtil.setScaleWidth
 import java.io.Serializable
 
 /**
- * 警告框式Edit Dialog [ 标题 + 输入框 + 消息文本 + 左按钮 + 右按钮 ]
+ * 警告框式Edit Dialog [ 标题 + 消息文本 + 输入框 + 左按钮 + 右按钮 ]
  *
  * @author shaoshuai
  * @time 2017/3/23
@@ -38,31 +42,27 @@ class AlertEditDialog(
     constructor(mContext: Context) : this(mContext, Config(mContext), R.style.AlertDialogStyle)
     constructor(mContext: Context, config: Config) : this(mContext, config, R.style.AlertDialogStyle)
 
-    init {
-        // get custom Dialog layout
-        binding.apply {
-            tvTitle.visibility = View.GONE
-            tvMsg.visibility = View.GONE
-            vLine.visibility = View.VISIBLE
-            btLeft.visibility = View.GONE
-            btRight.visibility = View.GONE
-            vBtnLine.visibility = View.GONE
-        }
+//    init {
+//        setContentView(getRootView())
+//    }
 
-        // set Dialog style
-        //dialog = Dialog(context, R.style.AlertDialogStyle)
-        setContentView(binding.root)
-    }
-
-    fun getRootView() = binding.root
-    fun getTitleView() = binding.tvTitle
-    fun getMessageView() = binding.tvMsg
-    fun getLeftBtnView() = binding.btLeft
-    fun getRightBtnView() = binding.btRight
+    private fun getRootView() = binding.root
+    private fun getTitleView() = binding.tvTitle
+    private fun getMessageView() = binding.tvMsg
+    private fun getLineView() = binding.vLine
+    private fun getBottomBtnView() = binding.llBottom // 底部bottom区域
+    private fun getLeftBtnView() = binding.btLeft // 左侧按钮
+    private fun getRightBtnView() = binding.btRight // 右侧按钮
+    private fun getBtnLineView() = binding.vBtnLine // 左右按钮分割线
 
     fun setScaleWidth(scWidth: Double): AlertEditDialog {
         config.scaleWidth = scWidth
-        setScaleWidth(binding.root, scWidth)
+        return this
+    }
+
+    fun setDialogCancelable(cancelable: Boolean = true): AlertEditDialog {
+        setCancelable(cancelable)
+        setCanceledOnTouchOutside(cancelable)
         return this
     }
 
@@ -71,18 +71,19 @@ class AlertEditDialog(
     }
 
     override fun setTitle(title: CharSequence?) {
+        super.setTitle(title)
         this.setTitle(title, isBold = false)
     }
 
     fun setTitle(
             title: CharSequence?,
-            @ColorInt color: Int = config.titleColor,
-            spSize: Float = config.titleTextSizeSp,
-            isBold: Boolean = false
+            @ColorInt color: Int = config.titleColor,// 字体颜色
+            spSize: Float = config.titleTextSizeSp,// 字体大小
+            isBold: Boolean = false// 是否加粗
     ): AlertEditDialog {
         showTitle = true
-        binding.tvTitle.apply {
-            text = title
+        getTitleView().apply {
+            text = title ?: config.defNullText
             setTextColor(color)
             textSize = spSize
             setPadding(config.titlePaddingLeft, config.titlePaddingTop, config.titlePaddingRight, config.titlePaddingBottom)
@@ -91,16 +92,36 @@ class AlertEditDialog(
         return this
     }
 
+    fun setHtmlMessage(message: String?): AlertEditDialog {
+        return setMessage(convertHtmlText(message))
+    }
+
+    /**
+     * 将html类文本转换成普通文本
+     */
+    fun convertHtmlText(htmlText: String?): Spanned {
+        val source = htmlText ?: (config.defNullText) as String
+        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            Html.fromHtml(source, Html.FROM_HTML_MODE_LEGACY)
+        } else {
+            Html.fromHtml(source)
+        }
+    }
+
+    fun setMessage(message: CharSequence?) = setMessage(message, isBold = false)
+
     fun setMessage(
-            msg: CharSequence?,
-            @ColorInt color: Int = config.messageColor,
-            spSize: Float = config.messageTextSizeSp,
-            isBold: Boolean = false
+            message: CharSequence?,
+            @ColorInt color: Int = config.messageColor,// 字体颜色
+            spSize: Float = config.messageTextSizeSp, // 字体大小
+            isBold: Boolean = false, // 是否加粗
+            gravity: Int = Gravity.CENTER// 偏左，居中，偏右
     ): AlertEditDialog {
         showMsg = true
-        binding.tvMsg.apply {
-            text = msg
+        getMessageView().apply {
+            text = message ?: config.defNullText
             setTextColor(color)
+            this.gravity = gravity
             textSize = spSize
             setPadding(config.messagePaddingLeft, config.messagePaddingTop, config.messagePaddingRight, config.messagePaddingBottom)
             setTypeface(typeface, if (isBold) Typeface.BOLD else Typeface.NORMAL)
@@ -108,11 +129,16 @@ class AlertEditDialog(
         return this
     }
 
+    /**
+     * 设置底部按钮高度，单位: dp
+     */
     fun setBottomViewHeightDp(heightDp: Float) = setBottomViewHeight(heightDp.dp2px(mContext))
 
-    // 设置底部按钮高度
+    /**
+     * 设置底部按钮高度，单位：px
+     */
     fun setBottomViewHeight(heightPixels: Int = config.bottomViewHeight): AlertEditDialog {
-        with(binding.llBottom) {
+        with(getBottomBtnView()) {
             config.bottomViewHeight = heightPixels
             layoutParams = layoutParams.apply { height = heightPixels }
         }
@@ -132,7 +158,7 @@ class AlertEditDialog(
             isBold: Boolean = false
     ): AlertEditDialog {
         showLeftBtn = true
-        binding.btLeft.apply {
+        getLeftBtnView().apply {
             this.text = text ?: config.defNullText
             setTextColor(color)
             textSize = spSize
@@ -175,47 +201,53 @@ class AlertEditDialog(
     }
 
     private fun setLayout() {
-        setScaleWidth(binding.root, config.scaleWidth)
-        setBottomViewHeight()
-
-        binding.apply {
-            llContent.background = config.dialogBg
-            with(vLine) {
-                background = config.dividerColor
-                layoutParams = layoutParams.apply { height = config.dividerWidth }
-            }
-            with(vBtnLine) {
+        setContentView(getRootView())
+        setScaleWidth(getRootView(), config.scaleWidth)
+        getRootView().background = config.dialogBg
+        // title & msg
+        getTitleView().visibility = if (showTitle) View.VISIBLE else View.GONE
+        getMessageView().visibility = if (showMsg) View.VISIBLE else View.GONE
+        if (!showTitle && !showMsg) {
+            getTitleView().text = config.defNullText
+            getTitleView().visibility = View.VISIBLE
+        }
+        with(getLineView()) {
+            background = config.dividerColor
+            layoutParams = layoutParams.apply { height = config.dividerWidth }
+        }
+        setBottomViewHeight(config.bottomViewHeight)
+        // zero button
+        if (!showRightBtn && !showLeftBtn) {
+            getLineView().visibility = View.GONE
+            getBottomBtnView().visibility = View.GONE
+        } else {
+            getLineView().visibility = View.VISIBLE
+            getBottomBtnView().visibility = View.VISIBLE
+        }
+        // one button
+        if (showRightBtn && !showLeftBtn) {
+            getLeftBtnView().visibility = View.GONE
+            getBtnLineView().visibility = View.GONE
+            getRightBtnView().visibility = View.VISIBLE
+            getRightBtnView().background = config.singleBtnBg
+        }
+        if (!showRightBtn && showLeftBtn) {
+            getLeftBtnView().visibility = View.VISIBLE
+            getLeftBtnView().background = config.singleBtnBg
+            getBtnLineView().visibility = View.GONE
+            getRightBtnView().visibility = View.GONE
+        }
+        // two button
+        if (showRightBtn && showLeftBtn) {
+            getLeftBtnView().visibility = View.VISIBLE
+            getLeftBtnView().background = config.leftBtnBg
+            with(getBtnLineView()) {
+                visibility = View.VISIBLE
                 background = config.dividerColor
                 layoutParams = layoutParams.apply { width = config.dividerWidth }
             }
-            if (!showTitle && !showMsg) {
-                tvTitle.text = config.defNullText
-                tvTitle.visibility = View.VISIBLE
-            }
-            tvTitle.visibility = if (showTitle) View.VISIBLE else View.GONE
-            tvMsg.visibility = if (showMsg) View.VISIBLE else View.GONE
-            // zero button
-            if (!showRightBtn && !showLeftBtn) {
-                vLine.visibility = View.GONE
-                llBottom.visibility = View.GONE
-            }
-            // one button
-            if (showRightBtn && !showLeftBtn) {
-                btRight.visibility = View.VISIBLE
-                btRight.background = config.singleBtnBg
-            }
-            if (!showRightBtn && showLeftBtn) {
-                btLeft.visibility = View.VISIBLE
-                btLeft.background = config.singleBtnBg
-            }
-            // two button
-            if (showRightBtn && showLeftBtn) {
-                btLeft.visibility = View.VISIBLE
-                btLeft.background = config.leftBtnBg
-                vBtnLine.visibility = View.VISIBLE
-                btRight.visibility = View.VISIBLE
-                btRight.background = config.rightBtnBg
-            }
+            getRightBtnView().visibility = View.VISIBLE
+            getRightBtnView().background = config.rightBtnBg
         }
     }
 
@@ -227,7 +259,7 @@ class AlertEditDialog(
     /**
      * AlertEditDialog 的配置
      */
-    open class Config(
+    class Config(
             var context: Context
     ) : Serializable {
         var scaleWidth: Double = 0.75 // 宽度占屏幕宽百分比
@@ -267,6 +299,6 @@ class AlertEditDialog(
         // divider 分割线
         var dividerWidth: Int = 1 //0.4f.dp2px(context) // 分割线宽度
         var dividerColor: Drawable = ColorDrawable(Color.parseColor("#C9C9C9"))// 分割线
-
     }
+
 }
