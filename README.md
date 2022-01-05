@@ -3,7 +3,7 @@
 [![API](https://img.shields.io/badge/API-19%2B-green.svg?style=flat)](https://android-arsenal.com/api?level=19)
 [![jitpack](https://jitpack.io/v/shaoshuai904/XStyleDialog.svg)](https://jitpack.io/#shaoshuai904/XStyleDialog)
 
-[下载demo.apk](/screens/app-v2.0.3_44.apk)
+[下载demo.apk](/screens/app-v2.0.5_48.apk)
 
 
 XStyleDialog中内置多种常见样式的Dialog。
@@ -34,7 +34,7 @@ dependencies {
 	// for Support
 	implementation 'com.github.shaoshuai904:XStyleDialog:1.5.1'
 	// for androidx
-	implementation 'com.github.shaoshuai904:XStyleDialog:2.0.4'
+	implementation 'com.github.shaoshuai904:XStyleDialog:2.0.5'
 }
 ```
 
@@ -117,7 +117,7 @@ dependencies {
 
 
 ----------
-## v2.0.4 ##
+## v2.0.5 ##
  - 更新minSdkVersion = 19
  - 提供`setScaleWidth`和`setScaleHeight`方法设置Dialog的屏幕百分比宽度和高度
  - 提供Dialog的getRootView及各个子View方法，以支持深度自定义。
