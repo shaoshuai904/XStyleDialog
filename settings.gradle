@@ -1,2 +1,2 @@
-include ':app', ':msdialog'
 rootProject.name = "XStyleDialog"
+include ':app', ':msdialog'

@@ -25,15 +25,6 @@ android {
         viewBinding true
     }
 
-//    task makeJar(type: Copy) {
-//        delete 'build/libs/myjar.jar'// 删除存在的
-//        from('build/intermediates/aar_main_jar/release/')// 设置拷贝的文件
-//        into('build/libs/')// 将classes.jar放入build/libs/目录下
-//        include('classes.jar')// include,exclude参数来设置过滤
-//        rename('classes.jar', 'myjar.jar')// 重命名
-//    }
-//
-//    makeJar.dependsOn(build)
 }
 
 dependencies {
