@@ -34,7 +34,7 @@ dependencies {
 	// for Support
 	implementation 'com.github.shaoshuai904:XStyleDialog:1.5.1'
 	// for androidx
-	implementation 'com.github.shaoshuai904:XStyleDialog:2.0.5'
+	implementation 'com.github.shaoshuai904:XStyleDialog:2.1.0'
 }
 ```
 

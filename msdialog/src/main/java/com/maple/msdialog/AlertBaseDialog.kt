@@ -62,6 +62,10 @@ open class AlertBaseDialog(
         return this
     }
 
+    /**
+     * 设置自定义内容View
+     * 底部是默认的 取消、确认 按钮
+     */
     fun setDialogContext(view: View, index: Int = -1): AlertBaseDialog {
         getContentView().addView(view, index)
         return this
@@ -140,11 +144,11 @@ open class AlertBaseDialog(
         setScaleWidth(getRootView(), config.scaleWidth)
         getRootView().background = config.dialogBg
         // 底部按钮
+        setBottomViewHeight(config.bottomViewHeight)
         with(getLineView()) {
             background = config.dividerColor
             layoutParams = layoutParams.apply { height = config.dividerWidth }
         }
-        setBottomViewHeight(config.bottomViewHeight)
         // zero button
         if (!showRightBtn && !showLeftBtn) {
             getLineView().visibility = View.GONE
@@ -193,10 +197,10 @@ open class AlertBaseDialog(
     ) : Serializable {
         var scaleWidth: Double = 0.75 // 宽度占屏幕宽百分比
         var defNullText: CharSequence = "null" // 默认空文本
+        var dialogBg: Drawable? = ContextCompat.getDrawable(context, R.drawable.ms_shape_alert_dialog_bg) // 整个Dialog的背景
 
         // button
         var bottomViewHeight: Int = 48f.dp2px(context) // 底部按钮高度
-        var dialogBg: Drawable? = ContextCompat.getDrawable(context, R.drawable.ms_shape_alert_dialog_bg) // 整个Dialog的背景
         var singleBtnBg: Drawable? = ContextCompat.getDrawable(context, R.drawable.ms_sel_alert_dialog_single) // 单按钮背景
 
         // left button

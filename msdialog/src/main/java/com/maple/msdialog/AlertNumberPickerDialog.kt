@@ -51,7 +51,7 @@ class AlertNumberPickerDialog(
         isBold: Boolean = false
     ): AlertNumberPickerDialog {
         showTitle = true
-        binding.tvTitle.apply {
+        getTitleView().apply {
             text = title ?: config.defNullText
             setTextColor(color)
             textSize = spSize
@@ -94,12 +94,11 @@ class AlertNumberPickerDialog(
 
     override fun setLayout() {
         super.setLayout()
+        // title & msg
         setDialogContext(binding.root)
+        getTitleView().visibility = if (showTitle) View.VISIBLE else View.GONE
         if (!showTitle && !showMsg) {
             getTitleView().text = config.defNullText
-            getTitleView().visibility = View.VISIBLE
-        }
-        if (showTitle) {
             getTitleView().visibility = View.VISIBLE
         }
     }

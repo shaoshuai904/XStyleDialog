@@ -132,8 +132,8 @@ class AlertEditDialog(
 
     override fun setLayout() {
         super.setLayout()
-        setDialogContext(binding.root)
         // title & msg
+        setDialogContext(binding.root)
         getTitleView().visibility = if (showTitle) View.VISIBLE else View.GONE
         getMessageView().visibility = if (showMsg) View.VISIBLE else View.GONE
         if (!showTitle && !showMsg) {
