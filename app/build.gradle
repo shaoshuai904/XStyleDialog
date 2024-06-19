@@ -3,12 +3,12 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 
 android {
-    compileSdkVersion 32
+    compileSdkVersion 33
 
     defaultConfig {
         applicationId "com.maple.xdialog"
         minSdkVersion 19
-        targetSdkVersion 32
+        targetSdkVersion 33
         versionCode VERSION_CODE as int
         versionName VERSION_NAME
     }

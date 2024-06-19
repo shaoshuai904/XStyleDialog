@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/ms_shape_alert_dialog_bg"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/ll_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" />
+
+    <View
+        android:id="@+id/v_line"
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_marginTop="1dp"
+        android:background="@color/ms_act_line" />
+
+    <LinearLayout
+        android:id="@+id/ll_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/ms_dialog_bottom_height"
+        android:layout_margin="1px"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/bt_left"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/ms_sel_alert_dialog_left"
+            android:gravity="center"
+            android:textColor="@color/ms_def_left_color"
+            android:textSize="18sp"
+            tools:text="取消" />
+
+        <View
+            android:id="@+id/v_btn_line"
+            android:layout_width="1px"
+            android:layout_height="match_parent"
+            android:background="@color/ms_act_line" />
+
+        <TextView
+            android:id="@+id/bt_right"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/ms_sel_alert_dialog_right"
+            android:gravity="center"
+            android:textColor="@color/ms_def_right_color"
+            android:textSize="18sp"
+            tools:text="确定退出" />
+    </LinearLayout>
+
+</LinearLayout>
