@@ -1,0 +1,11 @@
+apply plugin: 'jacoco'
+
+android {
+    defaultPublishConfig "debug"
+    buildTypes {
+        debug {
+            /**打开覆盖率统计开关**/
+            testCoverageEnabled = true
+        }
+    }
+}

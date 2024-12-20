@@ -10,10 +10,20 @@ import android.widget.Toast
 import com.maple.demo.custom.CustomActionSheetRecyclerDialogActivity
 import com.maple.demo.custom.CustomAlertDialogActivity
 import com.maple.demo.custom.CustomMultipleSelectedDialog
-import com.maple.msdialog.*
+import com.maple.demo.jacoco.JacocoHelper
+import com.maple.msdialog.ActionSheetDialog
+import com.maple.msdialog.ActionSheetListDialog
+import com.maple.msdialog.ActionSheetRecyclerDialog
+import com.maple.msdialog.ActionSheetRecyclerMultipleSelectedDialog
+import com.maple.msdialog.ActionSheetRecyclerSingleSelectedDialog
+import com.maple.msdialog.AlertDialog
+import com.maple.msdialog.AlertEditDialog
+import com.maple.msdialog.AlertNumberPickerDialog
+import com.maple.msdialog.OnEditTextCallListener
+import com.maple.msdialog.OnSheetItemClickListener
+import com.maple.msdialog.SheetItem
 import com.maple.msdialog.utils.DensityUtils.dp2px
-import com.maple.msdialog.utils.DialogUtil.setScaleWidth
-import java.util.*
+import java.util.Random
 
 /**
  * Custom Dialog Demo
@@ -28,6 +38,12 @@ class MainActivity : Activity() {
         setContentView(R.layout.activity_main)
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        Log.d("Jacoco", "MainActivity onDestroy")
+//        JacocoHelper.generateEcFile(this, true)
+    }
+
     // ------------------------------------ Alert Dialog -------------------------------------------
     fun adOne(view: View?) {
         val config = AlertDialog.Config(this).apply {
@@ -38,11 +54,11 @@ class MainActivity : Activity() {
 //            messagePaddingBottom = 20f.dp2px(context)
         }
         AlertDialog(this, config)
-                .setDialogTitle("退出当前账号")
-                .setHtmlMessage("再连续登陆<font color=\"#ff0000\">15</font>天，就可变身为QQ达人。退出QQ可能会使你现有记录归零，确定退出？")
-                .setLeftButton("取消")
-                .setRightButton("确认退出") { showToast("exit") }
-                .show()
+            .setDialogTitle("退出当前账号")
+            .setHtmlMessage("再连续登陆<font color=\"#ff0000\">15</font>天，就可变身为QQ达人。退出QQ可能会使你现有记录归零，确定退出？")
+            .setLeftButton("取消")
+            .setRightButton("确认退出") { showToast("exit") }
+            .show()
     }
 
     fun adTwo(view: View?) {
@@ -126,10 +142,10 @@ class MainActivity : Activity() {
     fun asrList(view: View?) {
         if (ar1 == null) {
             val items = arrayListOf(
-                    User("001", "张三", "男", 23),
-                    User("002", "李四", "女", 8),
-                    User("004", "王五", "男", 11),
-                    User("007", "赵六六", "女", 123)
+                User("001", "张三", "男", 23),
+                User("002", "李四", "女", 8),
+                User("004", "王五", "男", 11),
+                User("007", "赵六六", "女", 123)
             )
             ar1 = ActionSheetRecyclerSingleSelectedDialog(this).apply {
                 setTitle("选择条目")

@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
+apply from: "$rootDir/script/jacoco_config.gradle"
 
 android {
     compileSdkVersion 33
