@@ -4,24 +4,17 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_margin="20dp"
-        android:text="Alert Dialog"
-        android:textSize="18sp" />
+    <include
+        android:id="@+id/top_bar"
+        layout="@layout/base_app_top_bar" />
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginEnd="30dp"
-        android:layout_marginBottom="30dp"
+        android:layout_margin="10dp"
         android:onClick="showDialog"
         android:text="点击显示自定义AlertDialog"
         android:textAllCaps="false" />
-
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"

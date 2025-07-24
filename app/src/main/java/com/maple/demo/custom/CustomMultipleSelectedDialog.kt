@@ -2,6 +2,7 @@ package com.maple.demo.custom
 
 import android.content.Context
 import android.view.LayoutInflater
+import androidx.core.view.updateLayoutParams
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.maple.msdialog.*
@@ -9,6 +10,7 @@ import com.maple.msdialog.adapter.SheetMultipleSelectedAdapter
 import com.maple.msdialog.databinding.MsLayoutSelectConfirmBinding
 import com.maple.pagestate.PageStateManager
 import java.util.*
+import androidx.core.view.isNotEmpty
 
 /**
  * 多选页签List Dialog [ 标题 + 页签条目 + 取消按钮 ]
@@ -21,7 +23,7 @@ class CustomMultipleSelectedDialog(
         private val config: Config = Config(mContext)
 ) : ActionSheetRecyclerDialog(mContext, config) {
     private lateinit var confirmView: MsLayoutSelectConfirmBinding
-    private lateinit var pageStateManager: PageStateManager
+//    private lateinit var pageStateManager: PageStateManager
     private var onSheetItemClickListener: OnSheetItemClickListener? = null
     private var onSheetItemSelectConfirmListener: OnSheetItemSelectConfirmListener? = null
     private val adapter by lazy {
@@ -43,21 +45,21 @@ class CustomMultipleSelectedDialog(
         setCanceledOnTouchOutside(false)
         setDataBottomPadding(0f)
         setMinScaleHeight(0.7) // 设置最小高度
-        setMaxScaleHeight(0.7) // 设置最大高度
+        setMaxScaleHeight(1.0) // 设置最大高度
 
         // 设置底部确认view
         confirmView = getSelectConfirmBinding()
         getFooterRoot().let {
-            if (it.childCount > 0) it.removeAllViews()
+            if (it.isNotEmpty()) it.removeAllViews()
             it.addView(confirmView.root)
         }
 
         // 数据列表配置
         getDataView().let {
-            pageStateManager = PageStateManager(it).apply {
-                emptyView?.setOnClickListener { loadData() }
-                retryView?.setOnClickListener { loadData() }
-            }
+//            pageStateManager = PageStateManager(it).apply {
+//                emptyView?.setOnClickListener { loadData() }
+//                retryView?.setOnClickListener { loadData() }
+//            }
 
             it.adapter = adapter
             // 添加item分割线
@@ -83,22 +85,22 @@ class CustomMultipleSelectedDialog(
     }
 
     fun loadData() {
-        pageStateManager.showLoading()
-        object : Thread() {
-            override fun run() {
-                try {
-                    sleep(2000)
-                } catch (e: InterruptedException) {
-                    e.printStackTrace()
-                }
-                if (Math.random() > 0.6) {
-                    addSheetItems(getSheetItemTestData(20))
-                    pageStateManager.showContent()
-                } else {
-                    pageStateManager.showEmpty()
-                }
-            }
-        }.start()
+//        pageStateManager.showLoading()
+//        object : Thread() {
+//            override fun run() {
+//                try {
+//                    sleep(2000)
+//                } catch (e: InterruptedException) {
+//                    e.printStackTrace()
+//                }
+//                if (Math.random() > 0.6) {
+                    addSheetItems(getSheetItemTestData(2))
+//                    pageStateManager.showContent()
+//                } else {
+//                    pageStateManager.showEmpty()
+//                }
+//            }
+//        }.start()
     }
 
     // 获取测试数据

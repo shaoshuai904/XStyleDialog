@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.maple.msdialog.ActionSheetRecyclerDialog
-import com.maple.msdialog.R
 import com.maple.msdialog.SheetItem
 import com.maple.msdialog.databinding.MsItemSingleStringBinding
 import kotlin.math.max

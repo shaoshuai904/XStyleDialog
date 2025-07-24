@@ -1,6 +1,5 @@
 package com.maple.demo.custom
 
-import android.app.Activity
 import android.graphics.Color
 import android.os.Bundle
 import android.text.Editable
@@ -9,8 +8,10 @@ import android.view.Gravity
 import android.view.View
 import android.widget.SeekBar
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.maple.demo.R
 import com.maple.demo.databinding.CustomAlertDialogBinding
+import com.maple.demo.setContentViewAndSetWindowInsets
 import com.maple.msdialog.AlertDialog
 import com.maple.msdialog.utils.DensityUtils.dp2px
 
@@ -20,7 +21,7 @@ import com.maple.msdialog.utils.DensityUtils.dp2px
  * @author : shaoshuai
  * @date ：2020/8/27
  */
-class CustomAlertDialogActivity : Activity() {
+class CustomAlertDialogActivity : AppCompatActivity() {
     private lateinit var binding: CustomAlertDialogBinding
     var mScaleWidth: Double = 0.7
     var isCancelable: Boolean = false // 点击其他区域消失
@@ -47,7 +48,13 @@ class CustomAlertDialogActivity : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = CustomAlertDialogBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        setContentViewAndSetWindowInsets(binding.root, binding.topBar.root)
+        with(binding.topBar) {
+            tvTitle.text = "Alert Dialog"
+            ivBack.setOnClickListener {
+                this@CustomAlertDialogActivity.finish()
+            }
+        }
 
         initListener()
         setDefaultValue()

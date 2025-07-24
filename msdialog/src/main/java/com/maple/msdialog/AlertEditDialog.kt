@@ -2,8 +2,6 @@ package com.maple.msdialog
 
 import android.content.Context
 import android.graphics.Typeface
-import android.os.Build
-import android.text.Html
 import android.text.Spanned
 import android.view.Gravity
 import android.view.LayoutInflater
@@ -11,6 +9,7 @@ import android.view.View
 import androidx.annotation.ColorInt
 import androidx.annotation.StyleRes
 import androidx.core.content.ContextCompat
+import androidx.core.text.HtmlCompat
 import com.maple.msdialog.databinding.MsDialogAlertEditBinding
 import com.maple.msdialog.utils.DensityUtils.dp2px
 
@@ -73,11 +72,7 @@ class AlertEditDialog(
      */
     fun convertHtmlText(htmlText: String?): Spanned {
         val source = htmlText ?: (config.defNullText) as String
-        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            Html.fromHtml(source, Html.FROM_HTML_MODE_LEGACY)
-        } else {
-            Html.fromHtml(source)
-        }
+        return HtmlCompat.fromHtml(source, HtmlCompat.FROM_HTML_MODE_LEGACY)
     }
 
     fun setMessage(message: CharSequence?) = setMessage(message, isBold = false)

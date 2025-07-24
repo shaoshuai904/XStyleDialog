@@ -6,16 +6,17 @@ import android.graphics.Color
 import android.graphics.Typeface
 import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.Drawable
-import androidx.core.content.ContextCompat
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.LinearLayout
 import androidx.annotation.StyleRes
+import androidx.core.content.ContextCompat
 import com.maple.msdialog.adapter.ActionSheetAdapter
 import com.maple.msdialog.databinding.MsDialogActionSheetListBinding
 import com.maple.msdialog.utils.DensityUtils.dp2px
-import com.maple.msdialog.utils.DialogUtil.screenInfo
+import com.maple.msdialog.utils.DialogUtil.getScreenHeight
+import com.maple.msdialog.utils.DialogUtil.getScreenWidth
 import java.io.Serializable
 
 /**
@@ -40,7 +41,7 @@ class ActionSheetListDialog(
 
     init {
         // set Dialog min width
-        binding.root.minimumWidth = mContext.screenInfo().x
+        binding.root.minimumWidth = mContext.getScreenWidth()
         binding.tvTitle.visibility = if (config.showTitle) View.VISIBLE else View.GONE
         binding.tvCancel.setOnClickListener { dismiss() }
         binding.tvCancel.visibility = if (config.showCancel) {
@@ -137,7 +138,7 @@ class ActionSheetListDialog(
         }
         val size = sheetItemList!!.size
         // 添加条目过多的时候控制高度
-        val screenHeight = mContext.screenInfo().y
+        val screenHeight = mContext.getScreenHeight()
         if (size > screenHeight / (config.actionSheetItemHeight * 2)) {
             val params = binding.lvData.layoutParams as LinearLayout.LayoutParams
             params.height = screenHeight / 2

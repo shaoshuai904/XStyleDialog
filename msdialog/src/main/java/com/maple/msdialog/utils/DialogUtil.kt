@@ -2,9 +2,7 @@ package com.maple.msdialog.utils
 
 import android.app.Dialog
 import android.content.Context
-import android.graphics.Point
 import android.view.View
-import android.view.WindowManager
 
 /**
  * Dialog Utils
@@ -36,19 +34,10 @@ object DialogUtil {
 
     // 获取屏幕宽度
     @JvmStatic
-    fun Context.getScreenWidth() = screenInfo().x
+    fun Context.getScreenWidth() = DisplayUtil.getAppDisplayWidth(this)
 
     // 获取屏幕高度
     @JvmStatic
-    fun Context.getScreenHeight() = screenInfo().y
-
-    // 获取屏幕信息
-    @JvmStatic
-    fun Context.screenInfo(): Point {
-        val size = Point()
-        val windowManager = getSystemService(Context.WINDOW_SERVICE) as WindowManager
-        windowManager.defaultDisplay.getSize(size)
-        return size
-    }
+    fun Context.getScreenHeight() = DisplayUtil.getAppDisplayHeight(this)
 
 }

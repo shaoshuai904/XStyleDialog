@@ -14,7 +14,8 @@ import androidx.core.content.ContextCompat
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.maple.msdialog.databinding.MsDialogActionSheetRecyclerBinding
 import com.maple.msdialog.utils.DensityUtils.dp2px
-import com.maple.msdialog.utils.DialogUtil.screenInfo
+import com.maple.msdialog.utils.DialogUtil.getScreenHeight
+import com.maple.msdialog.utils.DialogUtil.getScreenWidth
 import java.io.Serializable
 
 /**
@@ -31,12 +32,13 @@ import java.io.Serializable
  * @date ：2020/5/6
  */
 abstract class ActionSheetRecyclerDialog(
-        private val mContext: Context,
-        private val config: Config = Config(mContext),
-        @StyleRes private val themeResId: Int = R.style.ActionSheetDialogStyle
+    private val mContext: Context,
+    private val config: Config = Config(mContext),
+    @StyleRes private val themeResId: Int = R.style.ActionSheetDialogStyle
 ) : BottomSheetDialog(mContext, themeResId) {
     private val binding: MsDialogActionSheetRecyclerBinding = MsDialogActionSheetRecyclerBinding.inflate(
-            LayoutInflater.from(context), null, false)
+        LayoutInflater.from(context), null, false
+    )
 
     // 方便java调用
     constructor(mContext: Context) : this(mContext, Config(mContext), R.style.ActionSheetDialogStyle)
@@ -45,7 +47,7 @@ abstract class ActionSheetRecyclerDialog(
     init {
         // set Dialog min width
         binding.apply {
-            root.minimumWidth = mContext.screenInfo().x
+            root.minimumWidth = mContext.getScreenWidth()
             rlTitleBar.visibility = View.GONE
             ivClose.setImageDrawable(config.closeDraw)
             ivClose.setOnClickListener { dismiss() }
@@ -80,10 +82,10 @@ abstract class ActionSheetRecyclerDialog(
     }
 
     fun setTitle(
-            title: CharSequence?,
-            color: Int = config.titleColor,
-            spSize: Float = config.titleTextSizeSp,
-            isBold: Boolean = false
+        title: CharSequence?,
+        color: Int = config.titleColor,
+        spSize: Float = config.titleTextSizeSp,
+        isBold: Boolean = false
     ): ActionSheetRecyclerDialog {
         binding.rlTitleBar.visibility = View.VISIBLE
         binding.tvTitle.apply {
@@ -127,14 +129,14 @@ abstract class ActionSheetRecyclerDialog(
 
     // 设置最小高度百分比
     fun setMinScaleHeight(scHeight: Double): ActionSheetRecyclerDialog {
-        val height = (mContext.screenInfo().y * scHeight).toInt()
+        val height = (mContext.getScreenHeight() * scHeight).toInt()
         config.minHeight = height
         return this
     }
 
     // 设置最大高度百分比
     fun setMaxScaleHeight(scHeight: Double): ActionSheetRecyclerDialog {
-        val height = (mContext.screenInfo().y * scHeight).toInt()
+        val height = (mContext.getScreenHeight() * scHeight).toInt()
         config.maxHeight = height
         return this
     }
@@ -176,7 +178,7 @@ abstract class ActionSheetRecyclerDialog(
      * ActionSheetRecyclerDialog 的配置
      */
     open class Config(
-            var context: Context
+        var context: Context
     ) : Serializable {
         var minHeight: Int? = null //最小view高度, 单位：px
         var maxHeight: Int? = null //最大view高度, 单位：px

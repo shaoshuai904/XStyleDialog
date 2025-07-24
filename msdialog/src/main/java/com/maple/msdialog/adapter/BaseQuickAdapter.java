@@ -71,7 +71,7 @@ public abstract class BaseQuickAdapter<T, K extends RecyclerView.ViewHolder> ext
 
     // 在holder中手动绑定
     protected void bindViewClickListener(RecyclerView.ViewHolder viewHolder) {
-        int position = viewHolder.getAdapterPosition();
+        int position = viewHolder.getBindingAdapterPosition();
         if (position != RecyclerView.NO_POSITION) {
             if (itemClickListener != null) {
                 viewHolder.itemView.setOnClickListener(v ->

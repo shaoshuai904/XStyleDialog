@@ -1,6 +1,5 @@
 package com.maple.demo.custom
 
-import android.app.Activity
 import android.graphics.Color
 import android.os.Bundle
 import android.text.Editable
@@ -8,13 +7,15 @@ import android.text.TextWatcher
 import android.view.View
 import android.widget.SeekBar
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.maple.demo.databinding.CustomActionSheetRecyclerDialogBinding
+import com.maple.demo.setContentViewAndSetWindowInsets
 import com.maple.msdialog.ActionSheetRecyclerDialog
 import com.maple.msdialog.ActionSheetRecyclerSingleSelectedDialog
 import com.maple.msdialog.SheetItem
 import com.maple.msdialog.utils.DensityUtils.dp2px
-import java.util.*
+import java.util.Random
 
 /**
  * 深度自定义 ActionSheetRecyclerDialog
@@ -22,7 +23,7 @@ import java.util.*
  * @author : shaoshuai
  * @date ：2020/8/29
  */
-class CustomActionSheetRecyclerDialogActivity : Activity() {
+class CustomActionSheetRecyclerDialogActivity : AppCompatActivity() {
     private lateinit var binding: CustomActionSheetRecyclerDialogBinding
     var mScaleHeightMin: Double = 0.25
     var mScaleHeightMax: Double = 0.6
@@ -47,7 +48,13 @@ class CustomActionSheetRecyclerDialogActivity : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = CustomActionSheetRecyclerDialogBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        setContentViewAndSetWindowInsets(binding.root, binding.topBar.root)
+        with(binding.topBar) {
+            tvTitle.text = "Action Sheet Recycler Dialog"
+            ivBack.setOnClickListener {
+                this@CustomActionSheetRecyclerDialogActivity.finish()
+            }
+        }
 
         initListener()
         setDefaultValue()
