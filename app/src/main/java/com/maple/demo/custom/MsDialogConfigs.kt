@@ -40,7 +40,7 @@ object MsDialogConfigs {
      */
     fun getActionSheetRecyclerDialogConfig(mContext: Context) = ActionSheetRecyclerDialog.Config(mContext).apply {
         titleTextSizeSp = 18f
-        closeDraw = ContextCompat.getDrawable(context, R.drawable.ms_svg_ic_close)
+        closeDraw = ContextCompat.getDrawable(context, com.maple.msdialog.R.drawable.ms_svg_ic_close)
         isShowMark = true
         selectMark = ContextCompat.getDrawable(context, android.R.drawable.ic_delete)
         itemTextColor = ContextCompat.getColor(context, R.color.colorPrimary)
