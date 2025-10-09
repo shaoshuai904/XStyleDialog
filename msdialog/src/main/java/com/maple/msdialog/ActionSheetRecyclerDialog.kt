@@ -17,6 +17,9 @@ import com.maple.msdialog.databinding.MsDialogActionSheetRecyclerBinding
 import com.maple.msdialog.utils.DensityUtils.dp2px
 import com.maple.msdialog.utils.DialogUtil.getScreenHeight
 import com.maple.msdialog.utils.DialogUtil.getScreenWidth
+import com.maple.msdialog.utils.WbSystemBarStyle
+import com.maple.msdialog.utils.updateWindowInsets
+import com.maple.msdialog.utils.windowEnableEdgeToEdge
 import java.io.Serializable
 
 /**
@@ -58,13 +61,28 @@ abstract class ActionSheetRecyclerDialog(
         // create Dialog
         setContentView(binding.root)
         window?.apply {
+<<<<<<< Updated upstream
             statusBarColor = 0
             navigationBarColor = config.mainColor
             setGravity(Gravity.START or Gravity.BOTTOM)
+=======
+<<<<<<< Updated upstream
+            setGravity(Gravity.BOTTOM)
+=======
+//            statusBarColor = 0
+//            navigationBarColor = config.mainColor
+            setGravity(Gravity.START or Gravity.BOTTOM)
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
             attributes = attributes.apply {
                 x = 0
                 y = 0
             }
+            windowEnableEdgeToEdge(
+                this,
+                WbSystemBarStyle.light(config.mainColor, config.mainColor),
+                WbSystemBarStyle.light(config.mainColor, config.mainColor)
+            )
         }
     }
 

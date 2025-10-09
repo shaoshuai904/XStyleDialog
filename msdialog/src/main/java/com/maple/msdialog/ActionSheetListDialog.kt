@@ -17,7 +17,16 @@ import com.maple.msdialog.databinding.MsDialogActionSheetListBinding
 import com.maple.msdialog.utils.DensityUtils.dp2px
 import com.maple.msdialog.utils.DialogUtil.getScreenHeight
 import com.maple.msdialog.utils.DialogUtil.getScreenWidth
+<<<<<<< Updated upstream
 import com.maple.msdialog.utils.DisplayUtil
+=======
+<<<<<<< Updated upstream
+=======
+import com.maple.msdialog.utils.WbSystemBarStyle
+import com.maple.msdialog.utils.updateWindowInsets
+import com.maple.msdialog.utils.windowEnableEdgeToEdge
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
 import java.io.Serializable
 
 /**
@@ -27,12 +36,13 @@ import java.io.Serializable
  * @date ：2020/5/6
  */
 class ActionSheetListDialog(
-        private val mContext: Context,
-        private val config: Config = Config(mContext),
-        @StyleRes private val themeResId: Int = R.style.ActionSheetDialogStyle
+    private val mContext: Context,
+    private val config: Config = Config(mContext),
+    @StyleRes private val themeResId: Int = R.style.ActionSheetDialogStyle
 ) : Dialog(mContext, themeResId) {
     private val binding: MsDialogActionSheetListBinding = MsDialogActionSheetListBinding.inflate(
-            LayoutInflater.from(context), null, false)
+        LayoutInflater.from(context), null, false
+    )
     private val adapter by lazy { ActionSheetAdapter(mContext) }
     private var sheetItemList: MutableList<SheetItem>? = null
 
@@ -54,15 +64,34 @@ class ActionSheetListDialog(
         // dialog = Dialog(context, R.style.ActionSheetDialogStyle)
         setContentView(binding.root)
         window?.apply {
+<<<<<<< Updated upstream
             statusBarColor = 0
             navigationBarColor = config.mainColor
+=======
+<<<<<<< Updated upstream
+=======
+            statusBarColor = Color.TRANSPARENT
+            navigationBarColor = Color.RED
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
             setGravity(Gravity.LEFT or Gravity.BOTTOM)
             attributes = attributes.apply {
                 x = 0
                 y = 0
             }
+<<<<<<< Updated upstream
             DisplayUtil.setStatusBarLight(this, true)
             DisplayUtil.setNavigationBarLight(this, true)
+=======
+<<<<<<< Updated upstream
+=======
+            windowEnableEdgeToEdge(
+                this,
+                WbSystemBarStyle.dark(Color.RED),
+                WbSystemBarStyle.light(Color.RED, Color.RED)
+            )
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
         }
     }
 
@@ -79,10 +108,10 @@ class ActionSheetListDialog(
     }
 
     fun setTitle(
-            title: CharSequence?,
-            color: Int = config.titleTextColor,
-            spSize: Float = config.titleTextSizeSp,
-            isBold: Boolean = false
+        title: CharSequence?,
+        color: Int = config.titleTextColor,
+        spSize: Float = config.titleTextSizeSp,
+        isBold: Boolean = false
     ): ActionSheetListDialog {
         config.showTitle = true
         binding.tvTitle.apply {
@@ -96,10 +125,10 @@ class ActionSheetListDialog(
     }
 
     fun setCancelText(
-            cancelText: CharSequence? = config.cancelText,
-            color: Int = config.cancelTextColor,
-            spSize: Float = config.cancelTextSizeSp,
-            isBold: Boolean = false
+        cancelText: CharSequence? = config.cancelText,
+        color: Int = config.cancelTextColor,
+        spSize: Float = config.cancelTextSizeSp,
+        isBold: Boolean = false
     ): ActionSheetListDialog {
         config.showCancel = true
         binding.tvCancel.apply {
@@ -112,8 +141,8 @@ class ActionSheetListDialog(
     }
 
     fun addSheetItems(
-            items: MutableList<SheetItem>,
-            itemClickListener: OnSheetItemClickListener?
+        items: MutableList<SheetItem>,
+        itemClickListener: OnSheetItemClickListener?
     ): ActionSheetListDialog {
         sheetItemList = items
         binding.lvData.adapter = adapter
@@ -140,6 +169,12 @@ class ActionSheetListDialog(
         binding.root.setBackgroundColor(config.mainColor)
         binding.tvTitle.visibility = if (config.showTitle) View.VISIBLE else View.GONE
         binding.tvCancel.visibility = if (config.showCancel) View.VISIBLE else View.GONE
+        if (config.showCancel) {
+            binding.root.updateWindowInsets()
+//            binding.tvCancel.updateWindowInsets()
+        } else {
+            binding.lvData.updateWindowInsets()
+        }
         if (sheetItemList == null || sheetItemList!!.size <= 0) {
             return
         }
@@ -162,15 +197,27 @@ class ActionSheetListDialog(
      * ActionSheetListDialog 的配置
      */
     open class Config(
-            var context: Context
+        var context: Context
     ) : Serializable {
+<<<<<<< Updated upstream
+=======
+<<<<<<< Updated upstream
+=======
+>>>>>>> Stashed changes
         // root
         var paddingLeft: Int = 10f.dp2px(context)
         var paddingTop: Int = 10f.dp2px(context)
         var paddingRight: Int = 10f.dp2px(context)
+<<<<<<< Updated upstream
         var paddingBottom: Int = DisplayUtil.getNavigationBarHeight(context) + 10f.dp2px(context)
         var mainColor: Int = Color.TRANSPARENT // 主背景色
 
+=======
+        var paddingBottom: Int = 10f.dp2px(context)
+        var mainColor: Int = Color.TRANSPARENT // 主背景色
+
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
         // title
         var showTitle: Boolean = false
         var titleTextSizeSp: Float = 16f // 字体大小

@@ -262,18 +262,33 @@ public class DisplayUtil {
         return defValue;
     }
 
+<<<<<<< Updated upstream
     public static void setStatusBarLight(Window window, boolean isLight) {
         Log.e("Display12", "setStatusBarLight $isLight");
+=======
+<<<<<<< Updated upstream
+=======
+    public static void setStatusBarLight(Window window, boolean isLight) {
+        Log.e("Display12", "setStatusBarLight " + isLight);
+>>>>>>> Stashed changes
         WindowInsetsControllerCompat insetsController = WindowCompat.getInsetsController(window, window.getDecorView());
         insetsController.setAppearanceLightStatusBars(isLight);
     }
 
     public static void setNavigationBarLight(Window window, boolean isLight) {
+<<<<<<< Updated upstream
         Log.e("Display12", "setNavigationBarLight $isLight");
+=======
+        Log.e("Display12", "setNavigationBarLight " + isLight);
+>>>>>>> Stashed changes
         WindowInsetsControllerCompat insetsController = WindowCompat.getInsetsController(window, window.getDecorView());
         insetsController.setAppearanceLightNavigationBars(isLight);
     }
 
+<<<<<<< Updated upstream
+=======
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
     public static void setStatusBarVisibility(@NonNull Window window, boolean isShow) {
         Log.i("Display12", "setStatusBarVisibility [ " + isShow + " ] ");
         WindowInsetsControllerCompat controller = WindowCompat.getInsetsController(window, window.getDecorView());

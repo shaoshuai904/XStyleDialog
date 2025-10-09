@@ -19,7 +19,16 @@ import com.maple.msdialog.databinding.MsDialogActionSheetBinding
 import com.maple.msdialog.utils.DensityUtils.dp2px
 import com.maple.msdialog.utils.DialogUtil.getScreenHeight
 import com.maple.msdialog.utils.DialogUtil.getScreenWidth
+<<<<<<< Updated upstream
 import com.maple.msdialog.utils.DisplayUtil
+=======
+<<<<<<< Updated upstream
+=======
+import com.maple.msdialog.utils.WbSystemBarStyle
+import com.maple.msdialog.utils.updateWindowInsets
+import com.maple.msdialog.utils.windowEnableEdgeToEdge
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
 import java.io.Serializable
 
 /**
@@ -29,12 +38,13 @@ import java.io.Serializable
  * @time 2017/3/21
  */
 class ActionSheetDialog(
-        private val mContext: Context,
-        private val config: Config = Config(mContext),
-        @StyleRes private val themeResId: Int = R.style.ActionSheetDialogStyle
+    private val mContext: Context,
+    private val config: Config = Config(mContext),
+    @StyleRes private val themeResId: Int = R.style.ActionSheetDialogStyle
 ) : Dialog(mContext, themeResId) {
     private val binding: MsDialogActionSheetBinding = MsDialogActionSheetBinding.inflate(
-        LayoutInflater.from(context), null, false)
+        LayoutInflater.from(context), null, false
+    )
     private var sheetItemList: MutableList<SheetItem>? = null
     // var itemClickListener: OnSheetItemClickListener? = null
 
@@ -59,8 +69,20 @@ class ActionSheetDialog(
                 y = 0
                 // dimAmount = 0.4f
             }
+<<<<<<< Updated upstream
             DisplayUtil.setStatusBarLight(this, true)
             DisplayUtil.setNavigationBarLight(this, true)
+=======
+<<<<<<< Updated upstream
+=======
+            windowEnableEdgeToEdge(
+                this,
+                WbSystemBarStyle.light(config.mainColor, config.mainColor),
+                WbSystemBarStyle.light(config.mainColor, config.mainColor)
+            )
+            binding.tvCancel.updateWindowInsets()
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
         }
     }
 
@@ -75,10 +97,10 @@ class ActionSheetDialog(
     }
 
     fun setTitle(
-            title: CharSequence?,
-            @ColorInt color: Int = config.titleTextColor,
-            spSize: Float = config.titleTextSizeSp,
-            isBold: Boolean = false
+        title: CharSequence?,
+        @ColorInt color: Int = config.titleTextColor,
+        spSize: Float = config.titleTextSizeSp,
+        isBold: Boolean = false
     ): ActionSheetDialog {
         config.showTitle = true
         binding.tvTitle.apply {
@@ -93,10 +115,10 @@ class ActionSheetDialog(
     fun setCancelText(cancelText: CharSequence?) = setCancelText(cancelText, isBold = false)
 
     fun setCancelText(
-            cancelText: CharSequence? = config.cancelText,
-            @ColorInt color: Int = config.cancelTextColor,
-            spSize: Float = config.cancelTextSizeSp,
-            isBold: Boolean = false
+        cancelText: CharSequence? = config.cancelText,
+        @ColorInt color: Int = config.cancelTextColor,
+        spSize: Float = config.cancelTextSizeSp,
+        isBold: Boolean = false
     ): ActionSheetDialog {
         config.showCancel = true
         binding.tvCancel.apply {
@@ -120,13 +142,13 @@ class ActionSheetDialog(
     }
 
     fun addSheetItem(strItem: String) =
-            addSheetItem(strItem, config.itemTextColor, null)
+        addSheetItem(strItem, config.itemTextColor, null)
 
     fun addSheetItem(strItem: String, clickListener: OnSheetItemClickListener?) =
-            addSheetItem(SheetItem(strItem, config.itemTextColor, clickListener))
+        addSheetItem(SheetItem(strItem, config.itemTextColor, clickListener))
 
     fun addSheetItem(strItem: String, @ColorInt color: Int = config.itemTextColor, clickListener: OnSheetItemClickListener?) =
-            addSheetItem(SheetItem(strItem, color, clickListener))
+        addSheetItem(SheetItem(strItem, color, clickListener))
 
     fun addSheetItem(item: SheetItem): ActionSheetDialog {
         if (sheetItemList == null) {
@@ -193,8 +215,8 @@ class ActionSheetDialog(
                 setBackgroundResource(bg)
                 setTextColor(sheetItem.showColor)
                 layoutParams = LinearLayout.LayoutParams(
-                        LinearLayout.LayoutParams.MATCH_PARENT,
-                        config.actionSheetItemHeight
+                    LinearLayout.LayoutParams.MATCH_PARENT,
+                    config.actionSheetItemHeight
                 )
                 // add click listener
                 setOnClickListener {
@@ -216,28 +238,41 @@ class ActionSheetDialog(
      * ActionSheetDialog 的配置
      */
     open class Config(
-            var context: Context
+        var context: Context
     ) : Serializable {
         // root
         var paddingLeft: Int = 10f.dp2px(context)
         var paddingTop: Int = 10f.dp2px(context)
         var paddingRight: Int = 10f.dp2px(context)
+<<<<<<< Updated upstream
         var paddingBottom: Int = DisplayUtil.getNavigationBarHeight(context) + 10f.dp2px(context)
         var mainColor: Int = Color.TRANSPARENT // 主背景色
+=======
+        var paddingBottom: Int = 10f.dp2px(context)
+<<<<<<< Updated upstream
+=======
+        var mainColor: Int = Color.TRANSPARENT // 主背景色
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
 
         // title
         var showTitle: Boolean = false
         var titleTextSizeSp: Float = 16f // 字体大小
-        @ColorInt var titleTextColor: Int = ContextCompat.getColor(context, R.color.ms_def_title_color) // 字体颜色
+        @ColorInt
+        var titleTextColor: Int = ContextCompat.getColor(context, R.color.ms_def_title_color) // 字体颜色
 
         // item
         var actionSheetItemHeight: Int = 50f.dp2px(context)
         var itemTextSizeSp: Float = 18f // 字体大小
         var itemTextColor: Int = ContextCompat.getColor(context, R.color.ms_def_message_color)
-        @DrawableRes var sheetSingle: Int = R.drawable.ms_sel_action_sheet_single
-        @DrawableRes var sheetTop: Int = R.drawable.ms_sel_action_sheet_top
-        @DrawableRes var sheetMiddle: Int = R.drawable.ms_sel_action_sheet_middle
-        @DrawableRes var sheetBottom: Int = R.drawable.ms_sel_action_sheet_bottom
+        @DrawableRes
+        var sheetSingle: Int = R.drawable.ms_sel_action_sheet_single
+        @DrawableRes
+        var sheetTop: Int = R.drawable.ms_sel_action_sheet_top
+        @DrawableRes
+        var sheetMiddle: Int = R.drawable.ms_sel_action_sheet_middle
+        @DrawableRes
+        var sheetBottom: Int = R.drawable.ms_sel_action_sheet_bottom
 
         // divider 分割线
         var dividerHeight: Int = 1 // 0.4f.dp2px(context) // 分割线高度
@@ -247,7 +282,8 @@ class ActionSheetDialog(
         var showCancel: Boolean = false
         var cancelText: CharSequence = "取消"
         var cancelTextSizeSp: Float = 18f // 字体大小
-        @ColorInt var cancelTextColor: Int = ContextCompat.getColor(context, R.color.ms_def_title_color) // 字体颜色
+        @ColorInt
+        var cancelTextColor: Int = ContextCompat.getColor(context, R.color.ms_def_title_color) // 字体颜色
         var cancelViewHeight: Int = 48f.dp2px(context) // 底部按钮高度
     }
 

@@ -17,6 +17,11 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
 import androidx.core.view.updateLayoutParams
 import com.maple.msdialog.utils.DisplayUtil
+<<<<<<< Updated upstream
+=======
+import com.maple.msdialog.utils.WbSystemBarStyle
+import com.maple.msdialog.utils.windowEnableEdgeToEdge
+>>>>>>> Stashed changes
 
 fun Activity.setContentViewAndSetWindowInsets(layoutResID: Int) {
     val rootView = LayoutInflater.from(this).inflate(layoutResID, null)
@@ -69,6 +74,7 @@ fun activityEnableEdgeToEdge(
     }
 }
 
+<<<<<<< Updated upstream
 
 fun windowEnableEdgeToEdge(
     window: Window,
@@ -113,6 +119,8 @@ fun windowEnableEdgeToEdge(
     }
 }
 
+=======
+>>>>>>> Stashed changes
 //inline
 // 兼容 Android 15 系统栏内边距
 fun View.updateWindowInsets() {

@@ -1,5 +1,6 @@
 package com.maple.demo
 
+import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
@@ -35,10 +36,13 @@ import java.util.Random
  */
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
+    private lateinit var mContext: Context
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
+        mContext = this
         setContentViewAndSetWindowInsets(binding.root, binding.topBar.root)
         with(binding.topBar) {
             ivBack.visibility = View.GONE
@@ -48,14 +52,14 @@ class MainActivity : AppCompatActivity() {
 
     // ------------------------------------ Alert Dialog -------------------------------------------
     fun adOne(view: View?) {
-        val config = AlertDialog.Config(this).apply {
+        val config = AlertDialog.Config(mContext).apply {
             scaleWidth = 0.78
             rightBtnColor = Color.RED
 //            titlePaddingTop = 20f.dp2px(context)
 //            messagePaddingTop = 15f.dp2px(context)
 //            messagePaddingBottom = 20f.dp2px(context)
         }
-        AlertDialog(this, config)
+        AlertDialog(mContext, config)
             .setDialogTitle("退出当前账号")
             .setHtmlMessage("再连续登陆<font color=\"#ff0000\">15</font>天，就可变身为QQ达人。退出QQ可能会使你现有记录归零，确定退出？")
             .setLeftButton("取消")
@@ -64,7 +68,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun adTwo(view: View?) {
-        AlertDialog(this).apply {
+        AlertDialog(mContext).apply {
             setCancelable(true)
             setScaleWidth(0.75) // 设置宽度，占屏幕宽度百分比
             // getMessageView().setPadding(15f.dp2px(context), 24f.dp2px(context), 15f.dp2px(context), 24f.dp2px(context))
@@ -90,7 +94,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun asMessage(view: View?) {
-        ActionSheetDialog(this).apply {
+        ActionSheetDialog(mContext, ActionSheetDialog.Config(mContext).apply {
+            mainColor = Color.parseColor("#FF5799")
+        }).apply {
             setCancelable(false)
             setCanceledOnTouchOutside(false)
             setTitle("清空消息列表后，聊天记录依然保留，确定要清空消息列表？")
@@ -102,7 +108,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun asImage(view: View?) {
-        ActionSheetDialog(this).apply {
+        ActionSheetDialog(mContext).apply {
 //            setCancelable(false)
 //            setCanceledOnTouchOutside(false)
             addSheetItem("发送给好友", Color.parseColor(DEF_BLUE), onItemClickListener)
@@ -116,9 +122,24 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun asList(view: View?) {
+<<<<<<< Updated upstream
         ActionSheetDialog(this, ActionSheetDialog.Config(this).apply {
+<<<<<<< Updated upstream
             mainColor = Color.parseColor("#FF5722")
             paddingBottom = DisplayUtil.getNavigationBarHeight(context) + 5f.dp2px(context)
+=======
+            paddingBottom = 15f.dp2px(context)
+=======
+        val btm = if (DisplayUtil.isNavigationBarVisible(window)) {
+            DisplayUtil.getNavigationBarHeight(mContext) + 5f.dp2px(mContext)
+        } else {
+            5f.dp2px(mContext)
+        }
+        ActionSheetDialog(mContext, ActionSheetDialog.Config(mContext).apply {
+            mainColor = Color.parseColor("#FF5722")
+//            paddingBottom = btm
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
             showCancel = true
             cancelText = "Config Cancel"
         }).apply {
@@ -150,7 +171,7 @@ class MainActivity : AppCompatActivity() {
                 User("004", "王五", "男", 11),
                 User("007", "赵六六", "女", 123)
             )
-            ar1 = ActionSheetRecyclerSingleSelectedDialog(this).apply {
+            ar1 = ActionSheetRecyclerSingleSelectedDialog(mContext).apply {
                 setTitle("选择条目")
                 setCloseVisibility(false)
                 setTopLineVisibility(true)
@@ -177,8 +198,16 @@ class MainActivity : AppCompatActivity() {
     fun asrBigDataList(view: View?) {
         if (ar2 == null) {
             val items = getSheetItemTestData(20)
+<<<<<<< Updated upstream
             ar2 = ActionSheetRecyclerSingleSelectedDialog(this, ActionSheetRecyclerDialog.Config(this).apply {
+<<<<<<< Updated upstream
                 mainColor = Color.parseColor("#00BCD4")
+=======
+=======
+            ar2 = ActionSheetRecyclerSingleSelectedDialog(mContext, ActionSheetRecyclerDialog.Config(mContext).apply {
+                mainColor = Color.parseColor("#00BCD4")
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
                 titleTextSizeSp = 18f
                 // closeDraw = ContextCompat.getDrawable(context, android.R.drawable.ic_delete)
                 isShowMark = true
@@ -209,7 +238,7 @@ class MainActivity : AppCompatActivity() {
     fun multipleList1(view: View?) {
         if (arm1 == null) {
             val items = getSheetItemTestData(3)
-            arm1 = ActionSheetRecyclerMultipleSelectedDialog(this, ActionSheetRecyclerDialog.Config(this).apply {
+            arm1 = ActionSheetRecyclerMultipleSelectedDialog(mContext, ActionSheetRecyclerDialog.Config(mContext).apply {
                 titleTextSizeSp = 18f
                 isShowMark = true
                 itemTextSelectedColor = Color.RED
@@ -235,7 +264,7 @@ class MainActivity : AppCompatActivity() {
     fun multipleList2(view: View?) {
         if (arm2 == null) {
             val items = getSheetItemTestData(20)
-            arm2 = ActionSheetRecyclerMultipleSelectedDialog(this, ActionSheetRecyclerDialog.Config(this).apply {
+            arm2 = ActionSheetRecyclerMultipleSelectedDialog(mContext, ActionSheetRecyclerDialog.Config(mContext).apply {
                 titleTextSizeSp = 18f
                 isShowMark = true
                 itemTextSelectedColor = Color.RED
@@ -261,7 +290,7 @@ class MainActivity : AppCompatActivity() {
     var arm3: CustomMultipleSelectedDialog? = null
     fun customMultipleACR(view: View?) {
         if (arm3 == null) {
-            arm3 = CustomMultipleSelectedDialog(this, ActionSheetRecyclerDialog.Config(this).apply {
+            arm3 = CustomMultipleSelectedDialog(mContext, ActionSheetRecyclerDialog.Config(mContext).apply {
                 titleTextSizeSp = 18f
                 isShowMark = true
                 itemTextSelectedColor = Color.RED
@@ -278,9 +307,19 @@ class MainActivity : AppCompatActivity() {
     var asl1: ActionSheetListDialog? = null
     fun aslList(view: View?) {
         if (asl1 == null) {
+<<<<<<< Updated upstream
             asl1 = ActionSheetListDialog(this, ActionSheetListDialog.Config(this).apply {
                 mainColor = Color.parseColor("#03A9F4")
             }).apply {
+=======
+<<<<<<< Updated upstream
+            asl1 = ActionSheetListDialog(this).apply {
+=======
+            asl1 = ActionSheetListDialog(mContext, ActionSheetListDialog.Config(mContext).apply {
+                mainColor = Color.parseColor("#03A9F4")
+            }).apply {
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
                 addSheetItems(getSheetItemTestData(2)) { item, position ->
                     showToast(item.getShowName())
                 }
@@ -293,7 +332,7 @@ class MainActivity : AppCompatActivity() {
     var asl2: ActionSheetListDialog? = null
     fun aslListNoCancel(view: View?) {
         if (asl2 == null) {
-            asl2 = ActionSheetListDialog(this).apply {
+            asl2 = ActionSheetListDialog(mContext).apply {
                 setTitle("标题")
                 addSheetItems(getSheetItemTestData(10)) { item, position ->
                     showToast(item.getShowName())
@@ -307,7 +346,7 @@ class MainActivity : AppCompatActivity() {
     var asl3: ActionSheetListDialog? = null
     fun aslListTitle(view: View?) {
         if (asl3 == null) {
-            asl3 = ActionSheetListDialog(this).apply {
+            asl3 = ActionSheetListDialog(mContext).apply {
                 setTitle("标题")
                 setCancelText("取消")
                 addSheetItems(getSheetItemTestData(20)) { item, position ->
@@ -320,7 +359,7 @@ class MainActivity : AppCompatActivity() {
 
     // --------------------------------- Alert Edit Dialog -----------------------------------------
     fun aeOne(view: View?) {
-        AlertEditDialog(this).apply {
+        AlertEditDialog(mContext).apply {
             setTitle("姓名")
             setMessage("请输入您的真实姓名。")
             setLeftButton("取消")
@@ -331,7 +370,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun aeTwo(view: View?) {
-        AlertEditDialog(this).apply {
+        AlertEditDialog(mContext).apply {
             setMessage("给自己起一个好听的名字吧")
             setRightButton("确定", OnEditTextCallListener {
                 showToast(it)
@@ -346,7 +385,7 @@ class MainActivity : AppCompatActivity() {
     fun npOne(view: View?) {
         val numbers = arrayOf("1", "2", "3", "4", "5", "6", "7", "8", "9", "10")
         defValue = numbers[index]
-        AlertNumberPickerDialog(this).apply {
+        AlertNumberPickerDialog(mContext).apply {
             setTitle("Number")
             setNumberValues(numbers, index) { picker, oldVal, newVal ->
                 defValue = numbers[newVal]
@@ -361,7 +400,7 @@ class MainActivity : AppCompatActivity() {
     fun npTwo(view: View?) {
         val numbers = arrayOf("北京", "上海", "天津", "杭州", "苏州", "深圳")
         defValue = numbers[index]
-        AlertNumberPickerDialog(this).apply {
+        AlertNumberPickerDialog(mContext).apply {
             setScaleWidth(0.8)
             setCancelable(false)
             setTitle("选择城市")
@@ -376,7 +415,7 @@ class MainActivity : AppCompatActivity() {
 
     // ----------------------------------- other methods -------------------------------------------
     private fun showToast(msg: String?) {
-        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
+        Toast.makeText(mContext, msg, Toast.LENGTH_SHORT).show()
     }
 
     companion object {
