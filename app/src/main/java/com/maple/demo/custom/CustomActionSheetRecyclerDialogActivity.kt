@@ -10,7 +10,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.maple.demo.databinding.CustomActionSheetRecyclerDialogBinding
-import com.maple.demo.setContentViewAndSetWindowInsets
+import com.maple.demo.utils.setContentViewAndSetWindowInsets
 import com.maple.msdialog.ActionSheetRecyclerDialog
 import com.maple.msdialog.ActionSheetRecyclerSingleSelectedDialog
 import com.maple.msdialog.SheetItem

@@ -11,6 +11,7 @@ import com.maple.demo.custom.CustomActionSheetRecyclerDialogActivity
 import com.maple.demo.custom.CustomAlertDialogActivity
 import com.maple.demo.custom.CustomMultipleSelectedDialog
 import com.maple.demo.databinding.ActivityMainBinding
+import com.maple.demo.utils.setContentViewAndSetWindowInsets
 import com.maple.msdialog.ActionSheetDialog
 import com.maple.msdialog.ActionSheetListDialog
 import com.maple.msdialog.ActionSheetRecyclerDialog
@@ -23,6 +24,7 @@ import com.maple.msdialog.OnEditTextCallListener
 import com.maple.msdialog.OnSheetItemClickListener
 import com.maple.msdialog.SheetItem
 import com.maple.msdialog.utils.DensityUtils.dp2px
+import com.maple.msdialog.utils.DisplayUtil
 import java.util.Random
 
 /**
@@ -115,7 +117,8 @@ class MainActivity : AppCompatActivity() {
 
     fun asList(view: View?) {
         ActionSheetDialog(this, ActionSheetDialog.Config(this).apply {
-            paddingBottom = 15f.dp2px(context)
+            mainColor = Color.parseColor("#FF5722")
+            paddingBottom = DisplayUtil.getNavigationBarHeight(context) + 5f.dp2px(context)
             showCancel = true
             cancelText = "Config Cancel"
         }).apply {
@@ -175,6 +178,7 @@ class MainActivity : AppCompatActivity() {
         if (ar2 == null) {
             val items = getSheetItemTestData(20)
             ar2 = ActionSheetRecyclerSingleSelectedDialog(this, ActionSheetRecyclerDialog.Config(this).apply {
+                mainColor = Color.parseColor("#00BCD4")
                 titleTextSizeSp = 18f
                 // closeDraw = ContextCompat.getDrawable(context, android.R.drawable.ic_delete)
                 isShowMark = true
@@ -274,7 +278,9 @@ class MainActivity : AppCompatActivity() {
     var asl1: ActionSheetListDialog? = null
     fun aslList(view: View?) {
         if (asl1 == null) {
-            asl1 = ActionSheetListDialog(this).apply {
+            asl1 = ActionSheetListDialog(this, ActionSheetListDialog.Config(this).apply {
+                mainColor = Color.parseColor("#03A9F4")
+            }).apply {
                 addSheetItems(getSheetItemTestData(2)) { item, position ->
                     showToast(item.getShowName())
                 }

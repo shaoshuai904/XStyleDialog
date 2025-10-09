@@ -11,7 +11,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.maple.demo.R
 import com.maple.demo.databinding.CustomAlertDialogBinding
-import com.maple.demo.setContentViewAndSetWindowInsets
+import com.maple.demo.utils.setContentViewAndSetWindowInsets
 import com.maple.msdialog.AlertDialog
 import com.maple.msdialog.utils.DensityUtils.dp2px
 

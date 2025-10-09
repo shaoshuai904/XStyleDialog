@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.graphics.Insets;
-import android.graphics.Point;
 import android.graphics.Rect;
 import android.os.Build;
 import android.util.DisplayMetrics;
@@ -22,6 +21,7 @@ import android.view.WindowMetrics;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.core.view.WindowInsetsControllerCompat;
 
@@ -262,9 +262,21 @@ public class DisplayUtil {
         return defValue;
     }
 
+    public static void setStatusBarLight(Window window, boolean isLight) {
+        Log.e("Display12", "setStatusBarLight $isLight");
+        WindowInsetsControllerCompat insetsController = WindowCompat.getInsetsController(window, window.getDecorView());
+        insetsController.setAppearanceLightStatusBars(isLight);
+    }
+
+    public static void setNavigationBarLight(Window window, boolean isLight) {
+        Log.e("Display12", "setNavigationBarLight $isLight");
+        WindowInsetsControllerCompat insetsController = WindowCompat.getInsetsController(window, window.getDecorView());
+        insetsController.setAppearanceLightNavigationBars(isLight);
+    }
+
     public static void setStatusBarVisibility(@NonNull Window window, boolean isShow) {
-        View decorView = window.getDecorView();
-        WindowInsetsControllerCompat controller = new WindowInsetsControllerCompat(window, decorView);
+        Log.i("Display12", "setStatusBarVisibility [ " + isShow + " ] ");
+        WindowInsetsControllerCompat controller = WindowCompat.getInsetsController(window, window.getDecorView());
         if (isShow) {
             controller.show(WindowInsetsCompat.Type.statusBars());
         } else {
@@ -272,18 +284,9 @@ public class DisplayUtil {
         }
     }
 
-    public static boolean isStatusBarVisible(@NonNull Window window) {
-        View decorView = window.getDecorView();
-        WindowInsetsCompat insets = ViewCompat.getRootWindowInsets(decorView);
-        if (insets != null) {
-            return insets.getInsets(WindowInsetsCompat.Type.statusBars()).top > 0;
-        }
-        return false;
-    }
-
-    public static void setNavBarVisibility(@NonNull Window window, boolean isShow) {
-        View decorView = window.getDecorView();
-        WindowInsetsControllerCompat controller = new WindowInsetsControllerCompat(window, decorView);
+    public static void setNavigationBarVisibility(@NonNull Window window, boolean isShow) {
+        Log.i("Display12", "setNavBarVisibility [ " + isShow + " ] ");
+        WindowInsetsControllerCompat controller = WindowCompat.getInsetsController(window, window.getDecorView());
         if (isShow) {
             controller.show(WindowInsetsCompat.Type.navigationBars());
         } else {
@@ -291,44 +294,42 @@ public class DisplayUtil {
         }
     }
 
-    public static boolean isNavBarVisible(@NonNull Window window) {
-        View decorView = window.getDecorView();
-        WindowInsetsCompat insets = ViewCompat.getRootWindowInsets(decorView);
+    public static boolean isStatusBarVisible(@NonNull Window window) {
+        return isStatusBarVisible(window.getDecorView());
+    }
+
+    public static boolean isStatusBarVisible(@NonNull View view) {
+        WindowInsetsCompat insets = ViewCompat.getRootWindowInsets(view);
         if (insets != null) {
-            boolean isShow = insets.isVisible(WindowInsetsCompat.Type.navigationBars());
-            Log.e("Display12", "isShow : " + isShow);
+            boolean isShow = insets.isVisible(WindowInsetsCompat.Type.statusBars());
+            Log.e("Display12", "状态栏 isShow 1: " + isShow);
             return isShow;
-        } else {
-            Log.e("Display12", "insets 为空： ");
-            return isNavBarVisible(window.getContext());
         }
+        int flags = view.getSystemUiVisibility();
+        boolean isShow = (flags & View.SYSTEM_UI_FLAG_FULLSCREEN) == 0;
+        Log.e("Display12", "状态栏 isShow 2: " + isShow);
+        return isShow;
+    }
+
+    public static boolean isNavigationBarVisible(@NonNull Window window) {
+        return isNavigationBarVisible(window.getDecorView());
     }
 
     /**
      * 底部导航栏 是否显示
      */
-    public static boolean isNavBarVisible(Context context) {
-        WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
-        if (wm == null) return false;
-        if (Build.VERSION.SDK_INT >= 30) {
-            WindowMetrics windowMetrics = wm.getCurrentWindowMetrics();
-            WindowInsets insets = windowMetrics.getWindowInsets();
-            // 检查导航栏是否占用屏幕空间
-            boolean hasNav = insets.isVisible(WindowInsets.Type.navigationBars());
-            Log.i("Display12", "显示底导： " + hasNav);
-            return hasNav;
-        } else {
-            Display display = wm.getDefaultDisplay();
-            Point appSize = new Point();
-            Point realSize = new Point();
-            display.getSize(appSize); // 应用区域尺寸（不含导航栏）
-            display.getRealSize(realSize); // 屏幕物理尺寸
-            // 横屏 对比 宽度差异, 竖屏 对比 高度差异
-            int diffY = isHengPing(context) ? (realSize.x - appSize.x) : (realSize.y - appSize.y);
-            // 华为mate 30，不显示底导时差值为 105，但是 statusBarHeight = 104
-            Log.i("Display12", " " + realSize + " vs " + appSize + ", 差值：" + diffY);
-            return diffY > (getStatusBarHeight(context) + 1);
+    public static boolean isNavigationBarVisible(@NonNull View view) {
+        WindowInsetsCompat insets = ViewCompat.getRootWindowInsets(view);
+        if (insets != null) {
+            boolean isShow = insets.isVisible(WindowInsetsCompat.Type.navigationBars());
+            Log.e("Display12", "底导 isShow 1: " + isShow);
+            return isShow;
         }
+        // 调用实际过早 或 SDK <= 20
+        int flags = view.getSystemUiVisibility();
+        boolean isShow = (flags & View.SYSTEM_UI_FLAG_HIDE_NAVIGATION) == 0;
+        Log.e("Display12", "底导 isShow 2: " + isShow);
+        return isShow;
     }
 
     /**
@@ -343,7 +344,6 @@ public class DisplayUtil {
         }
         return false;
     }
-
 
     public static int getHengPingRotation(Context context) {
         Display display = null;

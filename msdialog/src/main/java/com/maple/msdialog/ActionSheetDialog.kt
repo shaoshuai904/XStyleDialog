@@ -19,6 +19,7 @@ import com.maple.msdialog.databinding.MsDialogActionSheetBinding
 import com.maple.msdialog.utils.DensityUtils.dp2px
 import com.maple.msdialog.utils.DialogUtil.getScreenHeight
 import com.maple.msdialog.utils.DialogUtil.getScreenWidth
+import com.maple.msdialog.utils.DisplayUtil
 import java.io.Serializable
 
 /**
@@ -50,11 +51,16 @@ class ActionSheetDialog(
         // create Dialog
         setContentView(binding.root)
         window?.apply {
+            statusBarColor = 0
+            navigationBarColor = config.mainColor
             setGravity(Gravity.START or Gravity.BOTTOM)
             attributes = attributes.apply {
                 x = 0
                 y = 0
+                // dimAmount = 0.4f
             }
+            DisplayUtil.setStatusBarLight(this, true)
+            DisplayUtil.setNavigationBarLight(this, true)
         }
     }
 
@@ -136,6 +142,7 @@ class ActionSheetDialog(
     private fun initLayout() {
         // binding.root.minimumWidth = mContext.screenInfo().x
         binding.root.setPadding(config.paddingLeft, config.paddingTop, config.paddingRight, config.paddingBottom)
+        binding.root.setBackgroundColor(config.mainColor)
         binding.tvTitle.visibility = if (config.showTitle) View.VISIBLE else View.GONE
         binding.tvCancel.visibility = if (config.showCancel) {
             setCancelText()
@@ -215,7 +222,8 @@ class ActionSheetDialog(
         var paddingLeft: Int = 10f.dp2px(context)
         var paddingTop: Int = 10f.dp2px(context)
         var paddingRight: Int = 10f.dp2px(context)
-        var paddingBottom: Int = 10f.dp2px(context)
+        var paddingBottom: Int = DisplayUtil.getNavigationBarHeight(context) + 10f.dp2px(context)
+        var mainColor: Int = Color.TRANSPARENT // 主背景色
 
         // title
         var showTitle: Boolean = false

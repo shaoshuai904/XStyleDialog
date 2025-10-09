@@ -1,6 +1,6 @@
 # X style Dialog - 万能样式Dialog 
 
-[![API](https://img.shields.io/badge/API-19%2B-green.svg?style=flat)](https://android-arsenal.com/api?level=19)
+[![API](https://img.shields.io/badge/API-21%2B-green.svg?style=flat)](https://android-arsenal.com/api?level=21)
 [![jitpack](https://jitpack.io/v/shaoshuai904/XStyleDialog.svg)](https://jitpack.io/#shaoshuai904/XStyleDialog)
 
 [下载demo.apk](/screens/app-v2.0.5_48.apk)
@@ -31,10 +31,10 @@ allprojects {
 
 ```groovy
 dependencies {
+    // for androidx
+    implementation 'com.github.shaoshuai904:XStyleDialog:2.1.0'
 	// for Support
 	implementation 'com.github.shaoshuai904:XStyleDialog:1.5.1'
-	// for androidx
-	implementation 'com.github.shaoshuai904:XStyleDialog:2.1.0'
 }
 ```
 
@@ -117,8 +117,16 @@ dependencies {
 
 
 ----------
+## v2.2.0 ##
+- 更新 minSdkVersion = 21
+- 升级 gradle 8.6.0 和适配 target sdk 35（Android 15）
+
+## v2.1.0 ##
+- 抽取 AlertDialog、AlertEditDialog、AlertNumberPickerDialog 的基类 AlertBaseDialog
+- 升级 gradle 7.0 和 target sdk 32
+
 ## v2.0.5 ##
- - 更新minSdkVersion = 19
+ - 更新 minSdkVersion = 19
  - 提供`setScaleWidth`和`setScaleHeight`方法设置Dialog的屏幕百分比宽度和高度
  - 提供Dialog的getRootView及各个子View方法，以支持深度自定义。
  - 提供Dialog的Config配置文件，以支持不同app默认样式。

@@ -5,6 +5,7 @@ import android.graphics.Color
 import android.graphics.Typeface
 import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.Drawable
+import android.graphics.drawable.GradientDrawable
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
@@ -47,6 +48,7 @@ abstract class ActionSheetRecyclerDialog(
     init {
         // set Dialog min width
         binding.apply {
+            flContent.setBackgroundColor(config.mainColor)
             root.minimumWidth = mContext.getScreenWidth()
             rlTitleBar.visibility = View.GONE
             ivClose.setImageDrawable(config.closeDraw)
@@ -56,7 +58,9 @@ abstract class ActionSheetRecyclerDialog(
         // create Dialog
         setContentView(binding.root)
         window?.apply {
-            setGravity(Gravity.BOTTOM)
+            statusBarColor = 0
+            navigationBarColor = config.mainColor
+            setGravity(Gravity.START or Gravity.BOTTOM)
             attributes = attributes.apply {
                 x = 0
                 y = 0
@@ -102,6 +106,16 @@ abstract class ActionSheetRecyclerDialog(
         with(binding.rlTitleBar) {
             config.titleViewHeight = heightPixels
             layoutParams = layoutParams.apply { height = heightPixels }
+            background = GradientDrawable().apply {
+                setColor(config.mainColor)
+                cornerRadius = 0f
+                cornerRadii = floatArrayOf(
+                    config.topRadius, config.topRadius,
+                    config.topRadius, config.topRadius,
+                    0f, 0f,
+                    0f, 0f
+                )
+            }
         }
         return this
     }
@@ -186,11 +200,13 @@ abstract class ActionSheetRecyclerDialog(
         var rootPaddingTop: Int = 0
         var rootPaddingRight: Int = 0
         var rootPaddingBottom: Int = 0
+        var mainColor: Int = Color.parseColor("#FFFFFF") // 主背景色
 
         // title
+        var titleViewHeight: Int = 48f.dp2px(context) // 标题栏高度
+        var topRadius: Float = 12f.dp2px(context).toFloat() // 顶部圆弧角度
         var titleTextSizeSp: Float = 16f // 字体大小
         var titleColor: Int = ContextCompat.getColor(context, R.color.ms_def_title_color) // 字体颜色
-        var titleViewHeight: Int = 48f.dp2px(context) // 标题栏高度
         var closeDraw: Drawable? = ContextCompat.getDrawable(context, R.drawable.ms_svg_ic_close)
 
         // item
@@ -206,7 +222,7 @@ abstract class ActionSheetRecyclerDialog(
         var itemPaddingBottom: Int = 12f.dp2px(context)
 
         // divider 分割线
-        var dividerPaddingLeft: Int = 12f.dp2px(context) // 分割线距离左侧距离
+        var dividerPaddingLeft: Int = 0f.dp2px(context) // 分割线距离左侧距离
         var dividerHeight: Int = 0.7f.dp2px(context) // 分割线高度
         var dividerColor: Drawable = ColorDrawable(Color.parseColor("#e6e9ee"))// 分割线
         var skipLastItems: Int = 0 // 跳过几个item不画分割线，默认每个item底部都有分割线
